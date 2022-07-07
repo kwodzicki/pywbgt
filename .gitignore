@@ -1,4 +1,5 @@
 *.swp
+*.html
 
 *.pyc
 __pycache__
