@@ -1,7 +1,79 @@
 import numpy
+from scipy.optimize import fsolve
+from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
-from metpy.units import units
+from . import liljegren 
 
+from .. import SIGMA
+
+EPSILON = 0.98
+
+def chtc( Tg, Ta, u ):
+  """
+  Convective heat transfer coefficent
+
+  This is equation 5 from Bernard and Pourmoghani (1999) used to
+  compute the convective heat transfer coefficient.
+
+  Arguments:
+    Tg (ndarray) : Globe temperature; degree Celsius
+    Ta (ndarray) : Ambient temperature; degree Celsius
+    u (ndarray) : Wind speed; meters/second
+
+  Kewyord arguments:
+    None.
+
+  Returns:
+    ndarray : Convective heat transfer coefficient values
+
+  """
+
+  return ( (10.9*u**0.566)**3 + (0.35 + 1.77*(Tg-Ta)**0.25)**3 )**(1.0/3.0)
+
+def funcTg( Tg, Ta, u, P, S, epsilon ):#f_db, f_dif, z )
+  """
+  Differential equation for globe temperature
+
+  This is equation 4 from Bernard and Pourmoghani (1999) used to 
+  determine the globe temperature through an iterative solver.
+
+  Arguments:
+    Tg (ndarray) : First guess for globe temperature; degree Celsius
+    Ta (ndarray) : Ambient temperature; degree Celsius
+    u (ndarray) : Wind speed; meters/second
+    P (ndarray) : Atmospheric pressure; hPa
+    S (ndarray) : Radiant heat flux incident on the globe;
+      currently assuming this to be the solar irradiance; W/m**2
+    epsilon (ndarray) : Emissivity of the the globe; default value
+      will be same as that used for the Liljegren method.
+
+  """
+
+  hg = chtc( Tg, Ta, u )                                                        # Compute the convective heat transfer coefficient for given values
+  return hg*(Tg-Ta) - epsilon*(S - SIGMA*Tg**4)                                 # Return result of the differential equation for determining globe temperature
+
+def globeTemperature( Ta, u, P, S, epsilon=EPSILON  ):
+  """
+  Determine globe temperature through iterative solver
+
+  Aruguments:
+    Ta (ndarray) : Ambient temperature; degree Celsius
+    u (ndarray) : Wind speed; meters/second
+    P (ndarray) : Atmospheric pressure; hPa
+    S (ndarray) : Radiant heat flux incident on the globe;
+      currently assuming this to be the solar irradiance; W/m**2
+
+  Keyword arguments:
+    epsilon (ndarray) : Emissivity of the the globe; default value
+      will be same as that used for the Liljegren method.
+
+  Returns:
+    ndarray : Globe temperature determined through iterative solver
+
+  """
+
+  return fsolve( funcTg, Ta+1.0, args=(Ta, u, P, S, epsilon) )
+  
 def atmosVaporPres( temp, a = 0.6107, b = 17.27, c = 237.3 ):
   """
   Compute saturation vapor pressure from temperature
@@ -9,8 +81,16 @@ def atmosVaporPres( temp, a = 0.6107, b = 17.27, c = 237.3 ):
   From Bernard (1999)
 
   Arguments:
-  temp (ndarry) : Temperature at which to compute saturation vapor pressure.
-    Units of degree Celsius
+    temp (ndarry) : Temperature at which to compute saturation vapor pressure.
+      Units of degree Celsius
+
+  Keyword arguments:
+    a (float) : Pressure constant for equation
+    b (float) : Temperature factor for numerator
+    c (float) : Temperature scalar for denominator
+
+  Returns:
+    ndarray : vapor pressure in kPa
 
   """
 
@@ -38,7 +118,7 @@ def psychrometricWetBulb(Ta, ea=None, Td=None, RH=None ):
     else:
       raise Exception( 'Must input one of "ea", "RH", or "Td"' )
  
-  return 0.376 + 5.79*ea+ (0.388 - 0.0465*ea) * Ta
+  return 0.376 + 5.79*ea + (0.388 - 0.0465*ea)*Ta
   
 def factorC( wnd ):
   """Compute factor for natural wet bulb temperature
@@ -56,21 +136,40 @@ def factore( wnd ):
   e = numpy.where( wnd < 0.1, 1.1, -0.1 )                                       # Where wind is less than 0.1, set values to 1.1, else set values to -0.1 
   return numpy.where( wnd > 1.0, e, 0.1/wnd**1.1 - 0.2 )                        # Where wind > 1.0, keep values of e, else compute e and return values 
 
-def naturalWetBulb( Ta, Tpwb, Tg, wnd ):
+def naturalWetBulb( Ta, Tpsy, Tg, wnd ):
   """
   Compute natural wet bulb temperature using Bernard method
+
+  Arguments:
+    Ta (ndarray) : Ambient temperature; degree Celsius
+    Tpsy (ndarray) : Psychrometric wet bulb temperature; degree Celsius
+    Tg (ndarray) : Globe temperature; degree Celsius
+    wnd (ndarray) : Wind speed; meters/second
+
+  Keyword arguments:
+    None.
+
+  Returns:
+    ndarray : Natural wet bulb temperature in degree Celsius
 
   Method obtained from:
     https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000231
 
+  Notes:
+    In the reference paper, the psychrometric wet bulb temperture is 
+    Tpwb, however, to be consistent with other papers, and because I
+    believe it makes more sense, we use Tpsy for psychrometric wet bulb
+
   """
 
   return numpy.where( (Tg-Ta) < 4.0,
-    Ta - factorC( wnd )*(Ta - Tpwb),
-    Tpwb + 0.25*(Tg-Ta) + factore( wnd )
+    Ta - factorC( wnd )*(Ta - Tpsy),
+    Tpsy + 0.25*(Tg-Ta) + factore( wnd )
   )
 
-def bernard( u, Ta, Td ):
+def bernard( lat, lon,
+             year, month, day, hour, minute,
+             solar, pres, Tair, Tdew, speed, **kwargs):
   """
   Compute WBGT using Bernard Method
 
@@ -80,20 +179,25 @@ def bernard( u, Ta, Td ):
     Td (Quantity) : Dew point temperature
 
   Returns:
-    Quantity : Wet bulb globe temperature
+    tuple: Globe, natural wet bulb, psychrometric wet bulb, and
+      wet bulb globe temperatures
 
   """
 
-  u    = u.to('m/s')
-  Ta   = Ta.to('degree_Celsius')
-  Td   = Td.to('degree_Celsius')
-
-  Tpwb = psychrometricWetBulb( Ta, Td = Td )
-  Td   = globeTemperature( )
-
-  return units.Quantity(
-    0.7 * naturalWetBulb( Ta, Tpwb, Tg, u ) +\
-    0.2 * Tg  +\
-    0.1 * Ta,
-    'degree_Celsius'
+  solar, cza, fdir = liljegren.solar_parameters(
+    lat, lon, year, month, day, hour, minute, solar.to('watt/m**2').magnitude
   )
+
+  pres   = pres.to('hPa').magnitude
+  speed  = speed.to('meter/second').magnitude
+  relhum = rhTd( Tair, Tdew ).to('percent').magnitude
+
+  Tg   = liljegren.globeTemperature( 
+           Tair.to('kelvin').magnitude, relhum/100.0, 
+           pres, speed, solar, fdir, cza 
+  )
+  Tair = Tair.to('degree_Celsius').magnitude
+  Tpsy = psychrometricWetBulb( Tair, RH = relhum )
+  Tnwb = naturalWetBulb( Tair, Tpsy, Tg, speed )
+
+  return Tg, Tnwb, Tpsy, 0.7*Tnwb + 0.2*Tg + 0.1*Tair

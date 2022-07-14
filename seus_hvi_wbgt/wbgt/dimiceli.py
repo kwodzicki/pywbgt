@@ -1,12 +1,11 @@
 import numpy
 
-from metpy.units import units
+from .liljegren import solar_parameters
 
-from ..utils import f_dir_z
+#from ..utils import f_dir_z
 from .. import SIGMA
 
 #from .utils import wetBulb
-
 
 def vaporPressure( T ):
 
@@ -98,14 +97,14 @@ def factorC( u ):
 
   return chfc() * u**0.58 / 5.3865e-8
 
-def globeTemperature( u, Ta, Td, P, S, f_db, f_dif, z ):
+def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, z ):
   """
   Compute globe temperature
 
   Arguments:
-    u (float) : wind speed in meters per hour
     Ta (float) : ambient temperature in degrees Celsius
     Td (float) : dew point temperature in degrees Celsius
+    u (float) : wind speed in meters per hour
     P (float) : Barometric pressure in inHg 
     S (float) : solar irradiance in Watts per meter**2
     f_dif (float) : diffuse radiation from the sun
@@ -124,40 +123,51 @@ def globeTemperature( u, Ta, Td, P, S, f_db, f_dif, z ):
 
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
  
-def dimiceli( date, lat, lon, u, Ta, Td, P, S, f_db=None, z=None, **kwargs ):
+def dimiceli( lat, lon, 
+              year, month, day, hour, minute, 
+              solar, pres, Tair, Tdew, speed, f_db=None, z=None, **kwargs ):
   """
   Compute WBGT using Dimiceli method
 
   Arguments:
-    date (datetime) : A timezone aware datetime object
     lat (float) : Latitude of observations
     lon (float) : Longitude of observations
-    u (Quantity) : Wind speed
-    Ta (Quantity) : Ambient temperature
-    Td (Quantity) : Dew point temperature
-    P (Quantity) : Atmospheric pressure
-    S (Quantity) : Solar irradiance
+    year (ndarray) : UTC Year of the data values
+    month (ndarray) : UTC Month of the data values
+    day (ndarray) : UTC Day of the data values
+    hour (ndarray) : UTC Hour of the data values; can be any time zone as long
+    minute (ndarray) : UTC Minute of the data values
+    u (Quantity) : Wind speed; units of speed
+    Ta (Quantity) : Ambient temperature; unit of temperature
+    Td (Quantity) : Dew point temperature; unit of temperature
+    P (Quantity) : Atmospheric pressure; unit of pressure
+    S (Quantity) : Solar irradiance; unit of power over area
+
+  Keyword arguments:
     f_db (float) : Direct beam radiation from the sun; fraction
-    f_dif (float) : Diffuse radiation from the sun; fraction
+    z (float) : Solar zenith angle in radians
 
   Returns:
-    Quantity : Wet bulb globe temperature
+    tuple : Globe, natural wet bulb, and wet bulb globe temperatures
 
   """
 
-  u  =  u.to('meters per hour').magnitude
-  Ta = Ta.to('degree_Celsius').magnitude
-  Td = Td.to('degree_Celsius').magnitude
-  P  =  P.to('inHg').magnitude
-  S  =  S.to('watt per meter**2' ).magnitude
+  solar = solar.to( 'watt/m**2'       ).magnitude
+  pres  =  pres.to( 'inHg'            ).magnitude
+  Tair  =  Tair.to( 'degree_Celsius'  ).magnitude
+  Tdew  =  Tdew.to( 'degree_Celsius'  ).magnitude
+  speed = speed.to( 'meters per hour' ).magnitude
 
-  f_db, z = f_dir_z( date, lat, lon, S )
-  f_dif   = 1.0 - f_db
- 
-  return units.Quantity(
-    0.7 * wetBulb( Ta, Td ) +\
-    0.2 * globeTemperature( u, Ta, Td, P, S, f_db, f_dif, z ) + \
-    0.1 * Ta,
-    'degree_Celsius'
-  )
+  if (f_db is None) or (z is None):
+    solar = solar_parameters( lat, lon, 
+                              year, month, day, hour, minute, 
+                              solar )
+    if f_db is None: f_db = solar[2]
+    if z    is None: z    = numpy.arccos( solar[1] ) 
+    solar = solar[0]
 
+  f_dif = 1.0 - f_db
+  Tg    = globeTemperature( Tair, Tdew, speed, pres, solar, f_db, f_dif, z )
+  Tnwb  = wetBulb( Tair, Tdew )
+
+  return Tg, Tnwb, 0.7*Tnwb + 0.2*Tg + 0.1*Tair

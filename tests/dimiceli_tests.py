@@ -1,120 +1,131 @@
-#!/usr/bin/env python3
+from datetime import datetime, timedelta
 
-from numpy import deg2rad
+import numpy
+from pandas import to_datetime, date_range, read_pickle
 
-from metpy.calc import wet_bulb_temperature
+from matplotlib import pyplot as plt
+
 from metpy.units import units
-from seus_hvi_wbgt.wbgt.dimiceli import *
-from seus_hvi_wbgt.wbgt.utils import *
 
+from seus_hvi_wbgt.wbgt.dimiceli import dimiceli, globeTemperature 
 
-prelim_tests = {
-	'20100909' : {
-		'f_db' 		: 0.67,
-		'f_dif'		: 0.33,
-  	'Ta'			: units.Quantity(30.0,  'degree_Celsius'),
-		'Td'			: units.Quantity(20.56, 'degree_Celsius'),
-		'P'				: units.Quantity(30.08, 'inHg'),
-		'S'				: units.Quantity(336,   'watt per meter**2'),
-		'z'				: units.Quantity(38.44, 'degree'),
-		'u'				: units.Quantity(6,     'meters per second'),
-		'RH'			: 67.5,
-		'Tw'			: 26.77550,
-		'Ea'			: 22.64868,
-		'Epsa'		: 0.897936,
-		'B'				: 3614652151,
-		'C'				: 1197110170,
-		'Tg'			: 33.02,
-		'E'				: 28.54383,
-		'Tg act'	: 32.78,
-    'WBGT'		: 28.35,
-		'Actual'	: 28.30
-	},
-	'20100910' : {
-		'f_db' 		: 0.75,
-		'f_dif' 	: 0.25,
-  	'Ta'			: units.Quantity(33.89, 'degree_Celsius'),
-		'Td'			: units.Quantity(24.44, 'degree_Celsius'),
-		'P'				: units.Quantity(29.75, 'inHg'),
-		'S'				: units.Quantity(754,   'watt per meter**2'),
-		'z'				: units.Quantity(36.65, 'degree'),
-		'u'				: units.Quantity(7,     'meter per second'),
-		'RH'			: 54.27,
-		'Tw'			: 26.575561,
-		'Ea'			: 28.487086,
-		'Epsa'		: 0.9278434,
-		'B'				: 7098450550,
-		'C'				: 1309071170,
-		'Tg'			: 39.31,
-		'E'				: 28.584421,
-		'Tg act'	: 39.44,
-    'WBGT'		: 29.85,
-		'Actual'	: 29.88
-	},
-	'20100917' : {
-		'f_db' 		: 0.75,
-		'f_dif' 	: 0.25,
-  	'Ta'			: units.Quantity(34.44, 'degree_Celsius'),
-		'Td'			: units.Quantity(21.11, 'degree_Celsius'),
-		'P'				: units.Quantity(30.05, 'inHg'),
-		'S'				: units.Quantity(579,   'watt per meter**2'),
-		'z'				: units.Quantity(41.41, 'degree'),
-		'u'				: units.Quantity(3.7,   'meter per second'),
-		'RH'			: 52.0,
-		'Tw'			: 26.34527,
-		'Ea'			: 22.48619,
-		'Epsa'		: 0.897013,
-		'B'				: 56176782,
-		'C'				: 90440592,
-		'Tg'			: 40.65,
-		'E'				: 28.24707,
-		'Tg act'	: 40.56,
-    'WBGT'		: 30.02,
-		'Actual'	: 30.00
-	}
-}
+from ncsuCLOUDS.api import CLOUDS
 
-def relDiff( true, exp ):
+c       = CLOUDS()
+c._var  = "airpres,airtemp2m,rh2m,dewtemp2m,blackglobetemp2m,windspeed2m,rad2m_total,wbgt2m,wbgt2m_bernard"
+c.setAttributes('location', 'var', 'value', 'unit', 'obtime', 'timezone') 
+c.setLoc( network = 'ECONET' )
+c.end   = datetime.utcnow()
+c.start = c.end - timedelta(days=5)
 
-  return (exp-true)/true * 100.0
+dfile  = '/Users/kwodzicki/Data/clouds_api_wbgt_data.pic'
+mdfile = dfile.split('_')[:-1]
+mdfile.append( 'metadata.pic' )
+mdfile = '_'.join( mdfile )
 
-def printError( key, true, exp ):
+def loadData():
+
+  return read_pickle( dfile ), read_pickle( mdfile )
+
+def addUnits( df, vName, dt = None ):
+  """To wrap values in DataFrame into pint.Quantity"""
+
+  #unit = df['unit'].unique()
+  #if unit.size != 1:
+  #  raise Exception( "More then one unit for array!" )
+  #unit = unit[0]
+
+  dd = df[ df['var'] == vName ]
+  if dt is not None:
+    dd = dd.reindex( dt )
+
+  unit = dd['unit'].values[0]
+  if unit == 'mb': 
+    unit = 'mbar'
+  elif unit == 'F':
+    unit = 'degree_Fahrenheit'
   
-  print( f"{key:<12}  : {true:>20.4f} vs. {exp:>20.4f}  ---> {relDiff(true, exp):10.4f}%" )
+  return units.Quantity( dd['value'].values, unit )
 
+def main( *args ):
+  if len( args ) != 2:
+    data, meta = c.download()
+  else:
+    data, meta = args
 
-for key, val in prelim_tests.items():
-  #val['P'] *=   33.8638864
-  #val['u'] *= 1609.344
-  #val['z']  = deg2rad( val['z'] ) 
+  raw_labels  = ['solar', 'pressure', 'T', 'RH', 'u']
+  wbgt_labels = ['globe', 'natural', 'WBGT']
 
-  val['P'] = val['P'].to('inHg') 
-  val['u'] = val['u'].to('meters per minute')
-  val['z'] = val['z'].to('radians')
+  for loc, df in data.groupby('location'): 
 
-  ea   = atmosVaporPres( val['Ta'].m, val['Td'].m, val['P'].m )
-  eps  = thermalEmissivity( val['Ta'].m, val['Td'].m, val['P'].m )
-  B    = factorB( val['Ta'].m, val['Td'].m, val['P'].m, val['S'].m, val['f_db'], val['f_dif'], val['z'].m  )
-  C    = factorC( val['u'].m ) 
-  RH   = relativeHumidity( val['Ta'].m, val['Td'].m )
-  Tw   = wetBulb( val['Ta'].m, val['Td'].m )
-  Tg   = globeTemperature( val['u'].m, val['Ta'].m, val['Td'].m, val['P'].m, val['S'].m, val['f_db'], 
-          val['f_dif'], val['z'].m )
-  WBGT = dimiceli( **val )#**{k : v.m if isinstance(v, units.Quantity) else v for k, v in val.items()} ) 
+    #df     = df.sort_values( 'obtime' ).set_index('obtime')
+    df       = df.set_index('obtime')                                           # Set index for dataframe         
+    df.index = df.index.tz_convert(None)                                        # Convert index times to UTC
+    dt       = to_datetime( df.index.unique() )                                 # Get only the unique times
 
-  Tw2  = wet_bulb_temperature( units.Quantity(val['P'], 'hPa'), units.Quantity(val['Ta'], 'degree_Celsius'), units.Quantity(val['Td'], 'degree_Celsius') ) 
+    solar    = addUnits( df, 'rad2m_total', dt )    # Add units to values, convert to appropriate units, and reindex
+    pres     = addUnits( df, 'airpres',     dt )
+    Tair     = addUnits( df, 'airtemp2m',   dt )
+    Tdew     = addUnits( df, 'dewtemp2m',   dt )
+    relhum   = addUnits( df, 'rh2m',        dt )
+    speed    = addUnits( df, 'windspeed2m', dt )
 
-  print( key )
-  printError( "Ea",    			val['Ea'],   ea )
-  printError( "Eps",   			val['Epsa'], eps )
-  printError( "B",     			val['B'],    B )
-  printError( "C",     			val['C'],    C )
-  printError( "RH",    			val['RH'],   RH )
-  printError( "Tw (Td)", 		val['Tw'],   Tw )
-  printError( "Tw (RH)",    val['Tw'],   wetBulbRH( val['Ta'].m, val['RH'] ) )
-  printError( "Tw (metpy)",	val['Tw'],   Tw2.m)
-  printError( "Tg",    			val['Tg'],   Tg )
-  printError( "WBGT",  			val['WBGT'], WBGT.m )
-  #print( dimiceli( **val ) )
+    Tglobe   = addUnits( df, 'blackglobetemp2m', dt ).to( 'degree_Celsius' ).magnitude
+    Twbgt    = addUnits( df, 'wbgt2m',           dt ).to( 'degree_Celsius' ).magnitude
+    TwbgtB   = addUnits( df, 'wbgt2m_bernard',   dt ).to( 'degree_Celsius' ).magnitude
 
-  print()
+    metaLoc  = meta[ meta['Location ID'] == loc ] 
+    lon      = metaLoc['Longitude [degrees East]' ].values.astype( numpy.float32 )
+    lat      = metaLoc['Latitude [degrees North]' ].values.astype( numpy.float32 )
+
+    print( f"Location : {loc}; lat : {lat}; lon : {lon}" )    
+    nn = len( solar )
+
+    Ta = Tair.to('kelvin').magnitude
+    u  = speed.to('meter/second').magnitude
+    P  = pres.to('hPa').magnitude
+    S  = solar.to('watt/meter**2').magnitude
+
+    #Tg = globeTemperature( Ta[0], u[0], P[0], S[0] )
+
+    #return Ta, u, P, S, Tg, Tglobe
+
+    fig, ax = plt.subplots(2, 1)
+    #line  =  ax[0].plot( dt, solar, 'r')
+    #ax[0].yaxis.label.set_color('r')
+    #for i, (var, color) in enumerate( zip( [pres, Tair, relhum, speed], ['g', 'b', 'm', 'k']) ):
+    #  subax = ax[0].twinx()
+    #  line  = subax.plot( dt, var, color )
+    #  subax.yaxis.label.set_color( color )
+    #  if i > 0: subax.spines.right.set_position( ("axes", 1.2 * i) )
+    #  
+    ##lines = ax[0].plot( dt, solar/10, 'r', dt, pres/10, 'g', dt, Tair, 'b', dt, relhum, 'm', dt, speed, 'k' )
+    ##for line, label in zip(lines, raw_labels): line.set_label( label )
+    ##ax[0].legend() 
+    #plt.show()
+    Tg, Tnwb, Twbg = dimiceli(
+        lat, lon, 
+        dt.year.values,
+        dt.month.values,
+        dt.day.values,
+        dt.hour.values,
+        dt.minute.values,
+        solar, pres, Tair, Tdew, speed
+    )
+
+    lines = ax[1].plot( dt, Tg, 'g', dt, Tnwb, 'b', dt, Twbg, 'k' )
+    for line, label in zip(lines, wbgt_labels): line.set_label( label )
+    ax[1].legend() 
+
+    fig, ax = plt.subplots(2, 2)
+    for i, (xx, yy) in enumerate( zip( [Tg, Twbg, Twbg], [Tglobe, Twbgt, TwbgtB] ) ):
+      xyrange = [min( [numpy.nanmin(xx), numpy.nanmin(yy)] )-2.0, 
+                 max( [numpy.nanmax(xx), numpy.nanmax(yy)] )+2.0 ]
+      ax[i//2, i%2].scatter( xx, yy )
+      ax[i//2, i%2].set_aspect( 'equal' ) 
+      ax[i//2, i%2].set_xlim( xyrange )
+      ax[i//2, i%2].set_ylim( xyrange ) 
+   
+    plt.show()
+    res = input('Type Y to quit : ')
+    if res == 'Y': return 

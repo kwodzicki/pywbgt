@@ -717,7 +717,7 @@ float	diameter,	/* cylinder diameter, m								*/
  
 float Tglobe(Tair, rh, Pair, speed, solar, fdir, cza)
 
-float Tair,		/* air (dry bulb) temperature, degC						*/
+float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 	rh,		/* relative humidity, fraction between 0 and 1				*/
 	Pair,		/* barometric pressure, mb							*/
 	speed,	/* wind speed, m/s								*/

@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt.liljegren import liljegren, solar_parameters
+from seus_hvi_wbgt.wbgt.bernard import bernard, globeTemperature 
 
 from ncsuCLOUDS.api import CLOUDS
 
@@ -27,24 +27,6 @@ def loadData():
 
   return read_pickle( dfile ), read_pickle( mdfile )
 
-def solar_parameters_test( n = 1000, sd = datetime(1950, 1, 1, 0)):
-
-  ed      = sd + timedelta( minutes= n )
-  dates   = date_range( start = sd, end = ed, freq = '1min', inclusive = 'left')
-  lon     = numpy.full( n, -80.0, dtype = numpy.float32 )
-  lat     = numpy.full( n,  30.0, dtype = numpy.float32 )
-
-  solar   = numpy.full( n, 0, dtype = numpy.float32 )
-
-  return solar_parameters( 
-    dates.year.values.astype(numpy.int32), 
-    dates.month.values.astype(numpy.int32), 
-    dates.day.values.astype(numpy.int32), 
-    dates.hour.values.astype(numpy.int32), 
-    dates.minute.values.astype(numpy.int32), 
-    dates.second.values.astype(numpy.int32), lat, lon, solar )
-  
-#def addUnits( df, vName, newUnit, dt = None, dtype = numpy.float32 ):
 def addUnits( df, vName, dt = None ):
   """To wrap values in DataFrame into pint.Quantity"""
 
@@ -72,7 +54,7 @@ def main( *args ):
     data, meta = args
 
   raw_labels  = ['solar', 'pressure', 'T', 'RH', 'u']
-  wbgt_labels = ['est. speed', 'globe', 'natural', 'psychrometric', 'WBGT']
+  wbgt_labels = ['globe', 'natural', 'psychrometric', 'WBGT']
 
   for loc, df in data.groupby('location'): 
 
@@ -99,6 +81,15 @@ def main( *args ):
     print( f"Location : {loc}; lat : {lat}; lon : {lon}" )    
     nn = len( solar )
 
+    Ta = Tair.to('kelvin').magnitude
+    u  = speed.to('meter/second').magnitude
+    P  = pres.to('hPa').magnitude
+    S  = solar.to('watt/meter**2').magnitude
+
+    #Tg = globeTemperature( Ta[0], u[0], P[0], S[0] )
+
+    #return Ta, u, P, S, Tg, Tglobe
+
     fig, ax = plt.subplots(2, 1)
     #line  =  ax[0].plot( dt, solar, 'r')
     #ax[0].yaxis.label.set_color('r')
@@ -112,27 +103,24 @@ def main( *args ):
     ##for line, label in zip(lines, raw_labels): line.set_label( label )
     ##ax[0].legend() 
     #plt.show()
-    sp, Tg, Tnwb, Tpsy, Twbg = liljegren(
-        lat, lon, numpy.ones( 1 ), 
+    Tg, Tnwb, Tpsy, Twbg = bernard(
+        lat, lon, 
         dt.year.values,
         dt.month.values,
         dt.day.values,
         dt.hour.values,
         dt.minute.values,
-        numpy.zeros( nn ), 
-        numpy.ones( nn ),
-        solar, pres, Tair, Tdew, speed, 
-        numpy.full(nn, 2) * units('meter'), 
-        numpy.full(nn, -1 ) * units('degree_Celsius') 
+        solar, pres, Tair, Tdew, speed
     )
 
-    lines = ax[1].plot( dt, sp, 'r', dt, Tg, 'g', dt, Tnwb, 'b', dt, Tpsy, 'm', dt, Twbg, 'k' )
+    lines = ax[1].plot( dt, Tg, 'g', dt, Tnwb, 'b', dt, Tpsy, 'm', dt, Twbg, 'k' )
     for line, label in zip(lines, wbgt_labels): line.set_label( label )
     ax[1].legend() 
 
     fig, ax = plt.subplots(2, 2)
     for i, (xx, yy) in enumerate( zip( [Tg, Twbg, Twbg], [Tglobe, Twbgt, TwbgtB] ) ):
-      xyrange = [min( [xx.min(), yy.min()] )-2.0, max( [xx.max(), yy.max()] )+2.0 ]
+      xyrange = [min( [numpy.nanmin(xx), numpy.nanmin(yy)] )-2.0, 
+                 max( [numpy.nanmax(xx), numpy.nanmax(yy)] )+2.0 ]
       ax[i//2, i%2].scatter( xx, yy )
       ax[i//2, i%2].set_aspect( 'equal' ) 
       ax[i//2, i%2].set_xlim( xyrange )

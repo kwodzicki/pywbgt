@@ -10,3 +10,7 @@ cdef extern from "src/liljegren.c" nogil:
 cdef extern from "src/liljegren.c" nogil:
   int calc_solar_parameters(int year, int month, double day, 
     float lat, float lon, float* solar, float* cza, float* fdir) 
+
+cdef extern from "src/liljegren.c" nogil:
+  float Tglobe( float Tair, float rh, float Pair, float speed,
+    float solar, float fdir, float cza )
