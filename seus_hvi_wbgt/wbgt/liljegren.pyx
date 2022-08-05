@@ -100,8 +100,8 @@ def solar_parameters( latIn, lonIn,
     int   [::1] hour   = hourIn.astype(   numpy.int32 )
     int   [::1] minute = minuteIn.astype( numpy.int32 )
 
-  #for i in prange( size, nogil=True ):
-  for i in range( size ):
+  for i in prange( size, nogil=True ):
+  #for i in range( size ):
     dday  = day[i] + (hour[i]*60 + minute[i])/1440.0          # Compute fractional day
     res   = calc_solar_parameters( year[i], month[i], dday, lat[i], lon[i], 
               &outView[0,i], &outView[1,i], &outView[2,i] )                                             # Run the C function
