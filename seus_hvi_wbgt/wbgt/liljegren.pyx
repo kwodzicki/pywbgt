@@ -6,6 +6,7 @@ import numpy
 cimport numpy
 cimport cython
 
+from metpy.units import units
 from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
 from cliljegren cimport h_sphere_in_air, calc_solar_parameters, calc_wbgt, Tglobe
@@ -99,7 +100,8 @@ def solar_parameters( latIn, lonIn,
     int   [::1] hour   = hourIn.astype(   numpy.int32 )
     int   [::1] minute = minuteIn.astype( numpy.int32 )
 
-  for i in prange( size, nogil=True ):
+  #for i in prange( size, nogil=True ):
+  for i in range( size ):
     dday  = day[i] + (hour[i]*60 + minute[i])/1440.0          # Compute fractional day
     res   = calc_solar_parameters( year[i], month[i], dday, lat[i], lon[i], 
               &outView[0,i], &outView[1,i], &outView[2,i] )                                             # Run the C function
@@ -128,7 +130,7 @@ def globeTemperature( TairIn, rhIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
   """
 
   cdef:
-    float [:] Tair  = TairIn.astype(  numpy.float32 )
+    float [:] Tair  = (TairIn + 273.15).astype(  numpy.float32 )
     float [:] rh    = rhIn.astype(    numpy.float32 )
     float [:] Pair  = PairIn.astype(  numpy.float32 )
     float [:] speed = speedIn.astype( numpy.float32 )
@@ -151,10 +153,11 @@ def globeTemperature( TairIn, rhIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def liljegren( latIn, lonIn, urbanIn,  
-               yearIn, monthIn, dayIn, hourIn, minuteIn, gmtIn, avgIn, 
-               solarIn, presIn, TairIn, TdewIn,
-               speedIn, zspeedIn, dTIn, **kwargs ): 
+def liljegren( latIn, lonIn,
+               yearIn, monthIn, dayIn, hourIn, minuteIn,
+               solarIn, presIn, TairIn, TdewIn, speedIn,
+               urbanIn=None, gmtIn=None, avgIn=None,
+               zspeedIn=None, dTIn=None, **kwargs ): 
 
   """
   Calculate the outdoor wet bulb-globe temperature
@@ -174,33 +177,31 @@ def liljegren( latIn, lonIn, urbanIn,
       Can be one (1) element array; will be expanded to match dates/data
     lonIn (ndarray) : Longitude correspondning to data values (decimal).
       Can be one (1) element array; will be expanded to match dates/data
-    urbanIn (ndarray) : Boolean flag indicating if "urban" (1) or
-      "rural" (0) for wind speed power law exponent
-      Can be one (1) element array; will be expanded to match dates/data
     yearIn (ndarray) : Year of the data values
     monthIn (ndarray) : Month of the data values
     dayIn (ndarray) : Day of the data values
     hourIn (ndarray) : Hour of the data values; can be any time zone as long
       as the 'gmt' variable is set appropriately 
     minuteIn (ndarray) : Minute of the data values
-    gmtIn (ndarray) LST-GMT difference  (hours; neative in USA)
-    avgIn (ndarray) : averaging time of the meteorological inputs (minutes)
     solarIn (Quantity) : solar irradiance; units of any power over area
     presIn (Qantity) : barometric pressure; units of pressure
     TairIn (Quantity) : air (dry bulb) temperature; units of temperature
     TdewIn (Quantity) : Dew point temperature; units of temperature
     speedIn (Quatity) : wind speed; units of speed
+
+  Keyword arguments:
+    urbanIn (ndarray) : Boolean flag indicating if "urban" (1) or
+      "rural" (0) for wind speed power law exponent
+      Can be one (1) element array; will be expanded to match dates/data
+    gmtIn (ndarray) LST-GMT difference  (hours; neative in USA)
+    avgIn (ndarray) : averaging time of the meteorological inputs (minutes)
     zspeedIn (Quantity) : height of wind speed measurement; unit of distance
     dTIn (Quantity) : Vertical temperature difference; upper minus lower;
       unit of temperature
 
-  Keyword arguments:
-    None.
-
   Returns:
     tuple : The following arrays are returned:
-      - Results from the C code sepcifying if there were any errors
-      - Estimated 2m wind speed; will be same as input if already 2m temp1
+      - Estimated 2m wind speed in meters/second; will be same as input if already 2m temp1
       - Globe temperatures in ndarray
       - Natural wet bulb temperatures in ndarray
       - psychrometric wet bulb temperatures in ndarray 
@@ -219,9 +220,22 @@ def liljegren( latIn, lonIn, urbanIn,
     int res
     float est_speed, Tg, Tnwb, Tpsy, Twbg
 
+  if urbanIn  is None:
+    urbanIn  = numpy.zeros( size,       dtype = numpy.int32 )
+  if gmtIn    is None:
+    gmtIn    = numpy.zeros( size,       dtype = numpy.int32 )
+  if avgIn    is None:
+    avgIn    = numpy.ones(  size,       dtype = numpy.int32 )
+  if zspeedIn is None:
+    zspeedIn = numpy.full(  size,  2.0, dtype = numpy.float32 ) * units.meter
+  if dTIn     is None:
+    dTIn     = numpy.full(  size, -1.0, dtype = numpy.float32 ) * units.degree_Celsius
+
   if len( latIn ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
     latIn   = latIn.repeat(   size )
     lonIn   = lonIn.repeat(   size )
+
+  if len( urbanIn ) == 1:
     urbanIn = urbanIn.repeat( size )
 
   cdef:
@@ -237,7 +251,6 @@ def liljegren( latIn, lonIn, urbanIn,
     int [:] gmt      = gmtIn.astype(    numpy.int32 )
     int [:] avg      = avgIn.astype(    numpy.int32 )
 
-  cdef:
     float [:] solar  =                solarIn.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
     float [:] pres   =                 presIn.to( 'hPa'            ).magnitude.astype( numpy.float32 )
     float [:] Tair   =                 TairIn.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
@@ -252,7 +265,7 @@ def liljegren( latIn, lonIn, urbanIn,
 
   # Iterate (in parallel) over all values in the input arrays
   for i in prange( size, nogil=True ):
-    est_speed = 0
+    est_speed = speed[i]
     Tg        = 0
     Tnwb      = 0
     Tpsy      = 0
@@ -268,4 +281,10 @@ def liljegren( latIn, lonIn, urbanIn,
       outView[3,i] = Tpsy
       outView[4,i] = Twbg
 
-  return out
+  return {
+    'speed' : out[0,:],
+    'Tg'    : out[1,:],
+    'Tnwb'  : out[2,:],
+    'Tpsy'  : out[3,:],
+    'Twbg'  : out[4,:]
+  }
