@@ -46,6 +46,8 @@ PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY OWNED
 #include	<stdio.h>
 #include	<math.h>
 
+#include "spa.h" //Include the SPA header file
+
 #define	TRUE		1
 #define	FALSE		0
 #define	MAXLINE	1000	/* Maximum input line length */
@@ -471,11 +473,15 @@ float	lat,		/* north latitude									*/
 	float	toasolar, normsolar; 
 	
 	double days_1900 = 0.0, ap_ra, ap_dec, elev, refr, azim, soldist;
-	
+
+  //printf( "\n%d-%d-%f\n", year, month, day );	
 	solarposition(year, month, day, days_1900, (double)lat, (double)lon, 
 		&ap_ra, &ap_dec, &elev, &refr, &azim, &soldist);
 	*cza = cos( (90.-elev)*DEG_RAD );
 	toasolar = SOLAR_CONST * max(0.,*cza) / (soldist*soldist);
+  //printf( "COS Z     : %f\n", *cza );
+  //printf( "TOA Solar : %f\n", toasolar );
+  //printf( "Solar In  : %f\n", *solar );
 /* 
  *  if the sun is not fully above the horizon 
  *  set the maximum (top of atmosphere) solar = 0
@@ -488,6 +494,7 @@ float	lat,		/* north latitude									*/
  */
 		normsolar = min( *solar/toasolar, NORMSOLAR_MAX );
 		*solar = normsolar * toasolar;
+    //printf( "Norm : %f; Solar : %f\n", normsolar, *solar );
 /*
  *  calculate the fraction of the solar irradiance due to the direct beam
  */
@@ -641,30 +648,34 @@ int	rad;		/* switch to enable/disable radiative heating;
 		Sc,	/* Schmidt number */
 		h,	/* convective heat transfer coefficient */
 		Fatm, /* radiative heating term */
+    heat = 0.0, /* This is influence of radiation/convective heat transfer */
 		esat(), dew_point(), h_cylinder_in_air(), 
 		viscosity(), diffusivity(), evap(), emis_atm();
 		
 	int	converged, iter;
 	
-	Tsfc = Tair;
-	sza = acos(cza); /* solar zenith angle, radians */
-	eair = rh * esat(Tair,0);
-	Tdew = dew_point(eair,0);
-	Twb_prev = Tdew; /* first guess is the dew point temperature */
+	Tsfc      = Tair;
+	sza       = acos(cza); /* solar zenith angle, radians */
+	eair      = rh * esat(Tair,0);
+	Tdew      = dew_point(eair,0);
+	Twb_prev  = Tdew; /* first guess is the dew point temperature */
 	converged = FALSE;
-	iter = 0;
+	iter      = 0;
 	do {
 		iter++;
 		Tref = 0.5*( Twb_prev + Tair );	/* evaluate properties at the average temperature */
-		h = h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
-		Fatm = STEFANB * EMIS_WICK *
-		       ( 0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) ) - pow(Twb_prev,4.) )
-		     + (1.-ALB_WICK) * solar *
-		       ( (1.-fdir)*(1.+0.25*D_WICK/L_WICK) + fdir*((tan(sza)/PI)+0.25*D_WICK/L_WICK) + ALB_SFC );
-		ewick = esat(Twb_prev,0);
+    if (rad == 1) {//If considering effects of radiation/heat transfer
+		  //h = h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
+		  Fatm = STEFANB * EMIS_WICK *
+		         ( 0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) ) - pow(Twb_prev,4.) )
+		       + (1.-ALB_WICK) * solar *
+		         ( (1.-fdir)*(1.+0.25*D_WICK/L_WICK) + fdir*((tan(sza)/PI)+0.25*D_WICK/L_WICK) + ALB_SFC );
+      heat = Fatm / h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
+    };
+		ewick   = esat(Twb_prev,0);
 		density = Pair * 100. / (R_AIR * Tref);
-		Sc = viscosity(Tref)/(density*diffusivity(Tref,Pair));
-		Twb_new = Tair - evap(Tref)/RATIO * (ewick-eair)/(Pair-ewick) * pow(Pr/Sc,a) + (Fatm/h * rad);
+		Sc      = viscosity(Tref)/(density*diffusivity(Tref,Pair));
+		Twb_new = Tair - evap(Tref)/RATIO * (ewick-eair)/(Pair-ewick) * pow(Pr/Sc,a) + heat; //(Fatm/h * rad);
 		if ( fabs(Twb_new-Twb_prev) < CONVERGENCE ) converged = TRUE;
 		Twb_prev = 0.9*Twb_prev + 0.1*Twb_new;
 	} while (!converged && iter < MAX_ITER);
@@ -751,6 +762,7 @@ float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 		return (Tglobe_new-273.15);
 	else
 		return (-9999.);
+		//return (0.0/0.0);
 }
 
 /* ============================================================================
