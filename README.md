@@ -15,6 +15,12 @@ In the Dimiceli paper, they provide an equation for calculating the convective h
 In another paper by [Dimiceli][Dimiceli_wbgt2] a constant value of `h = 0.315` is recommended.
 Liljegren et al. (2008) does provide a formula/function to estimate this values that *could* be used in the Dimiceli method; this is an option I should code into the Dimiceli method (use the constant, use Dimiceli function if can get their formula working, or use the Liljegren method).
 
+#### Limitations
+
+The Dimiceli has a limitation around wind speed: when wind speeds are below 1 mile per hour, globe temperatures become exponentially large.
+To get around this limitation, wind speeds are clamped to be at least 1 mile per hour.
+As the code needs wind speeds in meters per hour, the minimum value (after conversion) for wind speed is 1690.0 meters/hour.
+
 ### Bernard
 
 For the Bernard method, they were looking at indoor WBGT, so there is no discussion of globe temperature estimation methods.
