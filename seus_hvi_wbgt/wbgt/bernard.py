@@ -3,10 +3,20 @@ from scipy.optimize import fsolve
 from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
 from . import liljegren 
+from . import SIGMA, EPSILON
 
-from .. import SIGMA
+"""
+References
 
-EPSILON = 0.98
+Bernard, T. E., & Cross, R. R. (1999). 
+    Heat stress management: Case study in an aluminum smelter. 
+    International journal of industrial ergonomics, 23(5-6), 609-620.
+
+Bernard, T.E., & Pourmoghani, M. (1999). 
+    Prediction of workplace wet bulb global temperature. 
+    Applied occupational and environmental hygiene, 14 2, 126-34 .
+
+"""
 
 def chtc( Tg, Ta, u ):
   """
@@ -52,6 +62,55 @@ def funcTg( Tg, Ta, u, P, S, epsilon ):#f_db, f_dif, z )
   hg = chtc( Tg, Ta, u )                                                        # Compute the convective heat transfer coefficient for given values
   return hg*(Tg-Ta) - epsilon*(S - SIGMA*Tg**4)                                 # Return result of the differential equation for determining globe temperature
 
+def factorC( wnd ):
+  """
+  Compute factor for natural wet bulb temperature without radiant heat
+
+  This factor is used to related psychrometric wet bulb temperature
+  to natural wet bulb temperature in the absence of radiant heat.
+
+  Arguments:
+    wnd (ndarray) : Wind speed in meters/second
+
+  """
+
+  C   = numpy.where( wnd < 0.03, 0.85, 0.96 + 0.069*numpy.log10( wnd ) )                                    # Where wind is less than 0.03, set values to 0.85, else set values to 1.0
+  return numpy.where( wnd > 3.0, 1.0, C )           # Where wind > 3.0, keep values of C, else compute C and return values 
+
+
+def factore( wnd ):
+  """
+  Compute factor for natural wet bulb temperature with radiant heat
+
+  This factor is used to related psychrometric wet bulb temperature
+  to natural wet bulb temperature in the presence o f radiant heat.
+
+  Arguments:
+    wnd (ndarray) : Wind speed in meters/second
+
+  """
+
+  e = numpy.where( wnd < 0.1, 1.1, 0.1/wnd**1.1 - 0.2 )                                       # Where wind is less than 0.1, set values to 1.1, else set values to -0.1 
+  return numpy.where( wnd > 1.0, -0.1, e )                        # Where wind > 1.0, keep values of e, else compute e and return values 
+
+def saturation_vapor_pressure( T ):
+  """
+  Compute saturation vapor pressure from temperature
+
+  Equation taken from From Bernard and Pourmoghani (1999), with reference
+  to Beranrd and Cross (1999)
+
+  Arguments:
+    T (ndarry) : Temperature at which to compute saturation vapor pressure.
+      Units of degree Celsius
+
+  Returns:
+    ndarray : vapor pressure in kPa
+
+  """
+
+  return 0.6107*numpy.exp( 17.27*T / (T + 237.3) ) 
+
 def globeTemperature( Ta, u, P, S, epsilon=EPSILON  ):
   """
   Determine globe temperature through iterative solver
@@ -73,38 +132,16 @@ def globeTemperature( Ta, u, P, S, epsilon=EPSILON  ):
   """
 
   return fsolve( funcTg, Ta+1.0, args=(Ta, u, P, S, epsilon) )
-  
-def atmosVaporPres( temp, a = 0.6107, b = 17.27, c = 237.3 ):
-  """
-  Compute saturation vapor pressure from temperature
-
-  From Bernard (1999)
-
-  Arguments:
-    temp (ndarry) : Temperature at which to compute saturation vapor pressure.
-      Units of degree Celsius
-
-  Keyword arguments:
-    a (float) : Pressure constant for equation
-    b (float) : Temperature factor for numerator
-    c (float) : Temperature scalar for denominator
-
-  Returns:
-    ndarray : vapor pressure in kPa
-
-  """
-
-  return a * numpy.exp( b*temp / (temp + c) ) 
 
 def psychrometricWetBulb(Ta, ea=None, Td=None, RH=None ):
   """
-  Calculate psychrometricWetBulb from other variables
+  Calculate psychrometric wet bulb from other variables
 
   Arguments:
     Ta (ndarray) : ambient temperature in degree Celsius
 
   Keyword arguments:
-    ea (ndarray) : ambient vapor pressure in hectoPascals
+    ea (ndarray) : ambient vapor pressure in kiloPascals
     Td (ndarray) : Dew point temperature in degree Celsius
     RH (ndarray) : Relative humidity in percent
 
@@ -112,33 +149,23 @@ def psychrometricWetBulb(Ta, ea=None, Td=None, RH=None ):
 
   if ea is None:
     if Td is not None:
-      ea = atmosVaporPres( Td )
+      ea = saturation_vapor_pressure( Td )
     elif RH is not None:
-      ea = RH/100.0 * atmosVaporPres( Ta )
+      ea = RH/100.0 * saturation_vapor_pressure( Ta )
     else:
       raise Exception( 'Must input one of "ea", "RH", or "Td"' )
  
   return 0.376 + 5.79*ea + (0.388 - 0.0465*ea)*Ta
   
-def factorC( wnd ):
-  """Compute factor for natural wet bulb temperature
-
-  Arguments:
-    wnd (ndarray) : Wind speed in meters/second
-
-  """
-
-  C   = numpy.where( wnd < 0.03, 0.85, 1.0 )                                    # Where wind is less than 0.03, set values to 0.85, else set values to 1.0
-  return numpy.where( wnd > 3.0, C, 0.96 + 0.069*numpy.log10( wnd ) )           # Where wind > 3.0, keep values of C, else compute C and return values 
-
-def factore( wnd ):
-
-  e = numpy.where( wnd < 0.1, 1.1, -0.1 )                                       # Where wind is less than 0.1, set values to 1.1, else set values to -0.1 
-  return numpy.where( wnd > 1.0, e, 0.1/wnd**1.1 - 0.2 )                        # Where wind > 1.0, keep values of e, else compute e and return values 
 
 def naturalWetBulb( Ta, Tpsy, Tg, wnd ):
   """
   Compute natural wet bulb temperature using Bernard method
+
+  If the globe temperature exceeds the dry bulb temperature by more than 
+  4 degree C, then the effect of radiant heat is considered in the 
+  calculation (factor e is computed). If this difference is 4 degree C or
+  less, then no radiant heat effect is considered (factor C is computed)
 
   Arguments:
     Ta (ndarray) : Ambient temperature; degree Celsius
@@ -174,9 +201,18 @@ def bernard( lat, lon,
   Compute WBGT using Bernard Method
 
   Arguments:
-    u (Quantity) : Wind speed
-    Ta (Qunatity) : Ambient temperature
-    Td (Quantity) : Dew point temperature
+    lat (float) : Latitude of observations
+    lon (float) : Longitude of observations
+    year (ndarray) : UTC Year of the data values
+    month (ndarray) : UTC Month of the data values
+    day (ndarray) : UTC Day of the data values
+    hour (ndarray) : UTC Hour of the data values; can be any time zone as long
+    minute (ndarray) : UTC Minute of the data values
+    solar (Quantity) : Solar irradiance; unit of power over area
+    pres (Quantity) : Atmospheric pressure; unit of pressure
+    Tair (Quantity) : Ambient temperature; unit of temperature
+    Tdew (Quantity) : Dew point temperature; unit of temperature
+    speed (Quantity) : Wind speed; units of speed
 
   Returns:
     tuple: Globe, natural wet bulb, psychrometric wet bulb, and
@@ -196,8 +232,14 @@ def bernard( lat, lon,
            Tair.to('kelvin').magnitude, relhum/100.0, 
            pres, speed, solar, fdir, cza 
   )
+  Tg[ Tg <= -9990.0] = float('nan')
   Tair = Tair.to('degree_Celsius').magnitude
   Tpsy = psychrometricWetBulb( Tair, RH = relhum )
   Tnwb = naturalWetBulb( Tair, Tpsy, Tg, speed )
 
-  return Tg, Tnwb, Tpsy, 0.7*Tnwb + 0.2*Tg + 0.1*Tair
+  return {
+   'Tg'   : Tg, 
+   'Tnwb' : Tnwb, 
+   'Tpsy' : Tpsy, 
+   'Twbg' : 0.7*Tnwb + 0.2*Tg + 0.1*Tair
+  }
