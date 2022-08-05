@@ -2,6 +2,7 @@
 *.html
 *.sh
 
+*.ipynb*
 *.pyc
 __pycache__
 build
