@@ -44,6 +44,6 @@ setup(
   ext_modules          = cythonize( exts ),
   include_dirs         = [numpy.get_include()],
   cmdclass             = {'build_ext' : build_ext},
-  scripts              = [],
+  scripts              = ['bin/wbgt_gui'],
   zip_safe             = False,
 )
