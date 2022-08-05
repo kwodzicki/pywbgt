@@ -7,12 +7,12 @@ from matplotlib import pyplot as plt
 
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt.liljegren import liljegren, solar_parameters
+from seus_hvi_wbgt.wbgt import wbgt
 
 from ncsuCLOUDS.api import CLOUDS
 
 c       = CLOUDS()
-c._var  = "airpres,airtemp2m,rh2m,dewtemp2m,blackglobetemp2m,windspeed2m,rad2m_total,wbgt2m,wbgt2m_bernard"
+c._var  = "airpres,airtemp2m,rh2m,dewtemp2m,wetbulbtemp2m,blackglobetemp2m,windspeed2m,rad2m_total,wbgt2m,wbgt2m_bernard"
 c.setAttributes('location', 'var', 'value', 'unit', 'obtime', 'timezone') 
 c.setLoc( network = 'ECONET' )
 c.end   = datetime.utcnow()
@@ -37,12 +37,12 @@ def solar_parameters_test( n = 1000, sd = datetime(1950, 1, 1, 0)):
   solar   = numpy.full( n, 0, dtype = numpy.float32 )
 
   return solar_parameters( 
-    dates.year.values,
-    dates.month.values,
-    dates.day.values,
-    dates.hour.values,
-    dates.minute.values,
-    lat, lon, solar )
+    dates.year.values.astype(numpy.int32), 
+    dates.month.values.astype(numpy.int32), 
+    dates.day.values.astype(numpy.int32), 
+    dates.hour.values.astype(numpy.int32), 
+    dates.minute.values.astype(numpy.int32), 
+    dates.second.values.astype(numpy.int32), lat, lon, solar )
   
 #def addUnits( df, vName, newUnit, dt = None, dtype = numpy.float32 ):
 def addUnits( df, vName, dt = None ):
@@ -57,7 +57,8 @@ def addUnits( df, vName, dt = None ):
   if dt is not None:
     dd = dd.reindex( dt )
 
-  unit = dd['unit'].values[0]
+  unit = dd['unit'].values.astype( str )
+  unit = unit[ unit != 'nan' ][0]
   if unit == 'mb': 
     unit = 'mbar'
   elif unit == 'F':
@@ -73,6 +74,8 @@ def main( *args ):
 
   raw_labels  = ['solar', 'pressure', 'T', 'RH', 'u']
   wbgt_labels = ['est. speed', 'globe', 'natural', 'psychrometric', 'WBGT']
+  fig, axes   = plt.subplots(1, 3)
+  xyrange     = [float('inf'), -float('inf')]
 
   for loc, df in data.groupby('location'): 
 
@@ -99,7 +102,6 @@ def main( *args ):
     print( f"Location : {loc}; lat : {lat}; lon : {lon}" )    
     nn = len( solar )
 
-    fig, ax = plt.subplots(2, 1)
     #line  =  ax[0].plot( dt, solar, 'r')
     #ax[0].yaxis.label.set_color('r')
     #for i, (var, color) in enumerate( zip( [pres, Tair, relhum, speed], ['g', 'b', 'm', 'k']) ):
@@ -112,32 +114,33 @@ def main( *args ):
     ##for line, label in zip(lines, raw_labels): line.set_label( label )
     ##ax[0].legend() 
     #plt.show()
-    sp, Tg, Tnwb, Tpsy, Twbg = liljegren(
-        lat, lon, numpy.ones( 1 ), 
+    for mm, method in enumerate( ['liljegren' , 'dimiceli', 'bernard'] ):
+      res = wbgt(method,
+        lat, lon, 
         dt.year.values,
         dt.month.values,
         dt.day.values,
         dt.hour.values,
         dt.minute.values,
-        numpy.zeros( nn ), 
-        numpy.ones( nn ),
         solar, pres, Tair, Tdew, speed, 
-        numpy.full(nn, 2) * units('meter'), 
-        numpy.full(nn, -1 ) * units('degree_Celsius') 
-    )
+      )
 
-    lines = ax[1].plot( dt, sp, 'r', dt, Tg, 'g', dt, Tnwb, 'b', dt, Tpsy, 'm', dt, Twbg, 'k' )
-    for line, label in zip(lines, wbgt_labels): line.set_label( label )
-    ax[1].legend() 
+      for ii, (xx, yy) in enumerate( zip( [Tglobe, Twbgt, TwbgtB], [res['Tg'], res['Twbg'], res['Twbg']] ) ):
+        xyrange = [min( [xx.min(), yy.min(), xyrange[0]] ), 
+                   max( [xx.max(), yy.max(), xyrange[1]] ) ]
+        print( xyrange )
+        axes[ii].scatter( xx, yy, label=loc, alpha=0.6 )
 
-    fig, ax = plt.subplots(2, 2)
-    for i, (xx, yy) in enumerate( zip( [Tg, Twbg, Twbg], [Tglobe, Twbgt, TwbgtB] ) ):
-      xyrange = [min( [xx.min(), yy.min()] )-2.0, max( [xx.max(), yy.max()] )+2.0 ]
-      ax[i//2, i%2].scatter( xx, yy )
-      ax[i//2, i%2].set_aspect( 'equal' ) 
-      ax[i//2, i%2].set_xlim( xyrange )
-      ax[i//2, i%2].set_ylim( xyrange ) 
-   
-    plt.show()
-    res = input('Type Y to quit : ')
-    if res == 'Y': return 
+  xyrange = numpy.asarray( xyrange ) + [-2, 2]
+  axes[-1].legend()
+  for ax in axes:
+    ax.set_aspect( 'equal' ) 
+    ax.set_xlim( xyrange )
+    ax.set_ylim( xyrange )
+    ax.plot( xyrange, xyrange, '-k' ) 
+  
+  plt.show()
+
+if __name__ == "__main__":
+  
+  main()
