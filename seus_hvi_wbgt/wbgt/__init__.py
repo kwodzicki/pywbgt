@@ -1,3 +1,7 @@
+SIGMA   = 5.670374419e-8    # Stefan-Boltzmann constant in W/m**2/K**4
+EPSILON = 0.98              # Albedo of surface
+
+
 from .liljegren import liljegren as liljegrenWBGT
 from .bernard import bernard as bernardWBGT
 from .dimiceli import dimiceli as dimiceliWBGT
