@@ -3,34 +3,15 @@ import numpy
 from .liljegren import solar_parameters
 
 #from ..utils import f_dir_z
-from .. import SIGMA
+from .wetbulb import wetBulb, natural_wetBulb
+from . import SIGMA
 
-#from .utils import wetBulb
-
-def vaporPressure( T ):
-
-  return 6.112 * numpy.exp( 17.67 * T / (T + 243.5) )
- 
-def relativeHumidity( Ta, Td ):
-
-  return vaporPressure( Td ) / vaporPressure( Ta ) * 100.0
-
-def wetBulbRH( Ta, RH ): 
-
-  return -5.806    + 0.672   *Ta -  0.006   *Ta**2       +\
-       (  0.061    + 0.004   *Ta + 99.000e-6*Ta**2) * RH +\
-       (-33.000e-6 - 5.000e-6*Ta -  1.000e-7*Ta**2) * RH**2
- 
-def wetBulb( Ta, Td ): 
-
-  return wetBulbRH( Ta, relativeHumidity( Ta, Td ) )
-   
 def chfc( S=None, Z=None):
   """
   Convective heat flow coefficient
 
   Returns:
-    float : THe convective heat flow coefficient
+    float : The convective heat flow coefficient
 
   Notes:
     Default value obtained from:
@@ -43,7 +24,7 @@ def chfc( S=None, Z=None):
 
   return 0.315
 
-def atmosVaporPres( Ta, Td, P ):
+def atmospheric_vapor_pressure( Ta, Td, P ):
   """
   Compute atmospheric vapor pressure
 
@@ -53,6 +34,21 @@ def atmosVaporPres( Ta, Td, P ):
 
   Returns:
     float : atmospheric vapor pressure
+
+  Note:
+    This is an odd function that I cannot find a lot of informaiton
+    about. I was able to determe that the 2nd and 3rd lines of the function
+    come from Buck, A. 1981: New Equations for computing vapor pressure
+    and enhancement factor and is an improved equation for calculating
+    vapor pressure in air, as opposed to pure water vapor.
+
+    However, the first line of the equation does not make much sense.
+    The base of the equation is from Bolton (1980), but the use of
+    (Td-Ta) is odd. It is some kind of differential pressure factor.
+    Some quick testing indicates that this formula will ALWAYS give
+    a slighly lower pressure value than the Bolton (1980) formula; however,
+    the values tend to be farily similar as long as there is not a large
+    differenc between Ta and Td
 
   """
 
@@ -74,20 +70,25 @@ def thermalEmissivity( Ta, Td, P ):
 
   """
 
-  return 0.575 * atmosVaporPres( Ta, Td, P )**(1.0/7.0)
+  return 0.575 * atmospheric_vapor_pressure( Ta, Td, P )**(1.0/7.0)
 
-
-def factorB( Ta, Td, P, S, f_db, f_dif, z ):
+def factorB( Ta, Td, P, S, f_db, f_dif, cosz ):
   """
 
   Arguments:
+    Ta (float) : ambient temperature in degrees Celsius
+    Td (float) : dew point temperature in degrees Celsius
+    P (float) : Barometric pressure in hPa 
+    S (float) : solar irradiance in Watts per meter**2
+    f_dif (float) : diffuse radiation from the sun
+    cosz (float) : Cosine of solar zenith angle
 
   """
 
-  return S * ( f_db / ( 4.0*SIGMA*numpy.cos(z) ) + 1.2 * f_dif / SIGMA ) +\
+  return S * ( f_db/(4.0*SIGMA*cosz) + 1.2*f_dif/SIGMA ) +\
       thermalEmissivity( Ta, Td, P ) * Ta**4
 
-def factorC( u ):
+def factorC( u, CHFC = None ):
   """
 
   Arguments:
@@ -95,9 +96,10 @@ def factorC( u ):
 
   """
 
-  return chfc() * u**0.58 / 5.3865e-8
+  if CHFC is None: CHFC = chfc()
+  return CHFC * u**0.58 / 5.3865e-8
 
-def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, z ):
+def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, cosz, **kwargs ):
   """
   Compute globe temperature
 
@@ -105,10 +107,10 @@ def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, z ):
     Ta (float) : ambient temperature in degrees Celsius
     Td (float) : dew point temperature in degrees Celsius
     u (float) : wind speed in meters per hour
-    P (float) : Barometric pressure in inHg 
+    P (float) : Barometric pressure in hPa 
     S (float) : solar irradiance in Watts per meter**2
     f_dif (float) : diffuse radiation from the sun
-    Z (float) : solar zenith angle
+    cosz (float) : Cosine of solar zenith angle
 
   Notes:
     Chapter 26 of IAENG Transactions on Engineering Technologies: 
@@ -118,14 +120,14 @@ def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, z ):
 
   """
 
-  B = factorB( Ta, Td, P, S, f_db, f_dif, z)
-  C = factorC( u )
+  B = factorB( Ta, Td, P, S, f_db, f_dif, cosz)
+  C = factorC( u, **kwargs )
 
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
  
 def dimiceli( lat, lon, 
               year, month, day, hour, minute, 
-              solar, pres, Tair, Tdew, speed, f_db=None, z=None, **kwargs ):
+              solar, pres, Tair, Tdew, speed, f_db=None, cosz=None, **kwargs ):
   """
   Compute WBGT using Dimiceli method
 
@@ -137,37 +139,44 @@ def dimiceli( lat, lon,
     day (ndarray) : UTC Day of the data values
     hour (ndarray) : UTC Hour of the data values; can be any time zone as long
     minute (ndarray) : UTC Minute of the data values
-    u (Quantity) : Wind speed; units of speed
-    Ta (Quantity) : Ambient temperature; unit of temperature
-    Td (Quantity) : Dew point temperature; unit of temperature
-    P (Quantity) : Atmospheric pressure; unit of pressure
-    S (Quantity) : Solar irradiance; unit of power over area
+    solar (Quantity) : Solar irradiance; unit of power over area
+    pres (Quantity) : Atmospheric pressure; unit of pressure
+    Tair (Quantity) : Ambient temperature; unit of temperature
+    Tdew (Quantity) : Dew point temperature; unit of temperature
+    speed (Quantity) : Wind speed; units of speed
 
   Keyword arguments:
     f_db (float) : Direct beam radiation from the sun; fraction
-    z (float) : Solar zenith angle in radians
+    cosz (float) : Cosine of solar zenith angle
 
   Returns:
     tuple : Globe, natural wet bulb, and wet bulb globe temperatures
 
   """
 
-  solar = solar.to( 'watt/m**2'       ).magnitude
-  pres  =  pres.to( 'inHg'            ).magnitude
-  Tair  =  Tair.to( 'degree_Celsius'  ).magnitude
-  Tdew  =  Tdew.to( 'degree_Celsius'  ).magnitude
-  speed = speed.to( 'meters per hour' ).magnitude
+  solar  = solar.to( 'watt/m**2'       ).magnitude
+  pres   =  pres.to( 'hPa'             ).magnitude
+  Tair   =  Tair.to( 'degree_Celsius'  ).magnitude
+  Tdew   =  Tdew.to( 'degree_Celsius'  ).magnitude
+  speed1 = speed.to( 'meters per hour' ).magnitude
+  speed1 = numpy.clip( speed1, 1690.0, None )                                   # Ensure wind speed is at least one (1) mile/hour
 
-  if (f_db is None) or (z is None):
+  if (f_db is None) or (cosz is None):
     solar = solar_parameters( lat, lon, 
                               year, month, day, hour, minute, 
                               solar )
+    if cosz is None: cosz = solar[1] 
     if f_db is None: f_db = solar[2]
-    if z    is None: z    = numpy.arccos( solar[1] ) 
     solar = solar[0]
 
   f_dif = 1.0 - f_db
-  Tg    = globeTemperature( Tair, Tdew, speed, pres, solar, f_db, f_dif, z )
-  Tnwb  = wetBulb( Tair, Tdew )
+  Tg    = globeTemperature( Tair, Tdew, speed1, pres, solar, f_db, f_dif, cosz, **kwargs)
+  Tpsy  = wetBulb( Tair, Tdew )
+  Tnwb  = natural_wetBulb( Tpsy, solar, speed.to('meter per second').magnitude )
 
-  return Tg, Tnwb, 0.7*Tnwb + 0.2*Tg + 0.1*Tair
+  return {
+    'Tg'   : Tg,
+    'Tpsy' : Tpsy, 
+    'Tnwb' : Tnwb, 
+    'Twbg' : 0.7*Tnwb + 0.2*Tg + 0.1*Tair
+  }

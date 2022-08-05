@@ -1,24 +1,37 @@
 from numpy import exp
 
-def vaporPressure( T ):
+def saturation_vapor_pressure( T ):
+  """
+  Compute saturation vapor pressure
+
+  Uses the Bolton (1980) formula to calculate saturation vapor
+  pressure given a temperature in degrees Celsius
+
+  Arguments:
+    T (ndarray) : Temperature in degrees Celsius
+
+  Returns:
+    ndarray : Staturation vapor pressure(s) in hPa
+
+  """
 
   return 6.112 * exp( 17.67 * T / (T + 243.5) )
  
-def relativeHumidity( Ta, Td ):
+def relative_humidity( Ta, Td ):
+  """
+  Compute relative humidity given temperature and dew point
 
-  return vaporPressure( Td ) / vaporPressure( Ta ) * 100.0
+  The relative humidity is computed by dividing the 
+  saturation vapor pressure at dew point temperature by
+  the saturation vapor pressure at the air temperature.
 
-def wetBulb( Ta, Td ): 
+  Arguments:
+    Ta (ndarray) : Ambient temperature in degrees Celsius
+    Td (ndarray) : Dew point temperature in degrees Celsius
 
-  RH = relativeHumidity( Ta, Td )
+  Returns:
+    ndarray : Relative humidity as dimensionless fraction
 
-  return -5.806    + 0.672   *Ta -  0.006   *Ta**2       +\
-       (  0.061    + 0.004   *Ta + 99.000e-6*Ta**2) * RH +\
-       (-33.000e-6 - 5.000e-6*Ta -  1.000e-7*Ta**2) * RH**2
-
-def wetBulbRH( Ta, RH ): 
-
-  return -5.806    + 0.672   *Ta -  0.006   *Ta**2       +\
-       (  0.061    + 0.004   *Ta + 99.000e-6*Ta**2) * RH +\
-       (-33.000e-6 - 5.000e-6*Ta -  1.000e-7*Ta**2) * RH**2
-    
+  """
+ 
+  return saturation_vapor_pressure( Td )/saturation_vapor_pressure( Ta )
