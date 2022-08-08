@@ -108,8 +108,14 @@ def loadData( dfile=DFILE, mdfile=MDFILE ):
 
   """
 
-  return pandas.read_pickle( dfile ), pandas.read_pickle( mdfile )
+  data = pandas.read_pickle( dfile )
+  meta = pandas.read_pickle( mdfile )
 
+  for key in ['Longitude [degrees East]', 'Latitude [degrees North]']:
+    data[key] = data['location'].map(meta.set_index('Location ID')[key])
+
+  return data, meta
+ 
 def flip(items, ncol):
   """Reorder data for column spanning in legend"""
 
