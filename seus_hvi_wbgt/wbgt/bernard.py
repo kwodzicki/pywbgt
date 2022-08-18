@@ -227,13 +227,12 @@ def bernard( lat, lon,
   pres   = pres.to('hPa').magnitude
   speed  = speed.to('meter/second').magnitude
   relhum = rhTd( Tair, Tdew ).to('percent').magnitude
+  Tair   = Tair.to('degree_Celsius').magnitude
 
   Tg   = liljegren.globeTemperature( 
-           Tair.to('kelvin').magnitude, relhum/100.0, 
-           pres, speed, solar, fdir, cza 
+           Tair, relhum/100.0, pres, speed, solar, fdir, cza 
   )
   Tg[ Tg <= -9990.0] = float('nan')
-  Tair = Tair.to('degree_Celsius').magnitude
   Tpsy = psychrometricWetBulb( Tair, RH = relhum )
   Tnwb = naturalWetBulb( Tair, Tpsy, Tg, speed )
 
