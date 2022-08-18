@@ -1,3 +1,4 @@
+import sys, os
 from datetime import datetime, timedelta
 
 import numpy
@@ -9,131 +10,76 @@ from metpy.units import units
 
 from seus_hvi_wbgt.wbgt import wbgt
 
+from ncsuCLOUDS import io
 from ncsuCLOUDS.api import CLOUDS
 
-c       = CLOUDS()
-c._var  = "airpres,airtemp2m,rh2m,dewtemp2m,wetbulbtemp2m,blackglobetemp2m,windspeed2m,rad2m_total,wbgt2m,wbgt2m_bernard"
-c.setAttributes('location', 'var', 'value', 'unit', 'obtime', 'timezone') 
-c.setLoc( network = 'ECONET' )
-c.end   = datetime.utcnow()
-c.start = c.end - timedelta(days=5)
-
-dfile  = '/Users/kwodzicki/Data/clouds_api_wbgt_data.pic'
-mdfile = dfile.split('_')[:-1]
-mdfile.append( 'metadata.pic' )
-mdfile = '_'.join( mdfile )
-
-def loadData():
-
-  return read_pickle( dfile ), read_pickle( mdfile )
-
-def solar_parameters_test( n = 1000, sd = datetime(1950, 1, 1, 0)):
-
-  ed      = sd + timedelta( minutes= n )
-  dates   = date_range( start = sd, end = ed, freq = '1min', inclusive = 'left')
-  lon     = numpy.full( n, -80.0, dtype = numpy.float32 )
-  lat     = numpy.full( n,  30.0, dtype = numpy.float32 )
-
-  solar   = numpy.full( n, 0, dtype = numpy.float32 )
-
-  return solar_parameters( 
-    dates.year.values.astype(numpy.int32), 
-    dates.month.values.astype(numpy.int32), 
-    dates.day.values.astype(numpy.int32), 
-    dates.hour.values.astype(numpy.int32), 
-    dates.minute.values.astype(numpy.int32), 
-    dates.second.values.astype(numpy.int32), lat, lon, solar )
-  
 #def addUnits( df, vName, newUnit, dt = None, dtype = numpy.float32 ):
-def addUnits( df, vName, dt = None ):
+def addUnits( df, params, vName ):
   """To wrap values in DataFrame into pint.Quantity"""
 
-  #unit = df['unit'].unique()
-  #if unit.size != 1:
-  #  raise Exception( "More then one unit for array!" )
-  #unit = unit[0]
+  unit = params[ params['requested'] == vName ]['unit'].values
+  unit = '' if unit.size != 1 else unit[0]
+  return units.Quantity( df.loc[:,vName,:]['value'].values, unit )
 
-  dd = df[ df['var'] == vName ]
-  if dt is not None:
-    dd = dd.reindex( dt )
+def main( *root ):
 
-  unit = dd['unit'].values.astype( str )
-  unit = unit[ unit != 'nan' ][0]
-  if unit == 'mb': 
-    unit = 'mbar'
-  elif unit == 'F':
-    unit = 'degree_Fahrenheit'
-  
-  return units.Quantity( dd['value'].values, unit )
-
-def main( *args ):
-  if len( args ) != 2:
-    data, meta = c.download()
-  else:
-    data, meta = args
-
+  if len(root) == 0: root = ('/Users/kwodzicki/Data/', )
+  data, meta  = io.read( *root )
+  locs        = meta['Location'].set_index( 'Location ID' )
+  params      = meta['Parameter']
   raw_labels  = ['solar', 'pressure', 'T', 'RH', 'u']
   wbgt_labels = ['est. speed', 'globe', 'natural', 'psychrometric', 'WBGT']
-  fig, axes   = plt.subplots(1, 3)
+
+  labels      = ['Pyschrometric Wet Bulb', 'Globe', 'Wet Bulb Globe']
+  xLabel      = [f"ECONet {l}" for l in labels]
+
+  fig, axes   = plt.subplots(3, 3)
   xyrange     = [float('inf'), -float('inf')]
 
-  for loc, df in data.groupby('location'): 
+  solar    = addUnits( data, params, 'rad2m_total')    # Add units to values, convert to appropriate units, and reindex
+  pres     = addUnits( data, params, 'airpres|kPa')
+  Tair     = addUnits( data, params, 'airtemp2m|K')
+  Tdew     = addUnits( data, params, 'dewtemp2m|K')
+  speed    = addUnits( data, params, 'windspeed2m|mph')
 
-    #df     = df.sort_values( 'obtime' ).set_index('obtime')
-    df       = df.set_index('obtime')                                           # Set index for dataframe         
-    df.index = df.index.tz_convert(None)                                        # Convert index times to UTC
-    dt       = to_datetime( df.index.unique() )                                 # Get only the unique times
+  Twbt     = addUnits( data, params, 'wetbulbtemp|K'     ).to( 'degree_Celsius' ).magnitude
+  Tglobe   = addUnits( data, params, 'blackglobetemp2m|K').to( 'degree_Celsius' ).magnitude
+  Twbgt    = addUnits( data, params, 'wbgt2m|K'          ).to( 'degree_Celsius' ).magnitude
+  #TwbgtB   = addUnits( data, params, 'wbgt2m_bernard|K'  ).to( 'degree_Celsius' ).magnitude
 
-    solar    = addUnits( df, 'rad2m_total', dt )    # Add units to values, convert to appropriate units, and reindex
-    pres     = addUnits( df, 'airpres',     dt )
-    Tair     = addUnits( df, 'airtemp2m',   dt )
-    Tdew     = addUnits( df, 'dewtemp2m',   dt )
-    relhum   = addUnits( df, 'rh2m',        dt )
-    speed    = addUnits( df, 'windspeed2m', dt )
+  lon      = 'Longitude [degrees East]'
+  lat      = 'Latitude [degrees North]'
+  stations = data.index.get_level_values( data.index.names.index( 'location' ) )
+  lon      = stations.map( locs[ lon ] ).values.astype( numpy.float32 ) 
+  lat      = stations.map( locs[ lat ] ).values.astype( numpy.float32 )
 
-    Tglobe   = addUnits( df, 'blackglobetemp2m', dt ).to( 'degree_Celsius' ).magnitude
-    Twbgt    = addUnits( df, 'wbgt2m',           dt ).to( 'degree_Celsius' ).magnitude
-    TwbgtB   = addUnits( df, 'wbgt2m_bernard',   dt ).to( 'degree_Celsius' ).magnitude
+  tmpVar   = data.index[0][1]
+  dt       = data.loc[:,tmpVar,:]
+  dt       = dt.index.get_level_values( dt.index.names.index( 'datetime' ) )
 
-    metaLoc  = meta[ meta['Location ID'] == loc ] 
-    lon      = metaLoc['Longitude [degrees East]' ].values.astype( numpy.float32 )
-    lat      = metaLoc['Latitude [degrees North]' ].values.astype( numpy.float32 )
+  for row, method in enumerate( ['liljegren' , 'dimiceli', 'bernard'] ):
+    res = wbgt(method,
+      lat, lon, 
+      dt.year.values,
+      dt.month.values,
+      dt.day.values,
+      dt.hour.values,
+      dt.minute.values,
+      solar, pres, Tair, Tdew, speed, 
+    )
 
-    print( f"Location : {loc}; lat : {lat}; lon : {lon}" )    
-    nn = len( solar )
+    for col, (xx, yy) in enumerate( zip( [Twbt, Tglobe, Twbgt], [res['Tpsy'], res['Tg'], res['Twbg']] ) ):
+      xyrange = [min( [numpy.nanmin(xx), numpy.nanmax(yy), xyrange[0]] ), 
+                 max( [numpy.nanmin(xx), numpy.nanmax(yy), xyrange[1]] ) ]
+      axes[row,col].scatter( xx, yy, label=method, alpha=0.6 )
+      axes[row,col].set_title( labels[col] )
+      axes[row,col].set_ylabel( method.title() )
 
-    #line  =  ax[0].plot( dt, solar, 'r')
-    #ax[0].yaxis.label.set_color('r')
-    #for i, (var, color) in enumerate( zip( [pres, Tair, relhum, speed], ['g', 'b', 'm', 'k']) ):
-    #  subax = ax[0].twinx()
-    #  line  = subax.plot( dt, var, color )
-    #  subax.yaxis.label.set_color( color )
-    #  if i > 0: subax.spines.right.set_position( ("axes", 1.2 * i) )
-    #  
-    ##lines = ax[0].plot( dt, solar/10, 'r', dt, pres/10, 'g', dt, Tair, 'b', dt, relhum, 'm', dt, speed, 'k' )
-    ##for line, label in zip(lines, raw_labels): line.set_label( label )
-    ##ax[0].legend() 
-    #plt.show()
-    for mm, method in enumerate( ['liljegren' , 'dimiceli', 'bernard'] ):
-      res = wbgt(method,
-        lat, lon, 
-        dt.year.values,
-        dt.month.values,
-        dt.day.values,
-        dt.hour.values,
-        dt.minute.values,
-        solar, pres, Tair, Tdew, speed, 
-      )
-
-      for ii, (xx, yy) in enumerate( zip( [Tglobe, Twbgt, TwbgtB], [res['Tg'], res['Twbg'], res['Twbg']] ) ):
-        xyrange = [min( [xx.min(), yy.min(), xyrange[0]] ), 
-                   max( [xx.max(), yy.max(), xyrange[1]] ) ]
-        print( xyrange )
-        axes[ii].scatter( xx, yy, label=loc, alpha=0.6 )
+  for col, ax in enumerate(axes[-1,:]): 
+    ax.set_xlabel( 'ECONet' )
 
   xyrange = numpy.asarray( xyrange ) + [-2, 2]
-  axes[-1].legend()
-  for ax in axes:
+  for ax in axes.flatten():
     ax.set_aspect( 'equal' ) 
     ax.set_xlim( xyrange )
     ax.set_ylim( xyrange )
@@ -142,5 +88,7 @@ def main( *args ):
   plt.show()
 
 if __name__ == "__main__":
-  
-  main()
+  if len(sys.argv) >= 1: 
+    main( *sys.argv[1:] )
+  else:
+    main()
