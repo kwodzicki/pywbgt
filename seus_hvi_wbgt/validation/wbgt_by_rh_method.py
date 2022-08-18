@@ -56,71 +56,67 @@ def main( *args, methods = None, nCol = 7, **kwargs):
   xvals       = [ [] ] * nVars
   yvals       = [ [] ] * nVars
 
-  for color, (location, df) in enumerate( data.groupby('location') ):           # Iterate over all stations within the dataframe
+  df       = data.set_index( ['location', 'obtime'] )                                           # Set index for dataframe         
+  df.index = df.index.tz_convert(None)                                        # Convert index times to UTC
+  df       = df.drop_duplicates()
+  dt       = to_datetime( df.index.unique() )                                 # Get only the unique times
 
+  solar    = addUnits( df, 'rad2m_total', dt )                                # Add units to values, convert to appropriate units, and reindex
+  pres     = addUnits( df, 'airpres',     dt )
+  Tair     = addUnits( df, 'airtemp2m',   dt )
+  Tdew     = addUnits( df, 'dewtemp2m',   dt )
+  speed    = addUnits( df, 'windspeed2m', dt )
 
-    df       = df.set_index('obtime')                                           # Set index for dataframe         
-    df.index = df.index.tz_convert(None)                                        # Convert index times to UTC
-    df       = df.drop_duplicates()
-    dt       = to_datetime( df.index.unique() )                                 # Get only the unique times
+  RH       = calcRH( Tair, Tdew ).to('percent')
 
-    solar    = addUnits( df, 'rad2m_total', dt )                                # Add units to values, convert to appropriate units, and reindex
-    pres     = addUnits( df, 'airpres',     dt )
-    Tair     = addUnits( df, 'airtemp2m',   dt )
-    Tdew     = addUnits( df, 'dewtemp2m',   dt )
-    speed    = addUnits( df, 'windspeed2m', dt )
+  Tglobe   = addUnits( df, 'blackglobetemp2m', dt )
+  Tpsy     = addUnits( df, 'wetbulbtemp2m',    dt )
+  Tnwb     = addUnits( df, 'wetbulbtemp2m',    dt )
+  Twbgt    = addUnits( df, 'wbgt2m',           dt )
 
-    RH       = calcRH( Tair, Tdew ).to('percent')
+  Tglobe   = Tglobe.to( 'degree_Celsius' ).magnitude                          # Globe temperature as measured at station
+  Tpsy     = Tpsy.to(   'degree_Celsius' ).magnitude 
+  Tnwb     = Tnwb.to(   'degree_Celsius' ).magnitude 
+  Twbgt    = Twbgt.to(  'degree_Celsius' ).magnitude                          # Wet bulb globe as measured at station
 
-    Tglobe   = addUnits( df, 'blackglobetemp2m', dt )
-    Tpsy     = addUnits( df, 'wetbulbtemp2m',    dt )
-    Tnwb     = addUnits( df, 'wetbulbtemp2m',    dt )
-    Twbgt    = addUnits( df, 'wbgt2m',           dt )
+  lon      = data['Longitude [degrees East]' ].values.astype( numpy.float32 )
+  lat      = data['Latitude [degrees North]' ].values.astype( numpy.float32 )
 
-    Tglobe   = Tglobe.to( 'degree_Celsius' ).magnitude                          # Globe temperature as measured at station
-    Tpsy     = Tpsy.to(   'degree_Celsius' ).magnitude 
-    Tnwb     = Tnwb.to(   'degree_Celsius' ).magnitude 
-    Twbgt    = Twbgt.to(  'degree_Celsius' ).magnitude                          # Wet bulb globe as measured at station
+  print( f"Location : {location}; lat : {lat}; lon : {lon}" )    
 
-    metaLoc  = meta[ meta['Location ID'] == location ] 
-    lon      = metaLoc['Longitude [degrees East]' ].values.astype( numpy.float32 )
-    lat      = metaLoc['Latitude [degrees North]' ].values.astype( numpy.float32 )
+  for midx, method in enumerate( methods ):
 
-    print( f"Location : {location}; lat : {lat}; lon : {lon}" )    
+    print( f'  {method}' )
 
-    for midx, method in enumerate( methods ):
+    res = wbgt(method,
+      lat, lon, 
+      dt.year.values,
+      dt.month.values,
+      dt.day.values,
+      dt.hour.values,
+      dt.minute.values,
+      solar, pres, Tair, Tdew, speed, 
+    )
 
-      print( f'  {method}' )
+    #for vidx, (xx, yy) in enumerate( zip( [Tglobe, Twbgt, TwbgtB], [res['Tg'], res['Twbg'], res['Twbg']] ) ):
+    for vidx, (var, xx) in enumerate( zip( variables, [Tglobe, Tpsy, Tnwb, Twbgt] ) ):
+      yy = res.get( var, None )
+      if yy is None: continue
+      xyrange[vidx] = [min( [numpy.nanmin(xx), numpy.nanmax(yy), xyrange[vidx][0]] ), 
+                       max( [numpy.nanmin(xx), numpy.nanmax(yy), xyrange[vidx][1]] ) ]
 
-      res = wbgt(method,
-        lat, lon, 
-        dt.year.values,
-        dt.month.values,
-        dt.day.values,
-        dt.hour.values,
-        dt.minute.values,
-        solar, pres, Tair, Tdew, speed, 
-      )
+      key = f'{method}:{var}'
+      print( f'    {key};  Range: {xyrange[vidx]}' )
 
-      #for vidx, (xx, yy) in enumerate( zip( [Tglobe, Twbgt, TwbgtB], [res['Tg'], res['Twbg'], res['Twbg']] ) ):
-      for vidx, (var, xx) in enumerate( zip( variables, [Tglobe, Tpsy, Tnwb, Twbgt] ) ):
-        yy = res.get( var, None )
-        if yy is None: continue
-        xyrange[vidx] = [min( [numpy.nanmin(xx), numpy.nanmax(yy), xyrange[vidx][0]] ), 
-                         max( [numpy.nanmin(xx), numpy.nanmax(yy), xyrange[vidx][1]] ) ]
-
-        key = f'{method}:{var}'
-        print( f'    {key};  Range: {xyrange[vidx]}' )
-
-        RMSE_data[key]['x'].append( xx )
-        RMSE_data[key]['y'].append( yy )
+      RMSE_data[key]['x'].append( xx )
+      RMSE_data[key]['y'].append( yy )
  
-        colors = numpy.digitize( RH.m, bins ) / nBins 
-        axes[vidx//2][vidx%2].scatter( xx, yy, 
-          marker = markers[midx], 
-          c      = cmap( colors ), 
-          label  = location, 
-          alpha  = ALPHA )
+      colors = numpy.digitize( RH.m, bins ) / nBins 
+      axes[vidx//2][vidx%2].scatter( xx, yy, 
+        marker = markers[midx], 
+        c      = cmap( colors ), 
+        label  = location, 
+        alpha  = ALPHA )
 
   rmse = {}
   for key, vals in RMSE_data.items():
