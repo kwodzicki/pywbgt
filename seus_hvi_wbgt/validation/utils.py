@@ -6,22 +6,28 @@ import pandas
 from metpy.units import units
 
 from ncsuCLOUDS import STREAM
-from ncsuCLOUDS.api import CLOUDS
+from ncsuCLOUDS.api import CLOUDS, io
 
 STREAM.setLevel( 0 )
 
-DFILE  = '/Users/kwodzicki/Data/clouds_api_wbgt_data.pic'
-MDFILE = DFILE.split('_')[:-1]
-MDFILE.append( 'metadata.pic' )
-MDFILE = '_'.join( MDFILE )
-
+DFILE   = '/Users/kwodzicki/Data/clouds_api_wbgt_data'
 DATEFMT = '%Y%m%dT%H%M'
 def fnameDate( fname, sdate, edate ):
 
   fname = os.path.splitext( fname )
   return fname[0] + '_' + sdate.strftime(DATEFMT)+'-'+edate.strftime(DATEFMT) + fname[1]
 
-def download( sdate = None, edate = None, ndays = 5, dfile = DFILE, mdfile = MDFILE, dryrun = False):
+def dateWindow( dt, sdate, edate=None ):
+
+  second = timedelta( seconds = 1 )
+  if edate is None:
+    return sdate, sdate + dt - second
+  return dateWindow( dt, edate + second )
+
+def download( sdate = None, edate = None, ndays = 5, 
+    dt        = timedelta(hours=6), 
+    fileBase  = DFILE,
+    **kwargs ):
   """
   Download data from CLOUDS API and write to pickle file
 
@@ -36,54 +42,49 @@ def download( sdate = None, edate = None, ndays = 5, dfile = DFILE, mdfile = MDF
   if sdate > edate:
     raise Exception( 'Starting date cannot be after ending date' )
 
-  maxDays = 10 
-  if (edate-sdate).days > maxDays:
-    ss = sdate
-    ee = ss + timedelta( days=maxDays )
+  if 'variables' not in kwargs:
+    kwargs['variables'] = [
+        'rad2m_total',
+        'airpres|kPa',
+        'windspeed2m|mph',
+        'airtemp2m|K',
+        'dewtemp2m|K',
+        'blackglobetemp2m|K',
+        'wetbulbtemp|K'
+        'wbgt2m|K'
+      ] 
+
+  if (edate-sdate) > dt:
+    ss, ee = dateWindow( dt, sdate )
 
     print( f'Downloading : {ss} - {ee}' )
 
-    ddfile  = fnameDate( dfile,  ss, ee )
-    mmdfile = fnameDate( mdfile, ss, ee )
-    download( ss, ee, dfile=ddfile, mdfile=mmdfile, dryrun=dryrun)
+    fname = fnameDate( fileBase,  ss, ee )
+    download( ss, ee, fileBase=fname, **kwargs )
 
-    ss = ee
-    ee = ss + timedelta( days=maxDays )
+    ss, ee = dateWindow( dt, ss, ee )
     if ee > edate: ee = edate
 
     while ss < edate:
       print( f'Downloading : {ss} - {ee}' )
-      ddfile  = fnameDate( dfile,  ss, ee )
-      mmdfile = fnameDate( mdfile, ss, ee )
-      download( ss, ee, dfile=ddfile, mdfile=mmdfile, dryrun=dryrun)
+      fname = fnameDate( fileBase,  ss, ee )
+      download( ss, ee, fileBase=fname, **kwargs)
 
-      ss = ee
-      ee = ss + timedelta( days=maxDays )
+      ss, ee = dateWindow( dt, ss, ee )
       if ee > edate: ee = edate
 
   else:
-    print( dfile )
-    print( mdfile )
-
-    if os.path.isfile( dfile ) and os.path.isfile( mdfile ):
-      print( 'Files already downloaded')
-      return dfile, mdfile
-
+    print( fileBase )
     c       = CLOUDS()
-    c._var  = "airpres,airtemp2m,dewtemp2m,blackglobetemp2m,windspeed2m,rad2m_total,wbgt2m"
-    c.setAttributes('location', 'var', 'value', 'unit', 'obtime', 'timezone') 
+    c.setVariables( *kwargs['variables'])
     c.setLoc( network = 'ECONET' )
     c.end   = edate
     c.start = sdate 
-    #c.setInterval( hour = 1 )
+    c.setInterval( hour=1 )
 
-    if not dryrun: data, meta = c.download()
+    if not kwargs.get('dryrun', False): _ = c.download( fileBase )
 
-  if not dryrun:
-    data.to_pickle( dfile )
-    meta.to_pickle( mdfile )
-
-  return dfile, mdfile
+  return fileBase 
 
 def combineDataFiles( files, outfile ):
 
@@ -102,14 +103,13 @@ def combineMetadataFiles( files, outfile ):
   data.to_pickle( outfile )
 
 
-def loadData( dfile=DFILE, mdfile=MDFILE ):
+def loadData( dfile=DFILE ):
   """
   Load data and metadata from pickled files
 
   """
 
-  data = pandas.read_pickle( dfile )
-  meta = pandas.read_pickle( mdfile )
+  data, meta = io.read( dfile )
 
   for key in ['Longitude [degrees East]', 'Latitude [degrees North]']:
     data[key] = data['location'].map(meta.set_index('Location ID')[key])
@@ -121,18 +121,11 @@ def flip(items, ncol):
 
   return itertools.chain(*[items[i::ncol] for i in range(ncol)])
 
-def addUnits( df, vName, dt = None ):
+def addUnits( vName, df, meta ):
   """To wrap values in DataFrame into pint.Quantity"""
 
-  dd = df[ df['var'] == vName ]
-  if dt is not None:
-    dd = dd.reindex( dt )
-
-  unit = dd['unit'].values.astype( str )
-  unit = unit[ unit != 'nan' ][0]
-  if unit == 'mb': 
-    unit = 'mbar'
-  elif unit == 'F':
-    unit = 'degree_Fahrenheit'
+  dd   = df.loc[:, vName, :] 
+  unit = meta['Parameter']
+  unit = unit[ unit['requested'] == vName ]['unit'][0] 
   
   return units.Quantity( dd['value'].values, unit )
