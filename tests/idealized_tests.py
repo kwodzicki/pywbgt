@@ -3,6 +3,7 @@ from datetime import datetime
 import pytz
 
 from matplotlib import pyplot as plt
+from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 import numpy
 from pandas import date_range
@@ -41,19 +42,19 @@ solar  = numpy.arange(0, 1000, 10) * units('watt/meter**2')
 pres0  = units.Quantity( [1013], 'hPa')
 pres   = numpy.arange( 950, 1050, 10 ) * units('hPa')
 
-Tair0  = units.Quantity( [20.0], 'degree_Celsius')
-Tair   = numpy.arange( 5, 45, 1 ) * units('degree_Celsius')
+Tair0  = units.Quantity( [30.0], 'degree_Celsius')
+Tair   = numpy.arange( 20, 35, 1 ) * units('degree_Celsius')
 
-Tdew0  = units.Quantity( [5.0], 'degree_Celsius')
-Tdew   = numpy.arange( 5, 45, 1 ) * units('degree_Celsius')
+Tdew0  = units.Quantity( [20.0], 'degree_Celsius')
+Tdew   = numpy.arange( 20, 35, 1 ) * units('degree_Celsius')
 
 speed0 = units.Quantity( [1.0], 'mile/hour')
 speed  = numpy.logspace(-2, numpy.log10( 25 ) ) * units('mile/hour')
 speed  = numpy.concatenate( (units.Quantity([0], 'mile/hour'), speed) )
 
 methods  = ['liljegren', 'dimiceli', 'bernard']
-#methods  = ['dimiceli']
-lineFmt  = ['-r',        '-k',       '-g']
+methods  = [m.title() for m in methods]
+lineFmt  = ['-k',        '-r',       '-g']
 lineFmt  = {m:l for m, l in zip( methods, lineFmt )}
 
 keyTitle = ( ('Tpsy', 'Psychrometric Wet Bulb'),
@@ -62,19 +63,57 @@ keyTitle = ( ('Tpsy', 'Psychrometric Wet Bulb'),
              ('Twbg', 'Wet Bulb Globe')
 )
 
-def legend_without_duplicate_labels( fig ):
-  handles, labels = plt.gca().get_legend_handles_labels()
-  by_label = dict(zip(labels, handles))
-  fig.legend(by_label.values(), by_label.keys(), 
-    ncol = 3,
-    loc='lower left', 
-    fontsize='small'
-  )
+legend_kwargs = {
+  'ncol'     : 4, 
+  'loc'      : 'lower left', 
+  'fontsize' : 'small'
+}
 
-def plotter( xx, data, data2=None, data2Label='data2', figAxes = None, nn=None, suptitle=None, **kwargs):
+#def legend_without_duplicate_labels( fig ):
+#  handles, labels = plt.gca().get_legend_handles_labels()
+#  by_label = dict(zip(labels, handles))
+#  fig.legend(by_label.values(), by_label.keys(), 
+#    ncol = 3,
+#    loc='lower left', 
+#    fontsize='small'
+#  )
+
+def uplot( axes, xx, data, 
+    nn            = None, 
+    label         = None, 
+    color         = 'gray', 
+    ylim          = None,
+    ylabel        = None, 
+    labelsize     = 'small',
+    labelrotation = 90,
+    **kwargs ):
+
+  ee = len(data) if nn is None else nn
+  for i, ax in enumerate(axes):
+    ax2 = ax.twinx()
+    ax2.tick_params('y',
+        labelrotation = labelrotation,
+        colors        = color,
+        labelsize     = labelsize 
+    )
+    ax2.plot( xx[:ee], data[:ee], 
+      color     = color, 
+      linestyle = '-', 
+      label     = label if i == 0 else None,
+      **kwargs
+    )
+    if ylim   is not None: ax2.set_ylim( ylim )
+    if ylabel is not None:
+      ax2.set_ylabel( ylabel )
+      ax2.yaxis.label.set_color( color )
+
+    ax.set_zorder( ax2.get_zorder()+1 )
+    ax.patch.set_visible( False )
+
+def plotter( xx, data, data2=None, data2Label=None, figAxes = None, nn=None, suptitle=None, label='', **kwargs):
 
   position = [0.125, 0.15, 0.95, 0.93]
-  wspace   = None
+  wspace   = 0.25
   hspace   = 0.35
 
   if figAxes is None:
@@ -90,17 +129,17 @@ def plotter( xx, data, data2=None, data2Label='data2', figAxes = None, nn=None, 
   unit = None
   for i, (key, title) in enumerate( keyTitle ):
     if key in data:
-      ee = len(data[key]) if nn is None else nn
-      axes[i].plot( xx[:ee], data[key][:ee], 
-        lineFmt.get( kwargs.get('label', ''), '' ),
+      ee  = len(data[key]) if nn is None else nn
+      fmt = lineFmt.get( label, '' )
+      axes[i].plot( xx[:ee], data[key][:ee], fmt, 
+        label = label if i == 0 else None,
         **kwargs ) 
       axes[i].set_title( title ) 
       axes[i].set_xlabel('')
-      if unit is None: unit = xx.units
-    if data2 is not None:
-      ax2 = axes[i].twinx()
-      ax2.plot( xx[:ee], data2[:ee], label=data2Label )
+      axes[i].xaxis.set_minor_locator(AutoMinorLocator())
+      axes[i].yaxis.set_minor_locator(AutoMinorLocator())
 
+      if unit is None: unit = xx.units
   fig.text( 0.01, 0.5, 'Temperature [degree_Celsius]', 
     fontsize            = 'large',
     rotation            = 'vertical',
@@ -141,8 +180,12 @@ def plotter( xx, data, data2=None, data2Label='data2', figAxes = None, nn=None, 
 #legend_without_duplicate_labels( figAxes[0] )
 
 def main( *args, fbase = 'Idealized WBGT' ):
+
+  
+
   path = args[1] if len(args) > 1 else None
 
+  supTitle = 'Direct Beam Solar Radiation'
   for method in methods:
     f_db  = numpy.linspace(0, 1, solar.size)
     tmp   = wbgt(method, lat, lon, 
@@ -159,8 +202,11 @@ def main( *args, fbase = 'Idealized WBGT' ):
       f_db = f_db,
       cosz = numpy.full( solar.size, 0.8 )
      )
-    figAxes = plotter( solar, tmp, suptitle = 'Direct Beam Solar Radiation')
-  
+    figAxes = plotter( solar, tmp, suptitle = supTitle)
+    if path is not None:
+      figAxes[0].savefig( os.path.join( path, f"{fbase} {supTitle} Influence {method}.png" ), **figKWArgs)
+
+  #############################################################################  
   figAxes  = None
   supTitle = 'Direct Bean Solar Radiation'
   for method in methods: 
@@ -177,13 +223,14 @@ def main( *args, fbase = 'Idealized WBGT' ):
       Tdew0.repeat(  solar.size ),
       speed0.repeat( solar.size )
      )
-    figAxes = plotter( solar, tmp, suptitle=supTitle, figAxes=figAxes, label=method)
+    figAxes = plotter( solar, tmp, suptitle=supTitle, figAxes=figAxes, label=method )
     #if method == 'bernard':
     #  print( solar[ (tmp['Tg']-Tair0.repeat( solar.size ).to('degree_Celsius').magnitude) > 4 ] )
-  legend_without_duplicate_labels( figAxes[0] )
+  figAxes[0].legend( **legend_kwargs ) 
   if path is not None:
     figAxes[0].savefig( os.path.join( path, f"{fbase} {supTitle}.png" ), **figKWArgs)
-  
+
+  #############################################################################  
   figAxes  = None
   supTitle = 'Pressure'
   for method in methods: 
@@ -201,13 +248,15 @@ def main( *args, fbase = 'Idealized WBGT' ):
       speed0.repeat( pres.size )
      )
     
-    figAxes = plotter( pres, tmp, suptitle=supTitle, figAxes=figAxes, label=method )
-  legend_without_duplicate_labels( figAxes[0] )
+    figAxes = plotter( pres, tmp, suptitle=supTitle, figAxes=figAxes, label=method)
+  figAxes[0].legend( **legend_kwargs )
   if path is not None:
     figAxes[0].savefig( os.path.join( path, f"{fbase} {supTitle}.png" ) , **figKWArgs)
-  
+
+  #############################################################################  
   figAxes  = None
   supTitle = 'Air Temperature'
+  rh       = relative_humidity( Tair.to('degree_Celsius').m, Tdew0.to('degree_Celsius').m )
   for method in methods: 
     # influence of air temperature 
     tmp = wbgt(method, lat, lon, 
@@ -223,18 +272,18 @@ def main( *args, fbase = 'Idealized WBGT' ):
       speed0.repeat( Tair.size )
      )
     
-    figAxes = plotter( Tair, tmp, suptitle=supTitle, figAxes=figAxes, label=method )
-  legend_without_duplicate_labels( figAxes[0] )
+    figAxes = plotter( Tair, tmp, suptitle=supTitle, figAxes=figAxes, label=method)
+  uplot( figAxes[1], Tair, rh, label = 'RH', ylim=[0, 1] )
+  figAxes[0].legend( **legend_kwargs )
   if path is not None:
     figAxes[0].savefig( os.path.join( path, f"{fbase} {supTitle}.png" ) , **figKWArgs)
-  
+
+  #############################################################################  
   figAxes  = None
   supTitle = 'Dew Point Temperature'
   Tair_tmp = numpy.full( Tdew.size, Tdew.max() ) * Tair0.units
   rh       = relative_humidity( Tair_tmp.to('degree_Celsius').m, Tdew.to('degree_Celsius').m )
-  rh       = None
-  
-  for method in methods: 
+  for j, method in enumerate(methods): 
     # influence of dew point temperature 
     tmp = wbgt(method, lat, lon, 
       numpy.full( Tdew.size, date0.year ),
@@ -249,14 +298,21 @@ def main( *args, fbase = 'Idealized WBGT' ):
       speed0.repeat( Tdew.size )
     )
     #print( method, ' : ', tmp['Tg'] ) 
-    figAxes = plotter( Tdew, tmp, rh, data2Label='Relative Humidity', suptitle=supTitle, figAxes=figAxes, label=method )
-  legend_without_duplicate_labels( figAxes[0] )
+    figAxes = plotter( Tdew, tmp, 
+        suptitle   = supTitle, 
+        figAxes    = figAxes, 
+        label      = method
+    )
+  uplot( figAxes[1], Tdew, rh, label = 'RH', ylim=[0, 1] )
+
+  figAxes[0].legend( **legend_kwargs )
   if path is not None:
     figAxes[0].savefig( os.path.join( path, f"{fbase} {supTitle}.png" ) , **figKWArgs)
-    
+
+  #############################################################################  
   figAxes  = None
   supTitle = 'Wind Speed'
-  for method in methods: 
+  for method in methods:
     # influence of wind speed 
     tmp = wbgt(method, lat, lon, 
       numpy.full( speed.size, date0.year ),
@@ -271,12 +327,11 @@ def main( *args, fbase = 'Idealized WBGT' ):
       speed
      )
     
-    figAxes = plotter( speed, tmp, suptitle=supTitle, figAxes=figAxes, label=method )
-  legend_without_duplicate_labels( figAxes[0] )
+    figAxes = plotter( speed, tmp, suptitle=supTitle, figAxes=figAxes, label=method)
+  figAxes[0].legend( **legend_kwargs )
   if path is not None:
     figAxes[0].savefig( os.path.join( path, f"{fbase} {supTitle}.png" ) , **figKWArgs)
   else:  
     plt.show()
-
 if __name__ == "__main__":
   main( *sys.argv )

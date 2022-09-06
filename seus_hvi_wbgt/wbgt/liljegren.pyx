@@ -7,9 +7,10 @@ cimport numpy
 cimport cython
 
 from metpy.units import units
-from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
-from cliljegren cimport h_sphere_in_air, calc_solar_parameters, calc_wbgt, Tglobe
+from cliljegren cimport *#h_sphere_in_air, calc_solar_parameters, calc_wbgt, Tglobe
+
+from .utils import relative_humidity as rhTd
  
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
@@ -111,18 +112,18 @@ def solar_parameters( latIn, lonIn,
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globeTemperature( TairIn, rhIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
+def globeTemperature( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
   """
   Compute globe temperature using Liljegren method
 
   Arguments:
-    Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
-    rh (ndarray) : Relative humidity, fraction between 0 and 1
-    Pair (ndarray) : Barometric pressure; hPa
-    speed (ndarray) : wind speed, m/s
-    solar (ndarray) : Solar irradiance, W/m**2
-    fdir (ndarray) : Fraction of solar irradiance due to direct beam
-    cza (ndarray) : Cosine of solar zenith angle
+    TairIn (ndarray) : Air (dry bulb) temperature; degree Celsius
+    TdewIn (ndarray) : Dew point temperature; degree Celsius
+    PairIn (ndarray) : Barometric pressure; hPa
+    speedIn (ndarray) : wind speed, m/s
+    solarIn (ndarray) : Solar irradiance, W/m**2
+    fdirIn (ndarray) : Fraction of solar irradiance due to direct beam
+    czaIn (ndarray) : Cosine of solar zenith angle
 
   Returns:
     ndarray : Globe temperature
@@ -130,13 +131,13 @@ def globeTemperature( TairIn, rhIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
   """
 
   cdef:
-    float [:] Tair  = (TairIn + 273.15).astype(  numpy.float32 )
-    float [:] rh    = rhIn.astype(    numpy.float32 )
-    float [:] Pair  = PairIn.astype(  numpy.float32 )
-    float [:] speed = speedIn.astype( numpy.float32 )
-    float [:] solar = solarIn.astype( numpy.float32 )
-    float [:] fdir  = fdirIn.astype(  numpy.float32 )
-    float [:] cza   = czaIn.astype(   numpy.float32 )
+    float [:] Tair   = (TairIn + 273.15).astype(  numpy.float32 )
+    float [:] Pair   = PairIn.astype(  numpy.float32 )
+    float [:] speed  = speedIn.astype( numpy.float32 )
+    float [:] solar  = solarIn.astype( numpy.float32 )
+    float [:] fdir   = fdirIn.astype(  numpy.float32 )
+    float [:] cza    = czaIn.astype(   numpy.float32 )
+    float [:] relhum = rhTd(TairIn, TdewIn).astype( numpy.float32 )
 
     Py_ssize_t i, size = Tair.shape[0]
 
@@ -146,7 +147,90 @@ def globeTemperature( TairIn, rhIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
     float [:] outView = out
 
   for i in prange( size, nogil=True ):
-    outView[i] = Tglobe( Tair[i], rh[i], Pair[i], speed[i], solar[i], fdir[i], cza[i] )
+    outView[i] = Tglobe( Tair[i], relhum[i], Pair[i], speed[i], solar[i], fdir[i], cza[i] )
+
+  return out 
+
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+@cython.initializedcheck(False)   # Deactivate initialization checking.
+
+def psychrometricWetBulb( TairIn, TdewIn, PairIn ):
+  """
+  Compute psychrometeric wet bulb temperature using Liljegren method
+
+  Arguments:
+    TairIn (ndarray) : Air (dry bulb) temperature; degree Celsius
+    TdewIn (Quantity) : Dew point temperature; units of temperature
+    PairIn (ndarray) : Barometric pressure; hPa
+
+  Returns:
+    ndarray : pyschrometric Wet bulb temperature
+
+  """
+
+  cdef:
+    float [:] Tair   = (TairIn + 273.15).astype(  numpy.float32 )
+    float [:] Pair   = PairIn.astype(  numpy.float32 )
+    float [:] relhum = rhTd( TairIn, TdewIn ).astype( numpy.float32 )
+
+    float tmp
+    float fill = 0.0
+    int   rad  = 0
+
+    Py_ssize_t i, size = Tair.shape[0]
+
+  out  = numpy.full( size, numpy.nan, dtype=numpy.float32 )
+
+  cdef:
+    float [:] outView = out
+
+  for i in prange( size, nogil=True ):
+    tmp = Twb( Tair[i], relhum[i], Pair[i], fill, fill, fill, fill, rad)
+    if tmp > -9999.0: outView[i] = tmp
+  return out 
+
+
+def naturalWetBulb( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
+  """
+  Compute natural wet bulb temperature using Liljegren method
+
+  Arguments:
+    TairIn (ndarray) : Air (dry bulb) temperature; degree Celsius
+    TdewIn (Quantity) : Dew point temperature; units of temperature
+    PairIn (ndarray) : Barometric pressure; hPa
+    speedIn (ndarray) : wind speed, m/s
+    solarIn (ndarray) : Solar irradiance, W/m**2
+    fdirIn (ndarray) : Fraction of solar irradiance due to direct beam
+    czaIn (ndarray) : Cosine of solar zenith angle
+
+  Returns:
+    ndarray : natural Wet bulb temperature
+
+  """
+
+  cdef:
+    float [:] Tair   = (TairIn + 273.15).astype(  numpy.float32 )
+    float [:] Pair   = PairIn.astype(  numpy.float32 )
+    float [:] speed  = speedIn.astype( numpy.float32 )
+    float [:] solar  = solarIn.astype( numpy.float32 )
+    float [:] fdir   = fdirIn.astype(  numpy.float32 )
+    float [:] cza    = czaIn.astype(   numpy.float32 )
+    float [:] relhum = rhTd( TairIn, TdewIn ).astype( numpy.float32 )
+
+    float tmp
+    int rad = 1
+
+    Py_ssize_t i, size = Tair.shape[0]
+
+  out  = numpy.empty( size, dtype=numpy.float32 )
+
+  cdef:
+    float [:] outView = out
+
+  for i in prange( size, nogil=True ):
+    tmp = Twb( Tair[i], relhum[i], Pair[i], speed[i], solar[i], fdir[i], cza[i], rad)
+    if tmp > -9999.0: outView[i] = tmp
 
   return out 
 
@@ -254,10 +338,15 @@ def liljegren( latIn, lonIn,
     float [:] solar  =                solarIn.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
     float [:] pres   =                 presIn.to( 'hPa'            ).magnitude.astype( numpy.float32 )
     float [:] Tair   =                 TairIn.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
-    float [:] relhum = rhTd( TairIn, TdewIn ).to( 'percent'        ).magnitude.astype( numpy.float32 )
     float [:] speed  =                speedIn.to( 'm/s'            ).magnitude.astype( numpy.float32 )
     float [:] zspeed =               zspeedIn.to( 'meter'          ).magnitude.astype( numpy.float32 )
     float [:] dT     =                   dTIn.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
+    float [:] relhum = (
+        100.0 * rhTd( 
+            TairIn.to('degree_Celsius').magnitude, 
+            TdewIn.to('degree_Celsius').magnitude
+        )
+    ).astype( numpy.float32 )
 
   out = numpy.full( (5, size), numpy.nan, dtype = numpy.float32 )
 

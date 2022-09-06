@@ -42,22 +42,6 @@ def stull( Ta, RH ):
          arctan( Ta + RH ) - arctan( RH - 1.676331 ) +\
          0.00391838*RH**(3.0/2.0)*arctan( 0.023101*RH ) -\
          4.686035
- 
-def natural_wetBulb(Tw, S, u):
-  """
-  Hunter and Minyard: ESTIMATING WET BULB GLOBE TEMPERATURE USING STANDARD
-    METEOROLOGICAL MEASUREMENTS
-
-  Arguments:
-    Tw (ndarray) : Wet bulb globe temperature; degree C
-    S (ndarray) : Solar irradiance; W/m**2
-    u (ndarray) : Wind speed; m/s
-
-  """
-
-  return Tw + 0.021*S - 0.42*u + 1.93
-
-
 
 def wetBulb( Ta, Td, method='stull' ): 
   """
