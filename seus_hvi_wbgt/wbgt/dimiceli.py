@@ -2,8 +2,9 @@ import numpy
 
 from .liljegren import solar_parameters
 
-#from ..utils import f_dir_z
-from .wetbulb import wetBulb, natural_wetBulb
+from .wetbulb import wetBulb
+from .natural_wetbulb import malchaire, hunter_minyard 
+
 from . import SIGMA
 
 def chfc( S=None, Z=None):
@@ -171,8 +172,15 @@ def dimiceli( lat, lon,
 
   f_dif = 1.0 - f_db
   Tg    = globeTemperature( Tair, Tdew, speed1, pres, solar, f_db, f_dif, cosz, **kwargs)
-  Tpsy  = wetBulb( Tair, Tdew )
-  Tnwb  = natural_wetBulb( Tpsy, solar, speed.to('meter per second').magnitude )
+  Tpsy  = wetBulb( Tair, Tdew, method=kwargs.get('wetbulb', 'DIMICELI') )
+
+  nwb   = kwargs.get('natural_wetbulb', 'hunter_minyard').upper()
+  if nwb == 'HUNTER_MINYARD':
+    Tnwb  = hunter_minyard( Tpsy, solar*f_db, speed.to('meter per second').magnitude )
+  elif nwb == 'MALCHAIRE':
+    Tnwb  = malchaire( Tpsy, Tg, Tair, Tdew ) ) 
+  else:
+    raise Exception( f"Unsupported value for 'natural_wetbulb' : {nwb}" )
 
   return {
     'Tg'   : Tg,

@@ -74,7 +74,9 @@ def factorC( wnd ):
 
   """
 
-  C   = numpy.where( wnd < 0.03, 0.85, 0.96 + 0.069*numpy.log10( wnd ) )                                    # Where wind is less than 0.03, set values to 0.85, else set values to 1.0
+  C      = numpy.full( wnd.shape, 0.85 )
+  idx    = numpy.where( wnd >= 0.03 )
+  C[idx] = 0.96 + 0.069*numpy.log10( wnd[idx] )
   return numpy.where( wnd > 3.0, 1.0, C )           # Where wind > 3.0, keep values of C, else compute C and return values 
 
 
@@ -90,8 +92,10 @@ def factore( wnd ):
 
   """
 
-  e = numpy.where( wnd < 0.1, 1.1, 0.1/wnd**1.1 - 0.2 )                                       # Where wind is less than 0.1, set values to 1.1, else set values to -0.1 
-  return numpy.where( wnd > 1.0, -0.1, e )                        # Where wind > 1.0, keep values of e, else compute e and return values 
+  e      = numpy.full( wnd.shape, 1.1 )
+  idx    = numpy.where( wnd >= 0.1 )
+  e[idx] = 0.1/wnd[idx]**1.1 - 0.2
+  return numpy.where( wnd > 1.0, -0.1, e )                                      # Where wind > 1.0, keep values of e, else compute e and return values 
 
 def saturation_vapor_pressure( T ):
   """

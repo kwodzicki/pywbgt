@@ -50,7 +50,7 @@ def download( sdate = None, edate = None, ndays = 5,
         'airtemp2m|K',
         'dewtemp2m|K',
         'blackglobetemp2m|K',
-        'wetbulbtemp|K'
+        'wetbulbtemp|K',
         'wbgt2m|K'
       ] 
 

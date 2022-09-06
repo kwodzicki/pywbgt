@@ -14,3 +14,7 @@ cdef extern from "src/liljegren.c" nogil:
 cdef extern from "src/liljegren.c" nogil:
   float Tglobe( float Tair, float rh, float Pair, float speed,
     float solar, float fdir, float cza )
+
+cdef extern from "src/liljegren.c" nogil:
+  float Twb( float Tair, float rh, float Pair, float speed,
+    float solar, float fdir, float cza, int rad )
