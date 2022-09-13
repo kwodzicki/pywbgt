@@ -8,7 +8,7 @@ cimport cython
 
 from metpy.units import units
 
-from cliljegren cimport *#h_sphere_in_air, calc_solar_parameters, calc_wbgt, Tglobe
+from cliljegren cimport *
 
 from .utils import relative_humidity as rhTd
  
@@ -53,7 +53,7 @@ def chtc( TairIn, PairIn, speedIn, float diameter=0.0508  ):
 @cython.initializedcheck(False)   # Deactivate initialization checking.
 def solar_parameters( latIn, lonIn, 
                       yearIn, monthIn, dayIn, hourIn, minuteIn, 
-                      solar ):
+                      solar, avgIn=None ):
   """
   Calculate solar parameters based on date and location
 
@@ -71,6 +71,9 @@ def solar_parameters( latIn, lonIn,
     hour (ndarray) : Hour of day; GMT
     minute (ndarray) : Minute of day; GMT
 
+  Keyword arguments:
+    avgIn (ndarray) : averaging time of the meteorological inputs (minutes)
+
   Returns:
     tuple : Three (3) ndarrays containing:
       - Potentially modified Solar values
@@ -83,6 +86,9 @@ def solar_parameters( latIn, lonIn,
     int res
     Py_ssize_t i, size = yearIn.shape[0]
     double dday
+
+  if avgIn is None:
+    avgIn    = numpy.ones(  size, dtype = numpy.int32 )
 
   if len( latIn ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
     latIn   = latIn.repeat( size )
@@ -100,10 +106,10 @@ def solar_parameters( latIn, lonIn,
     int   [::1] day    = dayIn.astype(    numpy.int32 )
     int   [::1] hour   = hourIn.astype(   numpy.int32 )
     int   [::1] minute = minuteIn.astype( numpy.int32 )
+    int   [::1] avg    = avgIn.astype(    numpy.int32 )
 
   for i in prange( size, nogil=True ):
-  #for i in range( size ):
-    dday  = day[i] + (hour[i]*60 + minute[i])/1440.0          # Compute fractional day
+    dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0          # Compute fractional day
     res   = calc_solar_parameters( year[i], month[i], dday, lat[i], lon[i], 
               &outView[0,i], &outView[1,i], &outView[2,i] )                                             # Run the C function
 
