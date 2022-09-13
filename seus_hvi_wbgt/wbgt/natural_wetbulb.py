@@ -1,6 +1,6 @@
 from .utils import relative_humidity
 
-def malchaire(Tw, Tg, Ta, Td ):
+def malchaire(Ta, Td, Tw, Tg ):
   """
   Compute natural wet bulb temperature
 
@@ -10,10 +10,10 @@ def malchaire(Tw, Tg, Ta, Td ):
   ambient and dew point temperatures.
 
   Arguments:
+    Ta (ndarray) : Ambient temp (C)
+    Td (ndarray) : Dew point temperature (C)
     Tw (ndarray) : Wet bulb (C)
     Tg (ndarray) : Globe temp (C)
-    Ta (ndarray) : Ambient temp (C)
-    rh (ndarray) : Relative humidity (percent) 
 
   Reference:
     Malchaire, J. B., EVALUATION OF NATURAL WET BULB AND WET GLOBE THERMOMETERS.

@@ -1,9 +1,9 @@
 import numpy
 from scipy.optimize import fsolve
-from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
 from . import liljegren 
 from . import SIGMA, EPSILON
+from .utils import saturation_vapor_pressure
 
 """
 References
@@ -97,24 +97,6 @@ def factore( wnd ):
   e[idx] = 0.1/wnd[idx]**1.1 - 0.2
   return numpy.where( wnd > 1.0, -0.1, e )                                      # Where wind > 1.0, keep values of e, else compute e and return values 
 
-def saturation_vapor_pressure( T ):
-  """
-  Compute saturation vapor pressure from temperature
-
-  Equation taken from From Bernard and Pourmoghani (1999), with reference
-  to Beranrd and Cross (1999)
-
-  Arguments:
-    T (ndarry) : Temperature at which to compute saturation vapor pressure.
-      Units of degree Celsius
-
-  Returns:
-    ndarray : vapor pressure in kPa
-
-  """
-
-  return 0.6107*numpy.exp( 17.27*T / (T + 237.3) ) 
-
 def globeTemperature( Ta, u, P, S, epsilon=EPSILON  ):
   """
   Determine globe temperature through iterative solver
@@ -147,15 +129,15 @@ def psychrometricWetBulb(Ta, ea=None, Td=None, RH=None ):
   Keyword arguments:
     ea (ndarray) : ambient vapor pressure in kiloPascals
     Td (ndarray) : Dew point temperature in degree Celsius
-    RH (ndarray) : Relative humidity in percent
+    RH (ndarray) : Relative humidity as fraction
 
   """
 
   if ea is None:
     if Td is not None:
-      ea = saturation_vapor_pressure( Td )
+      ea = saturation_vapor_pressure( Td )/10.0
     elif RH is not None:
-      ea = RH/100.0 * saturation_vapor_pressure( Ta )
+      ea = RH * saturation_vapor_pressure( Ta )/10.0
     else:
       raise Exception( 'Must input one of "ea", "RH", or "Td"' )
  
@@ -228,16 +210,15 @@ def bernard( lat, lon,
     lat, lon, year, month, day, hour, minute, solar.to('watt/m**2').magnitude
   )
 
-  pres   = pres.to('hPa').magnitude
-  speed  = speed.to('meter/second').magnitude
-  relhum = rhTd( Tair, Tdew ).to('percent').magnitude
-  Tair   = Tair.to('degree_Celsius').magnitude
-
-  Tg   = liljegren.globeTemperature( 
-           Tair, relhum/100.0, pres, speed, solar, fdir, cza 
+  Tair   =  Tair.to( 'degree_Celsius' ).magnitude
+  Tdew   =  Tdew.to( 'degree_Celsius' ).magnitude
+  pres   =  pres.to( 'hPa'            ).magnitude
+  speed  = speed.to( 'meter/second'   ).magnitude
+  Tg     = liljegren.globeTemperature( 
+           Tair, Tdew, pres, speed, solar, fdir, cza 
   )
   Tg[ Tg <= -9990.0] = float('nan')
-  Tpsy = psychrometricWetBulb( Tair, RH = relhum )
+  Tpsy = psychrometricWetBulb( Tair, Td = Tdew )
   Tnwb = naturalWetBulb( Tair, Tpsy, Tg, speed )
 
   return {

@@ -73,7 +73,7 @@ def thermalEmissivity( Ta, Td, P ):
 
   return 0.575 * atmospheric_vapor_pressure( Ta, Td, P )**(1.0/7.0)
 
-def factorB( Ta, Td, P, S, f_db, f_dif, cosz ):
+def factorB( Ta, Td, P, S, f_db, cosz, **kwargs ):
   """
 
   Arguments:
@@ -81,15 +81,16 @@ def factorB( Ta, Td, P, S, f_db, f_dif, cosz ):
     Td (float) : dew point temperature in degrees Celsius
     P (float) : Barometric pressure in hPa 
     S (float) : solar irradiance in Watts per meter**2
-    f_dif (float) : diffuse radiation from the sun
+    f_db (float) : Fraction of direct beam radiation
     cosz (float) : Cosine of solar zenith angle
 
   """
-
+  
+  f_dif = 1.0 - f_db
   return S * ( f_db/(4.0*SIGMA*cosz) + 1.2*f_dif/SIGMA ) +\
       thermalEmissivity( Ta, Td, P ) * Ta**4
 
-def factorC( u, CHFC = None ):
+def factorC( u, CHFC = None, **kwargs ):
   """
 
   Arguments:
@@ -100,17 +101,17 @@ def factorC( u, CHFC = None ):
   if CHFC is None: CHFC = chfc()
   return CHFC * u**0.58 / 5.3865e-8
 
-def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, cosz, **kwargs ):
+def globeTemperature( Ta, Td, P, u, S, f_db, cosz, **kwargs ):
   """
   Compute globe temperature
 
   Arguments:
     Ta (float) : ambient temperature in degrees Celsius
     Td (float) : dew point temperature in degrees Celsius
-    u (float) : wind speed in meters per hour
     P (float) : Barometric pressure in hPa 
+    u (float) : wind speed in meters per hour
     S (float) : solar irradiance in Watts per meter**2
-    f_dif (float) : diffuse radiation from the sun
+    f_db (float) : Fraction of direct beam radiation
     cosz (float) : Cosine of solar zenith angle
 
   Notes:
@@ -121,7 +122,7 @@ def globeTemperature( Ta, Td, u, P, S, f_db, f_dif, cosz, **kwargs ):
 
   """
 
-  B = factorB( Ta, Td, P, S, f_db, f_dif, cosz)
+  B = factorB( Ta, Td, P, S, f_db, cosz)
   C = factorC( u, **kwargs )
 
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
@@ -149,6 +150,10 @@ def dimiceli( lat, lon,
   Keyword arguments:
     f_db (float) : Direct beam radiation from the sun; fraction
     cosz (float) : Cosine of solar zenith angle
+    wetbulb (str) : Name of wet bulb algorithm to use:
+      {dimiceli, stull} DEFAULT = dimiceli
+    natural_wetbulb (str) : Name of the natural wet bulb algorithm to use:
+      {hunter_minyard, malchaire} DEFAULT = hunter_minyard
 
   Returns:
     tuple : Globe, natural wet bulb, and wet bulb globe temperatures
@@ -163,22 +168,26 @@ def dimiceli( lat, lon,
   speed1 = numpy.clip( speed1, 1690.0, None )                                   # Ensure wind speed is at least one (1) mile/hour
 
   if (f_db is None) or (cosz is None):
-    solar = solar_parameters( lat, lon, 
-                              year, month, day, hour, minute, 
-                              solar )
+    solar = solar_parameters( 
+        lat, lon, 
+        year, month, day, hour, minute, 
+        solar
+    )
     if cosz is None: cosz = solar[1] 
     if f_db is None: f_db = solar[2]
     solar = solar[0]
 
-  f_dif = 1.0 - f_db
-  Tg    = globeTemperature( Tair, Tdew, speed1, pres, solar, f_db, f_dif, cosz, **kwargs)
+  Tg    = globeTemperature( Tair, Tdew, pres, speed1, solar, f_db, cosz, **kwargs)
   Tpsy  = wetBulb( Tair, Tdew, method=kwargs.get('wetbulb', 'DIMICELI') )
 
-  nwb   = kwargs.get('natural_wetbulb', 'hunter_minyard').upper()
+  nwb   = kwargs.get('natural_wetbulb', None)
+  if nwb is None: nwb = 'MALCHAIRE'
+  nwb = nwb.upper()
+
   if nwb == 'HUNTER_MINYARD':
     Tnwb  = hunter_minyard( Tpsy, solar*f_db, speed.to('meter per second').magnitude )
   elif nwb == 'MALCHAIRE':
-    Tnwb  = malchaire( Tpsy, Tg, Tair, Tdew ) ) 
+    Tnwb  = malchaire( Tair, Tdew, Tpsy, Tg )
   else:
     raise Exception( f"Unsupported value for 'natural_wetbulb' : {nwb}" )
 
