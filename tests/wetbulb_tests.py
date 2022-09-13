@@ -19,7 +19,9 @@ from seus_hvi_wbgt.wbgt.utils import relative_humidity
 from ncsuCLOUDS import io
 from ncsuCLOUDS.units import addUnits
 
-figKWArgs = {'dpi' : 300}
+figKWArgs  = {'dpi' : 300}
+markersize = 2
+
 
 from idealized_tests import uplot
 
@@ -180,7 +182,10 @@ def realData( dataDir, outpath = None ):
     for j, y in enumerate( [liljegren, dimiceli, bernard, stull] ):
       idx = numpy.where( numpy.isfinite( Twb ) & numpy.isfinite( y ) )
       r   = numpy.corrcoef( Twb[idx], y[idx] )[0,1]
-      axes[i,j].plot( Twb, y, '.' )
+      axes[i,j].plot( Twb, y, markersize,
+            marker='.', 
+            color='black' 
+      )
       axes[i,j].text( 0.95, 0.05, 
         f"r = {r:0.3f}\nn = {idx[0].size}",
         fontsize            = 'small',
@@ -207,7 +212,7 @@ def realData( dataDir, outpath = None ):
       axes[1,i].get_yaxis().set_ticklabels( [] )
 
   for ax in axes.flatten():
-    ax.plot( lims, lims, '-k', zorder=0 )
+    ax.plot( lims, lims, linestyle='-', color='gray', zorder=0 )
     ax.set_xlim( lims )
     ax.set_ylim( lims )
     ax.set_aspect('equal')
