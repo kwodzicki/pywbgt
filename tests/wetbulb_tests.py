@@ -58,7 +58,14 @@ month  = numpy.full( solar0.size, date0.month)
 day    = numpy.full( solar0.size, date0.day  )
 hour   = numpy.full( solar0.size, date0.hour )
 minute = numpy.full( solar0.size, date0.minute )
- 
+
+
+def mae(y_true, predictions):
+  """Compute mean absolute error"""
+
+  return numpy.mean( numpy.abs( y_true - predictions ) )
+
+
 def calcRange( *args, ref = None ):
 
   lims = (
@@ -155,18 +162,22 @@ def idealized( outpath = None ):
 ########################################
 def realData( dataDir, outpath = None ):
 
-  refDate    = pytz.timezone('UTC').localize( datetime(2020, 2, 1, 0) )
+  refDate    = pytz.timezone('UTC').localize( datetime(2020, 6, 1, 0) )
   lims       = [float('inf'), -float('inf')]
 
   data, meta = io.read( dataDir ) 
   dates      = data.index.get_level_values( data.index.names.index( 'datetime' ) )
 
 
-  fig, axes  = plt.subplots( 2, 4, figsize=(6,4) )
+  #fig, axes  = plt.subplots( 2, 4, figsize=(6,4) )
+  fig, axes  = plt.subplots( 1, 4, figsize=(6,2) )
 
-  for i in range( 2 ):
-    idx  = dates < refDate if (i == 0) else dates > refDate
+  axes = axes.flatten()
+  axID = 0
+  for i in range( 1, 2 ):
+    idx  = dates < refDate if (i == 0) else dates >= refDate
     tmp  = data[idx]
+    print(tmp.min() )
     Tair = addUnits(   'airtemp2m|K', tmp, meta ).to('degree_Celsius').m 
     Tdew = addUnits(   'dewtemp2m|K', tmp, meta ).to('degree_Celsius').m
     pres = addUnits(   'airpres|kPa', tmp, meta ).to('hPa').m
@@ -182,34 +193,46 @@ def realData( dataDir, outpath = None ):
     for j, y in enumerate( [liljegren, dimiceli, bernard, stull] ):
       idx = numpy.where( numpy.isfinite( Twb ) & numpy.isfinite( y ) )
       r   = numpy.corrcoef( Twb[idx], y[idx] )[0,1]
-      axes[i,j].plot( Twb, y, markersize,
+      axes[axID].plot( Twb, y, markersize,
             marker='.', 
             color='black' 
       )
-      axes[i,j].text( 0.95, 0.05, 
-        f"r = {r:0.3f}\nn = {idx[0].size}",
+      text = [
+        f"r = {r:0.3f}",
+        f"MAE = {mae( Twb[idx], y[idx] ):0.3f}",
+        f"n = {idx[0].size}",
+      ]
+      axes[axID].text( 0.95, 0.05, os.linesep.join( text ), 
         fontsize            = 'small',
-        transform           = axes[i,j].transAxes,
+        transform           = axes[axID].transAxes,
         horizontalalignment = 'right',
       )
+      axID += 1
 
   lims = lims + [-2, 2]
 
   #axes[0,0].set_title('Jan. 2020')
   #axes[0,1].set_title('Jun. 2020')
     
-  axes[0,0].set_title('Liljegren')
-  axes[0,1].set_title('Dimiceli')
-  axes[0,2].set_title('Bernard')
-  axes[0,3].set_title('Stull')
+  axes[0].set_title('Liljegren')
+  axes[1].set_title('Dimiceli')
+  axes[2].set_title('Bernard')
+  axes[3].set_title('Stull')
 
-  for i in range(2):
-    axes[i,0].set_ylabel( "$T_{w}\, [^{\circ}\\text{C}]$" )
+#  for i in range(2):
+#    axes[i,0].set_ylabel( "$T_{w}\, [^{\circ}\\text{C}]$" )
+#  for i in range(4):
+#    axes[-1,i].set_xlabel( "ECONet $T_{w}\, [^{\circ}\\text{C}]$" ) 
+#    if i > 0:
+#      axes[0,i].get_yaxis().set_ticklabels( [] )
+#      axes[1,i].get_yaxis().set_ticklabels( [] )
+  axes[0].set_ylabel( "$T_{w}\, [^{\circ}\\text{C}]$" )
   for i in range(4):
-    axes[-1,i].set_xlabel( "ECONet $T_{w}\, [^{\circ}\\text{C}]$" ) 
+    axes[i].set_xlabel( "ECONet $T_{w}\, [^{\circ}\\text{C}]$" ) 
     if i > 0:
-      axes[0,i].get_yaxis().set_ticklabels( [] )
-      axes[1,i].get_yaxis().set_ticklabels( [] )
+      axes[i].get_yaxis().set_ticklabels( [] )
+      axes[i].get_yaxis().set_ticklabels( [] )
+
 
   for ax in axes.flatten():
     ax.plot( lims, lims, linestyle='-', color='gray', zorder=0 )
@@ -220,15 +243,16 @@ def realData( dataDir, outpath = None ):
   figLoc = {
     'left'   : 0.085, 
     'right'  : 0.99, 
-    'bottom' : 0.085, 
-    'top'    : 0.92, 
+    'bottom' : 0.105, 
+    'top'    : 0.98, 
     'wspace' : 0.1, 
     'hspace' : 0.2
   }
 
   xx = (figLoc['left'] + figLoc['right']) / 2.0
-  fig.text( xx, 0.96, 'January 2020', fontsize='large', horizontalalignment='center' ) 
-  fig.text( xx, 0.46, 'June 2020',    fontsize='large', horizontalalignment='center' ) 
+  #fig.text( xx, 0.96, 'January 2020', fontsize='large', horizontalalignment='center' ) 
+  #fig.text( xx, 0.96, 'June 2020', fontsize='large', horizontalalignment='center' ) 
+  #fig.text( xx, 0.46, 'June 2020',    fontsize='large', horizontalalignment='center' ) 
   fig.subplots_adjust( **figLoc )
 
   if outpath is None:
