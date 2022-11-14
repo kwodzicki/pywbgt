@@ -181,7 +181,7 @@ def uplot( ax, xx, data,
 def idealized( *args, 
         fKey     = 'Tg', 
         label    = '' ,
-        position = [0.08, 0.13, 0.98, 0.95],
+        position = [0.10, 0.13, 0.99, 0.95],
         hspace   = 0.55,
         wspace   = 0.55,
         **kwargs):
@@ -278,11 +278,11 @@ def idealized( *args,
 if __name__ == "__main__":
 
   infos = [
-    {'fKey'   : 'Twbg', 
-     'obsKey' : '', 
-     'label'  : 'Wet Bulb Globe Temperature',
-     'natural_wetbulb' : ['HUNTER_MINYARD', 'MALCHAIRE']
-    },
+    #{'fKey'   : 'Twbg', 
+    # 'obsKey' : '', 
+    # 'label'  : 'Wet Bulb Globe Temperature',
+    # 'natural_wetbulb' : ['HUNTER_MINYARD', 'MALCHAIRE']
+    #},
 
     {'fKey'   : 'Tnwb', 
      'obsKey' : '', 

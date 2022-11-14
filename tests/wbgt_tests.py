@@ -362,14 +362,13 @@ def idealized( *args,
 
 def observations( obs, meta, *args,
         methods  = METHODS,
-        color_by = (),
-        cb_label = '',
+        color_by = {'' :()},
         obsKey   = 'blackglobetemp2m|K', 
         fKey     = 'Tg', 
         label    = '',
-        position = [0.08, 0.20, 0.98, 0.90],
-        hspace   = 0.1,
-        wspace   = 0.1,
+        position = [0.07, 0.08, 0.87, 0.95],
+        hspace   = 0.10,
+        wspace   = 0.05,
         **kwargs ):
 
   if obsKey == '' or obsKey not in obs: return
@@ -378,89 +377,122 @@ def observations( obs, meta, *args,
 
   obs       = obs.loc[:, '2020-06-01':, :]
   dates     = obs.index.get_level_values( obs.index.names.index( 'datetime' ) )
- 
-  fig, ax   = plt.subplots( 1, len(methods), figsize = (6,2.5))
+
+  nRowCol   = (len(color_by), len(methods)+1 )
+  fig, ax   = plt.subplots( 
+                *nRowCol, 
+                figsize = (6, 1.75*len(color_by)),
+                gridspec_kw = {'width_ratios' : [*[10]*3, 1]}
+  )
+  ax        = ax.flatten()
 
   minmax = [float('inf'), -float('inf')]
 
-  for i, method in enumerate( methods ):
-    tmp = wbgt( method, lat, lon,
-      dates.year.values, 
-      dates.month.values, 
-      dates.day.values, 
-      dates.hour.values, 
-      dates.minute.values,
-      addUnits( 'rad2m_total',     obs, meta ),
-      addUnits( 'airpres|kPa',     obs, meta ),
-      addUnits( 'airtemp2m|K',     obs, meta ),
-      addUnits( 'dewtemp2m|K',     obs, meta ),
-      addUnits( 'windspeed2m|mph', obs, meta )
-    )
-
-    x = addUnits( obsKey, obs, meta ).to('degree_Celsius').magnitude
-    y = tmp[fKey]
-
-    idx  = numpy.where( numpy.isfinite( x ) & numpy.isfinite( y ) )
-    r    = numpy.corrcoef( x[idx], y[idx] )[0,1]
-    text = [
-      f"r   = {r:0.3f}",
-      f"MAE = {mae( x[idx], y[idx] ):0.3f}",
-      f"n   = {idx[0].size}",
-    ]
-        
-    ax[i].text( 0.95, 0.05, os.linesep.join( text ),
-      family              = 'monospace',
-      fontsize            = 'small',
-      transform           = ax[i].transAxes,
-      horizontalalignment = 'right',
-    )
-
-    minmax = [
-        min( [minmax[0], *x, *y] ),
-        max( [minmax[1], *x, *y] )
-    ]
-
-    color_opts = {
-        'c'      : 'black',
-        'marker' : marker
-    }
-
-    if len( color_by ) == 3:
-      color_opts.update(
-        { 
-            'c'    : addUnits( color_by[0], obs, meta ).magnitude,
-            'vmin' : color_by[1],
-            'vmax' : color_by[2],
-        }
+  axID   = 0
+  for j, (cb_label, cb_info) in enumerate( color_by.items() ):
+    for i, method in enumerate( methods ):
+      tmp = wbgt( method, lat, lon,
+        dates.year.values, 
+        dates.month.values, 
+        dates.day.values, 
+        dates.hour.values, 
+        dates.minute.values,
+        addUnits( 'rad2m_total',     obs, meta ),
+        addUnits( 'airpres|kPa',     obs, meta ),
+        addUnits( 'airtemp2m|K',     obs, meta ),
+        addUnits( 'dewtemp2m|K',     obs, meta ),
+        addUnits( 'windspeed2m|mph', obs, meta )
       )
 
-    ss = ax[i].scatter( x, y, markersize, **color_opts )
-    ax[i].set_title( method )
+      x = addUnits( obsKey, obs, meta ).to('degree_Celsius').magnitude
+      y = tmp[fKey]
 
-    if i == 0:
-      ax[i].set_ylabel( f"{label} [$^{{\circ}}$C]" )
-    else:
-      ax[i].yaxis.set_ticklabels( [] )
+      if j == 0:
+        idx  = numpy.where( numpy.isfinite( x ) & numpy.isfinite( y ) )
+        r    = numpy.corrcoef( x[idx], y[idx] )[0,1]
+        text = [
+          f"r   = {r:0.3f}",
+          f"MAE = {mae( x[idx], y[idx] ):0.3f}",
+          f"n   = {idx[0].size}",
+        ]
+            
+        ax[axID].text( 0.95, 0.05, os.linesep.join( text ),
+          family              = 'monospace',
+          fontsize            = 'small',
+          transform           = ax[axID].transAxes,
+          horizontalalignment = 'right',
+        )
 
-  if len( color_by ) == 3:
-    fig.colorbar( ss, label=cb_label )
-    position[2] -= 0.05
+      minmax = [
+          min( [minmax[0], *x, *y] ),
+          max( [minmax[1], *x, *y] )
+      ]
 
-  fig.text( (position[0]+position[2])/2.0, 0.05, 
+      color_opts = {
+          'c'      : 'black',
+          'marker' : marker
+      }
+
+      if len( cb_info ) == 4:
+        color_opts.update(
+          { 
+              'c'    : addUnits( cb_info[0], obs, meta ),
+              'vmin' : cb_info[1],
+              'vmax' : cb_info[2],
+          }
+        )
+        if cb_info[-1] != '':
+          color_opts[ 'c'] = color_opts['c'].to( cb_info[-1] )
+        color_opts[ 'c'] = color_opts['c'].magnitude
+        
+
+      ss = ax[axID].scatter( x, y, markersize, **color_opts )
+
+      if axID < len( methods ):
+        ax[axID].set_title( method )
+
+      if i != 0:
+        ax[axID].yaxis.set_ticklabels( [] )
+
+      axID += 1
+
+    if len( color_by ) > 0:
+      fig.colorbar( ss, 
+        label    = cb_label, 
+        cax      = ax[axID],
+        extend   = 'both', 
+        fraction = 0.05,
+      )
+
+    axID += 1
+
+  ax = ax.reshape( nRowCol )
+  for i in range( len(color_by)-1 ):
+    for j in range( len(methods) ):
+      ax[i,j].xaxis.set_ticklabels( [] )
+
+  fig.text( (position[0]+position[2])/2.0, 0.01, 
     f"ECONet {label} [$^{{\circ}}$C]",
     horizontalalignment = 'center',
     verticalalignment='bottom' 
   )
 
   minmax = (numpy.asarray( minmax )//10 + [0,1]) * 10
-  for a in ax:
-    a.set( xlim=minmax, ylim=minmax )
-    a.plot( minmax, minmax, color='gray', linestyle='-', zorder=0 )
-    a.xaxis.set_ticks( numpy.arange( *minmax, 10 ) )
-    a.xaxis.set_minor_locator( AutoMinorLocator() ) 
-    a.yaxis.set_ticks( numpy.arange( *minmax, 10 ) )
-    a.yaxis.set_minor_locator( AutoMinorLocator() ) 
-    a.set_aspect('equal', 'box')
+  for i in range( len( color_by ) ):
+    for j in range( len(methods ) ):
+      ax[i,j].set( xlim=minmax, ylim=minmax )
+      ax[i,j].plot( minmax, minmax, color='gray', linestyle='-', zorder=0 )
+      ax[i,j].xaxis.set_ticks( numpy.arange( *minmax, 10 ) )
+      ax[i,j].xaxis.set_minor_locator( AutoMinorLocator() ) 
+      ax[i,j].yaxis.set_ticks( numpy.arange( *minmax, 10 ) )
+      ax[i,j].yaxis.set_minor_locator( AutoMinorLocator() ) 
+      ax[i,j].set_aspect('equal', 'box')
+
+  fig.text( 0.01, 0.5, f"{label} [$^{{\circ}}$C]",
+    rotation=90,
+    horizontalalignment = 'left',
+    verticalalignment   = 'center'
+  )
   
   fig.subplots_adjust( *position, wspace, hspace )
 
@@ -473,18 +505,18 @@ def observations( obs, meta, *args,
 
 if __name__ == "__main__":
 
-  variables = [
-    {'fKey'     : 'Tg',   
-     'obsKey'   : 'blackglobetemp2m|K', 
-     'label'    : 'Globe Temperature',
-     'methods'  : METHODS[:-1], 
-     'color_by' : ('rad2m_total', 0, 1000),
-     'cb_label' : 'Solar Irradiance [W/m$^{2}$]',
-    },
+  color_by  = {
+     'Air Temperature\n[$^{\circ}$C]'       : ('airtemp2m|K',     5,   30, 'degC'),
+     'Dew Point Temperature\n[$^{\circ}$C]' : ('dewtemp2m|K',     5,   25, 'degC'),
+     'Wind Speed\n[mile/hour]'              : ('windspeed2m|mph', 0,    8, 'mph'),
+     'Solar Irradiance\n[W/m$^{2}$]'        : ('rad2m_total',     0, 1000, ''),
+  }
 
-    {'fKey'   : 'Twbg', 
-     'obsKey' : 'wbgt2m|K',
-     'label'  : 'Wet Bulb Globe Temperature'
+  variables = [
+    {'fKey'     : 'Twbg', 
+     'obsKey'   : 'wbgt2m|K',
+     'label'    : 'Wet Bulb Globe Temperature',
+     'color_by' : color_by
     }
   ]
 
