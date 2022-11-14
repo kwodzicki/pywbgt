@@ -153,10 +153,14 @@ def dimiceli( lat, lon,
     wetbulb (str) : Name of wet bulb algorithm to use:
       {dimiceli, stull} DEFAULT = dimiceli
     natural_wetbulb (str) : Name of the natural wet bulb algorithm to use:
-      {hunter_minyard, malchaire} DEFAULT = hunter_minyard
+      {malchaire, hunter_minyard} DEFAULT = malchaire
 
   Returns:
-    tuple : Globe, natural wet bulb, and wet bulb globe temperatures
+    dict : 
+      - Tg : Globe temperatures in ndarray
+      - Tpsy : psychrometric wet bulb temperatures in ndarray
+      - Tnwb : Natural wet bulb temperatures in ndarray
+      - Twbg : Wet bulb-globe temperatures in ndarray
 
   """
 
@@ -180,14 +184,11 @@ def dimiceli( lat, lon,
   Tg    = globeTemperature( Tair, Tdew, pres, speed1, solar, f_db, cosz, **kwargs)
   Tpsy  = wetBulb( Tair, Tdew, method=kwargs.get('wetbulb', 'DIMICELI') )
 
-  nwb   = kwargs.get('natural_wetbulb', None)
-  if nwb is None: nwb = 'MALCHAIRE'
-  nwb = nwb.upper()
-
-  if nwb == 'HUNTER_MINYARD':
-    Tnwb  = hunter_minyard( Tpsy, solar*f_db, speed.to('meter per second').magnitude )
-  elif nwb == 'MALCHAIRE':
+  nwb   = kwargs.get('natural_wetbulb', 'MALCHAIRE').upper()
+  if nwb == 'MALCHAIRE':
     Tnwb  = malchaire( Tair, Tdew, Tpsy, Tg )
+  elif nwb == 'HUNTER_MINYARD':
+    Tnwb  = hunter_minyard( Tpsy, solar*f_db, speed.to('meter per second').magnitude )
   else:
     raise Exception( f"Unsupported value for 'natural_wetbulb' : {nwb}" )
 
