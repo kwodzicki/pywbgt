@@ -201,8 +201,11 @@ def bernard( lat, lon,
     speed (Quantity) : Wind speed; units of speed
 
   Returns:
-    tuple: Globe, natural wet bulb, psychrometric wet bulb, and
-      wet bulb globe temperatures
+    dict : 
+      - Tg : Globe temperatures in ndarray
+      - Tpsy : psychrometric wet bulb temperatures in ndarray
+      - Tnwb : Natural wet bulb temperatures in ndarray
+      - Twbg : Wet bulb-globe temperatures in ndarray
 
   """
 
@@ -223,7 +226,7 @@ def bernard( lat, lon,
 
   return {
    'Tg'   : Tg, 
-   'Tnwb' : Tnwb, 
    'Tpsy' : Tpsy, 
+   'Tnwb' : Tnwb, 
    'Twbg' : 0.7*Tnwb + 0.2*Tg + 0.1*Tair
   }

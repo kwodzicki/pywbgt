@@ -290,12 +290,12 @@ def liljegren( latIn, lonIn,
       unit of temperature
 
   Returns:
-    tuple : The following arrays are returned:
-      - Estimated 2m wind speed in meters/second; will be same as input if already 2m temp1
-      - Globe temperatures in ndarray
-      - Natural wet bulb temperatures in ndarray
-      - psychrometric wet bulb temperatures in ndarray 
-      - Wet bulb-globe temperatures in ndarray
+    dict :
+      - Tg : Globe temperatures in ndarray
+      - Tpsy : psychrometric wet bulb temperatures in ndarray 
+      - Tnwb : Natural wet bulb temperatures in ndarray
+      - Twbg : Wet bulb-globe temperatures in ndarray
+      - Speed : Estimated 2m wind speed in meters/second; will be same as input if already 2m temp1
 
   Reference: 
     Liljegren, J. C., R. A. Carhart, P. Lawday, S. Tschopp, and R. Sharp:
@@ -377,9 +377,9 @@ def liljegren( latIn, lonIn,
       outView[4,i] = Twbg
 
   return {
-    'speed' : out[0,:],
     'Tg'    : out[1,:],
-    'Tnwb'  : out[2,:],
     'Tpsy'  : out[3,:],
-    'Twbg'  : out[4,:]
+    'Tnwb'  : out[2,:],
+    'Twbg'  : out[4,:],
+    'speed' : out[0,:],
   }

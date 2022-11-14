@@ -11,11 +11,6 @@ try:
 except:
   raise Exception("numpy is not installed. Try installing using 'pip3 install numpy'")
 
-#try:
-#  import yaml
-#except:
-#  raise Exception("pyYAML is not installed. Try installing using 'pip3 install pyYAML'")
-  
 NAME = 'seus_hvi_wbgt'
 DESC = 'Package for SouthEast US Heat Vulnerability Index using Wet Bulb Globe Temperature.'
 
@@ -40,7 +35,7 @@ setup(
   author_email         = "",
   version              = main_ns['__version__'],
   packages             = find_packages(),
-  install_requires     = [ ],
+  install_requires     = [ 'metpy' ],
   ext_modules          = cythonize( exts ),
   include_dirs         = [numpy.get_include()],
   cmdclass             = {'build_ext' : build_ext},
