@@ -456,11 +456,13 @@ double day,           /* Calendar day.fraction, or daynumber.fraction.
  *		 Argonne National Laboratory
  */
  
-int	calc_solar_parameters(year, month, day, lat, lon, solar, cza, fdir)
+int	calc_solar_parameters(year, month, day, lat, lon, use_spa, solar, cza, fdir)
+//int	calc_solar_parameters(year, month, day, lat, lon, solar, cza, fdir)
 
 int	year,		/* 4-digit year, e.g., 2007							*/
-	month;	/* 2-digit month; month = 0 implies day = day of year			*/
-	
+	month,	/* 2-digit month; month = 0 implies day = day of year			*/
+	use_spa; /* If true (i.e., >0 ), then use the NRL SPA code to compute solar parameters */
+
 double day;		/* day.fraction of month if month > 0;
 			   else day.fraction of year if month = 0 (GMT)				*/
 float	lat,		/* north latitude									*/
@@ -470,14 +472,41 @@ float	lat,		/* north latitude									*/
 	*fdir;	/* fraction of solar irradiance due to direct beam			*/
 	
 {
+  int result, seconds;
 	float	toasolar, normsolar; 
-	
 	double days_1900 = 0.0, ap_ra, ap_dec, elev, refr, azim, soldist;
 
-  //printf( "\n%d-%d-%f\n", year, month, day );	
-	solarposition(year, month, day, days_1900, (double)lat, (double)lon, 
-		&ap_ra, &ap_dec, &elev, &refr, &azim, &soldist);
-	*cza = cos( (90.-elev)*DEG_RAD );
+  //printf( "\n%d-%d-%f\n", year, month, day );
+  //solarposition(year, month, day, days_1900, (double)lat, (double)lon, 
+  // 	  &ap_ra, &ap_dec, &elev, &refr, &azim, &soldist);
+  //*cza = cos( (90.-elev)*DEG_RAD );
+  if (use_spa == 0){	
+	  solarposition(year, month, day, days_1900, (double)lat, (double)lon, 
+		  &ap_ra, &ap_dec, &elev, &refr, &azim, &soldist);
+    printf( "Elev : %f\n", elev );
+	  *cza = cos( (90.-elev)*DEG_RAD );
+  } else {
+    spa_data spa;
+    spa.latitude  = (double)lat;
+    spa.longitude = (double)lon;
+    spa.year      = year;
+    spa.month     = month;
+    spa.day       = (int) day;
+    seconds       = round( (day-spa.day) * 86400 ); 
+    spa.hour      = (int) seconds/3600.0;
+    seconds       = seconds % 3600;
+    spa.minute    = (int) seconds / 60.0;
+    spa.second    = seconds % 60;
+
+    result = spa_calculate( &spa );
+    if (result != 0){ 
+      printf( "Failed\n");
+      return(1);
+    };
+    *cza    = cos( spa.zenith * DEG_RAD );
+    soldist = spa.r;
+  };
+
 	toasolar = SOLAR_CONST * max(0.,*cza) / (soldist*soldist);
   //printf( "COS Z     : %f\n", *cza );
   //printf( "TOA Solar : %f\n", toasolar );
@@ -535,7 +564,7 @@ float	lat,		/* north latitude									*/
  */
  
 int calc_wbgt(year, month, day, hour, minute, gmt, avg, lat, lon, 
-		solar, pres, Tair, relhum, speed, zspeed, dT, urban, est_speed,
+		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, est_speed,
 		Tg, Tnwb, Tpsy, Twbg)
 
 int	year,		/* 4-digit, e.g. 2007								*/
@@ -545,7 +574,8 @@ int	year,		/* 4-digit, e.g. 2007								*/
 	minute,	/* minutes past the hour							*/
 	gmt,		/* LST-GMT difference, hours (negative in USA)				*/
 	avg,		/* averaging time of meteorological inputs, minutes			*/
-	urban;	/* select "urban" (1) or "rural" (0) wind speed power law exponent*/
+	urban,	/* select "urban" (1) or "rural" (0) wind speed power law exponent*/
+	use_spa; /* If true (i.e., >0 ), then use the NRL SPA code to compute solar parameters */
 		
 float	lat,		/* north latitude, decimal							*/
 	lon,		/* east longitude, decimal (negative in USA)				*/
@@ -584,7 +614,8 @@ float	lat,		/* north latitude, decimal							*/
  *  calculate the cosine of the solar zenith angle and fraction of solar irradiance
  *  due to the direct beam; adjust the solar irradiance if it is out of bounds
  */
-	calc_solar_parameters(year, month, dday, lat, lon, &solar, &cza, &fdir);	
+	//calc_solar_parameters(year, month, dday, lat, lon, &solar, &cza, &fdir);	
+	calc_solar_parameters(year, month, dday, lat, lon, use_spa, &solar, &cza, &fdir);	
 /* 
  *  estimate the wind speed, if necessary
  */
@@ -1163,5 +1194,4 @@ int	main()
 	
 	exit(0);
 }
-
 

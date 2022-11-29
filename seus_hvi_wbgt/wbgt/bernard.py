@@ -1,11 +1,6 @@
-import numpy
-from scipy.optimize import fsolve
-
-from . import liljegren 
-from . import SIGMA, EPSILON
-from .utils import saturation_vapor_pressure
-
 """
+WBGT using the Bernard method
+
 References
 
 Bernard, T. E., & Cross, R. R. (1999). 
@@ -17,6 +12,13 @@ Bernard, T.E., & Pourmoghani, M. (1999).
     Applied occupational and environmental hygiene, 14 2, 126-34 .
 
 """
+
+import numpy
+from scipy.optimize import fsolve
+
+from . import liljegren 
+from . import SIGMA, EPSILON
+from .utils import saturation_vapor_pressure
 
 def chtc( Tg, Ta, u ):
   """
