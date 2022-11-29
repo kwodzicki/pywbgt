@@ -20,10 +20,22 @@ with open(ver_path) as ver_file:
   exec(ver_file.read(), main_ns);
 
 exts = [
-  Extension( '{}.wbgt.liljegren'.format(NAME),
-             sources            = ['{}/wbgt/liljegren.pyx'.format(NAME)],
-             extra_compile_args = ['-fopenmp'],
-             extra_link_args    = ['-lomp']
+  Extension( 
+    '{}.wbgt.liljegren'.format(NAME),
+    sources            = [
+      '{}/wbgt/liljegren.pyx'.format(NAME),
+      '{}/wbgt/src/spa.c'.format(NAME),
+    ],
+    extra_compile_args = ['-fopenmp'],
+    extra_link_args    = ['-lomp'],
+    include_dirs       = ['{}/wbgt/src'.format(NAME)],
+    depends            = ['spa.h']
+  ),
+  Extension( '{}.wbgt.spa'.format(NAME),
+    sources            = ['{}/wbgt/spa.pyx'.format(NAME)],
+    extra_compile_args = ['-fopenmp'],
+    extra_link_args    = ['-lomp'],
+    include_dirs       = ['{}/wbgt/src'.format(NAME)]
   )
 ]
 
@@ -38,7 +50,7 @@ setup(
   install_requires     = [ 'metpy' ],
   ext_modules          = cythonize( exts ),
   include_dirs         = [numpy.get_include()],
-  cmdclass             = {'build_ext' : build_ext},
+  #cmdclass             = {'build_ext' : build_ext},
   scripts              = ['bin/wbgt_gui'],
   zip_safe             = False,
 )

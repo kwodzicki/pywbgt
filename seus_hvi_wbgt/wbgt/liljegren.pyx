@@ -53,7 +53,7 @@ def chtc( TairIn, PairIn, speedIn, float diameter=0.0508  ):
 @cython.initializedcheck(False)   # Deactivate initialization checking.
 def solar_parameters( latIn, lonIn, 
                       yearIn, monthIn, dayIn, hourIn, minuteIn, 
-                      solar, avgIn=None ):
+                      solar, avgIn=None, use_spa = False ):
   """
   Calculate solar parameters based on date and location
 
@@ -83,14 +83,14 @@ def solar_parameters( latIn, lonIn,
   """
 
   cdef:
-    int res
+    int res, spa = use_spa
     Py_ssize_t i, size = yearIn.shape[0]
     double dday
 
   if avgIn is None:
-    avgIn    = numpy.ones(  size, dtype = numpy.int32 )
+    avgIn    = numpy.zeros( size, dtype = numpy.int32 )
 
-  if len( latIn ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
+  if latIn.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
     latIn   = latIn.repeat( size )
     lonIn   = lonIn.repeat( size )
 
@@ -111,7 +111,7 @@ def solar_parameters( latIn, lonIn,
   for i in prange( size, nogil=True ):
     dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0          # Compute fractional day
     res   = calc_solar_parameters( year[i], month[i], dday, lat[i], lon[i], 
-              &outView[0,i], &outView[1,i], &outView[2,i] )                                             # Run the C function
+              spa, &outView[0,i], &outView[1,i], &outView[2,i] )                                             # Run the C function
 
   return out
 
@@ -160,7 +160,6 @@ def globeTemperature( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-
 def psychrometricWetBulb( TairIn, TdewIn, PairIn ):
   """
   Compute psychrometeric wet bulb temperature using Liljegren method
@@ -247,7 +246,7 @@ def liljegren( latIn, lonIn,
                yearIn, monthIn, dayIn, hourIn, minuteIn,
                solarIn, presIn, TairIn, TdewIn, speedIn,
                urbanIn=None, gmtIn=None, avgIn=None,
-               zspeedIn=None, dTIn=None, **kwargs ): 
+               zspeedIn=None, dTIn=None, use_spa=False, **kwargs ): 
 
   """
   Calculate the outdoor wet bulb-globe temperature
@@ -307,7 +306,7 @@ def liljegren( latIn, lonIn,
 
   cdef:
     Py_ssize_t i, size = yearIn.shape[0]                                                     # Define size of output arrays based on size of input
-    int res
+    int res, spa=use_spa
     float est_speed, Tg, Tnwb, Tpsy, Twbg
 
   if urbanIn  is None:
@@ -367,7 +366,7 @@ def liljegren( latIn, lonIn,
     Twbg      = 0
     res = calc_wbgt( year[i], month[i], day[i], hour[i], minute[i], gmt[i], avg[i],
                      lat[i], lon[i], solar[i], pres[i], Tair[i], relhum[i], speed[i], zspeed[i], dT[i],
-                     urban[i], &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg)
+                     urban[i], spa, &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg)
 
     if res == 0:
       outView[0,i] = est_speed

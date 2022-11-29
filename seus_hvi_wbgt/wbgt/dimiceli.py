@@ -1,3 +1,8 @@
+"""
+WBGT from the Dimiceli method
+
+"""
+
 import numpy
 
 from .liljegren import solar_parameters
