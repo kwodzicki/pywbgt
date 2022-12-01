@@ -120,6 +120,7 @@ class Values( object ):
           numpy.full( arr.size, date0.day  ),
           numpy.full( arr.size, date0.hour ),
           numpy.full( arr.size, date0.minute ),
+          numpy.full( arr.size, date0.second ),
           *args,
           **kwargs
     )
@@ -210,6 +211,7 @@ def idealized( *args,
       numpy.full( solar.size, date0.day  ),
       numpy.full( solar.size, date0.hour ),
       numpy.full( solar.size, date0.minute ),
+      numpy.full( solar.size, date0.second ),
       solar.to( 'watt/m**2' ).m
   ) 
   #############################################################################  

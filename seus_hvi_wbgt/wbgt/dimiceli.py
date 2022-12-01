@@ -133,7 +133,7 @@ def globeTemperature( Ta, Td, P, u, S, f_db, cosz, **kwargs ):
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
  
 def dimiceli( lat, lon, 
-              year, month, day, hour, minute, 
+              year, month, day, hour, minute, second, 
               solar, pres, Tair, Tdew, speed, f_db=None, cosz=None, **kwargs ):
   """
   Compute WBGT using Dimiceli method
@@ -146,6 +146,7 @@ def dimiceli( lat, lon,
     day (ndarray) : UTC Day of the data values
     hour (ndarray) : UTC Hour of the data values; can be any time zone as long
     minute (ndarray) : UTC Minute of the data values
+    second (ndarray) : UTC second of the data values
     solar (Quantity) : Solar irradiance; unit of power over area
     pres (Quantity) : Atmospheric pressure; unit of pressure
     Tair (Quantity) : Ambient temperature; unit of temperature
@@ -179,8 +180,9 @@ def dimiceli( lat, lon,
   if (f_db is None) or (cosz is None):
     solar = solar_parameters( 
         lat, lon, 
-        year, month, day, hour, minute, 
-        solar
+        year, month, day, hour, minute, second,
+        solar,
+        **kwargs
     )
     if cosz is None: cosz = solar[1] 
     if f_db is None: f_db = solar[2]

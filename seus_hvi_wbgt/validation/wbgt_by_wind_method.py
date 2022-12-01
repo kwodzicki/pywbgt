@@ -96,6 +96,7 @@ def main( *args, methods = None, nCol = 7, **kwargs):
         dt.day.values,
         dt.hour.values,
         dt.minute.values,
+        dt.second.values,
         solar, pres, Tair, Tdew, speed, 
       )
 

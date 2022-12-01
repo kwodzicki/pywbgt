@@ -1,5 +1,5 @@
 cdef extern from "src/liljegren.c" nogil:
-  int calc_wbgt(int year, int month, int day, int hour, int minute, int gmt, int avg,
+  int calc_wbgt(int year, int month, int day, int hour, int minute, int second, int gmt, int avg,
     float lat, float lon, float solar, float pres, float Tair, float relhum,
 	  float speed, float zspeed, float dT, int urban, int use_spa, 
     float* est_speed, float* Tg, float* Tnwb, float* Tpsy, float* Twbg)

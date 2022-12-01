@@ -13,6 +13,7 @@ month  = numpy.full( 3,    9 )
 day    = numpy.asarray( [ 9, 10, 11] )
 hour   = numpy.full( 3, 12 )
 minute = numpy.zeros( 3 )
+second = numpy.zeros( 3 )
 
 lat    = numpy.zeros( year.size )
 lon    = numpy.zeros( year.size )
@@ -75,7 +76,7 @@ B    = factorB( Tair.to('degree_Celsius').m,
 
 C    = factorC( speed.to('meter/hour').m, CHFC = chfc ) 
 
-res = dimiceli(lat, lon, year, month, day, hour, minute,
+res = dimiceli(lat, lon, year, month, day, hour, minute, second,
         solar, pres, Tair, Tdew, speed,
         f_db = f_db,
         cosz = cosz

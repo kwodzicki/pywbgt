@@ -6,16 +6,17 @@ import numpy
 cimport numpy
 cimport cython
 
-from metpy.units import units
-
 from cliljegren cimport *
+
+from metpy.units import units
+from pandas import to_datetime, to_timedelta, DatetimeIndex
 
 from .utils import relative_humidity as rhTd
  
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def chtc( TairIn, PairIn, speedIn, float diameter=0.0508  ):
+def chtc( Tair, Pair, speed, float diameter=0.0508  ):
   """
   Compute convective heat transfer coefficient 
 
@@ -35,25 +36,29 @@ def chtc( TairIn, PairIn, speedIn, float diameter=0.0508  ):
 
   """
 
-  cdef Py_ssize_t i, size = TairIn.shape[0]
+  cdef Py_ssize_t i, size = Tair.shape[0]
+
   h = numpy.empty( size, dtype = numpy.float32 )
+
   cdef:
-    float [:] hView = h # Initialize array to write data to
-    float [:] Tair  = TairIn.astype( numpy.float32 ) 
-    float [:] Pair  = PairIn.astype( numpy.float32 )
-    float [:] speed = speedIn.astype( numpy.float32 )
+    float [::1] hView     = h # Initialize array to write data to
+    float [::1] TairView  = Tair.astype( numpy.float32 ) 
+    float [::1] PairView  = Pair.astype( numpy.float32 )
+    float [::1] speedView = speed.astype( numpy.float32 )
 
   for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel
-    hView[i] = h_sphere_in_air( diameter, Tair[i], Pair[i], speed[i] )
+    hView[i] = h_sphere_in_air( 
+      diameter, TairView[i], PairView[i], speedView[i]
+    )
 
   return h                                                     # Reshape to same shape as Tair 
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def solar_parameters( latIn, lonIn, 
-                      yearIn, monthIn, dayIn, hourIn, minuteIn, 
-                      solar, avgIn=None, use_spa = False ):
+def solar_parameters( lat, lon, 
+                      year, month, day, hour, minute, second, 
+                      solar, avg=None, gmt=None, use_spa=False, **kwargs ):
   """
   Calculate solar parameters based on date and location
 
@@ -70,9 +75,11 @@ def solar_parameters( latIn, lonIn,
     day (ndarray) : Day of month; GMT
     hour (ndarray) : Hour of day; GMT
     minute (ndarray) : Minute of day; GMT
+    second (ndarray)
 
   Keyword arguments:
-    avgIn (ndarray) : averaging time of the meteorological inputs (minutes)
+    avg (ndarray) : averaging time of the meteorological inputs (minutes)
+    gmt (ndarray) : LST-GMT difference  (hours; neative in USA)
 
   Returns:
     tuple : Three (3) ndarrays containing:
@@ -84,52 +91,73 @@ def solar_parameters( latIn, lonIn,
 
   cdef:
     int res, spa = use_spa
-    Py_ssize_t i, size = yearIn.shape[0]
+    Py_ssize_t i, size = year.shape[0]
     double dday
 
-  if avgIn is None:
-    avgIn    = numpy.zeros( size, dtype = numpy.int32 )
+  if avg is None: avg = 1.0
+  dt = to_timedelta( avg/2.0, 'minute')
+  if gmt is not None: dt = dt + to_timedelta(gmt, 'hour')
 
-  if latIn.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
-    latIn   = latIn.repeat( size )
-    lonIn   = lonIn.repeat( size )
+  dates = DatetimeIndex(
+    to_datetime(
+      {
+        'year'   : year,
+        'month'  : month,
+        'day'    : day,
+        'hour'   : hour,
+        'minute' : minute,
+        'second' : second
+      }
+    )
+  ) - dt
+
+  if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
+    lat = lat.repeat( size )
+    lon = lon.repeat( size )
 
   out  = solar.astype( numpy.float32 ).reshape( (1, size) ).repeat(3, axis=0)
 
   cdef:
     float [:, ::1] outView = out
 
-    float [::1] lat    = latIn.astype(    numpy.float32 )
-    float [::1] lon    = lonIn.astype(    numpy.float32 )
-    int   [::1] year   = yearIn.astype(   numpy.int32 ) 
-    int   [::1] month  = monthIn.astype(  numpy.int32 )
-    int   [::1] day    = dayIn.astype(    numpy.int32 )
-    int   [::1] hour   = hourIn.astype(   numpy.int32 )
-    int   [::1] minute = minuteIn.astype( numpy.int32 )
-    int   [::1] avg    = avgIn.astype(    numpy.int32 )
+    float [::1] latView  = lat.astype(    numpy.float32 )
+    float [::1] lonView  = lon.astype(    numpy.float32 )
 
+    int [::1] yearView   = dates.year.values.astype(   numpy.int32 )
+    int [::1] monthView  = dates.month.values.astype(  numpy.int32 )
+    int [::1] dayView    = dates.day.values.astype(    numpy.int32 )  
+    int [::1] hourView   = dates.hour.values.astype(   numpy.int32 )
+    int [::1] minuteView = dates.minute.values.astype( numpy.int32 )
+    int [::1] secondView = dates.second.values.astype( numpy.int32 )
+ 
   for i in prange( size, nogil=True ):
-    dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0          # Compute fractional day
-    res   = calc_solar_parameters( year[i], month[i], dday, lat[i], lon[i], 
-              spa, &outView[0,i], &outView[1,i], &outView[2,i] )                                             # Run the C function
+    #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
+    dday  = (
+      dayView[i] + 
+      ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
+    )                                                                         # Compute fractional day
+    res = calc_solar_parameters(
+      yearView[i], monthView[i], dday, latView[i], lonView[i], 
+      spa, &outView[0,i], &outView[1,i], &outView[2,i] 
+    )                                                                         # Run the C function
 
   return out
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globeTemperature( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
+def globeTemperature( Tair, Tdew, Pair, speed, solar, fdir, cza ):
   """
   Compute globe temperature using Liljegren method
 
   Arguments:
-    TairIn (ndarray) : Air (dry bulb) temperature; degree Celsius
-    TdewIn (ndarray) : Dew point temperature; degree Celsius
-    PairIn (ndarray) : Barometric pressure; hPa
-    speedIn (ndarray) : wind speed, m/s
-    solarIn (ndarray) : Solar irradiance, W/m**2
-    fdirIn (ndarray) : Fraction of solar irradiance due to direct beam
-    czaIn (ndarray) : Cosine of solar zenith angle
+    Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
+    Tdew (ndarray) : Dew point temperature; degree Celsius
+    Pair (ndarray) : Barometric pressure; hPa
+    speed (ndarray) : wind speed, m/s
+    solar (ndarray) : Solar irradiance, W/m**2
+    fdir (ndarray) : Fraction of solar irradiance due to direct beam
+    cza (ndarray) : Cosine of solar zenith angle
 
   Returns:
     ndarray : Globe temperature
@@ -137,13 +165,13 @@ def globeTemperature( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
   """
 
   cdef:
-    float [:] Tair   = (TairIn + 273.15).astype(  numpy.float32 )
-    float [:] Pair   = PairIn.astype(  numpy.float32 )
-    float [:] speed  = speedIn.astype( numpy.float32 )
-    float [:] solar  = solarIn.astype( numpy.float32 )
-    float [:] fdir   = fdirIn.astype(  numpy.float32 )
-    float [:] cza    = czaIn.astype(   numpy.float32 )
-    float [:] relhum = rhTd(TairIn, TdewIn).astype( numpy.float32 )
+    float [::1] TairView   = (Tair + 273.15).astype(  numpy.float32 )
+    float [::1] PairView   = Pair.astype(  numpy.float32 )
+    float [::1] speedView  = speed.astype( numpy.float32 )
+    float [::1] solarView  = solar.astype( numpy.float32 )
+    float [::1] fdirView   = fdir.astype(  numpy.float32 )
+    float [::1] czaView    = cza.astype(   numpy.float32 )
+    float [::1] relhumView = rhTd(Tair, Tdew).astype( numpy.float32 )
 
     Py_ssize_t i, size = Tair.shape[0]
 
@@ -153,21 +181,24 @@ def globeTemperature( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
     float [:] outView = out
 
   for i in prange( size, nogil=True ):
-    outView[i] = Tglobe( Tair[i], relhum[i], Pair[i], speed[i], solar[i], fdir[i], cza[i] )
+    outView[i] = Tglobe(
+      TairView[i], relhumView[i], PairView[i], 
+      speedView[i], solarView[i], fdirView[i], czaView[i]
+    )
 
   return out 
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def psychrometricWetBulb( TairIn, TdewIn, PairIn ):
+def psychrometricWetBulb( Tair, Tdew, Pair ):
   """
   Compute psychrometeric wet bulb temperature using Liljegren method
 
   Arguments:
-    TairIn (ndarray) : Air (dry bulb) temperature; degree Celsius
-    TdewIn (Quantity) : Dew point temperature; units of temperature
-    PairIn (ndarray) : Barometric pressure; hPa
+    Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
+    Tdew (Quantity) : Dew point temperature; units of temperature
+    Pair (ndarray) : Barometric pressure; hPa
 
   Returns:
     ndarray : pyschrometric Wet bulb temperature
@@ -175,12 +206,11 @@ def psychrometricWetBulb( TairIn, TdewIn, PairIn ):
   """
 
   cdef:
-    float [:] Tair   = (TairIn + 273.15).astype(  numpy.float32 )
-    float [:] Pair   = PairIn.astype(  numpy.float32 )
-    float [:] relhum = rhTd( TairIn, TdewIn ).astype( numpy.float32 )
+    float [::1] TairView   = (Tair + 273.15).astype(  numpy.float32 )
+    float [::1] PairView   = Pair.astype(  numpy.float32 )
+    float [::1] relhumView = rhTd( Tair, Tdew ).astype( numpy.float32 )
 
-    float tmp
-    float fill = 0.0
+    float tmp, fill = 0.0
     int   rad  = 0
 
     Py_ssize_t i, size = Tair.shape[0]
@@ -188,26 +218,28 @@ def psychrometricWetBulb( TairIn, TdewIn, PairIn ):
   out  = numpy.full( size, numpy.nan, dtype=numpy.float32 )
 
   cdef:
-    float [:] outView = out
+    float [::1] outView = out
 
   for i in prange( size, nogil=True ):
-    tmp = Twb( Tair[i], relhum[i], Pair[i], fill, fill, fill, fill, rad)
+    tmp = Twb(
+      TairView[i], relhumView[i], PairView[i], fill, fill, fill, fill, rad
+    )
     if tmp > -9999.0: outView[i] = tmp
   return out 
 
 
-def naturalWetBulb( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
+def naturalWetBulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
   """
   Compute natural wet bulb temperature using Liljegren method
 
   Arguments:
-    TairIn (ndarray) : Air (dry bulb) temperature; degree Celsius
-    TdewIn (Quantity) : Dew point temperature; units of temperature
-    PairIn (ndarray) : Barometric pressure; hPa
-    speedIn (ndarray) : wind speed, m/s
-    solarIn (ndarray) : Solar irradiance, W/m**2
-    fdirIn (ndarray) : Fraction of solar irradiance due to direct beam
-    czaIn (ndarray) : Cosine of solar zenith angle
+    Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
+    Tdew (Quantity) : Dew point temperature; units of temperature
+    Pair (ndarray) : Barometric pressure; hPa
+    speed (ndarray) : wind speed, m/s
+    solar (ndarray) : Solar irradiance, W/m**2
+    fdir (ndarray) : Fraction of solar irradiance due to direct beam
+    cza (ndarray) : Cosine of solar zenith angle
 
   Returns:
     ndarray : natural Wet bulb temperature
@@ -215,26 +247,30 @@ def naturalWetBulb( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
   """
 
   cdef:
-    float [:] Tair   = (TairIn + 273.15).astype(  numpy.float32 )
-    float [:] Pair   = PairIn.astype(  numpy.float32 )
-    float [:] speed  = speedIn.astype( numpy.float32 )
-    float [:] solar  = solarIn.astype( numpy.float32 )
-    float [:] fdir   = fdirIn.astype(  numpy.float32 )
-    float [:] cza    = czaIn.astype(   numpy.float32 )
-    float [:] relhum = rhTd( TairIn, TdewIn ).astype( numpy.float32 )
+    float [::1] TairView   = (Tair + 273.15).astype(  numpy.float32 )
+    float [::1] PairView   = Pair.astype(  numpy.float32 )
+    float [::1] speedView  = speed.astype( numpy.float32 )
+    float [::1] solarView  = solar.astype( numpy.float32 )
+    float [::1] fdirView   = fdir.astype(  numpy.float32 )
+    float [::1] czaView    = cza.astype(   numpy.float32 )
+    float [::1] relhumView = rhTd( Tair, Tdew ).astype( numpy.float32 )
 
     float tmp
     int rad = 1
 
     Py_ssize_t i, size = Tair.shape[0]
 
-  out  = numpy.empty( size, dtype=numpy.float32 )
+  #out  = numpy.empty( size, dtype=numpy.float32 )
+  out  = numpy.full( size, numpy.nan, dtype=numpy.float32 )
 
   cdef:
     float [:] outView = out
 
   for i in prange( size, nogil=True ):
-    tmp = Twb( Tair[i], relhum[i], Pair[i], speed[i], solar[i], fdir[i], cza[i], rad)
+    tmp = Twb( 
+      TairView[i], relhumView[i], PairView[i], 
+      speedView[i], solarView[i], fdirView[i], czaView[i], rad
+    )
     if tmp > -9999.0: outView[i] = tmp
 
   return out 
@@ -242,11 +278,11 @@ def naturalWetBulb( TairIn, TdewIn, PairIn, speedIn, solarIn, fdirIn, czaIn ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def liljegren( latIn, lonIn,
-               yearIn, monthIn, dayIn, hourIn, minuteIn,
-               solarIn, presIn, TairIn, TdewIn, speedIn,
-               urbanIn=None, gmtIn=None, avgIn=None,
-               zspeedIn=None, dTIn=None, use_spa=False, **kwargs ): 
+def liljegren( lat, lon,
+               year, month, day, hour, minute, second,
+               solar, pres, Tair, Tdew, speed,
+               urban=None, gmt=None, avg=None,
+               zspeed=None, dT=None, use_spa=False, **kwargs ): 
 
   """
   Calculate the outdoor wet bulb-globe temperature
@@ -262,30 +298,31 @@ def liljegren( latIn, lonIn,
   then combines the results to produce Twbg.
 
   Arguments:
-    latIn (ndarray) : Latitude corresponding to data values (decimal).
+    lat (ndarray) : Latitude corresponding to data values (decimal).
       Can be one (1) element array; will be expanded to match dates/data
-    lonIn (ndarray) : Longitude correspondning to data values (decimal).
+    lon (ndarray) : Longitude correspondning to data values (decimal).
       Can be one (1) element array; will be expanded to match dates/data
-    yearIn (ndarray) : Year of the data values
-    monthIn (ndarray) : Month of the data values
-    dayIn (ndarray) : Day of the data values
-    hourIn (ndarray) : Hour of the data values; can be any time zone as long
+    year (ndarray) : Year of the data values
+    month (ndarray) : Month of the data values
+    day (ndarray) : Day of the data values
+    hour (ndarray) : Hour of the data values; can be any time zone as long
       as the 'gmt' variable is set appropriately 
-    minuteIn (ndarray) : Minute of the data values
-    solarIn (Quantity) : solar irradiance; units of any power over area
-    presIn (Qantity) : barometric pressure; units of pressure
-    TairIn (Quantity) : air (dry bulb) temperature; units of temperature
-    TdewIn (Quantity) : Dew point temperature; units of temperature
-    speedIn (Quatity) : wind speed; units of speed
+    minute (ndarray) : Minute of the data values
+    second (ndarray) : Second of the data values
+    solar (Quantity) : solar irradiance; units of any power over area
+    pres (Qantity) : barometric pressure; units of pressure
+    Tair (Quantity) : air (dry bulb) temperature; units of temperature
+    Tdew (Quantity) : Dew point temperature; units of temperature
+    speed (Quatity) : wind speed; units of speed
 
   Keyword arguments:
-    urbanIn (ndarray) : Boolean flag indicating if "urban" (1) or
+    urban (ndarray) : Boolean flag indicating if "urban" (1) or
       "rural" (0) for wind speed power law exponent
       Can be one (1) element array; will be expanded to match dates/data
-    gmtIn (ndarray) LST-GMT difference  (hours; neative in USA)
-    avgIn (ndarray) : averaging time of the meteorological inputs (minutes)
-    zspeedIn (Quantity) : height of wind speed measurement; unit of distance
-    dTIn (Quantity) : Vertical temperature difference; upper minus lower;
+    gmt (ndarray) LST-GMT difference  (hours; neative in USA)
+    avg (ndarray) : averaging time of the meteorological inputs (minutes)
+    zspeed (Quantity) : height of wind speed measurement; unit of distance
+    dT (Quantity) : Vertical temperature difference; upper minus lower;
       unit of temperature
 
   Returns:
@@ -305,52 +342,75 @@ def liljegren( latIn, lonIn,
   """
 
   cdef:
-    Py_ssize_t i, size = yearIn.shape[0]                                                     # Define size of output arrays based on size of input
+    Py_ssize_t i, size = year.shape[0]                                                     # Define size of output arrays based on size of input
     int res, spa=use_spa
     float est_speed, Tg, Tnwb, Tpsy, Twbg
 
-  if urbanIn  is None:
-    urbanIn  = numpy.zeros( size,       dtype = numpy.int32 )
-  if gmtIn    is None:
-    gmtIn    = numpy.zeros( size,       dtype = numpy.int32 )
-  if avgIn    is None:
-    avgIn    = numpy.ones(  size,       dtype = numpy.int32 )
-  if zspeedIn is None:
-    zspeedIn = numpy.full(  size,  2.0, dtype = numpy.float32 ) * units.meter
-  if dTIn     is None:
-    dTIn     = numpy.full(  size, -1.0, dtype = numpy.float32 ) * units.degree_Celsius
+  if avg is None: avg = 1.0
+  dt = to_timedelta( avg/2.0, 'minute')
+  if gmt is not None: dt = dt + to_timedelta(gmt, 'hour')
 
-  if len( latIn ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
-    latIn   = latIn.repeat(   size )
-    lonIn   = lonIn.repeat(   size )
+  dates = DatetimeIndex(
+    to_datetime(
+      {
+        'year'   : year,
+        'month'  : month,
+        'day'    : day,
+        'hour'   : hour,
+        'minute' : minute,
+        'second' : second
+      }
+    )
+  ) - dt
 
-  if len( urbanIn ) == 1:
-    urbanIn = urbanIn.repeat( size )
+  if urban is None: 
+    urban = numpy.zeros( size, dtype = numpy.int32 )
+  elif len(urban) == 1:
+    urban = urban.repeat( size )
+
+
+  if zspeed is None:
+    zspeed = (
+      units.meter * numpy.full(  
+        size, 2.0, dtype=numpy.float32
+      ) 
+    )
+
+  if dT is None:
+    dT = (
+      units.degree_Celsius * numpy.full(
+        size, -1.0, dtype=numpy.float32
+      )
+    ) 
+
+  if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
+    lat = lat.repeat( size )
+    lon = lon.repeat( size )
 
   cdef:
-    float [:] lat   = latIn.astype(   numpy.float32 )
-    float [:] lon   = lonIn.astype(   numpy.float32 )
-    int   [:] urban = urbanIn.astype( numpy.int32   )
+    float [::1] latView    = lat.astype(   numpy.float32 )
+    float [::1] lonView    = lon.astype(   numpy.float32 )
+    int   [::1] urbanView  = urban.astype( numpy.int32   )
 
-    int [:] year     = yearIn.astype(   numpy.int32 )
-    int [:] month    = monthIn.astype(  numpy.int32 )
-    int [:] day      = dayIn.astype(    numpy.int32 )  
-    int [:] hour     = hourIn.astype(   numpy.int32 )
-    int [:] minute   = minuteIn.astype( numpy.int32 )
-    int [:] gmt      = gmtIn.astype(    numpy.int32 )
-    int [:] avg      = avgIn.astype(    numpy.int32 )
-
-    float [:] solar  =                solarIn.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
-    float [:] pres   =                 presIn.to( 'hPa'            ).magnitude.astype( numpy.float32 )
-    float [:] Tair   =                 TairIn.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
-    float [:] speed  =                speedIn.to( 'm/s'            ).magnitude.astype( numpy.float32 )
-    float [:] zspeed =               zspeedIn.to( 'meter'          ).magnitude.astype( numpy.float32 )
-    float [:] dT     =                   dTIn.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
-    float [:] relhum = (
-        100.0 * rhTd( 
-            TairIn.to('degree_Celsius').magnitude, 
-            TdewIn.to('degree_Celsius').magnitude
-        )
+    int [::1] yearView     = dates.year.values.astype(   numpy.int32 )
+    int [::1] monthView    = dates.month.values.astype(  numpy.int32 )
+    int [::1] dayView      = dates.day.values.astype(    numpy.int32 )  
+    int [::1] hourView     = dates.hour.values.astype(   numpy.int32 )
+    int [::1] minuteView   = dates.minute.values.astype( numpy.int32 )
+    int [::1] secondView   = dates.second.values.astype( numpy.int32 )
+ 
+    float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
+    float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
+    float [::1] TairView   =   Tair.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
+    float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
+    float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
+    float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
+    float [::1] relhumView = (
+      100.0 * 
+      rhTd( 
+        Tair.to('degree_Celsius').magnitude, 
+        Tdew.to('degree_Celsius').magnitude
+      )
     ).astype( numpy.float32 )
 
   out = numpy.full( (5, size), numpy.nan, dtype = numpy.float32 )
@@ -359,14 +419,21 @@ def liljegren( latIn, lonIn,
 
   # Iterate (in parallel) over all values in the input arrays
   for i in prange( size, nogil=True ):
-    est_speed = speed[i]
+    est_speed = speedView[i]
     Tg        = 0
     Tnwb      = 0
     Tpsy      = 0
     Twbg      = 0
-    res = calc_wbgt( year[i], month[i], day[i], hour[i], minute[i], gmt[i], avg[i],
-                     lat[i], lon[i], solar[i], pres[i], Tair[i], relhum[i], speed[i], zspeed[i], dT[i],
-                     urban[i], spa, &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg)
+    #res = calc_wbgt( year[i], month[i], day[i], hour[i], minute[i], gmt[i], avg[i],
+    res = calc_wbgt( 
+      yearView[i], monthView[i], dayView[i], 
+      hourView[i], minuteView[i], secondView[i], 
+      0, 0,
+      latView[i], lonView[i], 
+      solarView[i], presView[i], TairView[i], 
+      relhumView[i], speedView[i], zspeedView[i], dTView[i],
+      urbanView[i], spa, &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg
+    )
 
     if res == 0:
       outView[0,i] = est_speed

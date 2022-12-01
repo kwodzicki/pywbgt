@@ -63,7 +63,7 @@ def solar_parameters( latIn, lonIn,
     Py_ssize_t i, size = yearIn.shape[0]
     spa_data spa
 
-  out   = numpy.empty( (8, size,), dtype=numpy.float64 )
+  out   = numpy.full( (7, size,), numpy.nan, dtype=numpy.float64 )
   zeros = numpy.zeros( (size,), dtype=numpy.float64 )
 
   if timezone      is None: timezone      = zeros 
@@ -121,16 +121,6 @@ def solar_parameters( latIn, lonIn,
     spa.azm_rotation  = azm_rotationView[i]
     spa.atmos_refract = atmos_refractView[i]
 
-    #printf( "[%d] timezone : %f\n", i, spa.timezone )
-    #printf( "[%d] delta_ut1   : %f\n", i, spa.delta_ut1     )
-    #printf( "[%d] delta_t     : %f\n", i, spa.delta_t       )
-    #printf( "[%d] elevation   : %f\n", i, spa.elevation     )
-    #printf( "[%d] pressure    : %f\n", i, spa.pressure      )
-    #printf( "[%d] temperature : %f\n", i, spa.temperature   )
-    #printf( "[%d] slope       : %f\n", i, spa.slope         )
-    #printf( "[%d] azm_rot     : %f\n", i, spa.azm_rotation  )
-    #printf( "[%d] atm_ref     : %f\n", i, spa.atmos_refract )
-
     res = spa_calculate( &spa )
     if (res == 0):
       outView[0,i] = spa.zenith        # topocentric zenith angle [degrees]
@@ -140,18 +130,6 @@ def solar_parameters( latIn, lonIn,
       outView[4,i] = spa.suntransit    # local sun transit time (or solar noon) [fractional hour]
       outView[5,i] = spa.sunrise       # local sunrise time (+/- 30 seconds) [fractional hour]
       outView[6,i] = spa.sunset        # local sunset time (+/- 30 seconds) [fractional hour]
-      outView[7,i] = spa.r             # earth radius vector [Astronomical Units, AU]
-      #printf("Julian Day:    %.6f\n",spa.jd);
-      #printf("L:             %.6e degrees\n",spa.l);
-      #printf("B:             %.6e degrees\n",spa.b);
-      #printf("R:             %.6f AU\n",spa.r);
-      #printf("H:             %.6f degrees\n",spa.h);
-      #printf("Delta Psi:     %.6e degrees\n",spa.del_psi);
-      #printf("Delta Epsilon: %.6e degrees\n",spa.del_epsilon);
-      #printf("Epsilon:       %.6f degrees\n",spa.epsilon);
-      #printf("Zenith:        %.6f degrees\n",spa.zenith);
-      #printf("Azimuth:       %.6f degrees\n",spa.azimuth);
-      #printf("Incidence:     %.6f degrees\n",spa.incidence);
 
   return {
     'zenith'        : out[0,:], 
@@ -161,5 +139,4 @@ def solar_parameters( latIn, lonIn,
     'suntransit'    : out[4,:], 
     'sunrise'       : out[5,:], 
     'sunset'        : out[6,:],
-    'r'             : out[7,:],
   } 

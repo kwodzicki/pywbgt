@@ -1,6 +1,7 @@
 import unittest
 from itertools import starmap
 
+import pandas
 import numpy
 from metpy.units import units
 
@@ -13,36 +14,72 @@ def degMinSec2Frac( degree, minute, second ):
 
 class TestSolarParams( unittest.TestCase ):
 
+  def setUp( self ):
+
+    self.lats = ( 33, 43, 59)
+    self.lons = (-84, 22, 59)
+
+    self.months  = numpy.arange( 12 ) + 1
+    self.years   = numpy.full( self.months.size, 2000 )
+    self.days    = numpy.full( self.months.size,  1 )
+    self.hours   = numpy.full( self.months.size, 16 )
+    self.minutes = numpy.full( self.months.size,  0 )
+    self.seconds = numpy.full( self.months.size,  0 )
+
+    self.ref_COSZ = numpy.array(
+      [0.479295 , 0.5436556, 0.6659838, 0.7999455, 0.8850405, 0.9173493, 
+       0.9125813, 0.8857513, 0.8315094, 0.7408212, 0.617371 , 0.5131574]
+    )
+
   def test_cosz(self):
 
-    lats = [
-      ( 33, 43, 59),
-    ]
-    lons = [ 
-      (-84, 22, 59),
-    ]
-    lats = numpy.asarray( list( starmap( degMinSec2Frac, lats ) ) )
-    lons = numpy.asarray( list( starmap( degMinSec2Frac, lons ) ) )
+    lats = numpy.full( self.years.size, degMinSec2Frac( *self.lats ) )
+    lons = numpy.full( self.years.size, degMinSec2Frac( *self.lons ) )
 
-    years   = numpy.asarray( [2000] )
-    months  = numpy.asarray( [   6] )
-    days    = numpy.full( years.size,  1 )
-    hours   = numpy.full( years.size, 16 )
-    minutes = numpy.full( years.size,  0 )
+    solar = numpy.full( self.years.size, 1000 )
 
-    solar   = numpy.asarray( [1000] )
-
-    for use_spa in [False, True]:
-      tmp     = solar_parameters(
+    res = solar_parameters(
         lats, lons,
-        years, months, days, hours, minutes,
-        solar, use_spa=use_spa
+        self.years, 
+        self.months,
+        self.days,
+        self.hours,
+        self.minutes,
+        self.seconds,
+        solar, 
+        use_spa=False,
+    )
+    numpy.testing.assert_almost_equal( res[1,:], self.ref_COSZ )
+  
+  def test_compare_spa(self):
+
+    dates = pandas.date_range('2000-06-01', '2000-07-01', freq='1H')
+
+    lats  = numpy.full( dates.size, degMinSec2Frac( *self.lats ) )
+    lons  = numpy.full( dates.size, degMinSec2Frac( *self.lons ) )
+
+    solar = numpy.full( dates.size, 1000 )
+
+    expAct = []
+    for use_spa in [False, True]:
+      expAct.append(
+        solar_parameters(
+        lats, lons,
+        dates.year.values, 
+        dates.month.values,
+        dates.day.values,
+        dates.hour.values,
+        dates.minute.values,
+        dates.second.values,
+        solar, 
+        use_spa=use_spa,
       )
-      print( tmp )
+    )
 
-    #numpy.testing.assert_almost_equal(tmp[1], 9.1734928e-01)
+    numpy.testing.assert_almost_equal(
+      expAct[0][1,:], expAct[1][1,:], decimal=4
+    )
 
-"""
 class TestWBGT( unittest.TestCase ):
 
   def setUp( self ):
@@ -52,6 +89,7 @@ class TestWBGT( unittest.TestCase ):
     self.day    =    1
     self.hour   =   16
     self.minute =    0
+    self.second =    0
 
     lats       = ( 33, 43, 59)  
     lons       = (-84, 22, 59)
@@ -72,11 +110,13 @@ class TestWBGT( unittest.TestCase ):
       numpy.full( self.solar.size, self.day  ),
       numpy.full( self.solar.size, self.hour ),
       numpy.full( self.solar.size, self.minute ),
+      numpy.full( self.solar.size, self.second ),
       self.solar,
       self.pres,
       self.Tair,
       self.Tdew,
       self.speed,
+      avg = 1.0
      )
 
   def test_Tg(self):
@@ -98,6 +138,3 @@ class TestWBGT( unittest.TestCase ):
 
     Twbg = [27.218729019, 33.584831238]  
     numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'])
-
-"""
-
