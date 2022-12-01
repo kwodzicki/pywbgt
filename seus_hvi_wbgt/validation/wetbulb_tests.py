@@ -58,6 +58,7 @@ month  = numpy.full( solar0.size, date0.month)
 day    = numpy.full( solar0.size, date0.day  )
 hour   = numpy.full( solar0.size, date0.hour )
 minute = numpy.full( solar0.size, date0.minute )
+second = numpy.full( solar0.size, date0.second )
 
 
 def mae(y_true, predictions):
@@ -85,7 +86,7 @@ def idealized( outpath = None ):
   
   fig, axes = plt.subplots( 1, 2, figsize=(6,3) )
   
-  #solar0, cosz, f_db = solar_parameters( lat, lon, year, month, day, hour, minute, solar0 )
+  #solar0, cosz, f_db = solar_parameters( lat, lon, year, month, day, hour, minute, second, solar0 )
   
   rad = numpy.full( Tair.size, 0, dtype = numpy.int32 )
   

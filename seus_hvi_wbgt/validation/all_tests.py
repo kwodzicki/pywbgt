@@ -65,6 +65,7 @@ def main( *root ):
       dt.day.values,
       dt.hour.values,
       dt.minute.values,
+      dt.second.values,
       solar, pres, Tair, Tdew, speed, 
     )
 

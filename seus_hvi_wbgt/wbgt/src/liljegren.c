@@ -483,7 +483,6 @@ float	lat,		/* north latitude									*/
   if (use_spa == 0){	
 	  solarposition(year, month, day, days_1900, (double)lat, (double)lon, 
 		  &ap_ra, &ap_dec, &elev, &refr, &azim, &soldist);
-    printf( "Elev : %f\n", elev );
 	  *cza = cos( (90.-elev)*DEG_RAD );
   } else {
     spa_data spa;
@@ -497,14 +496,16 @@ float	lat,		/* north latitude									*/
     seconds       = seconds % 3600;
     spa.minute    = (int) seconds / 60.0;
     spa.second    = seconds % 60;
+    spa.pressure  = 1010.0;
+    spa.temperature = 10.0;
 
     result = spa_calculate( &spa );
-    if (result != 0){ 
-      printf( "Failed\n");
-      return(1);
+    if (result == 0){ 
+      *cza    = cos( spa.zenith * DEG_RAD );
+      soldist = spa.r;
+    } else {
+      printf( "SPA failed : %d\n", result);
     };
-    *cza    = cos( spa.zenith * DEG_RAD );
-    soldist = spa.r;
   };
 
 	toasolar = SOLAR_CONST * max(0.,*cza) / (soldist*soldist);
@@ -563,7 +564,7 @@ float	lat,		/* north latitude									*/
  *		 Argonne National Laboratory
  */
  
-int calc_wbgt(year, month, day, hour, minute, gmt, avg, lat, lon, 
+int calc_wbgt(year, month, day, hour, minute, second, gmt, avg, lat, lon, 
 		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, est_speed,
 		Tg, Tnwb, Tpsy, Twbg)
 
@@ -572,6 +573,7 @@ int	year,		/* 4-digit, e.g. 2007								*/
 	day,		/* day of month or day of year (1-366)					*/
 	hour,		/* hour in local standard time (LST)					*/
 	minute,	/* minutes past the hour							*/
+  second, /* seconds past the hour */
 	gmt,		/* LST-GMT difference, hours (negative in USA)				*/
 	avg,		/* averaging time of meteorological inputs, minutes			*/
 	urban,	/* select "urban" (1) or "rural" (0) wind speed power law exponent*/
@@ -608,7 +610,7 @@ float	lat,		/* north latitude, decimal							*/
 /* 
  *  convert time to GMT and center in avg period;
  */
-	hour_gmt = hour - gmt + ( minute - 0.5 * avg ) / 60.; 
+	hour_gmt = hour - gmt + ( minute - 0.5 * avg + second/60.0 ) / 60.; 
 	dday = day + hour_gmt / 24.;
 /*
  *  calculate the cosine of the solar zenith angle and fraction of solar irradiance

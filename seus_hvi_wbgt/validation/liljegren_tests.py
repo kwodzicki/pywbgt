@@ -42,6 +42,7 @@ def solar_parameters_test( n = 1000, sd = datetime(1950, 1, 1, 0)):
     dates.day.values,
     dates.hour.values,
     dates.minute.values,
+    dates.second.values,
     lat, lon, solar )
   
 #def addUnits( df, vName, newUnit, dt = None, dtype = numpy.float32 ):
@@ -119,6 +120,7 @@ def main( *args ):
         dt.day.values,
         dt.hour.values,
         dt.minute.values,
+        dt.second.values,
         numpy.zeros( nn ), 
         numpy.ones( nn ),
         solar, pres, Tair, Tdew, speed, 
