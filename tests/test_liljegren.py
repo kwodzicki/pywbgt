@@ -19,12 +19,12 @@ class TestSolarParams( unittest.TestCase ):
     self.lats = ( 33, 43, 59)
     self.lons = (-84, 22, 59)
 
-    self.months  = numpy.arange( 12 ) + 1
-    self.years   = numpy.full( self.months.size, 2000 )
-    self.days    = numpy.full( self.months.size,  1 )
-    self.hours   = numpy.full( self.months.size, 16 )
-    self.minutes = numpy.full( self.months.size,  0 )
-    self.seconds = numpy.full( self.months.size,  0 )
+    self.dates   = pandas.date_range(
+      '20000101T16', 
+      '20010101T16', 
+      freq      = 'MS',
+      inclusive = 'left'
+    )
 
     self.ref_COSZ = numpy.array(
       [0.479295 , 0.5436556, 0.6659838, 0.7999455, 0.8850405, 0.9173493, 
@@ -33,19 +33,14 @@ class TestSolarParams( unittest.TestCase ):
 
   def test_cosz(self):
 
-    lats = numpy.full( self.years.size, degMinSec2Frac( *self.lats ) )
-    lons = numpy.full( self.years.size, degMinSec2Frac( *self.lons ) )
+    lats = numpy.full( self.dates.size, degMinSec2Frac( *self.lats ) )
+    lons = numpy.full( self.dates.size, degMinSec2Frac( *self.lons ) )
 
-    solar = numpy.full( self.years.size, 1000 )
+    solar = numpy.full( self.dates.size, 1000 )
 
     res = solar_parameters(
         lats, lons,
-        self.years, 
-        self.months,
-        self.days,
-        self.hours,
-        self.minutes,
-        self.seconds,
+        self.dates,
         solar, 
         use_spa=False,
     )
@@ -65,12 +60,7 @@ class TestSolarParams( unittest.TestCase ):
       expAct.append(
         solar_parameters(
         lats, lons,
-        dates.year.values, 
-        dates.month.values,
-        dates.day.values,
-        dates.hour.values,
-        dates.minute.values,
-        dates.second.values,
+        dates,
         solar, 
         use_spa=use_spa,
       )
@@ -84,13 +74,7 @@ class TestWBGT( unittest.TestCase ):
 
   def setUp( self ):
 
-    self.year   = 2000
-    self.month  =    6
-    self.day    =    1
-    self.hour   =   16
-    self.minute =    0
-    self.second =    0
-
+    dates      = pandas.to_datetime( ['2000-06-01T16:00:00'] ) 
     lats       = ( 33, 43, 59)  
     lons       = (-84, 22, 59)
 
@@ -105,12 +89,7 @@ class TestWBGT( unittest.TestCase ):
     self.lons  = numpy.full( self.solar.size, degMinSec2Frac(*lons) )
 
     self.res   = wbgt('liljegren', self.lats, self.lons,
-      numpy.full( self.solar.size, self.year ),
-      numpy.full( self.solar.size, self.month),
-      numpy.full( self.solar.size, self.day  ),
-      numpy.full( self.solar.size, self.hour ),
-      numpy.full( self.solar.size, self.minute ),
-      numpy.full( self.solar.size, self.second ),
+      dates.repeat( self.solar.size ),
       self.solar,
       self.pres,
       self.Tair,

@@ -132,8 +132,7 @@ def globeTemperature( Ta, Td, P, u, S, f_db, cosz, **kwargs ):
 
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
  
-def dimiceli( lat, lon, 
-              year, month, day, hour, minute, second, 
+def dimiceli( lat, lon, datetime, 
               solar, pres, Tair, Tdew, speed, f_db=None, cosz=None, **kwargs ):
   """
   Compute WBGT using Dimiceli method
@@ -141,12 +140,7 @@ def dimiceli( lat, lon,
   Arguments:
     lat (float) : Latitude of observations
     lon (float) : Longitude of observations
-    year (ndarray) : UTC Year of the data values
-    month (ndarray) : UTC Month of the data values
-    day (ndarray) : UTC Day of the data values
-    hour (ndarray) : UTC Hour of the data values; can be any time zone as long
-    minute (ndarray) : UTC Minute of the data values
-    second (ndarray) : UTC second of the data values
+    datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
     solar (Quantity) : Solar irradiance; unit of power over area
     pres (Quantity) : Atmospheric pressure; unit of pressure
     Tair (Quantity) : Ambient temperature; unit of temperature
@@ -178,12 +172,7 @@ def dimiceli( lat, lon,
   speed1 = numpy.clip( speed1, 1690.0, None )                                   # Ensure wind speed is at least one (1) mile/hour
 
   if (f_db is None) or (cosz is None):
-    solar = solar_parameters( 
-        lat, lon, 
-        year, month, day, hour, minute, second,
-        solar,
-        **kwargs
-    )
+    solar = solar_parameters( lat, lon, datetime, solar, **kwargs )
     if cosz is None: cosz = solar[1] 
     if f_db is None: f_db = solar[2]
     solar = solar[0]
