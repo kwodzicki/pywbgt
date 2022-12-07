@@ -36,14 +36,7 @@ def solar_parameters_test( n = 1000, sd = datetime(1950, 1, 1, 0)):
 
   solar   = numpy.full( n, 0, dtype = numpy.float32 )
 
-  return solar_parameters( 
-    dates.year.values,
-    dates.month.values,
-    dates.day.values,
-    dates.hour.values,
-    dates.minute.values,
-    dates.second.values,
-    lat, lon, solar )
+  return solar_parameters( lat, lon, dates, solar ) 
   
 #def addUnits( df, vName, newUnit, dt = None, dtype = numpy.float32 ):
 def addUnits( df, vName, dt = None ):
@@ -114,15 +107,7 @@ def main( *args ):
     ##ax[0].legend() 
     #plt.show()
     sp, Tg, Tnwb, Tpsy, Twbg = liljegren(
-        lat, lon, numpy.ones( 1 ), 
-        dt.year.values,
-        dt.month.values,
-        dt.day.values,
-        dt.hour.values,
-        dt.minute.values,
-        dt.second.values,
-        numpy.zeros( nn ), 
-        numpy.ones( nn ),
+        lat, lon, dt,
         solar, pres, Tair, Tdew, speed, 
         numpy.full(nn, 2) * units('meter'), 
         numpy.full(nn, -1 ) * units('degree_Celsius') 

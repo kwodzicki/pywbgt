@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 import numpy
-from pandas import date_range
+from pandas import date_range, to_datetime
 from metpy.units import units
 
 from seus_hvi_wbgt.wbgt import wbgt
@@ -28,7 +28,7 @@ date0 = datetime(2020, 6, 21, 12, 0, 0, tzinfo=pytz.timezone('US/Eastern'))
 #lat   = numpy.full( 1,  0.0 )
 #lon   = numpy.full( 1,  0.0)
 
-date0 = date0.astimezone( pytz.timezone('UTC'))
+date0 = to_datetime( [date0.astimezone( pytz.timezone('UTC'))] )
 
 dates = date_range( '2020-01-01T00:00:00', 
                     '2021-01-01T00:00:00', 
@@ -188,13 +188,7 @@ def main( *args, fbase = 'Idealized WBGT' ):
   supTitle = 'Direct Beam Solar Radiation'
   for method in methods:
     f_db  = numpy.linspace(0, 1, solar.size)
-    tmp   = wbgt(method, lat, lon, 
-      numpy.full( solar.size, date0.year ),
-      numpy.full( solar.size, date0.month),
-      numpy.full( solar.size, date0.day  ),
-      numpy.full( solar.size, date0.hour ),
-      numpy.full( solar.size, date0.minute ),
-      numpy.full( solar.size, date0.second ),
+    tmp   = wbgt(method, lat, lon, date0.repeat( solar.size ),
       solar0.repeat( solar.size ), 
       pres0.repeat(  solar.size ),
       Tair0.repeat(  solar.size ),
@@ -212,13 +206,7 @@ def main( *args, fbase = 'Idealized WBGT' ):
   supTitle = 'Direct Bean Solar Radiation'
   for method in methods: 
     # influence of solar irradiance
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( solar.size, date0.year ),
-      numpy.full( solar.size, date0.month),
-      numpy.full( solar.size, date0.day  ),
-      numpy.full( solar.size, date0.hour ),
-      numpy.full( solar.size, date0.minute ),
-      numpy.full( solar.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat( solar.size ),
       solar, 
       pres0.repeat(  solar.size ),
       Tair0.repeat(  solar.size ),
@@ -237,13 +225,7 @@ def main( *args, fbase = 'Idealized WBGT' ):
   supTitle = 'Pressure'
   for method in methods: 
     # influence of atmospheric pressure
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( pres.size, date0.year ),
-      numpy.full( pres.size, date0.month),
-      numpy.full( pres.size, date0.day  ),
-      numpy.full( pres.size, date0.hour ),
-      numpy.full( pres.size, date0.minute ),
-      numpy.full( pres.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat( pres.size ),
       solar0.repeat( pres.size), 
       pres,
       Tair0.repeat(  pres.size ),
@@ -262,13 +244,7 @@ def main( *args, fbase = 'Idealized WBGT' ):
   rh       = relative_humidity( Tair.to('degree_Celsius').m, Tdew0.to('degree_Celsius').m )
   for method in methods: 
     # influence of air temperature 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( Tair.size, date0.year ),
-      numpy.full( Tair.size, date0.month),
-      numpy.full( Tair.size, date0.day  ),
-      numpy.full( Tair.size, date0.hour ),
-      numpy.full( Tair.size, date0.minute ),
-      numpy.full( Tair.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat( Tair.size ),
       solar0.repeat( Tair.size), 
       pres0.repeat(  Tair.size ),
       Tair,
@@ -289,13 +265,7 @@ def main( *args, fbase = 'Idealized WBGT' ):
   rh       = relative_humidity( Tair_tmp.to('degree_Celsius').m, Tdew.to('degree_Celsius').m )
   for j, method in enumerate(methods): 
     # influence of dew point temperature 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( Tdew.size, date0.year ),
-      numpy.full( Tdew.size, date0.month),
-      numpy.full( Tdew.size, date0.day  ),
-      numpy.full( Tdew.size, date0.hour ),
-      numpy.full( Tdew.size, date0.minute ),
-      numpy.full( Tdew.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat( Tdew.size ),
       solar0.repeat( Tdew.size), 
       pres0.repeat(  Tdew.size ),
       Tair_tmp,
@@ -319,13 +289,7 @@ def main( *args, fbase = 'Idealized WBGT' ):
   supTitle = 'Wind Speed'
   for method in methods:
     # influence of wind speed 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( speed.size, date0.year ),
-      numpy.full( speed.size, date0.month),
-      numpy.full( speed.size, date0.day  ),
-      numpy.full( speed.size, date0.hour ),
-      numpy.full( speed.size, date0.minute ),
-      numpy.full( speed.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat( speed.size ),
       solar0.repeat( speed.size), 
       pres0.repeat(  speed.size ),
       Tair0.repeat(  speed.size ),

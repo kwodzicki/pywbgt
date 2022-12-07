@@ -207,7 +207,7 @@ def bernard( lat, lon, datetime,
   """
 
   solar, cza, fdir = liljegren.solar_parameters(
-    lat, lon, datetime, solar.to('watt/m**2').magnitude
+    lat, lon, datetime, solar.to('watt/m**2').magnitude, 
     **kwargs
   )
 

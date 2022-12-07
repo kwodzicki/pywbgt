@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 import numpy
-from pandas import date_range
+from pandas import date_range, to_datetime
 from metpy.units import units
 
 from ncsuCLOUDS import io
@@ -41,8 +41,7 @@ date0 = datetime(2020, 6, 21, 12, 0, 0, tzinfo=pytz.timezone('US/Eastern'))
 #lat   = numpy.full( 1,  0.0 )
 #lon   = numpy.full( 1,  0.0)
 
-date0 = date0.astimezone( pytz.timezone('UTC'))
-
+date0 = to_datetime( [date0.astimezone( pytz.timezone('UTC'))] )
 dates = date_range( '2020-01-01T00:00:00', 
                     '2021-01-01T00:00:00', 
                     freq      = '1H',
@@ -191,13 +190,7 @@ def idealized( *args,
 
  
   ss, cosz, f_db = solar_parameters(
-    lat, lon,
-      numpy.full( solar.size, date0.year ),
-      numpy.full( solar.size, date0.month),
-      numpy.full( solar.size, date0.day  ),
-      numpy.full( solar.size, date0.hour ),
-      numpy.full( solar.size, date0.minute ),
-      numpy.full( solar.size, date0.second ),
+    lat, lon, date0.repeat( solar.size ),
       solar.to('watt/m**2').magnitude, 
   ) 
   #############################################################################  
@@ -210,13 +203,7 @@ def idealized( *args,
   # influence of air temperature 
   rh       = relative_humidity( Tair.to('degree_Celsius').m, Tdew0.to('degree_Celsius').m )
   for method in methods: 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( Tair.size, date0.year ),
-      numpy.full( Tair.size, date0.month),
-      numpy.full( Tair.size, date0.day  ),
-      numpy.full( Tair.size, date0.hour ),
-      numpy.full( Tair.size, date0.minute ),
-      numpy.full( Tair.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat( Tair.size ),
       solar0.repeat( Tair.size), 
       pres0.repeat(  Tair.size ),
       Tair,
@@ -238,13 +225,7 @@ def idealized( *args,
   Tair_tmp = numpy.full( Tdew.size, Tdew.max() ) * Tair0.units
   rh       = relative_humidity( Tair_tmp.to('degree_Celsius').m, Tdew.to('degree_Celsius').m )
   for j, method in enumerate(methods): 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( Tdew.size, date0.year ),
-      numpy.full( Tdew.size, date0.month),
-      numpy.full( Tdew.size, date0.day  ),
-      numpy.full( Tdew.size, date0.hour ),
-      numpy.full( Tdew.size, date0.minute ),
-      numpy.full( Tdew.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat(Tdew.size),
       solar0.repeat( Tdew.size), 
       pres0.repeat(  Tdew.size ),
       Tair_tmp,
@@ -264,13 +245,7 @@ def idealized( *args,
   #############################################################################  
   # influence of atmospheric pressure
   for method in methods: 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( pres.size, date0.year ),
-      numpy.full( pres.size, date0.month),
-      numpy.full( pres.size, date0.day  ),
-      numpy.full( pres.size, date0.hour ),
-      numpy.full( pres.size, date0.minute ),
-      numpy.full( pres.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat(pres.size),
       solar0.repeat( pres.size), 
       pres,
       Tair0.repeat(  pres.size ),
@@ -290,13 +265,7 @@ def idealized( *args,
   #############################################################################  
   # influence of solar irradiance
   for method in methods: 
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( solar.size, date0.year ),
-      numpy.full( solar.size, date0.month),
-      numpy.full( solar.size, date0.day  ),
-      numpy.full( solar.size, date0.hour ),
-      numpy.full( solar.size, date0.minute ),
-      numpy.full( solar.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat(solar.size),
       solar, 
       pres0.repeat(  solar.size ),
       Tair0.repeat(  solar.size ),
@@ -318,13 +287,7 @@ def idealized( *args,
   #############################################################################  
   # influence of wind speed 
   for method in methods:
-    tmp = wbgt(method, lat, lon, 
-      numpy.full( speed.size, date0.year ),
-      numpy.full( speed.size, date0.month),
-      numpy.full( speed.size, date0.day  ),
-      numpy.full( speed.size, date0.hour ),
-      numpy.full( speed.size, date0.minute ),
-      numpy.full( speed.size, date0.second ),
+    tmp = wbgt(method, lat, lon, date0.repeat(speed.size),
       solar0.repeat( speed.size), 
       pres0.repeat(  speed.size ),
       Tair0.repeat(  speed.size ),
@@ -397,13 +360,7 @@ def observations( obs, meta, *args,
   axID   = 0
   for j, (cb_label, cb_info) in enumerate( color_by.items() ):
     for i, method in enumerate( methods ):
-      tmp = wbgt( method, lat, lon,
-        dates.year.values, 
-        dates.month.values, 
-        dates.day.values, 
-        dates.hour.values, 
-        dates.minute.values,
-        dates.second.values,
+      tmp = wbgt( method, lat, lon, dates,
         addUnits( 'rad2m_total',     obs, meta ),
         addUnits( 'airpres|kPa',     obs, meta ),
         addUnits( 'airtemp2m|K',     obs, meta ),
@@ -527,7 +484,7 @@ if __name__ == "__main__":
     }
   ]
 
-  data, meta = io.read( '/Users/kwodzicki/Data' )
+  data, meta = io.read( '/Users/kwodzicki/Data/ECONet_CLOUDS' )
 
   for info in variables:
     idealized( *sys.argv, **info)

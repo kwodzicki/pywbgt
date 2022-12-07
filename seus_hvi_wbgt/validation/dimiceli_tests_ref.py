@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
 
 import numpy
-
+from pandas import date_range
 from metpy.calc import wet_bulb_temperature
 from metpy.units import units
 from seus_hvi_wbgt.wbgt.dimiceli import *
 from seus_hvi_wbgt.wbgt.utils import *
 
 
-year   = numpy.full( 3, 2010 )
-month  = numpy.full( 3,    9 )
-day    = numpy.asarray( [ 9, 10, 11] )
-hour   = numpy.full( 3, 12 )
-minute = numpy.zeros( 3 )
-second = numpy.zeros( 3 )
+datetime = date_range(
+  '2010-09-09T12:00:00', '2010-09-11T12:00:00', freq='1D'
+)
 
-lat    = numpy.zeros( year.size )
-lon    = numpy.zeros( year.size )
+lat    = numpy.zeros( datetime.size )
+lon    = numpy.zeros( dateime.size )
 
 chfc   = numpy.asarray( [0.315, 0.315, 0.1] )
 
@@ -76,7 +73,7 @@ B    = factorB( Tair.to('degree_Celsius').m,
 
 C    = factorC( speed.to('meter/hour').m, CHFC = chfc ) 
 
-res = dimiceli(lat, lon, year, month, day, hour, minute, second,
+res = dimiceli(lat, lon, datetime,
         solar, pres, Tair, Tdew, speed,
         f_db = f_db,
         cosz = cosz
