@@ -104,13 +104,7 @@ def main( *args ):
     ##ax[0].legend() 
     #plt.show()
     Tg, Tnwb, Twbg = dimiceli(
-        lat, lon, 
-        dt.year.values,
-        dt.month.values,
-        dt.day.values,
-        dt.hour.values,
-        dt.minute.values,
-        dt.second.values,
+        lat, lon, dt,
         solar, pres, Tair, Tdew, speed
     )
 

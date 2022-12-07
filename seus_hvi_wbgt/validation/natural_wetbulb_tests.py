@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 from matplotlib.ticker import (MultipleLocator, AutoMinorLocator)
 
 import numpy
-from pandas import date_range
+from pandas import date_range, to_datetime
 from metpy.units import units
 
 from ncsuCLOUDS import io
@@ -41,7 +41,7 @@ date0 = datetime(2020, 6, 21, 12, 0, 0, tzinfo=pytz.timezone('US/Eastern'))
 #lat   = numpy.full( 1,  0.0 )
 #lon   = numpy.full( 1,  0.0)
 
-date0 = date0.astimezone( pytz.timezone('UTC'))
+date0 = to_datetime( [date0.astimezone( pytz.timezone('UTC'))] )
 
 dates = date_range( '2020-01-01T00:00:00', 
                     '2021-01-01T00:00:00', 
@@ -114,13 +114,7 @@ class Values( object ):
       arr if k == refVar else self.scalar(k, arr.size) for k in self.keys() 
     ]
 
-    return wbgt(method, lat, lon, 
-          numpy.full( arr.size, date0.year ),
-          numpy.full( arr.size, date0.month),
-          numpy.full( arr.size, date0.day  ),
-          numpy.full( arr.size, date0.hour ),
-          numpy.full( arr.size, date0.minute ),
-          numpy.full( arr.size, date0.second ),
+    return wbgt(method, lat, lon, date0.repeat(arr.size),
           *args,
           **kwargs
     )
@@ -205,13 +199,7 @@ def idealized( *args,
 
   solar = vals.array('solar') 
   ss, cosz, f_db = solar_parameters(
-    lat, lon,
-      numpy.full( solar.size, date0.year ),
-      numpy.full( solar.size, date0.month),
-      numpy.full( solar.size, date0.day  ),
-      numpy.full( solar.size, date0.hour ),
-      numpy.full( solar.size, date0.minute ),
-      numpy.full( solar.size, date0.second ),
+    lat, lon, date0.repeat(solar.size),
       solar.to( 'watt/m**2' ).m
   ) 
   #############################################################################  

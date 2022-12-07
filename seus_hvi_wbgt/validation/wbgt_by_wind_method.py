@@ -90,13 +90,7 @@ def main( *args, methods = None, nCol = 7, **kwargs):
       print( f'  {method}' )
 
       res = wbgt(method,
-        lat, lon, 
-        dt.year.values,
-        dt.month.values,
-        dt.day.values,
-        dt.hour.values,
-        dt.minute.values,
-        dt.second.values,
+        lat, lon, dt, 
         solar, pres, Tair, Tdew, speed, 
       )
 
