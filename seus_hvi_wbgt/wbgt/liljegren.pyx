@@ -56,8 +56,7 @@ def chtc( Tair, Pair, speed, float diameter=0.0508  ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def solar_parameters( lat, lon, 
-                      year, month, day, hour, minute, second, 
+def solar_parameters( lat, lon, datetime,
                       solar, avg=None, gmt=None, use_spa=False, **kwargs ):
   """
   Calculate solar parameters based on date and location
@@ -70,16 +69,11 @@ def solar_parameters( lat, lon,
   Arguments:
     lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
     lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
-    year (ndarray) : Year to compute parameters for; GMT
-    month (ndarray) : Month to compute parameters for; GMT
-    day (ndarray) : Day of month; GMT
-    hour (ndarray) : Hour of day; GMT
-    minute (ndarray) : Minute of day; GMT
-    second (ndarray)
+    datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
 
   Keyword arguments:
     avg (ndarray) : averaging time of the meteorological inputs (minutes)
-    gmt (ndarray) : LST-GMT difference  (hours; neative in USA)
+    gmt (ndarray) : LST-GMT difference  (hours; negative in USA)
 
   Returns:
     tuple : Three (3) ndarrays containing:
@@ -89,27 +83,19 @@ def solar_parameters( lat, lon,
  
   """
 
+  if not isinstance( datetime, DatetimeIndex ):
+    raise Exception( "The 'datetime' argument must be a 'pandas.DatetimeIndex' object")
+
   cdef:
     int res, spa = use_spa
-    Py_ssize_t i, size = year.shape[0]
+    Py_ssize_t i, size = datetime.shape[0]
     double dday
 
   if avg is None: avg = 1.0
   dt = to_timedelta( avg/2.0, 'minute')
   if gmt is not None: dt = dt + to_timedelta(gmt, 'hour')
 
-  dates = DatetimeIndex(
-    to_datetime(
-      {
-        'year'   : year,
-        'month'  : month,
-        'day'    : day,
-        'hour'   : hour,
-        'minute' : minute,
-        'second' : second
-      }
-    )
-  ) - dt
+  datetime = datetime - dt
 
   if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
     lat = lat.repeat( size )
@@ -123,12 +109,12 @@ def solar_parameters( lat, lon,
     float [::1] latView  = lat.astype(    numpy.float32 )
     float [::1] lonView  = lon.astype(    numpy.float32 )
 
-    int [::1] yearView   = dates.year.values.astype(   numpy.int32 )
-    int [::1] monthView  = dates.month.values.astype(  numpy.int32 )
-    int [::1] dayView    = dates.day.values.astype(    numpy.int32 )  
-    int [::1] hourView   = dates.hour.values.astype(   numpy.int32 )
-    int [::1] minuteView = dates.minute.values.astype( numpy.int32 )
-    int [::1] secondView = dates.second.values.astype( numpy.int32 )
+    int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )
+    int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )
+    int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )  
+    int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
+    int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )
+    int [::1] secondView = datetime.second.values.astype( numpy.int32 )
  
   for i in prange( size, nogil=True ):
     #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
@@ -278,8 +264,7 @@ def naturalWetBulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def liljegren( lat, lon,
-               year, month, day, hour, minute, second,
+def liljegren( lat, lon, datetime, 
                solar, pres, Tair, Tdew, speed,
                urban=None, gmt=None, avg=None,
                zspeed=None, dT=None, use_spa=False, **kwargs ): 
@@ -302,13 +287,7 @@ def liljegren( lat, lon,
       Can be one (1) element array; will be expanded to match dates/data
     lon (ndarray) : Longitude correspondning to data values (decimal).
       Can be one (1) element array; will be expanded to match dates/data
-    year (ndarray) : Year of the data values
-    month (ndarray) : Month of the data values
-    day (ndarray) : Day of the data values
-    hour (ndarray) : Hour of the data values; can be any time zone as long
-      as the 'gmt' variable is set appropriately 
-    minute (ndarray) : Minute of the data values
-    second (ndarray) : Second of the data values
+    datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
     solar (Quantity) : solar irradiance; units of any power over area
     pres (Qantity) : barometric pressure; units of pressure
     Tair (Quantity) : air (dry bulb) temperature; units of temperature
@@ -319,7 +298,7 @@ def liljegren( lat, lon,
     urban (ndarray) : Boolean flag indicating if "urban" (1) or
       "rural" (0) for wind speed power law exponent
       Can be one (1) element array; will be expanded to match dates/data
-    gmt (ndarray) LST-GMT difference  (hours; neative in USA)
+    gmt (ndarray) LST-GMT difference  (hours; negative in USA)
     avg (ndarray) : averaging time of the meteorological inputs (minutes)
     zspeed (Quantity) : height of wind speed measurement; unit of distance
     dT (Quantity) : Vertical temperature difference; upper minus lower;
@@ -341,8 +320,11 @@ def liljegren( lat, lon,
 
   """
 
+  if not isinstance( datetime, DatetimeIndex ):
+    raise Exception( "The 'datetime' argument must be a 'pandas.DatetimeIndex' object")
+
   cdef:
-    Py_ssize_t i, size = year.shape[0]                                                     # Define size of output arrays based on size of input
+    Py_ssize_t i, size = datetime.shape[0]                                                     # Define size of output arrays based on size of input
     int res, spa=use_spa
     float est_speed, Tg, Tnwb, Tpsy, Twbg
 
@@ -350,24 +332,12 @@ def liljegren( lat, lon,
   dt = to_timedelta( avg/2.0, 'minute')
   if gmt is not None: dt = dt + to_timedelta(gmt, 'hour')
 
-  dates = DatetimeIndex(
-    to_datetime(
-      {
-        'year'   : year,
-        'month'  : month,
-        'day'    : day,
-        'hour'   : hour,
-        'minute' : minute,
-        'second' : second
-      }
-    )
-  ) - dt
+  datetime = datetime - dt
 
   if urban is None: 
     urban = numpy.zeros( size, dtype = numpy.int32 )
   elif len(urban) == 1:
     urban = urban.repeat( size )
-
 
   if zspeed is None:
     zspeed = (
@@ -392,12 +362,12 @@ def liljegren( lat, lon,
     float [::1] lonView    = lon.astype(   numpy.float32 )
     int   [::1] urbanView  = urban.astype( numpy.int32   )
 
-    int [::1] yearView     = dates.year.values.astype(   numpy.int32 )
-    int [::1] monthView    = dates.month.values.astype(  numpy.int32 )
-    int [::1] dayView      = dates.day.values.astype(    numpy.int32 )  
-    int [::1] hourView     = dates.hour.values.astype(   numpy.int32 )
-    int [::1] minuteView   = dates.minute.values.astype( numpy.int32 )
-    int [::1] secondView   = dates.second.values.astype( numpy.int32 )
+    int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )
+    int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )
+    int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )  
+    int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
+    int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )
+    int [::1] secondView   = datetime.second.values.astype( numpy.int32 )
  
     float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
     float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )

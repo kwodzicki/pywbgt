@@ -182,8 +182,7 @@ def naturalWetBulb( Ta, Tpsy, Tg, wnd ):
     Tpsy + 0.25*(Tg-Ta) + factore( wnd )
   )
 
-def bernard( lat, lon,
-             year, month, day, hour, minute, second,
+def bernard( lat, lon, datetime,
              solar, pres, Tair, Tdew, speed, **kwargs):
   """
   Compute WBGT using Bernard Method
@@ -191,12 +190,7 @@ def bernard( lat, lon,
   Arguments:
     lat (float) : Latitude of observations
     lon (float) : Longitude of observations
-    year (ndarray) : UTC Year of the data values
-    month (ndarray) : UTC Month of the data values
-    day (ndarray) : UTC Day of the data values
-    hour (ndarray) : UTC Hour of the data values; can be any time zone as long
-    minute (ndarray) : UTC Minute of the data values
-    second (ndarray) : UTC second of the data values
+    datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
     solar (Quantity) : Solar irradiance; unit of power over area
     pres (Quantity) : Atmospheric pressure; unit of pressure
     Tair (Quantity) : Ambient temperature; unit of temperature
@@ -213,7 +207,7 @@ def bernard( lat, lon,
   """
 
   solar, cza, fdir = liljegren.solar_parameters(
-    lat, lon, year, month, day, hour, minute, second, solar.to('watt/m**2').magnitude
+    lat, lon, datetime, solar.to('watt/m**2').magnitude
     **kwargs
   )
 
