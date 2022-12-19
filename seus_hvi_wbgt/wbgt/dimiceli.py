@@ -5,12 +5,11 @@ WBGT from the Dimiceli method
 
 import numpy
 
-from .liljegren import solar_parameters
-
-from .wetbulb import wetBulb
-from .natural_wetbulb import malchaire, hunter_minyard 
-
 from . import SIGMA
+from .utils import relative_humidity
+from .liljegren import solar_parameters
+from .stull import psychrometricWetBulb as stullWetBulb
+from .natural_wetbulb import malchaire, hunter_minyard 
 
 def chfc( S=None, Z=None):
   """
@@ -131,7 +130,28 @@ def globeTemperature( Ta, Td, P, u, S, f_db, cosz, **kwargs ):
   C = factorC( u, **kwargs )
 
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
- 
+
+def psychrometricWetBul( Ta, Td ): 
+  """
+  Wet bulb temperature from Dimiceli method
+
+  This formula for wet bulb temperature appears at the bottom of 
+  "Estimation of Black Globe Temperature for Calculation of the WBGT Index"
+  by Dimiceli and Piltz.
+
+  https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
+
+  Inputs:
+    Ta (ndarray) : Ambient (dry bulb) temperature (degree C)
+    Td (ndarray) : Dew point temperature (degree C)
+
+  """
+  
+  RH = relative_humidity( Ta, Td ) * 100.0
+  return -5.806    + 0.672   *Ta -  0.006   *Ta**2       +\
+       (  0.061    + 0.004   *Ta + 99.000e-6*Ta**2) * RH +\
+       (-33.000e-6 - 5.000e-6*Ta -  1.000e-7*Ta**2) * RH**2 
+
 def dimiceli( lat, lon, datetime, 
               solar, pres, Tair, Tdew, speed, f_db=None, cosz=None, **kwargs ):
   """
@@ -177,8 +197,14 @@ def dimiceli( lat, lon, datetime,
     if f_db is None: f_db = solar[2]
     solar = solar[0]
 
-  Tg    = globeTemperature( Tair, Tdew, pres, speed1, solar, f_db, cosz, **kwargs)
-  Tpsy  = wetBulb( Tair, Tdew, method=kwargs.get('wetbulb', 'DIMICELI') )
+  Tg     = globeTemperature( Tair, Tdew, pres, speed1, solar, f_db, cosz, **kwargs)
+  wbMeth = kwargs.get('wetbulb', 'DIMICELI').upper()
+  if wbMeth == 'DIMICELI':
+    Tpsy = psychrometricWetBulb( Tair, Tdew) 
+  elif wbMeth == 'STULL':
+    Tpsy = stullWetBulb( Tair, Tdew)
+  else:
+    raise Exception( f"Invalid option for 'wetbulb' : {wbMeth}" )
 
   nwb   = kwargs.get('natural_wetbulb', 'MALCHAIRE').upper()
   if nwb == 'MALCHAIRE':

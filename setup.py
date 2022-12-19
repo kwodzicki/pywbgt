@@ -36,6 +36,11 @@ exts = [
     extra_compile_args = ['-fopenmp'],
     extra_link_args    = ['-lomp'],
     include_dirs       = ['{}/wbgt/src'.format(NAME)]
+  ),
+  Extension( '{}.wbgt.iribarne'.format(NAME),
+    sources            = ['{}/wbgt/iribarne.pyx'.format(NAME)],
+    extra_compile_args = ['-fopenmp'],
+    extra_link_args    = ['-lomp'],
   )
 ]
 
