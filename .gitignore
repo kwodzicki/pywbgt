@@ -1,6 +1,6 @@
 *.swp
 *.html
-*.sh
+install.sh
 
 *.ipynb*
 *.pyc
