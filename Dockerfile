@@ -4,12 +4,17 @@ FROM jupyter/datascience-notebook:latest
 RUN curl https://sh.rustup.rs -sSf | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
-# Install Polars
-RUN conda install dask distributed \
-zarr pyarrow fastparquet \
+RUN conda install cartopy
+RUN pip install zarr pyarrow fastparquet \
 xarray pandas \
-matplotlib polars cartopy \
-awswrangler boto3 s3fs \
+matplotlib polars \
+boto3 s3fs \
+pvlib \
 metpy
 
-run pip install ./setup.py
+USER root
+RUN apt install libgomp1
+
+USER jovyan
+ADD --chown=jovyan:users . src
+RUN pip install src/

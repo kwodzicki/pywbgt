@@ -27,20 +27,23 @@ exts = [
       '{}/wbgt/src/spa.c'.format(NAME),
     ],
     extra_compile_args = ['-fopenmp'],
-    extra_link_args    = ['-lomp'],
+    #extra_link_args    = ['-lomp'],
+    extra_link_args    = ['-fopenmp'],
     include_dirs       = ['{}/wbgt/src'.format(NAME)],
     depends            = ['spa.h']
   ),
   Extension( '{}.wbgt.spa'.format(NAME),
     sources            = ['{}/wbgt/spa.pyx'.format(NAME)],
     extra_compile_args = ['-fopenmp'],
-    extra_link_args    = ['-lomp'],
+    #extra_link_args    = ['-lomp'],
+    extra_link_args    = ['-fopenmp'],
     include_dirs       = ['{}/wbgt/src'.format(NAME)]
   ),
   Extension( '{}.wbgt.iribarne'.format(NAME),
     sources            = ['{}/wbgt/iribarne.pyx'.format(NAME)],
     extra_compile_args = ['-fopenmp'],
-    extra_link_args    = ['-lomp'],
+    #extra_link_args    = ['-lomp'],
+    extra_link_args    = ['-fopenmp'],
   )
 ]
 
