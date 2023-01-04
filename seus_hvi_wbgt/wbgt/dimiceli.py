@@ -131,7 +131,7 @@ def globeTemperature( Ta, Td, P, u, S, f_db, cosz, **kwargs ):
 
   return (B + C*Ta + 7.68e6) / (C + 2.56e5)
 
-def psychrometricWetBul( Ta, Td ): 
+def psychrometricWetBulb( Ta, Td ): 
   """
   Wet bulb temperature from Dimiceli method
 
