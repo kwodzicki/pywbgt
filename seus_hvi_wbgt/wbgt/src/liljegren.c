@@ -457,7 +457,6 @@ double day,           /* Calendar day.fraction, or daynumber.fraction.
  */
  
 int	calc_solar_parameters(year, month, day, lat, lon, use_spa, solar, cza, fdir)
-//int	calc_solar_parameters(year, month, day, lat, lon, solar, cza, fdir)
 
 int	year,		/* 4-digit year, e.g., 2007							*/
 	month,	/* 2-digit month; month = 0 implies day = day of year			*/
@@ -643,7 +642,13 @@ float	lat,		/* north latitude, decimal							*/
 	*Tnwb = Twb(tk, rh, pres, speed, solar, fdir, cza, 1);
 	*Tpsy = Twb(tk, rh, pres, speed, solar, fdir, cza, 0);
 	*Twbg = 0.1 * Tair + 0.2 * (*Tg) + 0.7 * (*Tnwb); 
-		
+
+	//printf("Tg   : %f\n", *Tg);
+	//printf("Tnwb : %f\n", *Tnwb);
+	//printf("Tpsy : %f\n", *Tpsy);
+	//printf("Twbg : %f\n", *Twbg);
+  //printf("\n");
+	
 	if ( *Tg == -9999 || *Tnwb == -9999 ) {
 		*Twbg = -9999;
 		return -1;
@@ -711,7 +716,9 @@ int	rad;		/* switch to enable/disable radiative heating;
 		Twb_new = Tair - evap(Tref)/RATIO * (ewick-eair)/(Pair-ewick) * pow(Pr/Sc,a) + heat; //(Fatm/h * rad);
 		if ( fabs(Twb_new-Twb_prev) < CONVERGENCE ) converged = TRUE;
 		Twb_prev = 0.9*Twb_prev + 0.1*Twb_new;
+    //printf( "Tref : %f  Twb_new : %f  Twb_prev : %f  \n", Tref, Twb_new, Twb_prev);
 	} while (!converged && iter < MAX_ITER);
+  //printf( "Converged : %d\n", converged );
 	if ( converged ) 
 		return (Twb_new-273.15);
 	else
@@ -790,7 +797,10 @@ float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 				, 0.25);
 		if ( fabs(Tglobe_new-Tglobe_prev) < CONVERGENCE ) converged = TRUE;
 		Tglobe_prev = 0.9*Tglobe_prev + 0.1*Tglobe_new;
+    //printf( "Tref : %f   Tglobe_new : %f   Tglobe_prev : %f\n", Tref, Tglobe_new, Tglobe_prev);
+
 	} while (!converged && iter < MAX_ITER);
+  //printf( "Converged : %d\n", converged );
 	if ( converged ) 
 		return (Tglobe_new-273.15);
 	else
@@ -983,7 +993,6 @@ float	Tair,	/* air temperature, K */
 	e = rh * esat(Tair,0);
 	return( 0.575 * pow(e, 0.143) );
 }
-
 
 
 

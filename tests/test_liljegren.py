@@ -74,46 +74,47 @@ class TestWBGT( unittest.TestCase ):
 
   def setUp( self ):
 
-    dates      = pandas.to_datetime( ['2000-06-01T16:00:00'] ) 
-    lats       = ( 33, 43, 59)  
-    lons       = (-84, 22, 59)
+    dates       = pandas.to_datetime( ['2000-06-01T16:00:00'] ) 
+    lats        = ( 33, 43, 59)  
+    lons        = (-84, 22, 59)
 
-    self.solar = units.Quantity( [500.0, 1000.0], 'watt/meter**2')
-    self.solar = units.Quantity( [500.0,  805.0], 'watt/meter**2')
-    self.pres  = units.Quantity( [985.0, 1013.0], 'hPa')
-    self.Tair  = units.Quantity( [ 25.0,   35.0], 'degree_Celsius')
-    self.Tdew  = units.Quantity( [ 15.0,   25.0], 'degree_Celsius')
-    self.speed = units.Quantity( [  1.0,    5.0], 'mile/hour')
+    self.solar  = units.Quantity( [500.0, 1000.0], 'watt/meter**2')
+    self.solar  = units.Quantity( [500.0,  805.0], 'watt/meter**2')
+    self.pres   = units.Quantity( [985.0, 1013.0], 'hPa')
+    self.Tair   = units.Quantity( [ 25.0,   35.0], 'degree_Celsius')
+    self.Tdew   = units.Quantity( [ 15.0,   25.0], 'degree_Celsius')
+    self.speed  = units.Quantity( [  1.0,    5.0], 'mile/hour')
+    self.zspeed = units.Quantity( 2.0, 'meters' )
+    self.lats   = numpy.full( self.solar.size, degMinSec2Frac(*lats) )
+    self.lons   = numpy.full( self.solar.size, degMinSec2Frac(*lons) )
 
-    self.lats  = numpy.full( self.solar.size, degMinSec2Frac(*lats) )
-    self.lons  = numpy.full( self.solar.size, degMinSec2Frac(*lons) )
-
-    self.res   = wbgt('liljegren', self.lats, self.lons,
+    self.res    = wbgt('liljegren', self.lats, self.lons,
       dates.repeat( self.solar.size ),
       self.solar,
       self.pres,
       self.Tair,
       self.Tdew,
       self.speed,
-      avg = 1.0
+      avg = 1.0,
+      zspeed = self.zspeed
      )
 
   def test_Tg(self):
     
     Tg   = [41.970542908, 48.868949890] 
-    numpy.testing.assert_almost_equal(Tg, self.res['Tg'])
+    numpy.testing.assert_almost_equal(Tg, self.res['Tg'].magnitude)
 
   def test_Tpsy(self):
     
     Tpsy = [18.278467178, 27.251123428]
-    numpy.testing.assert_almost_equal(Tpsy, self.res['Tpsy'])
+    numpy.testing.assert_almost_equal(Tpsy, self.res['Tpsy'].magnitude)
 
   def test_Tnwb(self):
 
     Tnwb = [23.320886612, 29.015771866]
-    numpy.testing.assert_almost_equal(Tnwb, self.res['Tnwb'])
+    numpy.testing.assert_almost_equal(Tnwb, self.res['Tnwb'].magnitude)
 
   def test_Twbg(self):
 
     Twbg = [27.218729019, 33.584831238]  
-    numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'])
+    numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'].magnitude)

@@ -15,6 +15,7 @@ Bernard, T.E., & Pourmoghani, M. (1999).
 
 import numpy
 from scipy.optimize import fsolve
+from metpy.units import units
 
 from . import liljegren 
 from . import SIGMA, EPSILON
@@ -223,8 +224,8 @@ def bernard( lat, lon, datetime,
   Tnwb = naturalWetBulb( Tair, Tpsy, Tg, speed )
 
   return {
-   'Tg'   : Tg, 
-   'Tpsy' : Tpsy, 
-   'Tnwb' : Tnwb, 
-   'Twbg' : 0.7*Tnwb + 0.2*Tg + 0.1*Tair
+   'Tg'   : units.Quantity(Tg, 'degree_Celsius'),
+   'Tpsy' : units.Quantity(Tpsy, 'degree_Celsius'),
+   'Tnwb' : units.Quantity(Tnwb, 'degree_Celsius'),
+   'Twbg' : units.Quantity(0.7*Tnwb + 0.2*Tg + 0.1*Tair, 'degree_Celsius'),
   }

@@ -341,10 +341,16 @@ def liljegren( lat, lon, datetime,
 
   if zspeed is None:
     zspeed = (
-      units.meter * numpy.full(  
-        size, 2.0, dtype=numpy.float32
-      ) 
+      units.meter * 
+      numpy.full(size, 10.0, dtype=numpy.float32) 
     )
+  elif not hasattr( zspeed, 'size' ):
+    zspeed = (
+      zspeed.units *
+      numpy.full(size, zspeed.magnitude, dtype=numpy.float32)
+    )
+  elif zspeed.size != size:
+      raise Exception("Size mismatch between 'zspeed' and other variables!")
 
   if dT is None:
     dT = (
@@ -413,9 +419,9 @@ def liljegren( lat, lon, datetime,
       outView[4,i] = Twbg
 
   return {
-    'Tg'    : out[1,:],
-    'Tpsy'  : out[3,:],
-    'Tnwb'  : out[2,:],
-    'Twbg'  : out[4,:],
-    'speed' : out[0,:],
+    'Tg'    : units.Quantity(out[1,:], 'degree_Celsius'),
+    'Tpsy'  : units.Quantity(out[3,:], 'degree_Celsius'),
+    'Tnwb'  : units.Quantity(out[2,:], 'degree_Celsius'),
+    'Twbg'  : units.Quantity(out[4,:], 'degree_Celsius'),
+    'speed' : units.Quantity(out[0,:], 'meter/second'),
   }
