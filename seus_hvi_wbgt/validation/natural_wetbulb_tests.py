@@ -122,7 +122,7 @@ class Values( object ):
 
 methods    = ['liljegren', 'dimiceli', 'bernard']
 colors     = ['black',     'red',      'green']
-linestyle  = ['-', '--']
+linestyle  = ['-', '--', ':']
 marker     = '.'
 markersize = 2
 
@@ -277,7 +277,7 @@ if __name__ == "__main__":
     {'fKey'   : 'Tnwb', 
      'obsKey' : '', 
      'label'  : 'Natural Wet Bulb Temperature',
-     'natural_wetbulb' : ['HUNTER_MINYARD', 'MALCHAIRE']
+     'natural_wetbulb' : ['HUNTER_MINYARD', 'MALCHAIRE', 'BOYER']
     },
 
   ]

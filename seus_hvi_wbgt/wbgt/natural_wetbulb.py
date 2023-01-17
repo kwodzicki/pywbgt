@@ -46,4 +46,30 @@ def hunter_minyard(Tw, S, u):
  
   """
 
-  return Tw + 0.021*S - 0.42*u + 1.93
+  #return Tw + 0.021*S - 0.42*u + 1.93
+  return Tw + 0.0021*S - 0.43*u + 1.93 # Adjustment made based on the formula in the Boyer paper; see nws_boyer()
+
+def nws_boyer( Ta, Tw, S, u ):
+  """
+  Compute natural wet bulb temperature
+
+  An algorithm shown in National Weather Service (NWS) documention
+  from Broyer to compute the natural wetbulb temperture using
+  psychrometric wetbulb, webulb depression,
+  solar irradiance, and wind speed.
+ 
+  Arguments:
+    Ta (ndarray) : Wet bulb globe temperature; degree C
+    Tw (ndarray) : Wet bulb globe temperature; degree C
+    S (ndarray) : Solar irradiance; W/m**2
+    u (ndarray) : Wind speed; m/s
+
+  Reference:
+    Boyer, Timothy R.
+      NDFD Wet Bulb Globe Temperature Algorithm and Software Design
+      https://vlab.noaa.gov/documents/6609493/7858379/
+      NDFD+WBGT+Description+Document.pdf/fb89cc3a-0536-111f-f124-e4c93c746ef7?t=1642792547129 
+
+  """
+
+  return Tw + 0.001651*S - 0.09555*u + 0.13235*(Ta-Tw) + 0.20249

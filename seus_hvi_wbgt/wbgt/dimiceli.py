@@ -4,12 +4,14 @@ WBGT from the Dimiceli method
 """
 
 import numpy
+from metpy.units import units
 
 from . import SIGMA
 from .utils import relative_humidity
 from .liljegren import solar_parameters
 from .stull import psychrometricWetBulb as stullWetBulb
-from .natural_wetbulb import malchaire, hunter_minyard 
+from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer 
+from .loglaw import loglaw
 
 def chfc( S=None, Z=None):
   """
@@ -153,7 +155,11 @@ def psychrometricWetBulb( Ta, Td ):
        (-33.000e-6 - 5.000e-6*Ta -  1.000e-7*Ta**2) * RH**2 
 
 def dimiceli( lat, lon, datetime, 
-              solar, pres, Tair, Tdew, speed, f_db=None, cosz=None, **kwargs ):
+              solar, pres, Tair, Tdew, speed, 
+              f_db   = None, 
+              cosz   = None, 
+              zspeed = units.Quantity(10.0, 'meter'), 
+              **kwargs ):
   """
   Compute WBGT using Dimiceli method
 
@@ -184,12 +190,12 @@ def dimiceli( lat, lon, datetime,
 
   """
 
-  solar  = solar.to( 'watt/m**2'       ).magnitude
-  pres   =  pres.to( 'hPa'             ).magnitude
-  Tair   =  Tair.to( 'degree_Celsius'  ).magnitude
-  Tdew   =  Tdew.to( 'degree_Celsius'  ).magnitude
-  speed1 = speed.to( 'meters per hour' ).magnitude
-  speed1 = numpy.clip( speed1, 1690.0, None )                                   # Ensure wind speed is at least one (1) mile/hour
+  solar   = solar.to( 'watt/m**2'       ).magnitude
+  pres    =  pres.to( 'hPa'             ).magnitude
+  Tair    =  Tair.to( 'degree_Celsius'  ).magnitude
+  Tdew    =  Tdew.to( 'degree_Celsius'  ).magnitude
+  speed2m = loglaw( speed, zspeed )
+  speed1  = numpy.clip(speed2m.to('meters per hour').magnitude, 1690.0, None) # Ensure wind speed is at least one (1) mile/hour
 
   if (f_db is None) or (cosz is None):
     solar = solar_parameters( lat, lon, datetime, solar, **kwargs )
@@ -210,13 +216,15 @@ def dimiceli( lat, lon, datetime,
   if nwb == 'MALCHAIRE':
     Tnwb  = malchaire( Tair, Tdew, Tpsy, Tg )
   elif nwb == 'HUNTER_MINYARD':
-    Tnwb  = hunter_minyard( Tpsy, solar*f_db, speed.to('meter per second').magnitude )
+    Tnwb  = hunter_minyard( Tpsy, solar*f_db, speed2m.to('meter per second').magnitude )
+  elif nwb == 'BOYER':
+    Tnwb  = nws_boyer( Tair, Tpsy, solar*f_db, speed2m.to('meter per second').magnitude )
   else:
     raise Exception( f"Unsupported value for 'natural_wetbulb' : {nwb}" )
 
   return {
-    'Tg'   : Tg,
-    'Tpsy' : Tpsy, 
-    'Tnwb' : Tnwb, 
-    'Twbg' : 0.7*Tnwb + 0.2*Tg + 0.1*Tair
+    'Tg'   : units.Quantity(Tg, 'degree_Celsius'),
+    'Tpsy' : units.Quantity(Tpsy, 'degree_Celsius'),
+    'Tnwb' : units.Quantity(Tnwb, 'degree_Celsius'), 
+    'Twbg' : units.Quantity(0.7*Tnwb + 0.2*Tg + 0.1*Tair, 'degree_Celsius'),
   }
