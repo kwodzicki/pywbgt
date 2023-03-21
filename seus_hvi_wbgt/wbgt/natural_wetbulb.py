@@ -1,4 +1,4 @@
-from .utils import relative_humidity
+from .calc import relative_humidity
 
 def malchaire(Ta, Td, Tw, Tg ):
   """

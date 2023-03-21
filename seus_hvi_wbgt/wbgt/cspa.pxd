@@ -112,5 +112,5 @@ cdef extern from "src/spa_c.h" nogil:
     double sunrise      #local sunrise time (+/- 30 seconds) [fractional hour]
     double sunset       #local sunset time (+/- 30 seconds) [fractional hour]
 
-cdef extern from "src/spa.c" nogil:
+cdef extern from "src/spa_c.c" nogil:
   int spa_calculate(spa_data* spa)

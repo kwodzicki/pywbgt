@@ -7,9 +7,9 @@ import numpy
 from metpy.units import units
 
 from . import SIGMA
-from .utils import relative_humidity, loglaw
+from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
-from .stull import psychrometricWetBulb as stullWetBulb
+from .psychrometricWetBulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer 
 
 def chfc( S=None, Z=None):
@@ -207,7 +207,7 @@ def dimiceli( lat, lon, datetime,
   if wbMeth == 'DIMICELI':
     Tpsy = psychrometricWetBulb( Tair, Tdew) 
   elif wbMeth == 'STULL':
-    Tpsy = stullWetBulb( Tair, Tdew)
+    Tpsy = stull( Tair, Tdew)
   else:
     raise Exception( f"Invalid option for 'wetbulb' : {wbMeth}" )
 
