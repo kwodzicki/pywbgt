@@ -60,4 +60,3 @@ def loglaw(vRef, zRef, zNew=2.0, z0=0.4):
     * log( zNew  / z0 ) 
     / log( zRef.to('meters').magnitude  / z0 )
   )
-

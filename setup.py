@@ -1,6 +1,6 @@
-import os, shutil, importlib
+import os
 from setuptools import setup, convert_path, find_packages, Extension
-from setuptools.command.install import install
+
 try:
   from Cython.Build import cythonize, build_ext
 except:
@@ -19,7 +19,7 @@ ver_path = convert_path("{}/version.py".format(NAME))
 with open(ver_path) as ver_file:
   exec(ver_file.read(), main_ns);
 
-exts = [
+EXTS = [
   Extension( 
     f'{NAME}.wbgt.liljegren',
     sources            = [
@@ -41,21 +41,34 @@ exts = [
     sources            = [f'{NAME}/wbgt/iribarne.pyx'],
     extra_compile_args = [ '-fopenmp'],
     extra_link_args    = [ '-fopenmp'],
-  )
+  ),
 ]
 
-setup(
-  name                 = NAME,
-  description          = DESC,
-  url                  = "",
-  author               = "",
-  author_email         = "",
-  version              = main_ns['__version__'],
-  packages             = find_packages(),
-  install_requires     = [ 'metpy' ],
-  ext_modules          = cythonize( exts ),
-  include_dirs         = [numpy.get_include()],
-  #cmdclass             = {'build_ext' : build_ext},
-  scripts              = ['bin/wbgt_gui'],
-  zip_safe             = False,
-)
+SETUP_REQUIRES   = [
+  'cython',
+  'numpy',
+]
+
+INSTALL_REQUIRES = [
+  'numpy',
+  'pandas',
+  'metpy',
+]
+
+if __name__ == "__main__":
+  setup(
+    name                 = NAME,
+    description          = DESC,
+    url                  = "",
+    author               = "",
+    author_email         = "",
+    version              = main_ns['__version__'],
+    packages             = find_packages(),
+    setup_requires       = SETUP_REQUIRES,
+    install_requires     = INSTALL_REQUIRES,
+    include_package_data = True,
+    ext_modules          = cythonize( EXTS ),
+    include_dirs         = [numpy.get_include()],
+    scripts              = ['bin/wbgt_gui'],
+    zip_safe             = False,
+  )

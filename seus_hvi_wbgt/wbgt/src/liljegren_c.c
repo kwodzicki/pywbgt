@@ -46,7 +46,7 @@ PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY OWNED
 #include	<stdio.h>
 #include	<math.h>
 
-#include "spa.h" //Include the SPA header file
+#include "spa_c.h" //Include the SPA header file
 
 #define	TRUE		1
 #define	FALSE		0
