@@ -564,7 +564,7 @@ float	lat,		/* north latitude									*/
  */
  
 int calc_wbgt(year, month, day, hour, minute, second, gmt, avg, lat, lon, 
-		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, est_speed,
+		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, d_globe, est_speed,
 		Tg, Tnwb, Tpsy, Twbg)
 
 int	year,		/* 4-digit, e.g. 2007								*/
@@ -587,7 +587,8 @@ float	lat,		/* north latitude, decimal							*/
 	speed,	/* wind speed, m/s								*/
 	zspeed,	/* height of wind speed measurement, m					*/
 	dT,		/* vertical temperature difference (upper minus lower), degC	*/
-		
+  d_globe, /* Diameter of black globe thermometer (meters) */
+	
 	*est_speed,	/* estimated speed at reference height, m/s				*/
 	*Tg,		/* globe temperature, degC							*/
 	*Tnwb,	/* natural wet bulb temperature, degC					*/
@@ -629,6 +630,11 @@ float	lat,		/* north latitude, decimal							*/
 		*est_speed = est_wind_speed(speed, zspeed, stability_class, urban);
 		speed = *est_speed;
 	}
+
+  //Set default d_globe size if not defined (i.e., zero)
+  if ( d_globe == 0.0 ){
+    d_globe = D_GLOBE;
+  };
 /*
  *  unit conversions
  */
@@ -638,7 +644,7 @@ float	lat,		/* north latitude, decimal							*/
  *  calculate the globe, natural wet bulb, psychrometric wet bulb, and 
  *  outdoor wet bulb globe temperatures
  */
-	*Tg   = Tglobe(tk, rh, pres, speed, solar, fdir, cza);
+	*Tg   = Tglobe(tk, rh, pres, speed, solar, fdir, cza, d_globe);
 	*Tnwb = Twb(tk, rh, pres, speed, solar, fdir, cza, 1);
 	*Tpsy = Twb(tk, rh, pres, speed, solar, fdir, cza, 0);
 	*Twbg = 0.1 * Tair + 0.2 * (*Tg) + 0.7 * (*Tnwb); 
@@ -766,7 +772,7 @@ float	diameter,	/* cylinder diameter, m								*/
  *		 Argonne National Laboratory
  */
  
-float Tglobe(Tair, rh, Pair, speed, solar, fdir, cza)
+float Tglobe(Tair, rh, Pair, speed, solar, fdir, cza, d_globe)
 
 float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 	rh,		/* relative humidity, fraction between 0 and 1				*/
@@ -774,7 +780,8 @@ float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 	speed,	/* wind speed, m/s								*/
 	solar,	/* solar irradiance, W/m2							*/
 	fdir,		/* fraction of solar irradiance due to direct beam			*/
-	cza;		/* cosine of solar zenith angle						*/
+	cza,		/* cosine of solar zenith angle						*/
+  d_globe; /* diameter of black globe thermometer (meters) */
 	
 {
 	float	Tsfc, Tref, Tglobe_prev, Tglobe_new, h,
@@ -789,7 +796,8 @@ float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 	do {
 		iter++;
 		Tref = 0.5*( Tglobe_prev + Tair );	/* evaluate properties at the average temperature */
-		h = h_sphere_in_air(D_GLOBE, Tref, Pair, speed);
+		//h = h_sphere_in_air(D_GLOBE, Tref, Pair, speed);
+		h = h_sphere_in_air(d_globe, Tref, Pair, speed);
 		Tglobe_new = pow( 
 				0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) )
 				- h/(STEFANB*EMIS_GLOBE)*(Tglobe_prev - Tair)
