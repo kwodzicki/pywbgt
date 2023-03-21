@@ -1,7 +1,7 @@
 from cython.parallel import prange
 import numpy
 
-#from libc.stdio cimport printf
+from libc.stdio cimport printf
 
 cimport numpy
 cimport cython
@@ -161,10 +161,8 @@ def globeTemperature( Tair, Tdew, Pair, speed, solar, fdir, cza ):
 
     Py_ssize_t i, size = Tair.shape[0]
 
-  out  = numpy.empty( size, dtype=numpy.float32 )
-
-  cdef:
-    float [:] outView = out
+  out = numpy.empty( size, dtype=numpy.float32 )
+  cdef float [:] outView = out
 
   for i in prange( size, nogil=True ):
     outView[i] = Tglobe(
@@ -201,10 +199,8 @@ def psychrometricWetBulb( Tair, Tdew, Pair ):
 
     Py_ssize_t i, size = Tair.shape[0]
 
-  out  = numpy.full( size, numpy.nan, dtype=numpy.float32 )
-
-  cdef:
-    float [::1] outView = out
+  out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
+  cdef float [::1] outView = out
 
   for i in prange( size, nogil=True ):
     tmp = Twb(
@@ -246,11 +242,8 @@ def naturalWetBulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
 
     Py_ssize_t i, size = Tair.shape[0]
 
-  #out  = numpy.empty( size, dtype=numpy.float32 )
-  out  = numpy.full( size, numpy.nan, dtype=numpy.float32 )
-
-  cdef:
-    float [:] outView = out
+  out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
+  cdef float [:] outView = out
 
   for i in prange( size, nogil=True ):
     tmp = Twb( 
@@ -267,7 +260,8 @@ def naturalWetBulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
 def liljegren( lat, lon, datetime, 
                solar, pres, Tair, Tdew, speed,
                urban=None, gmt=None, avg=None,
-               zspeed=None, dT=None, use_spa=False, **kwargs ): 
+               zspeed=None, dT=None, use_spa=False, 
+               d_globe=None, **kwargs ): 
 
   """
   Calculate the outdoor wet bulb-globe temperature
@@ -303,6 +297,11 @@ def liljegren( lat, lon, datetime,
     zspeed (Quantity) : height of wind speed measurement; unit of distance
     dT (Quantity) : Vertical temperature difference; upper minus lower;
       unit of temperature
+    use_spa (bool) : If set, use the National Renewable Energy 
+      Laboratory (NREL) Solar Position Algorithm (SPA) to determine
+      sun position. Default is to use the build-it, low precision model.
+    d_globe (Quantity) : Diameter of the black globe thermometer
+      unit of distance
 
   Returns:
     dict :
@@ -323,22 +322,30 @@ def liljegren( lat, lon, datetime,
   if not isinstance( datetime, DatetimeIndex ):
     raise Exception( "The 'datetime' argument must be a 'pandas.DatetimeIndex' object")
 
+  # Define size of output arrays based on size of input
   cdef:
-    Py_ssize_t i, size = datetime.shape[0]                                                     # Define size of output arrays based on size of input
+    Py_ssize_t i, size = datetime.shape[0]
     int res, spa=use_spa
-    float est_speed, Tg, Tnwb, Tpsy, Twbg
+    float dGlobe, est_speed, Tg, Tnwb, Tpsy, Twbg
 
-  if avg is None: avg = 1.0
+  # Set default data averaging interval and compute time offset so that
+  # time is in the middle of the sampling interval
+  if avg is None: avg = 1.0  
   dt = to_timedelta( avg/2.0, 'minute')
+
+  # If gmt is NOT None (i.e., it is set), then adjust the time delta
   if gmt is not None: dt = dt + to_timedelta(gmt, 'hour')
 
+  # Adjust time using time delta
   datetime = datetime - dt
 
+  # Generate or repeat urban value based on input
   if urban is None: 
     urban = numpy.zeros( size, dtype = numpy.int32 )
   elif len(urban) == 1:
     urban = urban.repeat( size )
 
+  # Generature or repeat wind speed observation height based on input
   if zspeed is None:
     zspeed = (
       units.meter * 
@@ -352,6 +359,7 @@ def liljegren( lat, lon, datetime,
   elif zspeed.size != size:
       raise Exception("Size mismatch between 'zspeed' and other variables!")
 
+  # Set default temperature differential between 10m and 2m samples
   if dT is None:
     dT = (
       units.degree_Celsius * numpy.full(
@@ -359,10 +367,17 @@ def liljegren( lat, lon, datetime,
       )
     ) 
 
+  # Set default black globe thermometer diameter
+  if d_globe is None:
+    dGlobe = D_GLOBE                                                          # Use default value from C source code
+  else:
+    dGlobe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude
+    
   if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
     lat = lat.repeat( size )
     lon = lon.repeat( size )
 
+  # Define array views for faster/parallel iteration
   cdef:
     float [::1] latView    = lat.astype(   numpy.float32 )
     float [::1] lonView    = lon.astype(   numpy.float32 )
@@ -389,18 +404,21 @@ def liljegren( lat, lon, datetime,
       )
     ).astype( numpy.float32 )
 
+  # Define output array for storing WBGT status code
   out = numpy.full( (5, size), numpy.nan, dtype = numpy.float32 )
-
   cdef float [:,::1] outView = out 
 
   # Iterate (in parallel) over all values in the input arrays
   for i in prange( size, nogil=True ):
+    # Ensure that variables are defined for each thread
     est_speed = speedView[i]
     Tg        = 0
     Tnwb      = 0
     Tpsy      = 0
     Twbg      = 0
-    #res = calc_wbgt( year[i], month[i], day[i], hour[i], minute[i], gmt[i], avg[i],
+
+    # Run WBGT code; note that GMT and AVG input arguments are set to
+    # zero (0) because all time adjustment is done above in Cython
     res = calc_wbgt( 
       yearView[i], monthView[i], dayView[i], 
       hourView[i], minuteView[i], secondView[i], 
@@ -408,9 +426,10 @@ def liljegren( lat, lon, datetime,
       latView[i], lonView[i], 
       solarView[i], presView[i], TairView[i], 
       relhumView[i], speedView[i], zspeedView[i], dTView[i],
-      urbanView[i], spa, &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg
+      urbanView[i], spa, dGlobe, &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg
     )
 
+    # If WBGT was success, then store variables in the outView
     if res == 0:
       outView[0,i] = est_speed
       outView[1,i] = Tg
@@ -418,6 +437,7 @@ def liljegren( lat, lon, datetime,
       outView[3,i] = Tpsy
       outView[4,i] = Twbg
 
+  # Return dict with unit-aware values
   return {
     'Tg'    : units.Quantity(out[1,:], 'degree_Celsius'),
     'Tpsy'  : units.Quantity(out[3,:], 'degree_Celsius'),

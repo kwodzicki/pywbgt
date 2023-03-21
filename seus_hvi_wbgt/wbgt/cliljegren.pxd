@@ -1,7 +1,8 @@
-cdef extern from "src/liljegren.c" nogil:
+cdef extern from "src/liljegren_c.c" nogil:
+  int D_GLOBE
   int calc_wbgt(int year, int month, int day, int hour, int minute, int second, int gmt, int avg,
     float lat, float lon, float solar, float pres, float Tair, float relhum,
-	  float speed, float zspeed, float dT, int urban, int use_spa, 
+	  float speed, float zspeed, float dT, int urban, int use_spa, float d_globe, 
     float* est_speed, float* Tg, float* Tnwb, float* Tpsy, float* Twbg)
 
   float h_sphere_in_air(float diameter, float Tair, float Pair, float speed)

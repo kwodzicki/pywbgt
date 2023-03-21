@@ -2,6 +2,10 @@
 *.html
 install.sh
 
+spa.c
+liljegren.c
+iribarne.c
+
 *.ipynb*
 *.pyc
 __pycache__

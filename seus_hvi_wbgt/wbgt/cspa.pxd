@@ -1,4 +1,4 @@
-cdef extern from "src/spa.h" nogil:
+cdef extern from "src/spa_c.h" nogil:
   ctypedef struct spa_data:
     int year            # 4-digit year,      valid range: -2000 to 6000, error code: 1
     int month           #  2-digit month,         valid range: 1 to  12,  error code: 2

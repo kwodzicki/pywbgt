@@ -21,29 +21,26 @@ with open(ver_path) as ver_file:
 
 exts = [
   Extension( 
-    '{}.wbgt.liljegren'.format(NAME),
+    f'{NAME}.wbgt.liljegren',
     sources            = [
-      '{}/wbgt/liljegren.pyx'.format(NAME),
-      '{}/wbgt/src/spa.c'.format(NAME),
+      f'{NAME}/wbgt/liljegren.pyx',
+      f'{NAME}/wbgt/src/spa_c.c',
     ],
-    extra_compile_args = ['-fopenmp'],
-    #extra_link_args    = ['-lomp'],
-    extra_link_args    = ['-fopenmp'],
-    include_dirs       = ['{}/wbgt/src'.format(NAME)],
-    depends            = ['spa.h']
+    extra_compile_args = [ '-fopenmp'],
+    extra_link_args    = [ '-fopenmp'],
+    include_dirs       = [f'{NAME}/wbgt/src'],
+    depends            = [ 'spa_c.h']
   ),
-  Extension( '{}.wbgt.spa'.format(NAME),
-    sources            = ['{}/wbgt/spa.pyx'.format(NAME)],
-    extra_compile_args = ['-fopenmp'],
-    #extra_link_args    = ['-lomp'],
-    extra_link_args    = ['-fopenmp'],
-    include_dirs       = ['{}/wbgt/src'.format(NAME)]
+  Extension( f'{NAME}.wbgt.spa',
+    sources            = [f'{NAME}/wbgt/spa.pyx'],
+    extra_compile_args = [ '-fopenmp'],
+    extra_link_args    = [ '-fopenmp'],
+    include_dirs       = [ '{}/wbgt/src'.format(NAME)]
   ),
-  Extension( '{}.wbgt.iribarne'.format(NAME),
-    sources            = ['{}/wbgt/iribarne.pyx'.format(NAME)],
-    extra_compile_args = ['-fopenmp'],
-    #extra_link_args    = ['-lomp'],
-    extra_link_args    = ['-fopenmp'],
+  Extension( f'{NAME}.wbgt.iribarne',
+    sources            = [f'{NAME}/wbgt/iribarne.pyx'],
+    extra_compile_args = [ '-fopenmp'],
+    extra_link_args    = [ '-fopenmp'],
   )
 ]
 
