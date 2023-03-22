@@ -1,8 +1,30 @@
 #!/bin/bash
 
-docker build -t wbgt .
+DOCKERFILE=Dockerfile
 
-#      -p 8081:8787 \
+# Replace last 2 lines of Dockerfile with packages to
+# install and cmd to run when container starts
+#
+python3 - << EOF
+import os
+from setup import INSTALL_REQUIRES
+
+requires = ' '.join(
+  [f'\"{r}\"' for r in INSTALL_REQUIRES]
+)
+
+with open("$DOCKERFILE", "r") as fid:
+  lines = fid.read().splitlines()
+
+lines[-2] = f"RUN pip install --upgrade --upgrade-strategy only-if-needed {requires}"
+lines[-1] = "CMD pip install -e ./work; start-notebook.sh"
+
+with open("$DOCKERFILE", "w") as fid:
+  fid.write( os.linesep.join(lines) )
+
+EOF
+
+docker build -t wbgt .
 
 docker run -it \
       --rm \

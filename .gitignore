@@ -1,14 +1,15 @@
 *.swp
 *.html
+*.so
+*.ipynb*
+*.pyc
+*.egg-info
+
 install.sh
 
 spa.c
 liljegren.c
 iribarne.c
-
-*.ipynb*
-*.pyc
-*.egg-info
 
 __pycache__
 dist
