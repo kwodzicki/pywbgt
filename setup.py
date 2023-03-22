@@ -2,7 +2,7 @@ import os
 from setuptools import setup, convert_path, find_packages, Extension
 
 try:
-  from Cython.Build import cythonize, build_ext
+  from Cython.Build import cythonize
 except:
   raise Exception("Cython is not installed. Try installing using 'pip3 install cython'")
 
@@ -53,6 +53,7 @@ INSTALL_REQUIRES = [
   'numpy',
   'pandas',
   'metpy',
+  'pvlib',
 ]
 
 if __name__ == "__main__":

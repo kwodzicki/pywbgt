@@ -11,7 +11,7 @@ from cliljegren cimport *
 from metpy.units import units
 from pandas import to_datetime, to_timedelta, DatetimeIndex
 
-from .utils import relative_humidity as rhTd
+from .calc import relative_humidity as rhTd
  
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.

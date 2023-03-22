@@ -9,7 +9,7 @@ from metpy.units import units
 from . import SIGMA
 from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
-from .psychrometricWetBulb import stull
+from .psychrometric_wetbulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer 
 
 def chfc( S=None, Z=None):

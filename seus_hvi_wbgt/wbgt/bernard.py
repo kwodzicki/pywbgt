@@ -19,7 +19,7 @@ from metpy.units import units
 
 from . import liljegren 
 from . import SIGMA, EPSILON
-from .utils import saturation_vapor_pressure
+from .calc import saturation_vapor_pressure
 
 def chtc( Tg, Ta, u ):
   """
