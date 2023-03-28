@@ -11,7 +11,7 @@ cdef extern from "src/liljegren_c.c" nogil:
     float lat, float lon, int use_spa, float* solar, float* cza, float* fdir) 
 
   float Tglobe( float Tair, float rh, float Pair, float speed,
-    float solar, float fdir, float cza )
+    float solar, float fdir, float cza, float d_globe)
 
   float Twb( float Tair, float rh, float Pair, float speed,
     float solar, float fdir, float cza, int rad )

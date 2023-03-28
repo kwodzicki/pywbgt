@@ -1,62 +1,67 @@
+"""
+Calculate various atmospheric properties
+
+"""
+
 from numpy import exp, log
 
-def saturation_vapor_pressure( T ):
-  """
-  Compute saturation vapor pressure
+def saturation_vapor_pressure( temperature ):
+    """
+    Compute saturation vapor pressure
+  
+    Uses the Bolton (1980) formula to calculate saturation vapor
+    pressure given a temperature in degrees Celsius
+  
+    Arguments:
+        temperature (ndarray) : Temperature in degrees Celsius
+  
+    Returns:
+        ndarray : Staturation vapor pressure(s) in hPa
+  
+    """
 
-  Uses the Bolton (1980) formula to calculate saturation vapor
-  pressure given a temperature in degrees Celsius
+    return 6.112 * exp( 17.67 * temperature / (temperature + 243.5) )
 
-  Arguments:
-    T (ndarray) : Temperature in degrees Celsius
+def relative_humidity( temp_a, temp_d ):
+    """
+    Compute relative humidity given temperature and dew point
+  
+    The relative humidity is computed by dividing the 
+    saturation vapor pressure at dew point temperature by
+    the saturation vapor pressure at the air temperature.
 
-  Returns:
-    ndarray : Staturation vapor pressure(s) in hPa
+    Arguments:
+        temp_a (ndarray) : Ambient temperature in degrees Celsius
+        temp_d (ndarray) : Dew point temperature in degrees Celsius
 
-  """
+    Returns:
+        ndarray : Relative humidity as dimensionless fraction
 
-  return 6.112 * exp( 17.67 * T / (T + 243.5) )
- 
-def relative_humidity( Ta, Td ):
-  """
-  Compute relative humidity given temperature and dew point
+    """
 
-  The relative humidity is computed by dividing the 
-  saturation vapor pressure at dew point temperature by
-  the saturation vapor pressure at the air temperature.
+    return saturation_vapor_pressure( temp_d )/saturation_vapor_pressure( temp_a )
 
-  Arguments:
-    Ta (ndarray) : Ambient temperature in degrees Celsius
-    Td (ndarray) : Dew point temperature in degrees Celsius
+def loglaw(velo_ref, z_ref, z_new=2.0, z_rough=0.4):
+    """
+    To downscale wind using Log Law
 
-  Returns:
-    ndarray : Relative humidity as dimensionless fraction
+    Arguments:
+        velo_ref (pint.Quanity) : Known velocity at height z_ref with units
+            of velocity
+        z_ref (pint.Quanityt) : Reference height where velo_Ref is known with 
+            units of distance
 
-  """
- 
-  return saturation_vapor_pressure( Td )/saturation_vapor_pressure( Ta )
+    Keyword arguments:
+        z_new (float) : New height (in meters) above ground level
+        z_rough (ndarray) : Roughness length in the current wind direction
 
-def loglaw(vRef, zRef, zNew=2.0, z0=0.4):
-  """
-  To downscale wind using Log Law
+    Returns:
+        ndarray : Velocity calculated at height z_new
 
-  Arguments:
-    vRef (pint.Quanity) : Known velocity at height zRef with units
-      of velocity
-    zRef (pint.Quanityt) : Reference height where vRef is known with 
-      units of distance
+    """
 
-  Keyword arguments:
-    zNew (float) : New height (in meters) above ground level
-    Z0 (ndarray) : Roughness length in the current wind direction
-
-  Returns:
-    ndarray : Velocity calculated at height zNew
-
-  """
-
-  return (
-    vRef.to('meters per second') 
-    * log( zNew  / z0 ) 
-    / log( zRef.to('meters').magnitude  / z0 )
-  )
+    return (
+      velo_ref.to('meters per second')
+      * log( z_new  / z_rough )
+      / log( z_ref.to('meters').magnitude  / z_rough )
+    )
