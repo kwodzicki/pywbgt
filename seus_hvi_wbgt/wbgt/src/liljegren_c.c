@@ -534,8 +534,10 @@ float	lat,		/* north latitude									*/
 		else
 			*fdir = 0.;
 	}
-	else
-		*fdir = 0.;
+	else{
+        *solar = 0.0;
+        *fdir = 0.0;
+    };
 
 	return(0);
 }
@@ -788,6 +790,10 @@ float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 		h_sphere_in_air(), emis_atm();
 		
 	int	converged, iter;
+
+    if (d_globe == 0.0){
+        d_globe = D_GLOBE;
+    };
 	
 	Tsfc = Tair;
 	Tglobe_prev = Tair; /* first guess is the air temperature */
@@ -798,6 +804,7 @@ float Tair,		/* air (dry bulb) temperature, Kelvin						*/
 		Tref = 0.5*( Tglobe_prev + Tair );	/* evaluate properties at the average temperature */
 		//h = h_sphere_in_air(D_GLOBE, Tref, Pair, speed);
 		h = h_sphere_in_air(d_globe, Tref, Pair, speed);
+        //printf( "h : %f\n", h );
 		Tglobe_new = pow( 
 				0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) )
 				- h/(STEFANB*EMIS_GLOBE)*(Tglobe_prev - Tair)
