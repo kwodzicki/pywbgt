@@ -16,15 +16,16 @@ from .calc import relative_humidity as rhTd
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.initializedcheck(False)
-def conv_heat_trans_coeff( Tair, Pair, speed, float diameter=0.0508  ):
+@cython.always_allow_keywords(True)
+def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=0.0508 ):
     """
     Compute convective heat transfer coefficient 
   
     Wrapper for the h_sphere_in_air C function from WBGT v1.1
   
     Arguments:
-        Tair (ndarray) : Ambient air temperature in Kelvin
-        Pair (ndarray) : Barometric pressure in hPa/mb
+        temp_air (ndarray) : Ambient air temperature in Kelvin
+        pres (ndarray) : Barometric pressure in hPa/mb
         speed (ndarray) : Air/wind seed in m/s
   
     Keyword arguments:
@@ -36,28 +37,34 @@ def conv_heat_trans_coeff( Tair, Pair, speed, float diameter=0.0508  ):
   
     """
   
-    cdef Py_ssize_t i, size = Tair.shape[0]
+    cdef Py_ssize_t i, size = temp_air.shape[0]
   
     h = numpy.empty( size, dtype = numpy.float32 )
   
     cdef:
-        float [::1] hView     = h # Initialize array to write data to
-        float [::1] TairView  = Tair.astype( numpy.float32 ) 
-        float [::1] PairView  = Pair.astype( numpy.float32 )
-        float [::1] speedView = speed.astype( numpy.float32 )
+        float [::1] hView        = h # Initialize array to write data to
+        float [::1] temp_airView = temp_air.astype( numpy.float32 ) 
+        float [::1] presView     = pres.astype( numpy.float32 )
+        float [::1] speedView    = speed.astype( numpy.float32 )
   
     for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel
         hView[i] = h_sphere_in_air( 
-            diameter, TairView[i], PairView[i], speedView[i]
+            diameter, temp_airView[i], presView[i], speedView[i]
         )
   
-    return h                                                     # Reshape to same shape as Tair 
+    return h                                                     # Reshape to same shape as temp_air 
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def solar_parameters( lat, lon, datetime,
-                      solar, avg=None, gmt=None, use_spa=False, **kwargs ):
+@cython.always_allow_keywords(True)
+def solar_parameters(
+        lat, lon, datetime, solar,
+        avg     = None,
+        gmt     = None,
+        use_spa = False,
+        **kwargs,
+    ):
     """
     Calculate solar parameters based on date and location
 
@@ -134,14 +141,18 @@ def solar_parameters( lat, lon, datetime,
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globe_temperature( Tair, Tdew, Pair, speed, solar, fdir, cza, d_globe=None ):
+@cython.always_allow_keywords(True)
+def globe_temperature(
+        temp_air, temp_dew, pres, speed, solar, fdir, cza,
+        d_globe = None,
+    ):
     """
     Compute globe temperature using Liljegren method
 
     Arguments:
-        Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
-        Tdew (ndarray) : Dew point temperature; degree Celsius
-        Pair (ndarray) : Barometric pressure; hPa
+        temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius
+        temp_dew (ndarray) : Dew point temperature; degree Celsius
+        pres (ndarray) : Barometric pressure; hPa
         speed (ndarray) : wind speed, m/s
         solar (ndarray) : Solar irradiance, W/m**2
         fdir (ndarray) : Fraction of solar irradiance due to direct beam
@@ -154,15 +165,17 @@ def globe_temperature( Tair, Tdew, Pair, speed, solar, fdir, cza, d_globe=None )
 
     cdef:
         float dGlobe
-        float [::1] TairView   = (Tair + 273.15).astype(  numpy.float32 )
-        float [::1] PairView   = Pair.astype(  numpy.float32 )
-        float [::1] speedView  = speed.astype( numpy.float32 )
-        float [::1] solarView  = solar.astype( numpy.float32 )
-        float [::1] fdirView   = fdir.astype(  numpy.float32 )
-        float [::1] czaView    = cza.astype(   numpy.float32 )
-        float [::1] relhumView = rhTd(Tair, Tdew).astype( numpy.float32 )
+        float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
+        float [::1] presView     = pres.astype(  numpy.float32 )
+        float [::1] speedView    = speed.astype( numpy.float32 )
+        float [::1] solarView    = solar.astype( numpy.float32 )
+        float [::1] fdirView     = fdir.astype(  numpy.float32 )
+        float [::1] czaView      = cza.astype(   numpy.float32 )
+        float [::1] relhumView   = (
+            rhTd(temp_air, temp_dew).astype( numpy.float32 )
+        )
 
-        Py_ssize_t i, size = Tair.shape[0]
+        Py_ssize_t i, size = temp_air.shape[0]
 
     if d_globe is None:
         dGlobe = D_GLOBE                                                          # Use default value from C source code
@@ -174,7 +187,7 @@ def globe_temperature( Tair, Tdew, Pair, speed, solar, fdir, cza, d_globe=None )
 
     for i in prange( size, nogil=True ):
         outView[i] = Tglobe(
-            TairView[i], relhumView[i], PairView[i], 
+            temp_airView[i], relhumView[i], presView[i], 
             speedView[i], solarView[i], fdirView[i],
             czaView[i], dGlobe,
         )
@@ -184,14 +197,15 @@ def globe_temperature( Tair, Tdew, Pair, speed, solar, fdir, cza, d_globe=None )
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def psychrometric_wetbulb( Tair, Tdew, Pair ):
+@cython.always_allow_keywords(True)
+def psychrometric_wetbulb( temp_air, temp_dew, pres ):
     """
     Compute psychrometeric wet bulb temperature using Liljegren method
 
     Arguments:
-        Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
-        Tdew (Quantity) : Dew point temperature; units of temperature
-        Pair (ndarray) : Barometric pressure; hPa
+        temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius
+        temp_dew (Quantity) : Dew point temperature; units of temperature
+        pres (ndarray) : Barometric pressure; hPa
 
     Returns:
         ndarray : pyschrometric Wet bulb temperature
@@ -199,35 +213,44 @@ def psychrometric_wetbulb( Tair, Tdew, Pair ):
     """
 
     cdef:
-        float [::1] TairView   = (Tair + 273.15).astype(  numpy.float32 )
-        float [::1] PairView   = Pair.astype(  numpy.float32 )
-        float [::1] relhumView = rhTd( Tair, Tdew ).astype( numpy.float32 )
+        float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
+        float [::1] presView     = pres.astype(  numpy.float32 )
+        float [::1] relhumView   = (
+            rhTd( temp_air, temp_dew ).astype( numpy.float32 )
+        )
 
         float tmp, fill = 0.0
         int   rad  = 0
 
-        Py_ssize_t i, size = Tair.shape[0]
+        Py_ssize_t i, size = temp_air.shape[0]
 
     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
     cdef float [::1] outView = out
 
     for i in prange( size, nogil=True ):
         tmp = Twb(
-            TairView[i], relhumView[i], PairView[i], fill, fill, fill, fill, rad
+            temp_airView[i], 
+            relhumView[i], 
+            presView[i], 
+            fill, fill, fill, fill, rad
         )
         if tmp > -9999.0:
             outView[i] = tmp
 
     return out 
 
-def natural_wetbulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+@cython.initializedcheck(False)   # Deactivate initialization checking.
+@cython.always_allow_keywords(True)
+def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
     """
     Compute natural wet bulb temperature using Liljegren method
 
     Arguments:
-      Tair (ndarray) : Air (dry bulb) temperature; degree Celsius
-      Tdew (Quantity) : Dew point temperature; units of temperature
-      Pair (ndarray) : Barometric pressure; hPa
+      temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius
+      temp_dew (Quantity) : Dew point temperature; units of temperature
+      pres (ndarray) : Barometric pressure; hPa
       speed (ndarray) : wind speed, m/s
       solar (ndarray) : Solar irradiance, W/m**2
       fdir (ndarray) : Fraction of solar irradiance due to direct beam
@@ -239,25 +262,27 @@ def natural_wetbulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
     """
 
     cdef:
-        float [::1] TairView   = (Tair + 273.15).astype(  numpy.float32 )
-        float [::1] PairView   = Pair.astype(  numpy.float32 )
-        float [::1] speedView  = speed.astype( numpy.float32 )
-        float [::1] solarView  = solar.astype( numpy.float32 )
-        float [::1] fdirView   = fdir.astype(  numpy.float32 )
-        float [::1] czaView    = cza.astype(   numpy.float32 )
-        float [::1] relhumView = rhTd( Tair, Tdew ).astype( numpy.float32 )
+        float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
+        float [::1] presView     = pres.astype(  numpy.float32 )
+        float [::1] speedView    = speed.astype( numpy.float32 )
+        float [::1] solarView    = solar.astype( numpy.float32 )
+        float [::1] fdirView     = fdir.astype(  numpy.float32 )
+        float [::1] czaView      = cza.astype(   numpy.float32 )
+        float [::1] relhumView   = (
+            rhTd( temp_air, temp_dew ).astype( numpy.float32 )
+        )
 
         float tmp
         int rad = 1
 
-        Py_ssize_t i, size = Tair.shape[0]
+        Py_ssize_t i, size = temp_air.shape[0]
 
     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
     cdef float [:] outView = out
 
     for i in prange( size, nogil=True ):
         tmp = Twb( 
-            TairView[i], relhumView[i], PairView[i], 
+            temp_airView[i], relhumView[i], presView[i], 
             speedView[i], solarView[i], fdirView[i], czaView[i], rad
         )
         if tmp > -9999.0:
@@ -268,11 +293,19 @@ def natural_wetbulb( Tair, Tdew, Pair, speed, solar, fdir, cza ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def liljegren( lat, lon, datetime, 
-               solar, pres, Tair, Tdew, speed,
-               urban=None, gmt=None, avg=None,
-               zspeed=None, dT=None, use_spa=False, 
-               d_globe=None, **kwargs ): 
+@cython.always_allow_keywords(True)
+def wetbulb_globe(
+        lat, lon, datetime, 
+        solar, pres, temp_air, temp_dew, speed,
+        urban   = None, 
+        gmt     = None,
+        avg     = None,
+        zspeed  = None,
+        dT      = None,
+        d_globe = None,
+        use_spa = False, 
+        **kwargs,
+    ): 
 
     """
     Calculate the outdoor wet bulb-globe temperature
@@ -282,7 +315,7 @@ def liljegren( lat, lon, datetime,
     air temperature (dry bulb), the globe temperature, and the 
     natural wet bulb temperature:
 
-        Twbg = 0.1 * Tair + 0.7 * Tnwb + 0.2 * Tg.
+        Twbg = 0.1 * temp_air + 0.7 * Tnwb + 0.2 * Tg.
 
     The program predicts Tnwb and Tg using meteorological input data
     then combines the results to produce Twbg.
@@ -295,8 +328,8 @@ def liljegren( lat, lon, datetime,
         datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         solar (Quantity) : solar irradiance; units of any power over area
         pres (Qantity) : barometric pressure; units of pressure
-        Tair (Quantity) : air (dry bulb) temperature; units of temperature
-        Tdew (Quantity) : Dew point temperature; units of temperature
+        temp_air (Quantity) : air (dry bulb) temperature; units of temperature
+        temp_dew (Quantity) : Dew point temperature; units of temperature
         speed (Quatity) : wind speed; units of speed
 
     Keyword arguments:
@@ -337,7 +370,7 @@ def liljegren( lat, lon, datetime,
     cdef:
         Py_ssize_t i, size = datetime.shape[0]
         int res, spa=use_spa
-        float dGlobe, est_speed, Tg, Tnwb, Tpsy, Twbg
+        float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, dGlobe  
 
     # Set default data averaging interval and compute time offset so that
     # time is in the middle of the sampling interval
@@ -404,30 +437,31 @@ def liljegren( lat, lon, datetime,
  
         float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
         float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
-        float [::1] TairView   =   Tair.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
+        float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
         float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
         float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
         float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
         float [::1] relhumView = (
             100.0 *
             rhTd(
-                Tair.to('degree_Celsius').magnitude,
-                Tdew.to('degree_Celsius').magnitude
+                temp_air.to('degree_Celsius').magnitude,
+                temp_dew.to('degree_Celsius').magnitude
             )
         ).astype( numpy.float32 )
 
     # Define output array for storing WBGT status code
-    out = numpy.full( (5, size), numpy.nan, dtype = numpy.float32 )
+    out = numpy.full( (6, size), numpy.nan, dtype = numpy.float32 )
     cdef float [:,::1] outView = out 
 
     # Iterate (in parallel) over all values in the input arrays
     for i in prange( size, nogil=True ):
         # Ensure that variables are defined for each thread
-        est_speed = speedView[i]
         Tg        = 0
-        Tnwb      = 0
         Tpsy      = 0
+        Tnwb      = 0
         Twbg      = 0
+        solar_adj = 0 
+        est_speed = speedView[i]
 
         # Run WBGT code; note that GMT and AVG input arguments are set to
         # zero (0) because all time adjustment is done above in Cython
@@ -436,24 +470,26 @@ def liljegren( lat, lon, datetime,
             hourView[i], minuteView[i], secondView[i], 
             0, 0,
             latView[i], lonView[i], 
-            solarView[i], presView[i], TairView[i], 
+            solarView[i], presView[i], temp_airView[i], 
             relhumView[i], speedView[i], zspeedView[i], dTView[i],
-            urbanView[i], spa, dGlobe, &est_speed, &Tg, &Tnwb, &Tpsy, &Twbg
+            urbanView[i], spa, dGlobe, &est_speed, &solar_adj, &Tg, &Tnwb, &Tpsy, &Twbg
         )
 
         # If WBGT was success, then store variables in the outView
         if res == 0:
-            outView[0,i] = est_speed
-            outView[1,i] = Tg
+            outView[0,i] = Tg
+            outView[1,i] = Tpsy
             outView[2,i] = Tnwb
-            outView[3,i] = Tpsy
-            outView[4,i] = Twbg
+            outView[3,i] = Twbg
+            outView[4,i] = solar_adj
+            outView[5,i] = est_speed
 
     # Return dict with unit-aware values
     return {
-        'Tg'    : units.Quantity(out[1,:], 'degree_Celsius'),
-        'Tpsy'  : units.Quantity(out[3,:], 'degree_Celsius'),
+        'Tg'    : units.Quantity(out[0,:], 'degree_Celsius'),
+        'Tpsy'  : units.Quantity(out[1,:], 'degree_Celsius'),
         'Tnwb'  : units.Quantity(out[2,:], 'degree_Celsius'),
-        'Twbg'  : units.Quantity(out[4,:], 'degree_Celsius'),
-        'speed' : units.Quantity(out[0,:], 'meter/second'),
+        'Twbg'  : units.Quantity(out[3,:], 'degree_Celsius'),
+        'solar' : units.Quantity(out[4,:], 'watt/meter**2'),
+        'speed' : units.Quantity(out[5,:], 'meter/second'),
     }

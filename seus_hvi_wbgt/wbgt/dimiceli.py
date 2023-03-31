@@ -6,7 +6,7 @@ WBGT from the Dimiceli method
 import numpy
 from metpy.units import units
 
-from . import SIGMA
+from .constants import SIGMA
 from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
@@ -29,19 +29,22 @@ def conv_heat_flow_coeff( solar=None, zenith=None):
   
     """
 
-    a = b = c = 0.0
+    const_a = const_b = const_c = 0.0
     if (solar is not None) and (zenith is not None):
-        return a * solar**b * numpy.cos( zenith )**c
+        return (
+            const_a * solar**const_b *
+            numpy.cos( zenith )**const_c
+        )
 
     return 0.315
 
-def atmospheric_vapor_pressure( temp_a, temp_d, pres ):
+def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
     Compute atmospheric vapor pressure
 
     Arguments:
-        temp_a (float) : ambient temperature in degrees Celsius
-        temp_d (float) : dew point temperature in degrees Celsius
+        temp_air (float) : ambient temperature in degrees Celsius
+        temp_dew (float) : dew point temperature in degrees Celsius
         pres (float) : Barometric pressure in hPa
 
     Returns:
@@ -56,25 +59,27 @@ def atmospheric_vapor_pressure( temp_a, temp_d, pres ):
   
         However, the first line of the equation does not make much sense.
         The base of the equation is from Bolton (1980), but the use of
-        (temp_d-temp_a) is odd. It is some kind of differential pressure factor.
+        (temp_d-temp_air) is odd. It is some kind of differential pressure factor.
         Some quick testing indicates that this formula will ALWAYS give
         a slighly lower pressure value than the Bolton (1980) formula; however,
         the values tend to be farily similar as long as there is not a large
-        differenc between temp_a and temp_d
+        differenc between temp_air and temp_d
 
     """
 
-    return numpy.exp( (17.67 * (temp_d - temp_a) ) / (temp_d + 243.5) ) *\
-      (1.0007 + 3.46e-6 * pres) *\
-      6.112 * numpy.exp( 17.502 * temp_a / (240.97 + temp_a) )
+    return (
+        numpy.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
+        (1.0007 + 3.46e-6 * pres) *
+        6.112 * numpy.exp( 17.502 * temp_air / (240.97 + temp_air) )
+    )
 
-def thermal_emissivity( temp_a, temp_d, pres ):
+def thermal_emissivity( temp_air, temp_dew, pres ):
     """
     Compute thermal emissivity from readily available NWS values
   
     Arguments:
-        temp_a (float) : ambient temperature in degrees Celsius
-        temp_d (float) : dew point temperature in degrees Celsius
+        temp_air (float) : ambient temperature in degrees Celsius
+        temp_dew (float) : dew point temperature in degrees Celsius
         pres (float) : Barometric pressure in hPa
   
     Returns:
@@ -82,14 +87,17 @@ def thermal_emissivity( temp_a, temp_d, pres ):
   
     """
 
-    return 0.575 * atmospheric_vapor_pressure( temp_a, temp_d, pres )**(1.0/7.0)
+    return (
+        0.575 *
+        atmospheric_vapor_pressure( temp_air, temp_dew, pres )**(1.0/7.0)
+    )
 
-def factor_b( temp_a, temp_d, pres, solar, f_db, cosz ):
+def factor_b( temp_air, temp_dew, pres, solar, f_db, cosz ):
     """
 
     Arguments:
-        temp_a (float) : ambient temperature in degrees Celsius
-        temp_d (float) : dew point temperature in degrees Celsius
+        temp_air (float) : ambient temperature in degrees Celsius
+        temp_dew (float) : dew point temperature in degrees Celsius
         pres (float) : Barometric pressure in hPa 
         solar (float) : solar irradiance in Watts per meter**2
         f_db (float) : Fraction of direct beam radiation
@@ -98,8 +106,10 @@ def factor_b( temp_a, temp_d, pres, solar, f_db, cosz ):
     """
 
     f_dif = 1.0 - f_db
-    return solar * ( f_db/(4.0*SIGMA*cosz) + 1.2*f_dif/SIGMA ) +\
-        thermal_emissivity( temp_a, temp_d, pres ) * temp_a**4
+    return (
+        solar * ( f_db/(4.0*SIGMA*cosz) + 1.2*f_dif/SIGMA ) +
+        thermal_emissivity( temp_air, temp_dew, pres ) * temp_air**4
+    )
 
 def factor_c( speed, chfc = None ):
     """
@@ -113,13 +123,13 @@ def factor_c( speed, chfc = None ):
         chfc = conv_heat_flow_coeff()
     return chfc * speed**0.58 / 5.3865e-8
 
-def globe_temperature( temp_a, temp_d, pres, speed, solar, f_db, cosz ):
+def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
     """
     Compute globe temperature
   
     Arguments:
-        temp_a (float) : ambient temperature in degrees Celsius
-        temp_d (float) : dew point temperature in degrees Celsius
+        temp_air (float) : ambient temperature in degrees Celsius
+        temp_dew (float) : dew point temperature in degrees Celsius
         pres (float) : Barometric pressure in hPa 
         speed (float) : wind speed in meters per hour
         solar (float) : solar irradiance in Watts per meter**2
@@ -134,12 +144,12 @@ def globe_temperature( temp_a, temp_d, pres, speed, solar, f_db, cosz ):
   
     """
 
-    fac_b = factor_b( temp_a, temp_d, pres, solar, f_db, cosz)
+    fac_b = factor_b( temp_air, temp_dew, pres, solar, f_db, cosz)
     fac_c = factor_c( speed )
 
-    return (fac_b + fac_c*temp_a + 7.68e6) / (fac_c + 2.56e5)
+    return (fac_b + fac_c*temp_air + 7.68e6) / (fac_c + 2.56e5)
 
-def psychrometric_wetbulb( temp_a, temp_d ):
+def psychrometric_wetbulb( temp_air, temp_dew ):
     """
     Wet bulb temperature from Dimiceli method
   
@@ -150,52 +160,60 @@ def psychrometric_wetbulb( temp_a, temp_d ):
     https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
   
     Inputs:
-        temp_a (ndarray) : Ambient (dry bulb) temperature (degree C)
-        temp_d (ndarray) : Dew point temperature (degree C)
+        temp_air (ndarray) : Ambient (dry bulb) temperature (degree C)
+        temp_dew (ndarray) : Dew point temperature (degree C)
   
     """
 
-    relhum = relative_humidity( temp_a, temp_d ) * 100.0
-    return -5.806    + 0.672   *temp_a -  0.006   *temp_a**2       +\
-         (  0.061    + 0.004   *temp_a + 99.000e-6*temp_a**2) * relhum +\
-         (-33.000e-6 - 5.000e-6*temp_a -  1.000e-7*temp_a**2) * relhum**2
+    relhum = relative_humidity( temp_air, temp_dew ) * 100.0
+    return (
+           -5.806    + 0.672   *temp_air -  0.006   *temp_air**2       +
+         (  0.061    + 0.004   *temp_air + 99.000e-6*temp_air**2) * relhum +
+         (-33.000e-6 - 5.000e-6*temp_air -  1.000e-7*temp_air**2) * relhum**2
+    )
 
-def dimiceli( lat, lon, datetime,
-              solar, pres, temp_air, temp_dew, speed,
-              f_db   = None,
-              cosz   = None,
-              zspeed = units.Quantity(10.0, 'meter'),
-              **kwargs ):
+def wetbulb_globe(
+        datetime, lat, lon,
+        solar, pres, temp_air, temp_dew, speed,
+        f_db   = None,
+        cosz   = None,
+        zspeed = None,
+        **kwargs,
+    ):
     """
     Compute WBGT using Dimiceli method
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (float) : Latitude of observations
         lon (float) : Longitude of observations
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
-        solar (Quantity) : Solar irradiance; unit of power over area
-        pres (Quantity) : Atmospheric pressure; unit of pressure
         temp_air (Quantity) : Ambient temperature; unit of temperature
         temp_dew (Quantity) : Dew point temperature; unit of temperature
+        pres (Quantity) : Atmospheric pressure; unit of pressure
         speed (Quantity) : Wind speed; units of speed
+        solar (Quantity) : Solar irradiance; unit of power over area
 
     Keyword arguments:
         f_db (float) : Direct beam radiation from the sun; fraction
         cosz (float) : Cosine of solar zenith angle
-        zspeed (Quantity) : Height of the wind speed measurment
+        zspeed (Quantity) : Height of the wind speed measurment.
+            Default is 10 meters
         wetbulb (str) : Name of wet bulb algorithm to use:
-          {dimiceli, stull} DEFAULT = dimiceli
+            {dimiceli, stull} DEFAULT = dimiceli
         natural_wetbulb (str) : Name of the natural wet bulb algorithm to use:
-          {malchaire, hunter_minyard} DEFAULT = malchaire
+            {malchaire, hunter_minyard} DEFAULT = malchaire
 
     Returns:
         dict : 
-          - Tg : Globe temperatures in ndarray
-          - Tpsy : psychrometric wet bulb temperatures in ndarray
-          - Tnwb : Natural wet bulb temperatures in ndarray
-          - Twbg : Wet bulb-globe temperatures in ndarray
-  
+            - Tg : Globe temperatures in ndarray
+            - Tpsy : psychrometric wet bulb temperatures in ndarray
+            - Tnwb : Natural wet bulb temperatures in ndarray
+            - Twbg : Wet bulb-globe temperatures in ndarray
+            - solar : Solar irradiance from Liljegren 
     """
+
+    if zspeed is None:
+        zspeed = units.Quantity(10.0, 'meter')
 
     solar    = solar.to( 'watt/m**2'       ).magnitude
     pres     = pres.to( 'hPa'             ).magnitude
@@ -258,4 +276,5 @@ def dimiceli( lat, lon, datetime,
         'Tnwb'  : units.Quantity(temp_nwb, 'degree_Celsius'), 
         'Twbg'  : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
         'solar' : units.Quantity( solar, 'watt/m**2'),
+        'speed' : speed2m.to('meter per second'),
     }

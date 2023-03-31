@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt.liljegren import liljegren, solar_parameters
+from seus_hvi_wbgt.wbgt.liljegren import wetbulb_globe, solar_parameters
 
 from ncsuCLOUDS.api import CLOUDS
 
@@ -106,7 +106,7 @@ def main( *args ):
     ##for line, label in zip(lines, raw_labels): line.set_label( label )
     ##ax[0].legend() 
     #plt.show()
-    sp, Tg, Tnwb, Tpsy, Twbg = liljegren(
+    sp, Tg, Tnwb, Tpsy, Twbg = wetbulb_globe(
         lat, lon, dt,
         solar, pres, Tair, Tdew, speed, 
         numpy.full(nn, 2) * units('meter'), 
