@@ -7,7 +7,7 @@ from matplotlib import pyplot as plt
 
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt.dimiceli import dimiceli, globeTemperature 
+from seus_hvi_wbgt.wbgt.dimiceli import wetbulb_globe, globeTemperature 
 
 from ncsuCLOUDS.api import CLOUDS
 
@@ -103,7 +103,7 @@ def main( *args ):
     ##for line, label in zip(lines, raw_labels): line.set_label( label )
     ##ax[0].legend() 
     #plt.show()
-    Tg, Tnwb, Twbg = dimiceli(
+    Tg, Tnwb, Twbg = wetbulb_globe(
         lat, lon, dt,
         solar, pres, Tair, Tdew, speed
     )

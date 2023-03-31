@@ -5,7 +5,7 @@ Various algorithms for computing natural wetbulb
 
 from .calc import relative_humidity
 
-def malchaire(temp_a, temp_d, temp_w, temp_g ):
+def malchaire(temp_air, temp_dew, temp_psy, temp_g ):
     """
     Compute natural wet bulb temperature
 
@@ -15,9 +15,9 @@ def malchaire(temp_a, temp_d, temp_w, temp_g ):
     ambient and dew point temperatures.
 
     Arguments:
-        temp_a (ndarray) : Ambient temp (C)
-        temp_d (ndarray) : Dew point temperature (C)
-        temp_w (ndarray) : Wet bulb (C)
+        temp_air (ndarray) : Ambient temp (C)
+        temp_dew (ndarray) : Dew point temperature (C)
+        temp_psy (ndarray) : Psychrometric wet bulb (C)
         temp_g (ndarray) : Globe temp (C)
 
     Reference:
@@ -27,13 +27,13 @@ def malchaire(temp_a, temp_d, temp_w, temp_g ):
 
     """
 
-    relhum = relative_humidity( temp_a, temp_d )
+    relhum = relative_humidity( temp_air, temp_dew )
     return (
-        (0.16*(temp_g-temp_a) + 0.8)/200.0 *
-        (560.0 - 2.0*relhum - 5.0*temp_a) - 0.8 + temp_w
+        (0.16*(temp_g-temp_air) + 0.8)/200.0 *
+        (560.0 - 2.0*relhum - 5.0*temp_air) - 0.8 + temp_psy
     )
 
-def hunter_minyard(temp_w, solar, speed):
+def hunter_minyard(temp_psy, solar, speed):
     """
     Compute natural wet bulb temperature
 
@@ -42,7 +42,7 @@ def hunter_minyard(temp_w, solar, speed):
     solar irradiance, and wind speed.
  
     Arguments:
-        temp_w (ndarray) : Wet bulb globe temperature; degree C
+        temp_psy (ndarray) : Psychrometric wet bulb globe temperature; degree C
         solar (ndarray) : Solar irradiance; W/m**2
         speed (ndarray) : Wind speed; m/s
 
@@ -54,10 +54,11 @@ def hunter_minyard(temp_w, solar, speed):
  
     """
 
-    #return temp_w + 0.021*solar - 0.42*speed + 1.93
+    #return temp_psy + 0.021*solar - 0.42*speed + 1.93
     # Adjustment made based on the formula in the Boyer paper; see nws_boyer()
-    return temp_w + 0.0021*solar - 0.43*speed + 1.93
-def nws_boyer( temp_a, temp_w, solar, speed ):
+    return temp_psy + 0.0021*solar - 0.43*speed + 1.93
+
+def nws_boyer( temp_air, temp_psy, solar, speed ):
     """
     Compute natural wet bulb temperature
 
@@ -67,8 +68,8 @@ def nws_boyer( temp_a, temp_w, solar, speed ):
     solar irradiance, and wind speed.
  
     Arguments:
-        temp_a (ndarray) : Wet bulb globe temperature; degree C
-        temp_w (ndarray) : Wet bulb globe temperature; degree C
+        temp_air (ndarray) : Wet bulb globe temperature; degree C
+        temp_psy (ndarray) : Psychrometric wet bulb globe temperature; degree C
         solar (ndarray) : Solar irradiance; W/m**2
         speed (ndarray) : Wind speed; m/s
 
@@ -80,4 +81,8 @@ def nws_boyer( temp_a, temp_w, solar, speed ):
 
     """
 
-    return temp_w + 0.001651*solar - 0.09555*speed + 0.13235*(temp_a-temp_w) + 0.20249
+    return (
+        temp_psy + 0.001651*solar -
+        0.09555*speed + 0.13235*(temp_air-temp_psy) +
+        0.20249
+    )

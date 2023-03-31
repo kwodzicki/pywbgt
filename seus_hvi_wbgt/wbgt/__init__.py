@@ -6,9 +6,9 @@ SIGMA   = 5.670374419e-8
 # Albedo of surface
 EPSILON = 0.98
 
-from .liljegren import liljegren as liljegrenWBGT
-from .bernard import bernard as bernardWBGT
-from .dimiceli import dimiceli as dimiceliWBGT
+from .liljegren import wetbulb_globe as liljegrenWBGT
+from .bernard   import wetbulb_globe as bernardWBGT
+from .dimiceli  import wetbulb_globe as dimiceliWBGT
 
 def wbgt( method, *args, **kwargs ):
     """

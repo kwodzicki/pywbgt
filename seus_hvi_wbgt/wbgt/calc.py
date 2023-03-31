@@ -22,7 +22,7 @@ def saturation_vapor_pressure( temperature ):
 
     return 6.112 * exp( 17.67 * temperature / (temperature + 243.5) )
 
-def relative_humidity( temp_a, temp_d ):
+def relative_humidity( temp_air, temp_dew ):
     """
     Compute relative humidity given temperature and dew point
   
@@ -31,15 +31,18 @@ def relative_humidity( temp_a, temp_d ):
     the saturation vapor pressure at the air temperature.
 
     Arguments:
-        temp_a (ndarray) : Ambient temperature in degrees Celsius
-        temp_d (ndarray) : Dew point temperature in degrees Celsius
+        temp_air (ndarray) : Ambient temperature in degrees Celsius
+        temp_dew (ndarray) : Dew point temperature in degrees Celsius
 
     Returns:
         ndarray : Relative humidity as dimensionless fraction
 
     """
 
-    return saturation_vapor_pressure( temp_d )/saturation_vapor_pressure( temp_a )
+    return (
+        saturation_vapor_pressure( temp_dew ) /
+        saturation_vapor_pressure( temp_air )
+    )
 
 def loglaw(velo_ref, z_ref, z_new=2.0, z_rough=0.4):
     """

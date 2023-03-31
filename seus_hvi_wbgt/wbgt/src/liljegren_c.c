@@ -566,8 +566,8 @@ float	lat,		/* north latitude									*/
  */
  
 int calc_wbgt(year, month, day, hour, minute, second, gmt, avg, lat, lon, 
-		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, d_globe, est_speed,
-		Tg, Tnwb, Tpsy, Twbg)
+		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, d_globe, 
+        est_speed, solar_adj, Tg, Tnwb, Tpsy, Twbg)
 
 int	year,		/* 4-digit, e.g. 2007								*/
 	month,	/* month (1-12) or month = 0 implies iday is day of year		*/
@@ -592,6 +592,7 @@ float	lat,		/* north latitude, decimal							*/
   d_globe, /* Diameter of black globe thermometer (meters) */
 	
 	*est_speed,	/* estimated speed at reference height, m/s				*/
+	*solar_adj,	/* (potentially) adjusted solar irradiance. W/m**2				*/
 	*Tg,		/* globe temperature, degC							*/
 	*Tnwb,	/* natural wet bulb temperature, degC					*/
 	*Tpsy,	/* psychrometric wet bulb temperature, degC				*/
@@ -620,6 +621,7 @@ float	lat,		/* north latitude, decimal							*/
  */
 	//calc_solar_parameters(year, month, dday, lat, lon, &solar, &cza, &fdir);	
 	calc_solar_parameters(year, month, dday, lat, lon, use_spa, &solar, &cza, &fdir);	
+    *solar_adj = solar;
 /* 
  *  estimate the wind speed, if necessary
  */
