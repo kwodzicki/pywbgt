@@ -1,31 +1,50 @@
 """
+Scatter plot with color binned symbols
+
+Create scatter plot where the symbols are colored based on what
+bin of a variable they fall in. For instances, can color based on
+wind speed, with speeds of 0-2 m/s red, 2-4 m/s blue, etc.
 
 """
-import warnings
 
 from pandas import DataFrame
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
 from ..stats import mean_abs_error
-from .utils import bin_var, flip, textbf
+from .utils import bin_var, textbf
 
 def plot_by_hue(xdata, ydata, hue,
         bin_size     = None,
         bin_max      = None,
         xlabel       = '',
         ylabel       = '',
-        title        = '',
-        mae_fontsize = 'small', 
+        mae_fontsize = 'small',
         ax           = None,
         figsize      = (6,6),
         **kwargs,
     ):
     """
-    bin_label : A string for the column to use to color the points.
-        Can be a tuple where zeroth element is column name and first
-        element is units. This name will be used for the legend title,
-        with units added to name if they are input
+    Scatter plot data and color symbols
+
+    Arguments:
+        xdata (numpy.ndarray) : Values for the x-axis
+        ydata (numpy.ndarray) : Values for the y-axis
+        hue (numpy.ndarray) : Data to bin by for coloring
+
+    Keyword arguments:
+        bin_size (int,float) : Size of the bins for coloring
+        bin_max (int,float) : Right bound of largest bin. Note that
+            'bin_min' is always set to zero (0)
+        xlabel (str) : Label for the x-axis
+        ylabel (str) : Label for the y-axis
+        mae_fontsize (str) : Size of the font to use when drawing
+            mean absolute error for data.
+        ax (matplotlib.pyplot.Axes) : Axis to plot the data on.
+        figsize (tuple) : Size of the figure; ignored if ax= is used.
+
+    Returns:
+        tuple : Reference to the figure and axis used in the ploat
 
     """
 
@@ -49,7 +68,7 @@ def plot_by_hue(xdata, ydata, hue,
         for i, key in enumerate(data['hue'].unique())
     }
 
-    for jj, (hue_key, hue_df) in enumerate(data.groupby('hue')):
+    for i, (hue_key, hue_df) in enumerate(data.groupby('hue')):
         ax.scatter(
             hue_df['x'], hue_df['y'],
             marker = '.',
@@ -62,7 +81,7 @@ def plot_by_hue(xdata, ydata, hue,
         except:
             pass
         else:
-            ax.text(0.98, 0.07*jj+0.05, textbf( f"MAE = {mae:0.3f}" ),
+            ax.text(0.98, 0.07*i+0.05, textbf( f"MAE = {mae:0.3f}" ),
                 horizontalalignment='right',
                 transform = ax.transAxes,
                 color     = colors[hue_key],
@@ -74,37 +93,3 @@ def plot_by_hue(xdata, ydata, hue,
 
 
     return fig, ax
-
-def main( df, x_long_name, x_short_name, y_long_name, y_short_name,
-        hues = [ ('Elevation', 'm'), ('Irradiance', 'W/m$^{2}$'), ('Wind', 'mph'), 'Day-Night'],
-        methods = ['liljegren', 'dimiceli'],
-    ):
-
-    """
-    Arguments:
-        df (pandas.DataFrame) : All data that will be used for plotting
-        var_long_name (str) : Long-name of the variable to plot
-        var_short_name (str) : Short name of the variable to plot
-
-    """
-
-    for hue in hues:
-        fig, axes = plt.subplots( 1, len(methods), figsize=(6,4) )
-        for ax, method in zip(axes, methods):
-            title = [y_long_name, f'{method} versus {x_long_name}']
-            _ = plotHue(
-                subset, var_short_name, f'{var_short_name} {method}',
-                ax        = ax,
-                xlabel    = f'ECONet {var_short_name} [K]',
-                ylabel    = f'{method} {var_short_name} [K]',
-                title     = os.linesep.join( title ),
-                hue       = hue,
-                **figkwargs,
-            )
-
-        fig.suptitle(y_long_name)
-        fig.subplots_adjust(**pos)
-        makeSquare( axes, oneone=True )
-
-        fname = ' '.join( title ) + f'_{hue[0]}.png'
-        if saveplot: fig.savefig( os.path.join( figdir, fname ), dpi=dpi )
