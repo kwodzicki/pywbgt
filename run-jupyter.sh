@@ -16,8 +16,7 @@ requires = ' '.join(
 with open("$DOCKERFILE", "r") as fid:
   lines = fid.read().splitlines()
 
-lines[-2] = f"RUN pip install --upgrade --upgrade-strategy only-if-needed {requires}"
-lines[-1] = "CMD pip install -e ./work; start-notebook.sh"
+lines[-1] = f"RUN pip install --upgrade --upgrade-strategy only-if-needed {requires}"
 
 with open("$DOCKERFILE", "w") as fid:
   fid.write( os.linesep.join(lines) )
