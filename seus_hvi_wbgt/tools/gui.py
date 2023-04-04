@@ -1,147 +1,158 @@
-#!/usr/bin/env python3
+"""
+GUI for computing WBGT
 
-import logging
+"""
 
 import numpy
 
 from metpy.units import units
 
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QFileDialog, QLabel, QPushButton, QComboBox, QTextEdit, QLineEdit
-from PyQt5.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout, QAction
-from PyQt5.QtGui import QIcon, QPixmap
-from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (
+    QMainWindow,
+    QWidget,
+    QLabel,
+    QComboBox,
+    QLineEdit,
+    QGridLayout,
+)
 
 from seus_hvi_wbgt.wbgt import wbgt
 
-class WBGT_Gui( QMainWindow ):
+class WBGTGui( QMainWindow ):
+    """
+    Create GUI for WBGT
 
-  def __init__(self, *args, **kwargs):
+    """
 
-    super().__init__(*args, **kwargs)
+    def __init__(self, *args, **kwargs):
 
-    mainWidget = QWidget()
-    layout = QGridLayout()
+        super().__init__(*args, **kwargs)
 
-    monthLabel     = QLabel( 'Month' )
-    dayLabel       = QLabel( 'Day' )
-    latLabel       = QLabel( 'Latitude' )
-    solarLabel     = QLabel( 'Solar (W/m^2)' )
-    presLabel      = QLabel( 'Pressure' )
-    fcstTempLabel  = QLabel( 'Fcst Max Temp (F)' )
-    dewTempLabel   = QLabel( 'DewPoint (F)' )
-    windLabel      = QLabel( 'Wind Speed (mph)' )
-    cloudLabel     = QLabel( 'Cloud Cover (%)' )
+        main_widget = QWidget()
+        layout = QGridLayout()
 
-    liljegrenLabel = QLabel( 'Liljegren' )
-    dimiceliLabel  = QLabel( 'Dimiceli' )
-    bernardLabel   = QLabel( 'Bernard' )
+        month_label     = QLabel( 'Month' )
+        day_label       = QLabel( 'Day' )
+        lat_label       = QLabel( 'Latitude' )
+        solar_label     = QLabel( 'Solar (W/m^2)' )
+        pres_label      = QLabel( 'Pressure' )
+        fcst_temp_label = QLabel( 'Fcst Max Temp (F)' )
+        dew_temp_label  = QLabel( 'DewPoint (F)' )
+        wind_label      = QLabel( 'Wind Speed (mph)' )
+        cloud_label     = QLabel( 'Cloud Cover (%)' )
 
-    self.month     = QLineEdit()
-    self.day       = QLineEdit()
-    self.lat       = QLineEdit()
-    self.solar     = QLineEdit()
-    self.pres      = QLineEdit()
-    self.fcstTemp  = QLineEdit()
-    self.dewTemp   = QLineEdit()
-    self.wind      = QLineEdit()
-    self.cloud     = QLineEdit()
+        liljegren_label = QLabel( 'Liljegren' )
+        dimiceli_label  = QLabel( 'Dimiceli' )
+        bernard_label   = QLabel( 'Bernard' )
 
-    self.presUnits = QComboBox()
-    self.presUnits.addItems( ['hPa', 'inHg'] )
-    self.presUnits.currentIndexChanged.connect( self.valChanged )
+        self.month     = QLineEdit()
+        self.day       = QLineEdit()
+        self.lat       = QLineEdit()
+        self.solar     = QLineEdit()
+        self.pres      = QLineEdit()
+        self.fcst_temp = QLineEdit()
+        self.dew_temp  = QLineEdit()
+        self.wind      = QLineEdit()
+        self.cloud     = QLineEdit()
 
-    self.month.setText(  '1')
-    self.day.setText(    '1')
-    self.lat.setText(    '0')
-    self.solar.setText(  '1000')
-    self.pres.setText(   '1000')
-    self.fcstTemp.setText( '80' )
-    self.dewTemp.setText(  '60' )
-    self.wind.setText(      '5' )
-    self.cloud.setText(     '0' )
+        self.pres_units = QComboBox()
+        self.pres_units.addItems( ['hPa', 'inHg'] )
+        self.pres_units.currentIndexChanged.connect( self.val_changed )
 
-    liljegren      = QLabel( '' )
-    dimiceli       = QLabel( '' )
-    bernard        = QLabel( '' )
+        self.month.setText(  '1')
+        self.day.setText(    '1')
+        self.lat.setText(    '0')
+        self.solar.setText(  '1000')
+        self.pres.setText(   '1000')
+        self.fcst_temp.setText( '80' )
+        self.dew_temp.setText(  '60' )
+        self.wind.setText(      '5' )
+        self.cloud.setText(     '0' )
 
-    self.month.textChanged.connect(    self.valChanged )
-    self.day.textChanged.connect(      self.valChanged ) 
-    self.lat.textChanged.connect(      self.valChanged ) 
-    self.solar.textChanged.connect(    self.valChanged ) 
-    self.pres.textChanged.connect(     self.valChanged ) 
-    self.fcstTemp.textChanged.connect( self.valChanged ) 
-    self.dewTemp.textChanged.connect(  self.valChanged ) 
-    self.wind.textChanged.connect(     self.valChanged ) 
-    self.cloud.textChanged.connect(    self.valChanged ) 
+        liljegren      = QLabel( '' )
+        dimiceli       = QLabel( '' )
+        bernard        = QLabel( '' )
 
-    layout.addWidget( monthLabel,      0, 0) 
-    layout.addWidget( dayLabel,        1, 0) 
-    layout.addWidget( latLabel,        2, 0) 
-    layout.addWidget( solarLabel,      3, 0) 
-    layout.addWidget( presLabel,       4, 0) 
-    layout.addWidget( fcstTempLabel,   5, 0) 
-    layout.addWidget( dewTempLabel,    6, 0) 
-    layout.addWidget( windLabel,       7, 0) 
-    layout.addWidget( cloudLabel,      8, 0) 
-    layout.addWidget( liljegrenLabel,  9, 0) 
-    layout.addWidget( dimiceliLabel,  10, 0) 
-    layout.addWidget( bernardLabel,   11, 0) 
+        self.month.textChanged.connect(     self.val_changed )
+        self.day.textChanged.connect(       self.val_changed )
+        self.lat.textChanged.connect(       self.val_changed )
+        self.solar.textChanged.connect(     self.val_changed )
+        self.pres.textChanged.connect(      self.val_changed )
+        self.fcst_temp.textChanged.connect( self.val_changed )
+        self.dew_temp.textChanged.connect(  self.val_changed )
+        self.wind.textChanged.connect(      self.val_changed )
+        self.cloud.textChanged.connect(     self.val_changed )
 
-    layout.addWidget( self.month,      0, 1) 
-    layout.addWidget( self.day,        1, 1) 
-    layout.addWidget( self.lat,        2, 1) 
-    layout.addWidget( self.solar,      3, 1) 
-    layout.addWidget( self.pres,       4, 1) 
-    layout.addWidget( self.fcstTemp,   5, 1) 
-    layout.addWidget( self.dewTemp,    6, 1) 
-    layout.addWidget( self.wind,       7, 1) 
-    layout.addWidget( self.cloud,      8, 1) 
-    layout.addWidget( liljegren,       9, 1) 
-    layout.addWidget( dimiceli,       10, 1) 
-    layout.addWidget( bernard,        11, 1) 
+        layout.addWidget( month_label,      0, 0)
+        layout.addWidget( day_label,        1, 0)
+        layout.addWidget( lat_label,        2, 0)
+        layout.addWidget( solar_label,      3, 0)
+        layout.addWidget( pres_label,       4, 0)
+        layout.addWidget( fcst_temp_label,   5, 0)
+        layout.addWidget( dew_temp_label,    6, 0)
+        layout.addWidget( wind_label,       7, 0)
+        layout.addWidget( cloud_label,      8, 0)
+        layout.addWidget( liljegren_label,  9, 0)
+        layout.addWidget( dimiceli_label,  10, 0)
+        layout.addWidget( bernard_label,   11, 0)
 
-    layout.addWidget( self.presUnits,  4, 2)
+        layout.addWidget( self.month,      0, 1)
+        layout.addWidget( self.day,        1, 1)
+        layout.addWidget( self.lat,        2, 1)
+        layout.addWidget( self.solar,      3, 1)
+        layout.addWidget( self.pres,       4, 1)
+        layout.addWidget( self.fcst_temp,   5, 1)
+        layout.addWidget( self.dew_temp,    6, 1)
+        layout.addWidget( self.wind,       7, 1)
+        layout.addWidget( self.cloud,      8, 1)
+        layout.addWidget( liljegren,       9, 1)
+        layout.addWidget( dimiceli,       10, 1)
+        layout.addWidget( bernard,        11, 1)
 
-    self.wbgt = {
-      'liljegren' : liljegren,
-      'dimiceli'  : dimiceli,
-      'bernard'   : bernard   
-    }
+        layout.addWidget( self.pres_units,  4, 2)
 
-    mainWidget.setLayout( layout )
-    self.setCentralWidget( mainWidget )
+        self.wbgt = {
+          'liljegren' : liljegren,
+          'dimiceli'  : dimiceli,
+          'bernard'   : bernard,
+        }
 
-    self.valChanged()
+        main_widget.setLayout( layout )
+        self.setCentralWidget( main_widget )
 
-    self.show()
+        self.val_changed()
 
-
-  def valChanged( self, *args, **kwargs ):
-
-    try:
-      month    = numpy.asarray( [  int( self.month.text(     ) )] )
-      day      = numpy.asarray( [  int( self.day.text(       ) )] )
-      lat      = numpy.asarray( [float( self.lat.text(       ) )] ) 
-      solar    = numpy.asarray( [float( self.solar.text(     ) )] ) * units('watt/m**2')
-      pres     = numpy.asarray( [float( self.pres.text(      ) )] )
-      fcstTemp = numpy.asarray( [float( self.fcstTemp.text(  ) )] ) * units.degree_Fahrenheit
-      dewTemp  = numpy.asarray( [float( self.dewTemp.text(   ) )] ) * units.degree_Fahrenheit
-      wind     = numpy.asarray( [float( self.wind.text(      ) )] ) * units.mph
-      cloud    = numpy.asarray( [float( self.cloud.text(     ) )] ) 
-    except:
-      return
-
-    year   = numpy.asarray( [2000])
-    hour   = numpy.asarray( [  12])
-    minute = numpy.asarray( [   0])
-    lon    = numpy.asarray( [   0.0])
-    pres   = pres * units( self.presUnits.currentText() )
-    print( pres )
-
-    for method, widget in self.wbgt.items():
-      Twbg = wbgt( method, 
-        lat, lat, year, month, day, hour, minute, solar, pres, fcstTemp, dewTemp, wind
-      )
-      widget.setText( str( Twbg['Twbg'][0] * 9.0/5.0 + 32 ) )
+        self.show()
 
 
+    def val_changed( self, *args, **kwargs ):
+        """
+        Run when value in text box changes
+
+        """
+
+        try:
+            month     = numpy.asarray( [  int( self.month.text(     ) )] )
+            day       = numpy.asarray( [  int( self.day.text(       ) )] )
+            lat       = numpy.asarray( [float( self.lat.text(       ) )] )
+            solar     = numpy.asarray( [float( self.solar.text(     ) )] ) * units('watt/m**2')
+            pres      = numpy.asarray( [float( self.pres.text(      ) )] )
+            fcst_temp = numpy.asarray( [float( self.fcst_temp.text( ) )] ) * units.degree_Fahrenheit
+            dew_temp  = numpy.asarray( [float( self.dew_temp.text(  ) )] ) * units.degree_Fahrenheit
+            wind      = numpy.asarray( [float( self.wind.text(      ) )] ) * units.mph
+            #cloud     = numpy.asarray( [float( self.cloud.text(     ) )] )
+        except:
+            return
+
+        year   = numpy.asarray( [2000])
+        hour   = numpy.asarray( [  12])
+        minute = numpy.asarray( [   0])
+        lon    = numpy.asarray( [   0.0])
+        pres   = pres * units( self.pres_units.currentText() )
+        print( pres )
+
+        for method, widget in self.wbgt.items():
+            temp_wbg = wbgt( method,
+                lat, lat, year, month, day, hour, minute, solar, pres, fcst_temp, dew_temp, wind
+            )
+            widget.setText( str( temp_wbg['Twbg'][0] * 9.0/5.0 + 32 ) )

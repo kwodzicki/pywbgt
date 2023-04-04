@@ -5,6 +5,7 @@ Utilities for making plots pretty
 
 import string
 import itertools
+import warnings
 
 import numpy as np
 
@@ -181,8 +182,8 @@ def add_legend( source_ax, title='', ncol=5, legend_ax=None ):
         columnspacing = 0.5,
         handletextpad = 0.1,
     )
-    for ll in lgnd.legendHandles:
-        ll._sizes=[80]
+    for handle in lgnd.legendHandles:
+        handle._sizes=[80]
 
 
 def axes_labels(axes,
@@ -220,17 +221,17 @@ def axes_labels(axes,
     loc.update(LEFT if 'left' in location else RIGHT)
     if len(loc) != 4:
         raise Exception( 'Error in location!')
- 
+
     letters  = string.ascii_uppercase if uppercase else string.ascii_lowercase
 
     if axes.ndim == 2:
         if rows:
             axes = axes.T
         axes = axes.flatten()
-    
+
     for axis, letter in zip(axes, letters):
         axis.text(
-            s         = formatter.format(letter), 
+            s         = formatter.format(letter),
             transform = axis.transAxes,
             **loc,
         )

@@ -1,10 +1,10 @@
 """
+Package for estimating wetbulb globe temperature
 
+Various algorithms for estimating wetbulb globe
+temperature from standard meteorological variables.
+ 
 """
-# Stefan-Boltzmann constant in W/m**2/K**4
-SIGMA   = 5.670374419e-8
-# Albedo of surface
-EPSILON = 0.98
 
 from .liljegren import wetbulb_globe as liljegrenWBGT
 from .bernard   import wetbulb_globe as bernardWBGT
@@ -33,9 +33,9 @@ def wbgt( method, *args, **kwargs ):
     method = method.lower()
     if method == 'liljegren':
         return liljegrenWBGT( *args, **kwargs )
-    elif method == 'bernard':
+    if method == 'bernard':
         return bernardWBGT( *args, **kwargs )
-    elif method == 'dimiceli':
+    if method == 'dimiceli':
         return dimiceliWBGT( *args, **kwargs )
 
     raise Exception( f'Unsupported WBGT method : {method}' )
