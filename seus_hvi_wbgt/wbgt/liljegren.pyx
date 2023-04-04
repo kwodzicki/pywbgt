@@ -34,7 +34,7 @@ def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=0.0508 ):
   
     Returns:
         ndarray : convective heat transfer coefficients
-  
+
     """
   
     cdef Py_ssize_t i, size = temp_air.shape[0]

@@ -83,9 +83,10 @@ cdef float _globe_temperature(
         pres (ndarray) : Atmospheric pressure; hPa
         solar (ndarray) : Radiant heat flux incident on the globe;
             currently assuming this to be the solar irradiance; W/m**2
-  
+
     Keyword arguments:
-  
+        None.
+
     Returns:
         ndarray : Globe temperature determined through iterative solver
 
@@ -164,7 +165,7 @@ def factor_e( speed ):
     Compute factor for natural wet bulb temperature with radiant heat
   
     This factor is used to related psychrometric wet bulb temperature
-    to natural wet bulb temperature in the presence o f radiant heat.
+    to natural wet bulb temperature in the presence of radiant heat.
   
     Arguments:
         speed (ndarray) : Wind speed in meters/second
@@ -183,19 +184,19 @@ def factor_e( speed ):
 def globe_temperature( temp_air, speed, pres, solar, f_db, cosz, ):
     """
     Determine globe temperature through iterative solver
-  
+
     Aruguments:
         temp_air (ndarray) : Ambient temperature; degree Celsius
         speed (ndarray) : Wind speed; meters/second
         pres (ndarray) : Atmospheric pressure; hPa
         solar (ndarray) : Radiant heat flux incident on the globe;
             currently assuming this to be the solar irradiance; W/m**2
-  
+
     Keyword arguments:
-  
+
     Returns:
         ndarray : Globe temperature; degree Celsius
-  
+
     """
 
     temp_g = numpy.empty( temp_air.shape, dtype=numpy.float32 )
@@ -208,7 +209,6 @@ def globe_temperature( temp_air, speed, pres, solar, f_db, cosz, ):
         float [::1] solar_view  = solar.astype(  numpy.float32 )
         float [::1] f_db_view   = f_db.astype(   numpy.float32 )
         float [::1] cosz_view   = cosz.astype(   numpy.float32 )
-
 
     for i in prange( size, nogil=True ):
         temp_g_view[i] = _globe_temperature( 
