@@ -8,11 +8,13 @@ wind speed, with speeds of 0-2 m/s red, 2-4 m/s blue, etc.
 """
 
 from pandas import DataFrame
+from numpy import random, arange
+
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
 from ..stats import mean_abs_error
-from .utils import bin_var, textbf
+from .utils import bin_var, thin_data, textbf
 
 def plot_by_hue(xdata, ydata, hue,
         bin_size     = None,
@@ -22,6 +24,8 @@ def plot_by_hue(xdata, ydata, hue,
         mae_fontsize = 'small',
         ax           = None,
         figsize      = (6,6),
+        seed         = 42,
+        npoints_max  = 10**5,
         **kwargs,
     ):
     """
@@ -42,6 +46,8 @@ def plot_by_hue(xdata, ydata, hue,
             mean absolute error for data.
         ax (matplotlib.pyplot.Axes) : Axis to plot the data on.
         figsize (tuple) : Size of the figure; ignored if ax= is used.
+        seed (int) : Seed for random number generator used to supbset
+            values for plotting
 
     Returns:
         tuple : Reference to the figure and axis used in the ploat
@@ -69,8 +75,18 @@ def plot_by_hue(xdata, ydata, hue,
     }
 
     for i, (hue_key, hue_df) in enumerate(data.groupby('hue')):
+        xvals = hue_df['x']
+        yvals = hue_df['y']
+
+        xvals, yvals = thin_data(
+            xvals, yvals,
+            npoints_total = xdata.size,
+            npoints_max   = npoints_max,
+            seed          = seed,
+        ) 
+
         ax.scatter(
-            hue_df['x'], hue_df['y'],
+            xvals, yvals, 
             marker = '.',
             color  = colors[hue_key],
             label  = hue_key,
