@@ -235,3 +235,44 @@ def axes_labels(axes,
             transform = axis.transAxes,
             **loc,
         )
+
+def thin_data(*args, npoints_total=None, npoints_max=10**5, seed=42, **kwargs):
+    """
+    Thin out data points for plotting
+
+    Given any number of input arguments; randomly thin out the
+    data for plotting purposes.
+
+    Arguments:
+        *args : Any number of numpy.ndarray objects to thin
+
+    Keyword arguments:
+        npoints_total (int,float) : Reference number of points in data.
+            This will default to the size of the input argumensts,
+            but is useful if trying to thin a subset of the data
+            and want the number of thinned points to be the same
+            percentage of points as it was in the full data set
+
+        npoints_max (int,float) : The maximum number of points allowed
+            after thining.
+
+    Returns:
+        tuple : thinned data arrays
+
+    """
+
+    npoints = args[0].size
+    if npoints_total is None:
+        npoints_total = npoints
+
+    if npoints_max > npoints_total:
+        return args
+
+    np.random.seed( seed )
+    idx = np.random.choice(
+        np.arange( npoints ),
+        int(npoints_max*npoints/npoints_total),
+        False,
+    )
+    return (arg[idx] for arg in args)
+

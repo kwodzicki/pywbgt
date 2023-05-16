@@ -9,4 +9,4 @@ RUN apt-get install -y libgeos-dev libomp-dev
 
 USER jovyan
 
-RUN pip install --upgrade --upgrade-strategy only-if-needed "numpy" "scipy" "pandas" "metpy" "pvlib"
+RUN pip install --upgrade --upgrade-strategy only-if-needed "numpy" "scipy" "pandas" "metpy" "pvlib" "matplotlib"
