@@ -286,7 +286,7 @@ def natural_wetbulb( temp_air, temp_psy, temp_g, speed ):
 
 def wetbulb_globe(
         datetime, lat, lon,
-        temp_air, temp_dew, pres, speed, solar, 
+        solar, pres, temp_air, temp_dew, speed,
         f_db   = None,
         cosz   = None,
         zspeed = None, 
@@ -296,14 +296,14 @@ def wetbulb_globe(
     Compute WBGT using Bernard Method
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (float) : Latitude of observations
         lon (float) : Longitude of observations
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
+        solar (Quantity) : Solar irradiance; unit of power over area
+        pres (Quantity) : Atmospheric pressure; unit of pressure
         temp_air (Quantity) : Ambient temperature; unit of temperature
         temp_dew (Quantity) : Dew point temperature; unit of temperature
-        pres (Quantity) : Atmospheric pressure; unit of pressure
         speed (Quantity) : Wind speed; units of speed
-        solar (Quantity) : Solar irradiance; unit of power over area
 
     Keyword arguments:
         f_db (float) : Direct beam radiation from the sun; fraction

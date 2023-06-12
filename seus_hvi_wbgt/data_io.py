@@ -8,10 +8,10 @@ variable metadata to the parquet files.
 
 import logging
 
-from pandas import read_parquet as pd_read_parquet
-from pyarrow import parquet, Schema
+from pyarrow import Schema
+from pyarrow.parquet import ParquetDataset
 
-def read_parquet( file, **kwargs ):
+def read_parquet( file, column_mapping=None, **kwargs ):
     """
     Read data from parquet file
 
@@ -23,7 +23,9 @@ def read_parquet( file, **kwargs ):
         file (str) : Full-path of parquet file to read in
 
     Keywords arguments:
-        **kwargs : passed to pandas.read_parquet
+        column_mapping (dict) : Key/value pairs to use for renamming
+            columns in the dataframe and attributes.
+        **kwargs : passed to pyarrow.parquet.ParquetDataset
 
     Returns:
         tuple : pandas.DataFrame containing data and
@@ -31,20 +33,27 @@ def read_parquet( file, **kwargs ):
 
     """
 
-    data   = pd_read_parquet(file, **kwargs)
-    schema = parquet.read_schema( file )
-    attrs  = {}
+    if column_mapping is None:
+        column_mapping = {}
+
+    dataset = ParquetDataset(file, **kwargs)
+    schema  = dataset.schema
+    attrs   = {}
     for fname in schema.names:
         metadata = schema.field(fname).metadata
         if not isinstance(metadata, dict):
             continue
+        fname = column_mapping.get(fname, fname)
         attrs[fname] = {
             key.decode() : val.decode()
             for key, val in metadata.items()
         }
 
-    return data, attrs
-
+    return (
+        dataset.read().to_pandas().rename(column_mapping, axis=1), 
+        attrs,
+    )
+    
 def write_parquet( file, dataframe, attrs, **kwargs ):
     """
     Write DataFrame to parquet file

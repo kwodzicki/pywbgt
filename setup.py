@@ -1,16 +1,6 @@
 import os
 from setuptools import setup, convert_path, find_packages, Extension
 
-try:
-  from Cython.Build import cythonize
-except:
-  raise Exception("Cython is not installed. Try installing using 'pip3 install cython'")
-
-try:
-  import numpy
-except:
-  raise Exception("numpy is not installed. Try installing using 'pip3 install numpy'")
-
 NAME  = 'seus_hvi_wbgt'
 DESC  = 'Package for SouthEast US Heat Vulnerability Index using Wet Bulb Globe Temperature.'
 AUTH  = 'Kyle R. Wodzicki'
@@ -23,9 +13,10 @@ SETUP_REQUIRES   = [
 ]
 
 INSTALL_REQUIRES = [
-    'numpy',
+    *SETUP_REQUIRES,
     'scipy',
     'pandas',
+    'pyarrow',
     'metpy',
     'pvlib',
     'matplotlib',
@@ -75,6 +66,9 @@ EXTS = [
 ]
 
 if __name__ == "__main__":
+    from Cython.Build import cythonize
+    import numpy
+
     setup(
         name                 = NAME,
         description          = DESC,
