@@ -22,16 +22,20 @@ INSTALL_REQUIRES = [
     'matplotlib',
 ]
 
+# Get version number from version file
 main_ns  = {}
 ver_path = convert_path( os.path.join(NAME, 'version.py') )
 with open(ver_path) as ver_file:
   exec(ver_file.read(), main_ns)
 
+# Set up some keyword arguments for compiling external extensions
+# (C/Cython code)
 EXTS_KWARGS = dict( 
     extra_compile_args = ['-fopenmp'],
     extra_link_args    = ['-fopenmp'],
 )
 
+# Define external extensions that must be compiled (C/Cython code)
 EXTS = [
     Extension( 
         f'{NAME}.wbgt.liljegren',
@@ -65,6 +69,7 @@ EXTS = [
     ),
 ]
 
+# Actually run the install
 if __name__ == "__main__":
     from Cython.Build import cythonize
     import numpy
