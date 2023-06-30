@@ -17,8 +17,8 @@ def conv_heat_flow_coeff( solar=None, zenith=None):
     Convective heat flow coefficient
 
     Keyword arguments:
-        solar () : Solar irradiance
-        zenith () : Solar zenith angle (radians)
+        solar (ndarray) : Solar irradiance
+        zenith (ndarray) : Solar zenith angle (radians)
 
     Returns:
         float : The convective heat flow coefficient
