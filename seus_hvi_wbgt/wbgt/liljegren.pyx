@@ -59,7 +59,7 @@ def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=0.0508 ):
 @cython.initializedcheck(False)   # Deactivate initialization checking.
 @cython.always_allow_keywords(True)
 def solar_parameters(
-        lat, lon, datetime, solar,
+        datetime, lat, lon, solar,
         avg     = None,
         gmt     = None,
         use_spa = False,
@@ -74,9 +74,9 @@ def solar_parameters(
       - fraction of the solar irradiance due to the direct beam
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
         lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
 
     Keyword arguments:
         avg (ndarray) : averaging time of the meteorological inputs (minutes)
