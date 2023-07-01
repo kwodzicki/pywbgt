@@ -7,6 +7,7 @@ The algorithms/models come from the following papers:
   - Dimiceli, V. E., Piltz, S. F., & Amburn, S. A. (2013). Black globe temperature estimate for the WBGT index. In IAENG Transactions on Engineering Technologies (pp. 323-334). Springer, Dordrecht.
   - Bernard, T. E., & Pourmoghani, M. (1999). Prediction of workplace wet bulb global temperature. Applied occupational and environmental hygiene, 14(2), 126–134. https://doi.org/10.1080/104732299303296
 
+# Table of Contents
 [TOC]
 
 # Installation
