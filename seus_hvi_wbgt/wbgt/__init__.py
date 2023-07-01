@@ -20,11 +20,11 @@ def wbgt( method, *args, **kwargs ):
 
     Arguments:
         method (str) : name of the method to use
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (ndarray) : Latitude corresponding to data values (decimal).
             Can be one (1) element array; will be expanded to match dates/data
         lon (ndarray) : Longitude correspondning to data values (decimal).
             Can be one (1) element array; will be expanded to match dates/data
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         solar (Quantity) : solar irradiance; units of any power over area
         pres (Qantity) : barometric pressure; units of pressure
         temp_air (Quantity) : air (dry bulb) temperature; units of temperature

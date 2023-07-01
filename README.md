@@ -1,21 +1,21 @@
 # Southeast US Heat Vulnerability Index (HVI) using Wet Bulb Globe Temperature (WBGT)
 
-[TOC]
-
-This python packge contains three (3) algorithms/models for estimating WBGT from standard, widely available meteorological variables.
-The algorthims/models come from the following papers:
+This python package contains three (3) algorithms/models for estimating WBGT from standard, widely available meteorological variables.
+The algorithms/models come from the following papers:
 
   - Liljegren, J. C., Carhart, R. A., Lawday, P., Tschopp, S., & Sharp, R. (2008). Modeling the wet bulb globe temperature using standard meteorological measurements. Journal of occupational and environmental hygiene, 5(10), 645-655. 
   - Dimiceli, V. E., Piltz, S. F., & Amburn, S. A. (2013). Black globe temperature estimate for the WBGT index. In IAENG Transactions on Engineering Technologies (pp. 323-334). Springer, Dordrecht.
   - Bernard, T. E., & Pourmoghani, M. (1999). Prediction of workplace wet bulb global temperature. Applied occupational and environmental hygiene, 14(2), 126–134. https://doi.org/10.1080/104732299303296
+
+[TOC]
 
 # Installation
 This package depends on some C/Cython modules; namely the Liljegren and Bernard methods and the National Renewable Energy Laboratory (NREL) Solar Position Algorithm (SPA; Reda and Andreas 2003).
 These codes are bundled with this package and *should* compile during installation.
 
 For these to be compiled/installed, a C compiler **must** be installed on your system.
-The Cython wrappers for the C-codes are designed to take advantage of multicore CPUs.
-For this to work, the OpenMP library is required and can be installed using your prefered package manager.
+The Cython wrappers for the C-codes are designed to take advantage of multi-core CPUs.
+For this to work, the OpenMP library is required and can be installed using your preferred package manager.
 
 To actually install the package, `cd` into this directory and run the following command
 
@@ -47,10 +47,10 @@ The passcode for JupyterLab is displayed in the command line output as part of t
 From here the user can run any Notebooks or scripts they wish with the confidence that their work is in a fully reproducible environment.
 
 # Using the package
-As this package is intended to be a complete procesing and analysis pacakge, various subpackages are included for different stages in the analysis pipeline.
+As this package is intended to be a complete processing and analysis package, various sub-packages are included for different stages in the analysis pipeline.
 
-## `seus_hvi_wbgt.wbgt` Subpackage
-The main subpackage is the `wbgt` package that is repsonsible for calculation of WBGT estimates.
+## `seus_hvi_wbgt.wbgt` Sub-package
+The main sub-package is the `wbgt` package that is responsible for calculation of WBGT estimates.
 This package includes codes a few algorithms for estimating wetbulb temperature and natural wetbulb temperature that are not associated with the three main WBGT algorithms.
 Codes for adjusting wind speeds to given heights above ground level are also included.
 The NREL SPA code is also provided as part of this package.
@@ -80,8 +80,8 @@ These are outlined the below table:
 
 | Variable | Units | Description |
 | - | - | - |
-| Latitude | degrees North | Latitude of obserervation; positive North |
-| Longitude | degrees East | Longitude of obserervation; positive East |
+| Latitude | degrees North | Latitude of observation; positive North |
+| Longitude | degrees East | Longitude of observation; positive East |
 | datetime | various | Datetime of observation as pandas Datetime object |
 | solar | various | Solar irradiance; Quantity |
 | pres | various | Barometric pressure; Quantity |
@@ -89,10 +89,10 @@ These are outlined the below table:
 | temp\_dew | various | Dew point temperature; Quantity |
 | speed | various | Wind speed; Quantity |
 
-Variables with 'various' units must be `pint.Quantity` objects for seemless unit conversion.
+Variables with 'various' units must be `pint.Quantity` objects for seamless unit conversion.
 As the WBGT algorithms require different units for input arguments, making these argument unit aware takes some burden of the end-user and moves unit conversions into the functions.
-Units can be specified using the `metpy.units` subpackage, which is installed as a dependency of this package.
-For example, to tag air temperture values with units of Kelvin, one could do:
+Units can be specified using the `metpy.units` sub-package, which is installed as a dependency of this package.
+For example, to tag air temperature values with units of Kelvin, one could do:
 
     from metpy.units import units
     temp_air = units.Quanity([283, 293], 'K')
@@ -108,7 +108,7 @@ Values returned from the algorithms are also `pint.Quanity` objects so that the 
 
 ### Keyword Arguments:
 There are various keywords associated with three main WBGT algorithms that control different aspects of the algorithms.
-The most relavent for most users will be the `zspeed` keyword, which sets the height at which the wind measurment was taken as a unit aware (i.e., `pint.Quantity`) value.
+The most relevant for most users will be the `zspeed` keyword, which sets the height at which the wind measurement was taken as a unit aware (i.e., `pint.Quantity`) value.
 This is important because the WBGT algorithms estimate the 2 meter wind speed for use in their WBGT estimates.
 As most weather stations measure wind at 10 meters, this is the default value for the keyword.
 However, if the station makes the measurement at 3 feet, then setting the keyword will ensure that the wind speed is adjusted properly to the 2 meter height.
@@ -120,13 +120,19 @@ For example:
 
 For more information about other keyword arguments, please refer to the function docstrings.
 
-## `seus_hvi_wbgt.plotting` Subpackage
-Subpackage that provides various plotting functions/utilities.
+### Sub-package modules
+There are various modules in this sub-package that provide the codes for the three WBGT algorithms and other supporting functionality.
+It is important to note that most of the helper functions for the algorithms (e.g., globe temperature, psychrometric wetbulb, etc.) are NOT unit aware functions.
+These functions require values in the correct units be input for them to function as intended, so be sure to read the docstring carefully.
+The only functions that are guaranteed to be unit-aware are the `wetbulb_globe` functions for each of the WBGT algorithm modules.
+
+## `seus_hvi_wbgt.plotting` Sub-package
+Sub-package that provides various plotting functions/utilities.
 These codes were used in the creation of plots for publications, presentations, and reports.
 
-## `seus_hvi_wbgt.tools` Subpackage
+## `seus_hvi_wbgt.tools` Sub-package
 Some random tools, such as a GUI, for the package.
-This are probably not useful to mose people.
+This are probably not useful to most people.
 
 ## `seus_hvi_wbgt.stats` Module
 Functions to compute various statistics used in algorithm validation and comparison.
@@ -157,7 +163,7 @@ To get around this limitation, wind speeds are clamped to be at least 1 mile per
 As the code needs wind speeds in meters per hour, the minimum value (after conversion) for wind speed is 1690.0 meters/hour.
 
 A second limitation is that no formula for the natural wet bulb temperature is provided. 
-Two algorithms for computing the natrual wet bulb temperature are included to address this limitation: Malchaire (1976) and Hunter and Minyard (1999)
+Two algorithms for computing the natural wet bulb temperature are included to address this limitation: Malchaire (1976) and Hunter and Minyard (1999)
 Either of these algorithms can be selected when running the Dimilceli method.
 
 After some testing, it was discovered that the psychrometric wet bulb algorithm provided by the Dimiceli method was not the most accurate.
@@ -175,14 +181,14 @@ This could be a major draw back of this method as it will not produce accurate v
 ## Road Map
 
 Future versions of code will include:
-  - Analysis code is also included used to preform trend analyses, spatial statistcs, etc.
+  - Analysis code is also included used to preform trend analyses, spatial statistics, etc.
   - Development of HVI
-  - Production level code for real-time computation and dicemination of HVI
+  - Production level code for real-time computation and dissemination of HVI
 
 ## References
   - Liljegren, J. C., Carhart, R. A., Lawday, P., Tschopp, S., & Sharp, R. (2008). Modeling the wet bulb globe temperature using standard meteorological measurements. Journal of occupational and environmental hygiene, 5(10), 645-655. 
   - Dimiceli, V. E., Piltz, S. F., & Amburn, S. A. (2013). Black globe temperature estimate for the WBGT index. In IAENG Transactions on Engineering Technologies (pp. 323-334). Springer, Dordrecht.
-  - Dimiceli, V. E., & Piltz, S. F., Estimation of Black Globe Temperature for Cacluation of the WBGT Index. https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
+  - Dimiceli, V. E., & Piltz, S. F., Estimation of Black Globe Temperature for Calculation of the WBGT Index. https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
   - Bernard, T. E., & Pourmoghani, M. (1999). Prediction of workplace wet bulb global temperature. Applied occupational and environmental hygiene, 14(2), 126–134. https://doi.org/10.1080/104732299303296
   - Malchaire, J. B., (1976) EVALUATION OF NATURAL WET BULB AND WET GLOBE THERMOMETERS. The Annals of Occupational Hygiene, Volume 19, Issue 3-4, December 1976, Pages 251–258, https://doi.org/10.1093/annhyg/19.3-4.251
   - Hunter, Charles H., and C. Olivia Minyard. (1999) Estimating wet bulb globe temperature using standard meteorological measurements." Proceedings of the Conference: 2nd Conference on Environmental Applications, Long Beach, CA, USA. Vol. 18. 1999.
