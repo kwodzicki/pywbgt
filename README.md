@@ -91,18 +91,18 @@ These are outlined the below table:
 | speed | various | Wind speed; Quantity |
 
 Variables with 'various' units must be `pint.Quantity` objects for seamless unit conversion.
-As the WBGT algorithms require different units for input arguments, making these argument unit aware takes some burden of the end-user and moves unit conversions into the functions.
+As the WBGT algorithms require different units for input arguments, making these argument unit aware takes some burden off the end-user and moves unit conversions into the functions.
 Units can be specified using the `metpy.units` sub-package, which is installed as a dependency of this package.
 For example, to tag air temperature values with units of Kelvin, one could do:
 
     from metpy.units import units
-    temp_air = units.Quanity([283, 293], 'K')
+    temp_air = units.Quantity([283, 293], 'K')
 
 Or, using a numpy array:
 
     import numpy as np
     from metpy.units import units
-    temp_air = np.asaray([283, 293]) * units('K')
+    temp_air = np.asarray([283, 293]) * units('K')
 
 All the user needs to know is the units of their data and all conversions for the algorithms are done by the algorithms.
 Values returned from the algorithms are also `pint.Quanity` objects so that the user knows the units for the values.
@@ -165,12 +165,12 @@ As the code needs wind speeds in meters per hour, the minimum value (after conve
 
 A second limitation is that no formula for the natural wet bulb temperature is provided. 
 Two algorithms for computing the natural wet bulb temperature are included to address this limitation: Malchaire (1976) and Hunter and Minyard (1999)
-Either of these algorithms can be selected when running the Dimilceli method.
+Either of these algorithms can be selected when running the Dimiceli method.
 
 After some testing, it was discovered that the psychrometric wet bulb algorithm provided by the Dimiceli method was not the most accurate.
 This has been addressed by providing the option to use the Stull (2011) algorithm instead of the Dimiceli wet bulb algorithm.
 
-By default the Dimiceli wet bulb and the Malcharie natural wet bulb algorithms are used.
+By default the Dimiceli wet bulb and the Malchaire natural wet bulb algorithms are used.
  
 ### Bernard and Pourmaghani
 
@@ -186,7 +186,7 @@ Future versions of code will include:
   - Development of HVI
   - Production level code for real-time computation and dissemination of HVI
 
-## References
+# References
   - Liljegren, J. C., Carhart, R. A., Lawday, P., Tschopp, S., & Sharp, R. (2008). Modeling the wet bulb globe temperature using standard meteorological measurements. Journal of occupational and environmental hygiene, 5(10), 645-655. 
   - Dimiceli, V. E., Piltz, S. F., & Amburn, S. A. (2013). Black globe temperature estimate for the WBGT index. In IAENG Transactions on Engineering Technologies (pp. 323-334). Springer, Dordrecht.
   - Dimiceli, V. E., & Piltz, S. F., Estimation of Black Globe Temperature for Calculation of the WBGT Index. https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
