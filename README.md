@@ -172,7 +172,7 @@ This has been addressed by providing the option to use the Stull (2011) algorith
 
 By default the Dimiceli wet bulb and the Malchaire natural wet bulb algorithms are used.
  
-### Bernard and Pourmaghani
+### Bernard and Pourmoghani
 
 The Bernard method focused on indoor WBGT, so there is no discussion of globe temperature estimation methods.
 From discussion with colleague, we could use the globe temperature estimation methods from either Liljegren or Dimiceli in the Bernard equations.
