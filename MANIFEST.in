@@ -1,1 +1,0 @@
-recursive-include seus_hvi_wbgt *.pyx *_c.c *_c.h
