@@ -1,9 +1,7 @@
-seUS_HVI_WBGT
+pywbgt
 =============
 
 .. toctree::
    :maxdepth: 4
 
-   setup
-   seus_hvi_wbgt
-   tests
+   pywbgt

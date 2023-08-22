@@ -146,7 +146,7 @@ def factor_c( speed ):
     """
     Compute factor for natural wet bulb temperature without radiant heat
   
-    This factor is used to related psychrometric wet bulb temperature
+    This factor is used to relate psychrometric wet bulb temperature
     to natural wet bulb temperature in the absence of radiant heat.
   
     Arguments:
@@ -185,14 +185,12 @@ def globe_temperature( temp_air, speed, pres, solar, f_db, cosz, ):
     """
     Determine globe temperature through iterative solver
 
-    Aruguments:
+    Arguments:
         temp_air (ndarray) : Ambient temperature; degree Celsius
         speed (ndarray) : Wind speed; meters/second
         pres (ndarray) : Atmospheric pressure; hPa
         solar (ndarray) : Radiant heat flux incident on the globe;
             currently assuming this to be the solar irradiance; W/m**2
-
-    Keyword arguments:
 
     Returns:
         ndarray : Globe temperature; degree Celsius
