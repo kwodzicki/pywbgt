@@ -5,7 +5,7 @@ import pandas
 import numpy
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt.ono import ono 
+from pywbgt.ono import ono 
 
 def degMinSec2Frac( degree, minute, second ):
 
