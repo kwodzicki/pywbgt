@@ -5,7 +5,7 @@ import pandas
 import numpy
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt.ono import ono 
+from pywbgt.ono import ono 
 
 def degMinSec2Frac( degree, minute, second ):
 
@@ -29,14 +29,15 @@ class TestWBGT( unittest.TestCase ):
     self.lats  = numpy.full( self.solar.size, degMinSec2Frac(*lats) )
     self.lons  = numpy.full( self.solar.size, degMinSec2Frac(*lons) )
 
-    self.res   = ono(self.lats, self.lons,
-      dates.repeat( self.solar.size ),
-      self.solar,
-      self.pres,
-      self.Tair,
-      self.Tdew,
-      self.speed,
-      avg = 1.0
+    self.res   = ono(
+        dates.repeat( self.solar.size ),
+        self.lats, self.lons,
+        self.solar,
+        self.pres,
+        self.Tair,
+        self.Tdew,
+        self.speed,
+        avg = 1.0
      )
 
   def test_Twbg(self):

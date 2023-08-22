@@ -9,5 +9,5 @@ from seus_hvi_wbgt.tools import gui
 if __name__ == "__main__":
 
   app  = QApplication( sys.argv )
-  inst = gui.WBGT_Gui()
+  inst = gui.WBGTGui()
   exit( app.exec_() )

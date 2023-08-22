@@ -59,7 +59,7 @@ def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=0.0508 ):
 @cython.initializedcheck(False)   # Deactivate initialization checking.
 @cython.always_allow_keywords(True)
 def solar_parameters(
-        lat, lon, datetime, solar,
+        datetime, lat, lon, solar,
         avg     = None,
         gmt     = None,
         use_spa = False,
@@ -74,9 +74,9 @@ def solar_parameters(
       - fraction of the solar irradiance due to the direct beam
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
         lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
 
     Keyword arguments:
         avg (ndarray) : averaging time of the meteorological inputs (minutes)
@@ -295,7 +295,7 @@ def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
 @cython.initializedcheck(False)   # Deactivate initialization checking.
 @cython.always_allow_keywords(True)
 def wetbulb_globe(
-        lat, lon, datetime, 
+        datetime, lat, lon,
         solar, pres, temp_air, temp_dew, speed,
         urban   = None, 
         gmt     = None,
@@ -321,11 +321,11 @@ def wetbulb_globe(
     then combines the results to produce Twbg.
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (ndarray) : Latitude corresponding to data values (decimal).
             Can be one (1) element array; will be expanded to match dates/data
         lon (ndarray) : Longitude correspondning to data values (decimal).
             Can be one (1) element array; will be expanded to match dates/data
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         solar (Quantity) : solar irradiance; units of any power over area
         pres (Qantity) : barometric pressure; units of pressure
         temp_air (Quantity) : air (dry bulb) temperature; units of temperature
@@ -456,13 +456,14 @@ def wetbulb_globe(
     # Iterate (in parallel) over all values in the input arrays
     for i in prange( size, nogil=True ):
         # Ensure that variables are defined for each thread
-        Tg        = 0
-        Tpsy      = 0
-        Tnwb      = 0
-        Twbg      = 0
-        solar_adj = 0 
+        Tg        = 0.0
+        Tpsy      = 0.0
+        Tnwb      = 0.0
+        Twbg      = 0.0
+        solar_adj = 0.0 
         est_speed = speedView[i]
 
+        #printf( 'From cython : %f %f\n', est_speed, speedView[i] )
         # Run WBGT code; note that GMT and AVG input arguments are set to
         # zero (0) because all time adjustment is done above in Cython
         res = calc_wbgt( 
