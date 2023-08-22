@@ -1,6 +1,13 @@
 """
 WBGT from the Dimiceli method
 
+Note that when running the main wetbulb_globe() function, wind
+speed is adjusted to the 2 meter height and solar irradiance
+may be adjusted based on the Liljegren method for calculating
+solar parameters. Running other functions such as
+globe_temperature() or natural_wetbulb calculations without
+these adjustments may lead to different results.
+
 """
 
 import numpy as np
@@ -12,13 +19,15 @@ from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer
 
-def conv_heat_flow_coeff( solar=None, zenith=None):
+MIN_SPEED = units.Quantity(1690.0, 'meter per hour')
+
+def conv_heat_flow_coeff(solar=None, zenith=None, **kwargs):
     """
     Convective heat flow coefficient
 
     Keyword arguments:
-        solar () : Solar irradiance
-        zenith () : Solar zenith angle (radians)
+        solar (ndarray) : Solar irradiance
+        zenith (ndarray) : Solar zenith angle (radians)
 
     Returns:
         float : The convective heat flow coefficient
@@ -30,13 +39,15 @@ def conv_heat_flow_coeff( solar=None, zenith=None):
     """
 
     const_a = const_b = const_c = 0.0
-    if (solar is not None) and (zenith is not None):
-        return (
-            const_a * solar**const_b *
-            numpy.cos( zenith )**const_c
-        )
+    if (solar is None) or (zenith is None):
+        return 0.315
 
-    return 0.315
+    return (
+        const_a * 
+        solar**const_b *
+        numpy.cos(zenith)**const_c
+    )
+
 
 def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
@@ -111,17 +122,28 @@ def factor_b( temp_air, temp_dew, pres, solar, f_db, cosz ):
         thermal_emissivity( temp_air, temp_dew, pres ) * temp_air**4
     )
 
-def factor_c( speed, chfc = None ):
+def factor_c(speed, chfc=None, **kwargs):
     """
   
     Arguments:
       speed (float) : wind speed in meters per hour
   
+    Keyword arguments:
+        chfc (ndarray) : Convective heat flow coefficient. If none
+            provided, is computed using the conv_heat_flow_coeff()
+            function
+        **kwargs : Any extra arguments are passed directly to
+            the conv_heat_flow_coeff() function.
+
     """
 
     if chfc is None:
-        chfc = conv_heat_flow_coeff()
-    return chfc * speed**0.58 / 5.3865e-8
+        chfc = conv_heat_flow_coeff(**kwargs)
+    return (
+        chfc *
+        numpy.clip(speed, MIN_SPEED.magnitude, None)**0.58 /
+        5.3865e-8
+    )
 
 def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
     """
@@ -135,7 +157,10 @@ def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
         solar (float) : solar irradiance in Watts per meter**2
         f_db (float) : Fraction of direct beam radiation
         cosz (float) : Cosine of solar zenith angle
-  
+ 
+    Returns:
+        ndarray : Black globe temperature in degrees C
+
     Notes:
         Chapter 26 of IAENG Transactions on Engineering Technologies: 
           "Black Globe Temperature Estimate for the WBGT Index"
@@ -187,11 +212,11 @@ def wetbulb_globe(
         datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (float) : Latitude of observations
         lon (float) : Longitude of observations
+        solar (Quantity) : Solar irradiance; unit of power over area
+        pres (Quantity) : Atmospheric pressure; unit of pressure
         temp_air (Quantity) : Ambient temperature; unit of temperature
         temp_dew (Quantity) : Dew point temperature; unit of temperature
-        pres (Quantity) : Atmospheric pressure; unit of pressure
         speed (Quantity) : Wind speed; units of speed
-        solar (Quantity) : Solar irradiance; unit of power over area
 
     Keyword arguments:
         f_db (float) : Direct beam radiation from the sun; fraction
@@ -219,16 +244,18 @@ def wetbulb_globe(
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')
 
-    solar    = solar.to( 'watt/m**2'       ).magnitude
-    pres     = pres.to( 'hPa'             ).magnitude
-    temp_air = temp_air.to( 'degree_Celsius'  ).magnitude
-    temp_dew = temp_dew.to( 'degree_Celsius'  ).magnitude
-    speed2m  = loglaw( speed, zspeed )
-    # Ensure wind speed is at least one (1) mile/hour
-    speed1   = numpy.clip(speed2m.to('meters per hour').magnitude, 1690.0, None)
+    solar    = solar.to(   'watt/m**2'     ).magnitude
+    pres     = pres.to(    'hPa'           ).magnitude
+    temp_air = temp_air.to('degree_Celsius').magnitude
+    temp_dew = temp_dew.to('degree_Celsius').magnitude
+    speed2m  = numpy.clip(
+        loglaw( speed, zspeed ),
+        MIN_SPEED,
+        None,
+    )
 
     if (f_db is None) or (cosz is None):
-        solar = solar_parameters( lat, lon, datetime, solar, **kwargs )
+        solar = solar_parameters(datetime, lat, lon, solar, **kwargs )
         if cosz is None:
             cosz = solar[1]
         if f_db is None:
@@ -239,7 +266,7 @@ def wetbulb_globe(
         temp_air,
         temp_dew,
         pres,
-        speed1,
+        speed2m.to('meter per hour').magnitude,
         solar,
         f_db,
         cosz,

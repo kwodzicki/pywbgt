@@ -1,17 +1,7 @@
 import os
 from setuptools import setup, convert_path, find_packages, Extension
 
-try:
-  from Cython.Build import cythonize
-except:
-  raise Exception("Cython is not installed. Try installing using 'pip3 install cython'")
-
-try:
-  import numpy
-except:
-  raise Exception("numpy is not installed. Try installing using 'pip3 install numpy'")
-
-NAME  = 'seus_hvi_wbgt'
+NAME  = 'pywbgt'
 DESC  = 'Package for SouthEast US Heat Vulnerability Index using Wet Bulb Globe Temperature.'
 AUTH  = 'Kyle R. Wodzicki'
 EMAIL = 'kwodzicki@cicsnc.org'
@@ -23,58 +13,67 @@ SETUP_REQUIRES   = [
 ]
 
 INSTALL_REQUIRES = [
-    'numpy',
+    *SETUP_REQUIRES,
     'scipy',
     'pandas',
+    'pyarrow',
     'metpy',
     'pvlib',
     'matplotlib',
 ]
 
+# Get version number from version file
 main_ns  = {}
 ver_path = convert_path( os.path.join(NAME, 'version.py') )
 with open(ver_path) as ver_file:
   exec(ver_file.read(), main_ns)
 
+# Set up some keyword arguments for compiling external extensions
+# (C/Cython code)
 EXTS_KWARGS = dict( 
     extra_compile_args = ['-fopenmp'],
     extra_link_args    = ['-fopenmp'],
 )
 
+# Define external extensions that must be compiled (C/Cython code)
 EXTS = [
     Extension( 
-        f'{NAME}.wbgt.liljegren',
+        f'{NAME}.liljegren',
         sources            = [
-            os.path.join(NAME, 'wbgt', 'liljegren.pyx'),
-            os.path.join(NAME, 'wbgt', 'src', 'spa_c.c'),
+            os.path.join(NAME, 'liljegren.pyx'),
+            os.path.join(NAME, 'src', 'spa_c.c'),
         ],
-        include_dirs = [os.path.join(NAME, 'wbgt', 'src')],
+        include_dirs = [os.path.join(NAME, 'src')],
         depends      = ['spa_c.h'],
         **EXTS_KWARGS,
     ),
     Extension( 
-        f'{NAME}.wbgt.spa',
+        f'{NAME}.spa',
         sources      = [
-            os.path.join(NAME, 'wbgt', 'spa.pyx'),
-            os.path.join(NAME, 'wbgt', 'src', 'spa_c.c'),
+            os.path.join(NAME, 'spa.pyx'),
+            os.path.join(NAME, 'src', 'spa_c.c'),
         ],
-        include_dirs = [os.path.join(NAME, 'wbgt', 'src')],
+        include_dirs = [os.path.join(NAME, 'src')],
         depends      = ['spa_c.h'],
         **EXTS_KWARGS,
     ),
     Extension( 
-        f'{NAME}.wbgt.bernard',
-        sources      = [os.path.join(NAME, 'wbgt', 'bernard.pyx')],
+        f'{NAME}.bernard',
+        sources      = [os.path.join(NAME, 'bernard.pyx')],
         **EXTS_KWARGS,
     ),
     Extension( 
-        f'{NAME}.wbgt.psychrometric_wetbulb',
-        sources      = [os.path.join(NAME, 'wbgt', 'psychrometric_wetbulb.pyx')],
+        f'{NAME}.psychrometric_wetbulb',
+        sources      = [os.path.join(NAME, 'psychrometric_wetbulb.pyx')],
         **EXTS_KWARGS,
     ),
 ]
 
+# Actually run the install
 if __name__ == "__main__":
+    from Cython.Build import cythonize
+    import numpy
+
     setup(
         name                 = NAME,
         description          = DESC,

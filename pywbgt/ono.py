@@ -5,23 +5,26 @@ Wet-bulb Globe Temperature using the Ono and Tonouchi (2012) method
 
 import numpy as np
 
-from .utils import relative_humidity
+from .calc import relative_humidity
 
 def ono( datetime, lat, lon,
-        temp_air, temp_dew, pres, speed, solar,
-        f_db=None, cosz=None, **kwargs ):
+        solar, pres, temp_air, temp_dew, speed,
+        f_db=None,
+        cosz=None,
+        **kwargs,
+    ):
     """
     Compute WBGT using Dimiceli method
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (float) : Latitude of observations
         lon (float) : Longitude of observations
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
+        solar (Quantity) : Solar irradiance; unit of power over area
+        pres (Quantity) : Atmospheric pressure; unit of pressure
         temp_air (Quantity) : Ambient temperature; unit of temperature
         temp_dew (Quantity) : Dew point temperature; unit of temperature
-        pres (Quantity) : Atmospheric pressure; unit of pressure
         speed (Quantity) : Wind speed; units of speed
-        solar (Quantity) : Solar irradiance; unit of power over area
 
     Keyword arguments:
         f_db (float) : Direct beam radiation from the sun; fraction

@@ -16,7 +16,7 @@ Bernard, T.E., & Pourmoghani, M. (1999).
 from cython.parallel import prange
 import numpy
 
-from libc.math cimport fabs, pow
+from libc.math cimport fabs, pow, log10
 cimport numpy
 cimport cython
 
@@ -36,8 +36,8 @@ cdef:
     float EPS       = EPSILON
 
 @cython.cdivision(True)
-cdef float _conv_heat_trans_coeff(
-        float temp_g, float temp_air, float speed,
+cdef double _conv_heat_trans_coeff(
+        double temp_g, double temp_air, double speed,
     ) nogil:
     """
     Convective heat transfer coefficient
@@ -55,7 +55,7 @@ cdef float _conv_heat_trans_coeff(
 
     """
 
-    cdef float coeff, delta_t = temp_g-temp_air
+    cdef double coeff, delta_t = temp_g-temp_air
     coeff = pow(
         pow(10.9*pow(speed, 0.566), 3) + 
         pow(0.35 + 1.77*pow(fabs(delta_t), 0.25), 3),
@@ -66,10 +66,10 @@ cdef float _conv_heat_trans_coeff(
     return coeff
 
 @cython.cdivision(True)
-cdef float _globe_temperature(
-        float temp_air,
-        float speed,
-        float pres,
+cdef double _globe_temperature(
+        double temp_air,
+        double speed,
+        double pres,
         float solar, 
         float f_db,
         float cosz,
@@ -94,7 +94,7 @@ cdef float _globe_temperature(
 
     cdef:
         int ii
-        float h, temp_g_new, temp_g = temp_air
+        double h, temp_g_new, temp_g = temp_air
 
     for ii in range( MAX_ITER ):
         h = _conv_heat_trans_coeff( temp_g, temp_air, speed )
@@ -142,6 +142,25 @@ def conv_heat_trans_coeff( temp_g, temp_air, speed ):
         coeff,
     )
 
+@cython.cdivision(True)
+cdef double _factor_c(double speed) nogil:
+    """
+    Compute the C factor on a single value
+
+    Arguments:
+        speed (double) : Wind speed in meters per second
+
+    Returns:
+        double : Value of the C factor.
+
+    """
+
+    if speed < 0.03:
+        return 0.85
+    if speed > 3.0:
+        return 1.0
+    return 0.96 + 0.069*log10(speed)
+  
 def factor_c( speed ):
     """
     Compute factor for natural wet bulb temperature without radiant heat
@@ -160,6 +179,25 @@ def factor_c( speed ):
     # Where wind > 3.0, keep values of C, else compute C and return values
     return numpy.where( speed > 3.0, 1.0, fac_c )
 
+@cython.cdivision(True)
+cdef double _factor_e(double speed) nogil:
+    """
+    Compute the E factor on a single value
+
+    Arguments:
+        speed (double) : Wind speed in meters per second
+
+    Returns:
+        double : Value of the E factor.
+
+    """
+
+    if speed < 0.1:
+        return 1.1
+    if speed > 1.0:
+        return -0.1
+    return 0.1/pow(speed, 1.1) - 0.2
+ 
 def factor_e( speed ):
     """
     Compute factor for natural wet bulb temperature with radiant heat
@@ -181,7 +219,76 @@ def factor_e( speed ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globe_temperature( temp_air, speed, pres, solar, f_db, cosz, ):
+def globe_temperature_64(
+        double [::1] temp_air,
+        double [::1] speed,
+        double [::1] pres,
+        float  [::1] solar,
+        float  [::1] f_db,
+        float  [::1] cosz,
+    ): 
+    """
+    Compute Tg (64-bit)
+
+    Compute value(s) for globe temperature in double precision
+
+    """
+
+    temp_g = numpy.empty(temp_air.size, dtype=numpy.float64)
+    cdef:
+        Py_ssize_t i, size = temp_air.size
+        double [::1] temp_g_view   = temp_g 
+
+    for i in prange( size, nogil=True ):
+        temp_g_view[i] = _globe_temperature( 
+            temp_air[i]+CtoK,
+            speed[i],
+            pres[i],
+            solar[i],
+            f_db[i],
+            cosz[i],
+        ) - CtoK
+    return temp_g
+
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+@cython.initializedcheck(False)   # Deactivate initialization checking.
+def globe_temperature_32(
+        float [::1] temp_air,
+        float [::1] speed,
+        float [::1] pres,
+        float [::1] solar,
+        float [::1] f_db,
+        float [::1] cosz,
+    ): 
+    """
+    Compute Tg (32-bit)
+
+    Compute value(s) for globe temperature in single precision
+
+    """
+
+       
+    temp_g = numpy.empty(temp_air.size, dtype=numpy.float32)
+    cdef:
+        Py_ssize_t i, size = temp_air.size
+        float [::1] temp_g_view = temp_g 
+
+    for i in prange( size, nogil=True ):
+        temp_g_view[i] = <float>_globe_temperature( 
+            <double>temp_air[i]+CtoK,
+            <double>speed[i],
+            <double>pres[i],
+            solar[i],
+            f_db[i],
+            cosz[i],
+        ) - CtoK
+    return temp_g
+
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+@cython.initializedcheck(False)   # Deactivate initialization checking.
+def globe_temperature(temp_air, speed, pres, solar, f_db, cosz):
     """
     Determine globe temperature through iterative solver
 
@@ -197,27 +304,27 @@ def globe_temperature( temp_air, speed, pres, solar, f_db, cosz, ):
 
     """
 
-    temp_g = numpy.empty( temp_air.shape, dtype=numpy.float32 )
-    cdef:
-        Py_ssize_t i, size = temp_air.size
-        float [::1] temp_g_view = temp_g 
-        float [::1] temp_air_view = temp_air.astype( numpy.float32 )
-        float [::1] speed_view  = speed.astype(  numpy.float32 )
-        float [::1] pres_view   = pres.astype(   numpy.float32 )
-        float [::1] solar_view  = solar.astype(  numpy.float32 )
-        float [::1] f_db_view   = f_db.astype(   numpy.float32 )
-        float [::1] cosz_view   = cosz.astype(   numpy.float32 )
+    # if these variables are NOT all the same type, make them all float32
+    if not temp_air.dtype == speed.dtype == pres.dtype:
+        temp_air = temp_air.astype(numpy.float32)
+        speed    =    speed.astype(numpy.float32)
+        pres     =     pres.astype(numpy.float32)
 
-    for i in prange( size, nogil=True ):
-        temp_g_view[i] = _globe_temperature( 
-            temp_air_view[i]+CtoK,
-            speed_view[i],
-            pres_view[i],
-            solar_view[i],
-            f_db_view[i],
-            cosz_view[i],
-        ) - CtoK
-    return temp_g
+    # If these variables are NOT all float32, force to float32
+    if not solar.dtype == f_db.dtype == cosz.dtype == numpy.float32:
+        solar = solar.astype(numpy.float32)
+        f_db  =  f_db.astype(numpy.float32)
+        cosz  =  cosz.astype(numpy.float32)
+
+    # Run 64-bit version
+    if temp_air.dtype == numpy.float64:
+        return globe_temperature_64(temp_air, speed, pres, solar, f_db, cosz)
+    # Run 32-bit version
+    if temp_air.dtype == numpy.float32:
+        return globe_temperature_32(temp_air, speed, pres, solar, f_db, cosz)
+    # Error as MUST input floating-point values
+    raise Exception('Must imput floating-point values')
+
 
 def psychrometric_wetbulb(temp_air, vapor_air=None, temp_dew=None, relhum=None):
     """
@@ -244,6 +351,72 @@ def psychrometric_wetbulb(temp_air, vapor_air=None, temp_dew=None, relhum=None):
             )
 
     return 0.376 + 5.79*vapor_air + (0.388 - 0.0465*vapor_air)*temp_air
+
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+@cython.initializedcheck(False)   # Deactivate initialization checking.
+def natural_wetbulb_64(
+        double [::1] temp_air,
+        double [::1] temp_psy,
+        double [::1] temp_g,
+        double [::1] speed,
+    ):
+    """
+    Compute Tnwb (64-bit)
+
+    Compute value(s) for natural wetbulb temperature in double precision
+
+    """
+ 
+    temp_nwb = numpy.empty(temp_air.size, dtype=numpy.float64)
+    cdef:
+        Py_ssize_t i, size = temp_air.size
+        double val 
+        double [::1] temp_nwb_view = temp_nwb
+
+    for i in prange( size, nogil=True ):
+        val = temp_g[i]-temp_air[i]
+        if val < 4.0:
+            val = temp_air[i] - temp_psy[i]
+            val = temp_air[i] - _factor_c(speed[i]) * val
+        else:
+            val = temp_psy[i] + 0.25*val + _factor_e(speed[i])
+
+        temp_nwb_view[i] = val
+    return temp_nwb
+
+@cython.boundscheck(False)  # Deactivate bounds checking
+@cython.wraparound(False)   # Deactivate negative indexing.
+@cython.initializedcheck(False)   # Deactivate initialization checking.
+def natural_wetbulb_32(
+        float [::1] temp_air,
+        float [::1] temp_psy,
+        float [::1] temp_g,
+        float [::1] speed,
+    ):
+    """
+    Compute Tnwb (32-bit)
+
+    Compute value(s) for natural wetbulb temperature in single precision
+
+    """
+  
+    temp_nwb = numpy.empty(temp_air.size, dtype=numpy.float32)
+    cdef:
+        Py_ssize_t i, size = temp_air.size
+        float val 
+        float [::1] temp_nwb_view = temp_nwb
+
+    for i in prange( size, nogil=True ):
+        val = temp_g[i]-temp_air[i]
+        if val < 4.0:
+            val = temp_air[i] - temp_psy[i]
+            val = temp_air[i] - <float>_factor_c(<double>speed[i]) * val
+        else:
+            val = temp_psy[i] + 0.25*val + <float>_factor_e(<double>speed[i])
+
+        temp_nwb_view[i] = val
+    return temp_nwb
 
 def natural_wetbulb( temp_air, temp_psy, temp_g, speed ):
     """
@@ -276,15 +449,21 @@ def natural_wetbulb( temp_air, temp_psy, temp_g, speed ):
   
     """
 
-    return numpy.where( 
-        (temp_g-temp_air) < 4.0,
-        temp_air - factor_c( speed )*(temp_air - temp_psy),
-        temp_psy + 0.25*(temp_g-temp_air) + factor_e( speed )
-    )
+    if not temp_air.dtype == temp_psy.dtype == temp_g.dtype == speed.dtype:
+        temp_air = temp_air.astype(numpy.float32)
+        temp_psy = temp_psy.astype(numpy.float32)
+        temp_g   =   temp_g.astype(numpy.float32)
+        speed    =    speed.astype(numpy.float32)
+
+    if temp_air.dtype == numpy.float64:
+        return natural_wetbulb_64(temp_air, temp_psy, temp_g, speed)
+    if temp_air.dtype == numpy.float32:
+        return natural_wetbulb_32(temp_air, temp_psy, temp_g, speed)
+    raise Exception('Must imput floating-point values')
 
 def wetbulb_globe(
         datetime, lat, lon,
-        temp_air, temp_dew, pres, speed, solar, 
+        solar, pres, temp_air, temp_dew, speed,
         f_db   = None,
         cosz   = None,
         zspeed = None, 
@@ -294,14 +473,14 @@ def wetbulb_globe(
     Compute WBGT using Bernard Method
 
     Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (float) : Latitude of observations
         lon (float) : Longitude of observations
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
+        solar (Quantity) : Solar irradiance; unit of power over area
+        pres (Quantity) : Atmospheric pressure; unit of pressure
         temp_air (Quantity) : Ambient temperature; unit of temperature
         temp_dew (Quantity) : Dew point temperature; unit of temperature
-        pres (Quantity) : Atmospheric pressure; unit of pressure
         speed (Quantity) : Wind speed; units of speed
-        solar (Quantity) : Solar irradiance; unit of power over area
 
     Keyword arguments:
         f_db (float) : Direct beam radiation from the sun; fraction
@@ -323,7 +502,7 @@ def wetbulb_globe(
 
     if (f_db is None) or (cosz is None):
         solar = solar_parameters( 
-            lat, lon, datetime, solar.to('watt/m**2').magnitude, **kwargs,
+            datetime, lat, lon, solar.to('watt/m**2').magnitude, **kwargs,
         )
         if cosz is None:
             cosz = solar[1]

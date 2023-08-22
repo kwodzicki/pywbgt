@@ -4,6 +4,7 @@
 *.ipynb*
 *.pyc
 *.egg-info
+*.bak
 
 install.sh
 

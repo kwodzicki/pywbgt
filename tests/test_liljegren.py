@@ -5,8 +5,8 @@ import pandas
 import numpy
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt import wbgt
-from seus_hvi_wbgt.wbgt.liljegren import solar_parameters
+from pywbgt import wbgt
+from pywbgt.liljegren import solar_parameters
 
 def degMinSec2Frac( degree, minute, second ):
 
@@ -39,8 +39,7 @@ class TestSolarParams( unittest.TestCase ):
     solar = numpy.full( self.dates.size, 1000 )
 
     res = solar_parameters(
-        lats, lons,
-        self.dates,
+        self.dates, lats, lons,
         solar, 
         use_spa=False,
     )
@@ -59,8 +58,8 @@ class TestSolarParams( unittest.TestCase ):
     for use_spa in [False, True]:
       expAct.append(
         solar_parameters(
-        lats, lons,
         dates,
+        lats, lons,
         solar, 
         use_spa=use_spa,
       )
@@ -88,8 +87,8 @@ class TestWBGT( unittest.TestCase ):
     self.lats   = numpy.full( self.solar.size, degMinSec2Frac(*lats) )
     self.lons   = numpy.full( self.solar.size, degMinSec2Frac(*lons) )
 
-    self.res    = wbgt('liljegren', self.lats, self.lons,
-      dates.repeat( self.solar.size ),
+    self.res    = wbgt('liljegren', 
+      dates.repeat( self.solar.size ), self.lats, self.lons,
       self.solar,
       self.pres,
       self.Tair,
