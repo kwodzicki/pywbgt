@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 import numpy
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt import spa
+from pywbgt import spa
 
 def degMinSec2Frac( degree, minute, second ):
 

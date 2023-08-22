@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, convert_path, find_packages, Extension
 
-NAME  = 'seus_hvi_wbgt'
+NAME  = 'pywbgt'
 DESC  = 'Package for SouthEast US Heat Vulnerability Index using Wet Bulb Globe Temperature.'
 AUTH  = 'Kyle R. Wodzicki'
 EMAIL = 'kwodzicki@cicsnc.org'
@@ -38,33 +38,33 @@ EXTS_KWARGS = dict(
 # Define external extensions that must be compiled (C/Cython code)
 EXTS = [
     Extension( 
-        f'{NAME}.wbgt.liljegren',
+        f'{NAME}.liljegren',
         sources            = [
-            os.path.join(NAME, 'wbgt', 'liljegren.pyx'),
-            os.path.join(NAME, 'wbgt', 'src', 'spa_c.c'),
+            os.path.join(NAME, 'liljegren.pyx'),
+            os.path.join(NAME, 'src', 'spa_c.c'),
         ],
-        include_dirs = [os.path.join(NAME, 'wbgt', 'src')],
+        include_dirs = [os.path.join(NAME, 'src')],
         depends      = ['spa_c.h'],
         **EXTS_KWARGS,
     ),
     Extension( 
-        f'{NAME}.wbgt.spa',
+        f'{NAME}.spa',
         sources      = [
-            os.path.join(NAME, 'wbgt', 'spa.pyx'),
-            os.path.join(NAME, 'wbgt', 'src', 'spa_c.c'),
+            os.path.join(NAME, 'spa.pyx'),
+            os.path.join(NAME, 'src', 'spa_c.c'),
         ],
-        include_dirs = [os.path.join(NAME, 'wbgt', 'src')],
+        include_dirs = [os.path.join(NAME, 'src')],
         depends      = ['spa_c.h'],
         **EXTS_KWARGS,
     ),
     Extension( 
-        f'{NAME}.wbgt.bernard',
-        sources      = [os.path.join(NAME, 'wbgt', 'bernard.pyx')],
+        f'{NAME}.bernard',
+        sources      = [os.path.join(NAME, 'bernard.pyx')],
         **EXTS_KWARGS,
     ),
     Extension( 
-        f'{NAME}.wbgt.psychrometric_wetbulb',
-        sources      = [os.path.join(NAME, 'wbgt', 'psychrometric_wetbulb.pyx')],
+        f'{NAME}.psychrometric_wetbulb',
+        sources      = [os.path.join(NAME, 'psychrometric_wetbulb.pyx')],
         **EXTS_KWARGS,
     ),
 ]
@@ -81,7 +81,7 @@ if __name__ == "__main__":
         author               = AUTH,
         author_email         = EMAIL,
         version              = main_ns['__version__'],
-        packages             = [NAME],
+        packages             = find_packages(),
         setup_requires       = SETUP_REQUIRES,
         install_requires     = INSTALL_REQUIRES,
         include_package_data = True,

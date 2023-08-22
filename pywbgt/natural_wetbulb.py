@@ -82,7 +82,9 @@ def nws_boyer( temp_air, temp_psy, solar, speed ):
     """
 
     return (
-        temp_psy + 0.001651*solar -
-        0.09555*speed + 0.13235*(temp_air-temp_psy) +
+        temp_psy +
+        0.001651*solar -
+        0.09555*speed +
+        0.13235*(temp_air-temp_psy) +
         0.20249
     )
