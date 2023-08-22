@@ -87,6 +87,5 @@ if __name__ == "__main__":
         include_package_data = True,
         ext_modules          = cythonize( EXTS ),
         include_dirs         = [numpy.get_include()],
-        scripts              = ['bin/wbgt_gui'],
         zip_safe             = False,
     )
