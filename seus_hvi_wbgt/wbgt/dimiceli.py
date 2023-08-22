@@ -3,7 +3,7 @@ WBGT from the Dimiceli method
 
 """
 
-import numpy
+import numpy as np
 from metpy.units import units
 
 from .constants import SIGMA
@@ -200,8 +200,11 @@ def wetbulb_globe(
             Default is 10 meters
         wetbulb (str) : Name of wet bulb algorithm to use:
             {dimiceli, stull} DEFAULT = dimiceli
-        natural_wetbulb (str) : Name of the natural wet bulb algorithm to use:
-            {malchaire, hunter_minyard} DEFAULT = malchaire
+
+    Notes:
+        Enacts 'Rectent Updates and Improvements' from the following white paper:
+
+            https://vlab.noaa.gov/documents/6609493/7858379/NDFD+WBGT+Description+Document.pdf/fb89cc3a-0536-111f-f124-e4c93c746ef7?t=1642792547129
 
     Returns:
         dict : 
@@ -209,7 +212,8 @@ def wetbulb_globe(
             - Tpsy : psychrometric wet bulb temperatures in ndarray
             - Tnwb : Natural wet bulb temperatures in ndarray
             - Twbg : Wet bulb-globe temperatures in ndarray
-            - solar : Solar irradiance from Liljegren 
+            - solar : Solar irradiance from Liljegren
+
     """
 
     if zspeed is None:
