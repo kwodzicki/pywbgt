@@ -81,7 +81,7 @@ if __name__ == "__main__":
         author               = AUTH,
         author_email         = EMAIL,
         version              = main_ns['__version__'],
-        packages             = find_packages(),
+        packages             = [NAME],#find_packages(),
         setup_requires       = SETUP_REQUIRES,
         install_requires     = INSTALL_REQUIRES,
         include_package_data = True,
