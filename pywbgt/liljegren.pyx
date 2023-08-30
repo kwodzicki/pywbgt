@@ -6,11 +6,10 @@ from libc.stdio cimport printf
 cimport numpy
 cimport cython
 
-from cliljegren cimport *
-
 from metpy.units import units
 from pandas import to_timedelta, DatetimeIndex
 
+from .cliljegren cimport *
 from .calc import relative_humidity as rhTd
 
 @cython.boundscheck(False)

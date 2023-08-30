@@ -1,1 +1,2 @@
-recursive-include pywbgt *.pyx *_c.c *_c.h
+include requirements.txt
+recursive-include pywbgt *.pyx *.pxd *_c.c *_c.h
