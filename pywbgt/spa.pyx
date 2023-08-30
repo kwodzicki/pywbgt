@@ -6,7 +6,7 @@ from libc.stdio cimport printf
 cimport numpy
 cimport cython
 
-from cspa cimport *
+from .cspa cimport *
 
 SPA_ZA     = 0
 SPA_ZA_INC = 1

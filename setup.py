@@ -1,5 +1,5 @@
 import os
-from setuptools import setup, convert_path, find_packages, Extension
+from distutils.util import convert_path
 
 NAME  = 'pywbgt'
 DESC  = 'Package for SouthEast US Heat Vulnerability Index using Wet Bulb Globe Temperature.'
@@ -8,18 +8,14 @@ EMAIL = 'kwodzicki@cicsnc.org'
 URL   = ''
 
 SETUP_REQUIRES   = [
-    'cython',
-    'numpy',
+    'setuptools>=61.0.0',
+    'Cython>=3.0.0',
+    'numpy>=1.20.0',
 ]
 
 INSTALL_REQUIRES = [
     *SETUP_REQUIRES,
-    'scipy',
-    'pandas',
-    'pyarrow',
-    'metpy',
-    'pvlib',
-    'matplotlib',
+    'metpy>=1.4',
 ]
 
 # Get version number from version file
@@ -35,44 +31,45 @@ EXTS_KWARGS = dict(
     extra_link_args    = ['-fopenmp'],
 )
 
-# Define external extensions that must be compiled (C/Cython code)
-EXTS = [
-    Extension( 
-        f'{NAME}.liljegren',
-        sources            = [
-            os.path.join(NAME, 'liljegren.pyx'),
-            os.path.join(NAME, 'src', 'spa_c.c'),
-        ],
-        include_dirs = [os.path.join(NAME, 'src')],
-        depends      = ['spa_c.h'],
-        **EXTS_KWARGS,
-    ),
-    Extension( 
-        f'{NAME}.spa',
-        sources      = [
-            os.path.join(NAME, 'spa.pyx'),
-            os.path.join(NAME, 'src', 'spa_c.c'),
-        ],
-        include_dirs = [os.path.join(NAME, 'src')],
-        depends      = ['spa_c.h'],
-        **EXTS_KWARGS,
-    ),
-    Extension( 
-        f'{NAME}.bernard',
-        sources      = [os.path.join(NAME, 'bernard.pyx')],
-        **EXTS_KWARGS,
-    ),
-    Extension( 
-        f'{NAME}.psychrometric_wetbulb',
-        sources      = [os.path.join(NAME, 'psychrometric_wetbulb.pyx')],
-        **EXTS_KWARGS,
-    ),
-]
-
 # Actually run the install
 if __name__ == "__main__":
-    from Cython.Build import cythonize
     import numpy
+    from Cython.Build import cythonize
+    from setuptools import setup, Extension
+
+    # Define external extensions that must be compiled (C/Cython code)
+    EXTS = [
+        Extension( 
+            f'{NAME}.liljegren',
+            sources            = [
+                os.path.join(NAME, 'liljegren.pyx'),
+                os.path.join(NAME, 'src', 'spa_c.c'),
+            ],
+            include_dirs = [os.path.join(NAME, 'src')],
+            depends      = ['spa_c.h'],
+            **EXTS_KWARGS,
+        ),
+        Extension( 
+            f'{NAME}.spa',
+            sources      = [
+                os.path.join(NAME, 'spa.pyx'),
+                os.path.join(NAME, 'src', 'spa_c.c'),
+            ],
+            include_dirs = [os.path.join(NAME, 'src')],
+            depends      = ['spa_c.h'],
+            **EXTS_KWARGS,
+        ),
+        Extension( 
+            f'{NAME}.bernard',
+            sources      = [os.path.join(NAME, 'bernard.pyx')],
+            **EXTS_KWARGS,
+        ),
+        Extension( 
+            f'{NAME}.psychrometric_wetbulb',
+            sources      = [os.path.join(NAME, 'psychrometric_wetbulb.pyx')],
+            **EXTS_KWARGS,
+        ),
+    ]
 
     setup(
         name                 = NAME,
@@ -81,7 +78,7 @@ if __name__ == "__main__":
         author               = AUTH,
         author_email         = EMAIL,
         version              = main_ns['__version__'],
-        packages             = [NAME],#find_packages(),
+        packages             = [NAME],
         setup_requires       = SETUP_REQUIRES,
         install_requires     = INSTALL_REQUIRES,
         include_package_data = True,

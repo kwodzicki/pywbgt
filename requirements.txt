@@ -1,0 +1,4 @@
+setuptools>=61.0.0
+Cython>=3.0.0
+numpy>=1.20.0
+metpy>=1.4
