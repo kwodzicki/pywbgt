@@ -225,6 +225,8 @@ def wetbulb_globe(
             Default is 10 meters
         wetbulb (str) : Name of wet bulb algorithm to use:
             {dimiceli, stull} DEFAULT = dimiceli
+        natural_wetbulb (str) : Name of the natural wetbulb algorithm to use:
+            (hunter_minyard, malchaire, boyer). Default is hunter_minyard.
 
     Notes:
         Enacts 'Rectent Updates and Improvements' from the following white paper:
@@ -280,15 +282,15 @@ def wetbulb_globe(
     else:
         raise Exception( f"Invalid option for 'wetbulb' : {wb_method}" )
 
-    nwb_method = kwargs.get('natural_wetbulb', 'MALCHAIRE').upper()
-    if nwb_method == 'MALCHAIRE':
-        temp_nwb  = malchaire( temp_air, temp_dew, temp_psy, temp_g )
-    elif nwb_method == 'HUNTER_MINYARD':
+    nwb_method = kwargs.get('natural_wetbulb', 'HUNTER_MINYARD').upper()
+    if nwb_method == 'HUNTER_MINYARD':
         temp_nwb  = hunter_minyard(
             temp_psy,
             solar*f_db,
             speed2m.to('meter per second').magnitude,
         )
+    elif nwb_method == 'MALCHAIRE':
+        temp_nwb  = malchaire( temp_air, temp_dew, temp_psy, temp_g )
     elif nwb_method == 'BOYER':
         temp_nwb  = nws_boyer(
             temp_air,
