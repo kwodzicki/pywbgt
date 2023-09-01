@@ -45,7 +45,7 @@ def conv_heat_flow_coeff(solar=None, zenith=None, **kwargs):
     return (
         const_a * 
         solar**const_b *
-        numpy.cos(zenith)**const_c
+        np.cos(zenith)**const_c
     )
 
 
@@ -79,9 +79,9 @@ def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
 
     return (
-        numpy.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
+        np.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
         (1.0007 + 3.46e-6 * pres) *
-        6.112 * numpy.exp( 17.502 * temp_air / (240.97 + temp_air) )
+        6.112 * np.exp( 17.502 * temp_air / (240.97 + temp_air) )
     )
 
 def thermal_emissivity( temp_air, temp_dew, pres ):
@@ -141,7 +141,7 @@ def factor_c(speed, chfc=None, **kwargs):
         chfc = conv_heat_flow_coeff(**kwargs)
     return (
         chfc *
-        numpy.clip(speed, MIN_SPEED.magnitude, None)**0.58 /
+        np.clip(speed, MIN_SPEED.magnitude, None)**0.58 /
         5.3865e-8
     )
 
@@ -250,7 +250,7 @@ def wetbulb_globe(
     pres     = pres.to(    'hPa'           ).magnitude
     temp_air = temp_air.to('degree_Celsius').magnitude
     temp_dew = temp_dew.to('degree_Celsius').magnitude
-    speed2m  = numpy.clip(
+    speed2m  = np.clip(
         loglaw( speed, zspeed ),
         MIN_SPEED,
         None,
