@@ -14,10 +14,11 @@ import numpy as np
 from metpy.units import units
 
 from .constants import SIGMA
-from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer
+from .calc import relative_humidity, loglaw
+from .utils import datetime_check
 
 MIN_SPEED = units.Quantity(1690.0, 'meter per hour')
 
@@ -242,6 +243,8 @@ def wetbulb_globe(
             - solar : Solar irradiance from Liljegren
 
     """
+
+    datetime = datetime_check(datetime)
 
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')

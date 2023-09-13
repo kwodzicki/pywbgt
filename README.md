@@ -105,6 +105,61 @@ Or, using a numpy array:
 All the user needs to know is the units of their data and all conversions for the algorithms are done by the algorithms.
 Values returned from the algorithms are also `pint.Quanity` objects so that the user knows the units for the values.
 
+### Xarray Support
+Xarray DataArray objects are 'supported' for the main `wbgt` function; however, there is some work that the user will likely have to do.
+First, the DataArray objects MUST be unity aware objects; i.e., `metpy` integration is enabled/working correctly.
+Next, all dimensions of the data must be stacked as the algorithms currently only support 1-D arrays as input.
+Then, the DataArray (variables) can be passed to the function.
+The output data from the function can then be merged into the stacked Dataset and then unstacked.
+
+An example of this process is outlined below:
+
+An example of how to do this is:
+
+    import xarray as xr
+    import pandas as pd
+    from metpy.calc import wind_speed
+
+    stackvar = 'stacked'
+    dataset  = xr.open_dataset('/path/to/file.nc')
+    dataset  = dataset.stack(
+        {stackvar : list(dataset.dims)}
+    )
+
+    wetbulb_data = wbgt(
+        'dimiceli',
+        pd.to_datetime(dataset.time),
+        dataset.latitude.values,
+        dataset.longitude.values,
+        dataset.ssrd,
+        dataset.sp,
+        dataset.t2m,
+        dataset.d2m,
+        wind_speed(dataset.u10, dataset.v10),
+    )
+
+    dataset = dataset.assign(
+        {key : (stackvar, val) for key, val in wetbulb_data.items()}
+    ).unstack() 
+
+Two major points to note are:
+
+1. Datetime data MUST be converted to a pandas DatetimeIndex object
+2. If the wind speed needs to be calculated from u- and v-components, use the `metpy.calc.wind_speed()` function to maintain unit information.
+
+If working with accumlated fields (e.g., download solar radation from a model or reanalysis), some 'unit trickery' may be required.
+For example, in the ERA5-Land dataset, solar radiation is accumlated over a given interval as denoted by the `step` variable in the grib files.
+This means the data are in units of `Joules / m**2`.
+Thus, to get to the `Watt/m**2` units we can do the following:
+
+    ssrd = (
+        dataset.ssrd.metpy.quantify() /
+        (dataset.step.dt.seconds*units('second'))
+    )
+
+This ensures that the `ssrd` DataArray is explicitly tagged with units (`metpy.quantify()`) and then divides by the accumulation time in seconds, ensuring the time is tagged with the proper units.
+It is important to note that this will give the average radiation over the entire accumulation period, so a more sophisticated approach is required if we are to use the radiation over a shorter accumulation period.
+
 ### Keyword Arguments:
 There are various keywords associated with three main WBGT algorithms that control different aspects of the algorithms.
 The most relevant for most users will be the `zspeed` keyword, which sets the height at which the wind measurement was taken as a unit aware (i.e., `pint.Quantity`) value.

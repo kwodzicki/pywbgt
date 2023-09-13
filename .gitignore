@@ -6,6 +6,8 @@
 *.egg-info
 *.bak
 
+.DS_Store
+
 install.sh
 
 spa.c
@@ -17,3 +19,4 @@ psychrometric_wetbulb.c
 __pycache__
 dist
 build
+.eggs
