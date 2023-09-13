@@ -25,6 +25,7 @@ from metpy.units import units
 from .constants import SIGMA, EPSILON
 from .liljegren import solar_parameters
 from .calc import saturation_vapor_pressure, loglaw
+from .utils import datetime_check
 
 cdef:
     int   MAX_ITER  = 50
@@ -497,6 +498,7 @@ def wetbulb_globe(
             - solar : Solar irradiance from Liljegren
     """
 
+    datetime = datetime_check(datetime)
     if zspeed is None:
         zspeed = units.Quantity( 10.0, 'meter' )
 
