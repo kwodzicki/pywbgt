@@ -35,7 +35,7 @@ Or, these can be exported before running pip
 # JupyterLab and Docker
 A Dockerfile and `run-jupyter.sh` shell script are provided to create and run a consistent environment for the package.
 This requires the user to have the Docker containerization program installed to work.
-Once the use has Docker installed, they can run the shell script using the following:
+Once the user has Docker installed, they can run the shell script using the following:
 
     bash run-jupyter.sh
 
@@ -46,10 +46,6 @@ The passcode for JupyterLab is displayed in the command line output as part of t
 From here the user can run any Notebooks or scripts they wish with the confidence that their work is in a fully reproducible environment.
 
 # Using the package
-As this package is intended to be a complete processing and analysis package, various sub-packages are included for different stages in the analysis pipeline.
-
-## `pywbgt` Modules 
-The main modules in the package are used for computing WBGT estimates.
 This package includes codes a few algorithms for estimating wetbulb temperature and natural wetbulb temperature that are not associated with the three main WBGT algorithms.
 Codes for adjusting wind speeds to given heights above ground level are also included.
 The NREL SPA code is also provided as part of this package.
@@ -58,7 +54,7 @@ Then, there are the three modules that provide the WBGT algorithms, which are pr
 These modules include the main WBGT functions along with various other helper functions associated with the algorithms.
 A main `wbgt` function provides a simple API for calling any of the three WBGT algorithms by specifying the algorithm via string and providing the required meteorological parameters.
 
-### Example
+## Example
 
     from pywbgt import wbgt
     vals = wbgt(
@@ -73,7 +69,7 @@ A main `wbgt` function provides a simple API for calling any of the three WBGT a
         speed,
     )
  
-### Input Variables and Unit Handling
+## Input Variables and Unit Handling
 There are a large number of input parameters that are required for running the various WBGT algorithms.
 These are outlined in the below table:
 
@@ -105,7 +101,7 @@ Or, using a numpy array:
 All the user needs to know is the units of their data and all conversions for the algorithms are done by the algorithms.
 Values returned from the algorithms are also `pint.Quanity` objects so that the user knows the units for the values.
 
-### Keyword Arguments:
+## Keyword Arguments:
 There are various keywords associated with three main WBGT algorithms that control different aspects of the algorithms.
 The most relevant for most users will be the `zspeed` keyword, which sets the height at which the wind measurement was taken as a unit aware (i.e., `pint.Quantity`) value.
 This is important because the WBGT algorithms estimate the 2 meter wind speed for use in their WBGT estimates.
@@ -119,7 +115,7 @@ For example:
 
 For more information about other keyword arguments, please refer to the function docstrings.
 
-### Xarray Support
+## Xarray Support
 Xarray DataArray objects are 'supported' for the main `wbgt` function; however, there is some work that the user will likely have to do.
 First, the DataArray objects MUST be unit aware objects; i.e., `metpy` integration is enabled/working correctly.
 Next, all dimensions of the data must be stacked as the algorithms currently only support 1-D arrays as input.
