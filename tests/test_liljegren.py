@@ -5,8 +5,8 @@ import pandas
 import numpy
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt import wbgt
-from seus_hvi_wbgt.wbgt.liljegren import solar_parameters
+from pywbgt import wbgt
+from pywbgt.liljegren import solar_parameters
 
 def degMinSec2Frac( degree, minute, second ):
 

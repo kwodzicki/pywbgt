@@ -10,14 +10,15 @@ these adjustments may lead to different results.
 
 """
 
-import numpy
+import numpy as np
 from metpy.units import units
 
 from .constants import SIGMA
-from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer
+from .calc import relative_humidity, loglaw
+from .utils import datetime_check
 
 MIN_SPEED = units.Quantity(1690.0, 'meter per hour')
 
@@ -45,7 +46,7 @@ def conv_heat_flow_coeff(solar=None, zenith=None, **kwargs):
     return (
         const_a * 
         solar**const_b *
-        numpy.cos(zenith)**const_c
+        np.cos(zenith)**const_c
     )
 
 
@@ -79,9 +80,9 @@ def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
 
     return (
-        numpy.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
+        np.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
         (1.0007 + 3.46e-6 * pres) *
-        6.112 * numpy.exp( 17.502 * temp_air / (240.97 + temp_air) )
+        6.112 * np.exp( 17.502 * temp_air / (240.97 + temp_air) )
     )
 
 def thermal_emissivity( temp_air, temp_dew, pres ):
@@ -141,7 +142,7 @@ def factor_c(speed, chfc=None, **kwargs):
         chfc = conv_heat_flow_coeff(**kwargs)
     return (
         chfc *
-        numpy.clip(speed, MIN_SPEED.magnitude, None)**0.58 /
+        np.clip(speed, MIN_SPEED.magnitude, None)**0.58 /
         5.3865e-8
     )
 
@@ -225,8 +226,13 @@ def wetbulb_globe(
             Default is 10 meters
         wetbulb (str) : Name of wet bulb algorithm to use:
             {dimiceli, stull} DEFAULT = dimiceli
-        natural_wetbulb (str) : Name of the natural wet bulb algorithm to use:
-            {malchaire, hunter_minyard} DEFAULT = malchaire
+        natural_wetbulb (str) : Name of the natural wetbulb algorithm to use:
+            (hunter_minyard, malchaire, boyer). Default is hunter_minyard.
+
+    Notes:
+        Enacts 'Rectent Updates and Improvements' from the following white paper:
+
+            https://vlab.noaa.gov/documents/6609493/7858379/NDFD+WBGT+Description+Document.pdf/fb89cc3a-0536-111f-f124-e4c93c746ef7?t=1642792547129
 
     Returns:
         dict : 
@@ -234,8 +240,11 @@ def wetbulb_globe(
             - Tpsy : psychrometric wet bulb temperatures in ndarray
             - Tnwb : Natural wet bulb temperatures in ndarray
             - Twbg : Wet bulb-globe temperatures in ndarray
-            - solar : Solar irradiance from Liljegren 
+            - solar : Solar irradiance from Liljegren
+
     """
+
+    datetime = datetime_check(datetime)
 
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')
@@ -244,7 +253,7 @@ def wetbulb_globe(
     pres     = pres.to(    'hPa'           ).magnitude
     temp_air = temp_air.to('degree_Celsius').magnitude
     temp_dew = temp_dew.to('degree_Celsius').magnitude
-    speed2m  = numpy.clip(
+    speed2m  = np.clip(
         loglaw( speed, zspeed ),
         MIN_SPEED,
         None,
@@ -276,15 +285,15 @@ def wetbulb_globe(
     else:
         raise Exception( f"Invalid option for 'wetbulb' : {wb_method}" )
 
-    nwb_method = kwargs.get('natural_wetbulb', 'MALCHAIRE').upper()
-    if nwb_method == 'MALCHAIRE':
-        temp_nwb  = malchaire( temp_air, temp_dew, temp_psy, temp_g )
-    elif nwb_method == 'HUNTER_MINYARD':
+    nwb_method = kwargs.get('natural_wetbulb', 'HUNTER_MINYARD').upper()
+    if nwb_method == 'HUNTER_MINYARD':
         temp_nwb  = hunter_minyard(
             temp_psy,
             solar*f_db,
             speed2m.to('meter per second').magnitude,
         )
+    elif nwb_method == 'MALCHAIRE':
+        temp_nwb  = malchaire( temp_air, temp_dew, temp_psy, temp_g )
     elif nwb_method == 'BOYER':
         temp_nwb  = nws_boyer(
             temp_air,

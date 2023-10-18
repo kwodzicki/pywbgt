@@ -10,6 +10,12 @@ from .liljegren import wetbulb_globe as liljegrenWBGT
 from .bernard   import wetbulb_globe as bernardWBGT
 from .dimiceli  import wetbulb_globe as dimiceliWBGT
 
+METHODS = [
+    'dimiceli',
+    'bernard',
+    'liljegren',
+]
+
 def wbgt( method, *args, **kwargs ):
     """
     Estimate wet bulb globe temperature
@@ -19,7 +25,7 @@ def wbgt( method, *args, **kwargs ):
     estimating WBGT and you're off
 
     Arguments:
-        method (str) : name of the method to use
+        method (str) : name of the method to use.
         datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (ndarray) : Latitude corresponding to data values (decimal).
             Can be one (1) element array; will be expanded to match dates/data
@@ -73,6 +79,13 @@ def wbgt( method, *args, **kwargs ):
     """
 
     method = method.lower()
+    args = list(args)
+    for i, arg in enumerate(args):
+        try:
+            args[i] = arg.values * arg.metpy.units
+        except:
+            pass
+
     if method == 'liljegren':
         return liljegrenWBGT( *args, **kwargs )
     if method == 'bernard':
@@ -80,4 +93,4 @@ def wbgt( method, *args, **kwargs ):
     if method == 'dimiceli':
         return dimiceliWBGT( *args, **kwargs )
 
-    raise Exception( f'Unsupported WBGT method : {method}' )
+    raise Exception( f'Unsupported WBGT method : {method}! Must be one of {METHODS}' )

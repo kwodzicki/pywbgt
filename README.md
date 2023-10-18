@@ -1,5 +1,3 @@
-# Southeast US Heat Vulnerability Index (HVI) using Wet Bulb Globe Temperature (WBGT)
-
 This python package contains three (3) algorithms/models for estimating WBGT from standard, widely available meteorological variables.
 The algorithms/models come from the following papers:
 
@@ -37,21 +35,17 @@ Or, these can be exported before running pip
 # JupyterLab and Docker
 A Dockerfile and `run-jupyter.sh` shell script are provided to create and run a consistent environment for the package.
 This requires the user to have the Docker containerization program installed to work.
-Once the use has Docker installed, they can run the shell script using the following:
+Once the user has Docker installed, they can run the shell script using the following:
 
     bash run-jupyter.sh
 
-This will build the Docker image including installing the `seus_hvi_wbgt` package in development mode.
+This will build the Docker image including installing the `pywbgt` package in development mode.
 When the building of the image is complete, a JupyterLab instance will be reachable at `http://localhost:8080`.
 The passcode for JupyterLab is displayed in the command line output as part of the server URL.
 
 From here the user can run any Notebooks or scripts they wish with the confidence that their work is in a fully reproducible environment.
 
 # Using the package
-As this package is intended to be a complete processing and analysis package, various sub-packages are included for different stages in the analysis pipeline.
-
-## `seus_hvi_wbgt.wbgt` Sub-package
-The main sub-package is the `wbgt` package that is responsible for calculation of WBGT estimates.
 This package includes codes a few algorithms for estimating wetbulb temperature and natural wetbulb temperature that are not associated with the three main WBGT algorithms.
 Codes for adjusting wind speeds to given heights above ground level are also included.
 The NREL SPA code is also provided as part of this package.
@@ -60,14 +54,14 @@ Then, there are the three modules that provide the WBGT algorithms, which are pr
 These modules include the main WBGT functions along with various other helper functions associated with the algorithms.
 A main `wbgt` function provides a simple API for calling any of the three WBGT algorithms by specifying the algorithm via string and providing the required meteorological parameters.
 
-### Example
+## Example
 
-    from seus_hvi_wbgt.wbgt import wbgt
+    from pywbgt import wbgt
     vals = wbgt(
         'liljegren',
+        dates,
         latitudes,
         longitudes,
-        dates,
         solar,
         pres,
         temp_air,
@@ -75,15 +69,15 @@ A main `wbgt` function provides a simple API for calling any of the three WBGT a
         speed,
     )
  
-### Input Variables and Unit Handling
+## Input Variables and Unit Handling
 There are a large number of input parameters that are required for running the various WBGT algorithms.
-These are outlined the below table:
+These are outlined in the below table:
 
 | Variable | Units | Description |
 | - | - | - |
+| datetime | various | Datetime of observation as pandas DatetimeIndex object |
 | Latitude | degrees North | Latitude of observation; positive North |
 | Longitude | degrees East | Longitude of observation; positive East |
-| datetime | various | Datetime of observation as pandas Datetime object |
 | solar | various | Solar irradiance; Quantity |
 | pres | various | Barometric pressure; Quantity |
 | temp\_air | various | Ambient (dry bulb) temperature; Quantity |
@@ -107,7 +101,7 @@ Or, using a numpy array:
 All the user needs to know is the units of their data and all conversions for the algorithms are done by the algorithms.
 Values returned from the algorithms are also `pint.Quanity` objects so that the user knows the units for the values.
 
-### Keyword Arguments:
+## Keyword Arguments:
 There are various keywords associated with three main WBGT algorithms that control different aspects of the algorithms.
 The most relevant for most users will be the `zspeed` keyword, which sets the height at which the wind measurement was taken as a unit aware (i.e., `pint.Quantity`) value.
 This is important because the WBGT algorithms estimate the 2 meter wind speed for use in their WBGT estimates.
@@ -116,32 +110,59 @@ However, if the station makes the measurement at 3 feet, then setting the keywor
 For example:
 
     from metpy.units import units
-    from seus_hvi_wbgt.wbgt import wbgt
-    vals = wbgt('liljegren', lat, lon, ..., zspeed=units.Quantity(3, 'ft'))
+    from pywbgt import wbgt
+    vals = wbgt('liljegren', datetime, lat, lon, ..., zspeed=units.Quantity(3, 'ft'))
 
 For more information about other keyword arguments, please refer to the function docstrings.
 
-### Sub-package modules
-There are various modules in this sub-package that provide the codes for the three WBGT algorithms and other supporting functionality.
-It is important to note that most of the helper functions for the algorithms (e.g., globe temperature, psychrometric wetbulb, etc.) are NOT unit aware functions.
-These functions require values in the correct units be input for them to function as intended, so be sure to read the docstring carefully.
-The only functions that are guaranteed to be unit-aware are the `wetbulb_globe` functions for each of the WBGT algorithm modules.
+## Xarray Support
+Xarray DataArray objects are 'supported' for the main `wbgt` function; however, there is some work that the user will likely have to do.
+First, the DataArray objects MUST be unit aware objects; i.e., `metpy` integration is enabled/working correctly.
+Next, all dimensions of the data must be stacked as the algorithms currently only support 1-D arrays as input.
+Then, the DataArray (variables) can be passed to the function.
+The output data from the function can then be merged into the stacked Dataset and unstacked.
 
-## `seus_hvi_wbgt.plotting` Sub-package
-Sub-package that provides various plotting functions/utilities.
-These codes were used in the creation of plots for publications, presentations, and reports.
+An example of this process is outlined below:
 
-## `seus_hvi_wbgt.tools` Sub-package
-Some random tools, such as a GUI, for the package.
-This are probably not useful to most people.
+    import xarray as xr
+    from metpy.calc import wind_speed
 
-## `seus_hvi_wbgt.stats` Module
-Functions to compute various statistics used in algorithm validation and comparison.
+    stackvar = 'stacked'
+    dataset  = xr.open_dataset('/path/to/file.nc')
+    dataset  = dataset.stack(
+        {stackvar : list(dataset.dims)}
+    )
 
-## `seus_hvi_wbgt.utils` Module
+    wetbulb_data = wbgt(
+        'dimiceli',
+        dataset.time,
+        dataset.latitude.values,
+        dataset.longitude.values,
+        dataset.ssrd,
+        dataset.sp,
+        dataset.t2m,
+        dataset.d2m,
+        wind_speed(dataset.u10, dataset.v10),
+    )
 
-## `seus_hvi_wbgt.data_io` Module
-This module provides functions to read and write data and variable metadata to parquet files so that unit information can be easily maintained.
+    dataset = dataset.assign(
+        {key : (stackvar, val) for key, val in wetbulb_data.items()}
+    ).unstack() 
+
+One major points to note is that the wind speed needs to be calculated from u- and v-components; use the `metpy.calc.wind_speed()` function to maintain unit information.
+
+If working with accumlated fields (e.g., download solar radation from a model or reanalysis), some 'unit trickery' may be required.
+For example, in the ERA5-Land dataset, solar radiation is accumlated over a given interval as denoted by the `step` variable in the grib files.
+This means the data are in units of `Joules / m**2`.
+To get to `Watt/m**2` units we can do the following:
+
+    ssrd = (
+        dataset.ssrd.metpy.quantify() /
+        (dataset.step.dt.seconds*units('second'))
+    )
+
+This ensures that the `ssrd` DataArray is explicitly tagged with units using the `.metpy.quantify()` method and then is divided by the accumulation time in seconds.
+It is important to note that this will give the average radiation over the entire accumulation period NOT the instanteous value measured at the given model/reanalysis time step.
 
 # Notes on the algorithms
 
@@ -175,16 +196,8 @@ By default the Dimiceli wet bulb and the Malchaire natural wet bulb algorithms a
 ### Bernard and Pourmoghani
 
 The Bernard method focused on indoor WBGT, so there is no discussion of globe temperature estimation methods.
-From discussion with colleague, we could use the globe temperature estimation methods from either Liljegren or Dimiceli in the Bernard equations.
-The main problem with this method is that it does not take into account solar radiation as it was developed for indoor use.
-This could be a major draw back of this method as it will not produce accurate values for outdoor/sunny condition as both the globe temperature and natural wet bulb temperature are influence by solar radiation.s
-
-## Road Map
-
-Future versions of code will include:
-  - Analysis code is also included used to preform trend analyses, spatial statistics, etc.
-  - Development of HVI
-  - Production level code for real-time computation and dissemination of HVI
+Thus, the method outlined in the article has been modified to include solar radiation as a source in the calculations.
+This is done using an approach similar to that of Liljegren et al. (2008), using an iterative approach to determine black globe temperature.
 
 # References
   - Liljegren, J. C., Carhart, R. A., Lawday, P., Tschopp, S., & Sharp, R. (2008). Modeling the wet bulb globe temperature using standard meteorological measurements. Journal of occupational and environmental hygiene, 5(10), 645-655. 
@@ -196,4 +209,4 @@ Future versions of code will include:
   - Stull, R. (2011). Wet-Bulb Temperature from Relative Humidity and Air Temperature, Journal of Applied Meteorology and Climatology, 50(11), 2267-2269. Retrieved Jul 20, 2022, from https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
   - Reda, I. and Andreas, A. (2003). Solar Position Algorithm for Solar Radiation Applications. 55 pp.; NREL Report No. TP-560-34302, Revised January 2008.
 
-NCICS/CICSNC K. R. Wodzicki 2022
+NCICS/CICSNC K. R. Wodzicki 2023

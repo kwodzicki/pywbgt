@@ -7,14 +7,14 @@ import sys
 import os
 
 sys.path.insert(0, os.path.abspath("../../"))
-
+print(sys.path)
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'seUS_HVI_WBGT'
+project = 'pywbgt'
 copyright = '2023, Kyle R. Wodzicki'
 author = 'Kyle R. Wodzicki'
-release = '0.0.1'
+release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -22,6 +22,14 @@ release = '0.0.1'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinxcontrib.napoleon',
+    'myst_parser',
+]
+source_parsers = {
+    '.md' : 'pyst_parser',
+}
+source_suffix = [
+    '.rst',
+    '.md',
 ]
 
 templates_path = ['_templates']
