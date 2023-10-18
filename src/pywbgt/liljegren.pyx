@@ -7,10 +7,11 @@ cimport numpy
 cimport cython
 
 from metpy.units import units
-from pandas import to_timedelta, DatetimeIndex
+from pandas import to_timedelta 
 
 from .cliljegren cimport *
 from .calc import relative_humidity as rhTd
+from .utils import datetime_check
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -89,8 +90,7 @@ def solar_parameters(
  
     """
 
-    if not isinstance( datetime, DatetimeIndex ):
-        raise Exception( "The 'datetime' argument must be a 'pandas.DatetimeIndex' object")
+    datetime = datetime_check(datetime)
 
     cdef:
         int res, spa = use_spa
@@ -362,8 +362,7 @@ def wetbulb_globe(
 
     """
 
-    if not isinstance( datetime, DatetimeIndex ):
-        raise Exception( "The 'datetime' argument must be a 'pandas.DatetimeIndex' object")
+    datetime = datetime_check(datetime)
 
     # Define size of output arrays based on size of input
     cdef:

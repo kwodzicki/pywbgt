@@ -5,7 +5,7 @@ import pandas
 import numpy
 from metpy.units import units
 
-from seus_hvi_wbgt.wbgt import dimiceli
+from pywbgt import dimiceli
 
 def degMinSec2Frac( degree, minute, second ):
 
@@ -46,6 +46,7 @@ class TestDimiceli(unittest.TestCase):
             numpy.resize(self.Tdew,  self.dates.size),
             numpy.resize(self.speed, self.dates.size),
             zspeed = self.zspeed,
+            natural_wetbulb = 'malchaire',
         )
 
     def test_conv_heat_flow_coeff(self):
