@@ -32,6 +32,20 @@ Or, these can be exported before running pip
     export LDFLAGS=-L/path/to/lib
     pip install ./
 
+## Advanced Option
+As some of the code in this package is dependant on Cython, some program files must be 'cythonized' into C-code before they can be fully compiled.
+For ease of use, both the source (`.pyx`) and cythonized (`.c`) versions of the files are provided in the repo/distribution, with the cythonized files being used during installation.
+It is possible to re-cythonize the source files using the following command:
+
+    python3 setup.py build_ext
+
+After this, the standard `pip install ./` command can be run to install the package using the new, re-cythonized files.
+
+Note that this re-cythonizing step is necessary when making changes to any of the source Cython files because the install script only compiles the `.c` files.
+So, if the `.pyx` files are not run through Cython after making changes, none of the changes will appear in the installed package.
+
+Also note that Cython 3+ must be installed for this to work, as it is not installed as part of this package.
+
 # JupyterLab and Docker
 A Dockerfile and `run-jupyter.sh` shell script are provided to create and run a consistent environment for the package.
 This requires the user to have the Docker containerization program installed to work.

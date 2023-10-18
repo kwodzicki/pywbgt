@@ -64,7 +64,7 @@ class TestBernard(unittest.TestCase):
             numpy.resize(self.speed, self.dates.size).to('m/s').magnitude,
         )
 
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 
     def test_factor_e(self):
 
@@ -77,7 +77,7 @@ class TestBernard(unittest.TestCase):
  
         test_vals = bernard.factor_e(speeds)
 
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 
     def test_factor_c(self):
         

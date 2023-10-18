@@ -1,36 +1,33 @@
 [build-system]
 requires = [
     "setuptools>=61.0",
-    "Cython>=3.0.0",
+    "wheel",
     "numpy>=1.24.0",
 ]
 build-backend = "setuptools.build_meta"
 
 [project]
-name        = "seus_hvi_wbgt"
-version     = "0.3.0"
-#description = "Package for SouthEast US Heat Vulnerability Index using Wet Bulb Globe Temperature."
-#readme      = "README.md"
-#authors     = [
-#    {name="Kyle R. Wodzicki", email="kwodzicki@cicsnc.org"},
-#]
-#requires-python = ">=3.10"
-#classifiers = [
-#    "Programming Language :: Python :: 3",
-#    "Operating System :: OS Independent",
-#]
-#
-#dependencies = [
-#    'scipy',
-#    'pandas',
-#    'pyarrow',
-#    'metpy',
-#    'pvlib',
-#    'matplotlib',
-#]
+name        = "pywbgt"
+version     = "1.5.0"
+description = "Package for estimating wetbulb globe temperature using various algorithms"
+readme      = "README.md"
+authors     = [
+    {name="Kyle R. Wodzicki", email="kwodzicki@cicsnc.org"},
+]
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
 
-#[tool.setuptools]
-#package-dir = {"" = "src"}
-#
-#[tool.setuptools.packages.find]
-#where = ["src"]
+dependencies = [
+    "metpy>=1.5.0",
+    "numpy",
+    "pandas"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"*" = ["**/*.pyx"]
