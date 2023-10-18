@@ -1,10 +1,11 @@
+import sys
 import os
-from setuptools import setup, find_packages, Extension
 
-#from Cython.Build import cythonize
-#from Cython.Build import build_ext
-#cythonize
+from setuptools import setup, find_packages, Extension
 import numpy
+
+EXT  = '.pyx' if 'build_ext' in sys.argv else '.c'
+NAME = 'pywbgt'
 
 EXTS_KWARGS = dict( 
     extra_compile_args = ['-fopenmp'],
@@ -14,47 +15,59 @@ EXTS_KWARGS = dict(
     ],
 )
 
-NAME = 'seus_hvi_wbgt'
-
 # Define external extensions that must be compiled (C/Cython code)
-EXTS = [
-    Extension( 
-        f'{NAME}.wbgt.liljegren',
-        sources = [
-            os.path.join('src', NAME, 'wbgt', 'liljegren.pyx'),
-            os.path.join('src', NAME, 'wbgt', 'src', 'liljegren_c.c'),
-            os.path.join('src', NAME, 'wbgt', 'src', 'spa_c.c'),
-        ],
-        include_dirs = [os.path.join('src', NAME, 'wbgt', 'src')],
-        depends = ['spa_c.h'],
-        **EXTS_KWARGS,
-    ),
-    Extension( 
-        f'{NAME}.wbgt.spa',
-        sources = [
-            os.path.join('src', NAME, 'wbgt', 'spa.pyx'),
-            os.path.join('src', NAME, 'wbgt', 'src', 'spa_c.c'),
-        ],
-        include_dirs = [os.path.join('src', NAME, 'wbgt', 'src')],
-        depends = ['spa_c.h'],
-        **EXTS_KWARGS,
-    ),
-    Extension( 
-        f'{NAME}.wbgt.bernard',
-        sources      = [os.path.join('src', NAME, 'wbgt', 'bernard.pyx')],
-        **EXTS_KWARGS,
-    ),
-    Extension( 
-        f'{NAME}.wbgt.psychrometric_wetbulb',
-        sources      = [os.path.join('src', NAME, 'wbgt', 'psychrometric_wetbulb.pyx')],
-        **EXTS_KWARGS,
-    ),
+EXT_LILJEGREN = Extension( 
+    f'{NAME}.liljegren',
+    [
+        os.path.join('src', NAME, 'liljegren'+EXT),
+        os.path.join('src', NAME, 'src', 'spa_c.c'),
+    ],
+    include_dirs = [os.path.join('src', NAME, 'src')],
+    depends = ['spa_c.h'],
+    **EXTS_KWARGS,
+)
+
+EXT_BERNARD = Extension( 
+    f'{NAME}.bernard',
+    sources = [os.path.join('src', NAME, 'bernard'+EXT)],
+    **EXTS_KWARGS,
+)
+
+EXT_SPA = Extension( 
+    f'{NAME}.spa',
+    sources = [
+        os.path.join('src', NAME, 'spa'+EXT),
+        os.path.join('src', NAME, 'src', 'spa_c.c'),
+    ],
+    include_dirs = [os.path.join('src', NAME, 'src')],
+    depends = ['spa_c.h'],
+    **EXTS_KWARGS,
+)
+
+EXT_PSY_WETBULB = Extension( 
+    f'{NAME}.psychrometric_wetbulb',
+    sources = [os.path.join('src', NAME, 'psychrometric_wetbulb'+EXT)],
+    **EXTS_KWARGS,
+)
+
+EXTENSIONS = [
+    EXT_LILJEGREN,
+    EXT_BERNARD,
+    EXT_SPA,
+    EXT_PSY_WETBULB,
 ]
+
+if 'build_ext' in sys.argv:
+    from Cython.Build import cythonize
+    _ = cythonize(
+        EXTENSIONS,
+        language_level = "3",
+    )
+    sys.exit()
 
 # Actually run the install
 setup(
-    name                 = NAME,
-    ext_modules          = EXTS,
-#    cmdclass             = {'build_ext' : build_ext},
-    include_dirs         = [numpy.get_include()],
+    name         = NAME,
+    ext_modules  = EXTENSIONS,
+    include_dirs = [numpy.get_include()],
 )

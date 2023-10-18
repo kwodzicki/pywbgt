@@ -10,12 +10,6 @@
 
 install.sh
 
-spa.c
-liljegren.c
-iribarne.c
-bernard.c
-psychrometric_wetbulb.c
-
 __pycache__
 dist
 build

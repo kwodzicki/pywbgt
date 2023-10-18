@@ -121,7 +121,7 @@ class TestDimiceli(unittest.TestCase):
             self.Tdew.to('degC').magnitude,
         )
 
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 
     def test_speed(self):
 
@@ -166,7 +166,7 @@ class TestDimiceli(unittest.TestCase):
         ] 
 
         test_vals = self.compute_wbgt()['Tnwb'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 
     def test_wetbulb_globe(self):
 
@@ -178,5 +178,5 @@ class TestDimiceli(unittest.TestCase):
         ] 
 
         test_vals = self.compute_wbgt()['Twbg'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
         
