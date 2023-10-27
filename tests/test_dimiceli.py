@@ -45,8 +45,9 @@ class TestDimiceli(unittest.TestCase):
             numpy.resize(self.Tair,  self.dates.size),
             numpy.resize(self.Tdew,  self.dates.size),
             numpy.resize(self.speed, self.dates.size),
-            zspeed = self.zspeed,
+            zspeed          = self.zspeed,
             natural_wetbulb = 'malchaire',
+            min_speed       = dimiceli.DIMICELI_MIN_SPEED,
         )
 
     def test_conv_heat_flow_coeff(self):
@@ -108,7 +109,15 @@ class TestDimiceli(unittest.TestCase):
     def test_factor_c(self):
 
         ref_vals  = [435690588.0876065, 1077116913.6427102]
-        test_vals = dimiceli.factor_c(self.speed.to('meter/hour').magnitude)
+        ss, _ = dimiceli.adjust_speed_2m(
+            self.speed,
+            zspeed    = self.zspeed,
+            min_speed = dimiceli.DIMICELI_MIN_SPEED,
+        )
+ 
+        test_vals = dimiceli.factor_c(
+            ss.to('meter/hour').magnitude
+        )
 
         numpy.testing.assert_equal(test_vals, ref_vals)
 
@@ -132,7 +141,7 @@ class TestDimiceli(unittest.TestCase):
         )
         ref_vals  = numpy.clip(
             ref_vals,
-            dimiceli.MIN_SPEED,
+            dimiceli.DIMICELI_MIN_SPEED,
             None,
         ).magnitude
 

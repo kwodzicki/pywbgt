@@ -6,15 +6,11 @@ temperature from standard meteorological variables.
  
 """
 
-from .liljegren import wetbulb_globe as liljegrenWBGT
-from .bernard   import wetbulb_globe as bernardWBGT
-from .dimiceli  import wetbulb_globe as dimiceliWBGT
-
-METHODS = [
-    'dimiceli',
-    'bernard',
-    'liljegren',
-]
+from .constants     import METHODS
+from .liljegren     import wetbulb_globe as liljegrenWBGT
+from .bernard       import wetbulb_globe as bernardWBGT
+from .dimiceli      import wetbulb_globe as dimiceliWBGT
+from .dimiceli_nws  import wetbulb_globe as dimiceli_nwsWBGT
 
 def wbgt( method, *args, **kwargs ):
     """
@@ -79,6 +75,9 @@ def wbgt( method, *args, **kwargs ):
     """
 
     method = method.lower()
+    if method not in METHODS:    
+        raise Exception( f'Unsupported WBGT method : {method}! Must be one of {METHODS}' )
+
     args = list(args)
     for i, arg in enumerate(args):
         try:
@@ -92,5 +91,7 @@ def wbgt( method, *args, **kwargs ):
         return bernardWBGT( *args, **kwargs )
     if method == 'dimiceli':
         return dimiceliWBGT( *args, **kwargs )
+    if method == 'dimiceli_nws':
+        return dimiceli_nwsWBGT( *args, **kwargs )
 
     raise Exception( f'Unsupported WBGT method : {method}! Must be one of {METHODS}' )
