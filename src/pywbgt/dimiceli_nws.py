@@ -13,13 +13,50 @@ these adjustments may lead to different results.
 import numpy
 from metpy.units import units
 
-from .constants import SIGMA
+from .constants import SIGMA, MIN_SPEED, DIMICELI_MIN_SPEED
 from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import nws_boyer
 
-MIN_SPEED = units.Quantity(1690.0, 'meter per hour')
+def adjust_speed_2m(speed, zspeed=None, min_speed=MIN_SPEED):
+    """
+    Adjust to 2m wind speed and clip
+
+    Given the height of the wind speed measurment, adjust
+    to the 2 meter wind speed. Also, esure that wind speeds
+    are not less than min_speed.
+
+    Arguments:
+        speed (Quantity) : Wind speed; units of speed
+
+    Keyword arguments:
+        zspeed (Quantity) : Height of the wind speed measurment.
+            Default is 10 meters
+        min_speed (Quantity) : Sets the minimum speed for the height-adjusted
+            wind speed. If this keyword is set, the larger of input value and
+             DIMICELI_MIN_SPEED is used. The default value is MIN_SPEED, which
+            is 2 knots, and is larger than DIMICELI_MIN_SPEED.
+
+
+    Returns:
+        tuple : Wind speed adjusted to 2 meter value and the
+            minimum wind speed that the adjusted values have
+            been clipped to.
+
+    """
+
+    if zspeed is None:
+        zspeed = units.Quantity(10.0, 'meter')
+
+    min_speed = max(min_speed, DIMICELI_MIN_SPEED)
+    speed2m   = np.clip(
+        loglaw( speed, zspeed ),
+        min_speed,
+        None,
+    )
+
+    return speed2m, min_speed
 
 def conv_heat_flow_coeff(cosz, **kwargs):
     """
@@ -122,7 +159,8 @@ def factor_c(speed, cosz, chfc=None, **kwargs):
     """
   
     Arguments:
-        speed (float) : wind speed in meters per hour
+        speed (float) : wind speed in meters per hour adjusted to 2 meters
+            and clipped to (at the smallest value) DIMICELI_MIN_SPEED
         cosz (float) : Cosine of solar zenith angle.
 
     Keyword arguments:
@@ -136,12 +174,7 @@ def factor_c(speed, cosz, chfc=None, **kwargs):
 
     if chfc is None:
         chfc = conv_heat_flow_coeff(cosz, **kwargs)
-
-    return (
-        chfc *
-        numpy.clip(speed, MIN_SPEED.magnitude, None)**0.58 /
-        5.3865e-8
-    )
+    return chfc * speed**0.58 / 5.3865e-8
 
 def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
     """
@@ -151,7 +184,9 @@ def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
         temp_air (float) : ambient temperature in degrees Celsius
         temp_dew (float) : dew point temperature in degrees Celsius
         pres (float) : Barometric pressure in hPa 
-        speed (float) : wind speed in meters per hour
+        speed (float) : wind speed in meters per hour adjusted to
+            2 meters and clipped to (at the smallest value)
+            DIMICELI_MIN_SPEED
         solar (float) : solar irradiance in Watts per meter**2
         f_db (float) : Fraction of direct beam radiation
         cosz (float) : Cosine of solar zenith angle
@@ -198,9 +233,10 @@ def psychrometric_wetbulb( temp_air, temp_dew ):
 def wetbulb_globe(
         datetime, lat, lon,
         solar, pres, temp_air, temp_dew, speed,
-        f_db   = None,
-        cosz   = None,
-        zspeed = None,
+        f_db      = None,
+        cosz      = None,
+        zspeed    = None,
+        min_speed = MIN_SPEED,
         **kwargs,
     ):
     """
@@ -221,6 +257,10 @@ def wetbulb_globe(
         cosz (float) : Cosine of solar zenith angle
         zspeed (Quantity) : Height of the wind speed measurment.
             Default is 10 meters
+        min_speed (Quantity) : Sets the minimum speed for the height-adjusted
+            wind speed. If this keyword is set, the larger of input value and
+            DIMICELI_MIN_SPEED is used. The default value is MIN_SPEED, which
+            is 2 knots, and is larger than DIMICELI_MIN_SPEED.
         wetbulb (str) : Name of wet bulb algorithm to use:
             {dimiceli, stull} DEFAULT = dimiceli
 
@@ -241,14 +281,14 @@ def wetbulb_globe(
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')
 
-    solar    = solar.to(   'watt/m**2'     ).magnitude
-    pres     = pres.to(    'hPa'           ).magnitude
-    temp_air = temp_air.to('degree_Celsius').magnitude
-    temp_dew = temp_dew.to('degree_Celsius').magnitude
-    speed2m  = numpy.clip(
-        loglaw( speed, zspeed ),
-        MIN_SPEED,
-        None,
+    solar     = solar.to(   'watt/m**2'     ).magnitude
+    pres      = pres.to(    'hPa'           ).magnitude
+    temp_air  = temp_air.to('degree_Celsius').magnitude
+    temp_dew  = temp_dew.to('degree_Celsius').magnitude
+    speed2m, min_speed = adjust_speed_2m(
+        speed,
+        zspeed    = zspeed,
+        min_speed = min_speed,
     )
 
     if (f_db is None) or (cosz is None):
@@ -286,10 +326,11 @@ def wetbulb_globe(
     )
 
     return {
-        'Tg'    : units.Quantity(temp_g, 'degree_Celsius'),
-        'Tpsy'  : units.Quantity(temp_psy, 'degree_Celsius'),
-        'Tnwb'  : units.Quantity(temp_nwb, 'degree_Celsius'), 
-        'Twbg'  : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
-        'solar' : units.Quantity( solar, 'watt/m**2'),
-        'speed' : speed2m.to('meter per second'),
+        'Tg'        : units.Quantity(temp_g, 'degree_Celsius'),
+        'Tpsy'      : units.Quantity(temp_psy, 'degree_Celsius'),
+        'Tnwb'      : units.Quantity(temp_nwb, 'degree_Celsius'), 
+        'Twbg'      : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
+        'solar'     : units.Quantity( solar, 'watt/m**2'),
+        'speed'     : speed2m.to('meter per second'),
+        'min_speed' : min_speed,
     }
