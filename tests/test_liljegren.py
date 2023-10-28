@@ -95,7 +95,8 @@ class TestWBGT( unittest.TestCase ):
       self.Tdew,
       self.speed,
       avg = 1.0,
-      zspeed = self.zspeed, 
+      zspeed = self.zspeed,
+      min_speed = units.Quantity(0.13, 'm/s'),
      )
 
   def test_Tg(self):

@@ -7,7 +7,11 @@ cython, muse create hearder information
 """
 
 cdef extern from "src/liljegren_c.c" nogil:
-    int D_GLOBE
+    # Expose define to cython
+    float _D_GLOBE   "D_GLOBE"
+    float _MIN_SPEED "MIN_SPEED"
+
+    # Expose functions to cython
     int calc_wbgt(
         int year,
         int month,
@@ -28,6 +32,7 @@ cdef extern from "src/liljegren_c.c" nogil:
         float dT,
         int urban,
         int use_spa,
+        float min_speed,
         float d_globe,
         float* est_speed,
         float* solar_adj,

@@ -566,7 +566,7 @@ float	lat,		/* north latitude									*/
  */
  
 int calc_wbgt(year, month, day, hour, minute, second, gmt, avg, lat, lon, 
-		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, d_globe, 
+		solar, pres, Tair, relhum, speed, zspeed, dT, urban, use_spa, min_speed, d_globe, 
         est_speed, solar_adj, Tg, Tnwb, Tpsy, Twbg)
 
 int	year,		/* 4-digit, e.g. 2007								*/
@@ -589,7 +589,8 @@ float	lat,		/* north latitude, decimal							*/
 	speed,	/* wind speed, m/s								*/
 	zspeed,	/* height of wind speed measurement, m					*/
 	dT,		/* vertical temperature difference (upper minus lower), degC	*/
-  d_globe, /* Diameter of black globe thermometer (meters) */
+    min_speed, /* minimum speed allowed for calculation */
+    d_globe, /* Diameter of black globe thermometer (meters) */
 	
 	*est_speed,	/* estimated speed at reference height, m/s				*/
 	*solar_adj,	/* (potentially) adjusted solar irradiance. W/m**2				*/
@@ -610,6 +611,10 @@ float	lat,		/* north latitude, decimal							*/
 	double hour_gmt, dday;
 	
 	int	daytime, stability_class, stab_srdt();
+
+/* Set min speed as maximum of input value and MIN_SPEED */
+    min_speed = max(min_speed, MIN_SPEED);
+
 /* 
  *  convert time to GMT and center in avg period;
  */
@@ -631,9 +636,13 @@ float	lat,		/* north latitude, decimal							*/
 		else
 			daytime = FALSE;
 		stability_class = stab_srdt(daytime, speed, solar, dT);
-		*est_speed = est_wind_speed(speed, zspeed, stability_class, urban);
-		speed = *est_speed;
-	}
+		*est_speed = est_wind_speed(speed, zspeed, stability_class, urban, min_speed);
+		//speed = *est_speed;
+	} else {
+	    *est_speed = max( speed, min_speed );
+
+    };
+	speed = *est_speed;
 
   //Set default d_globe size if not defined (i.e., zero)
   if ( d_globe == 0.0 ){
@@ -763,7 +772,9 @@ float	diameter,	/* cylinder diameter, m								*/
 		thermal_cond();
 		
 	density = Pair * 100. / ( R_AIR * Tair );
-	Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
+	//Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
+    //Don't need to do max(speeds) because already handled in min function
+	Re = speed * density * diameter / viscosity(Tair);
 	Nu = b * pow(Re,(1.-c)) * pow(Pr,(1.-a));
 	return( Nu * thermal_cond(Tair) / diameter );
 }
@@ -848,7 +859,9 @@ float	diameter,	/* sphere diameter, m							*/
 		thermal_cond();
 		
 	density = Pair * 100. / ( R_AIR * Tair );
-	Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
+	//Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
+    //Don't need to do max(speeds) because already handled in min function
+	Re = speed * density * diameter / viscosity(Tair);
 	Nu = 2.0 + 0.6 * sqrt(Re) * pow(Pr,0.3333);
 	return( Nu * thermal_cond(Tair) / diameter );
 }
@@ -1061,13 +1074,14 @@ int year, month, day;
  *  Reference: EPA-454/5-99-005, 2000, section 6.2.5
  */
 
-float est_wind_speed(speed, zspeed, stability_class, urban)
+float est_wind_speed(speed, zspeed, stability_class, urban, min_speed)
 
 int	stability_class,
 	urban;
 	
 float	speed,
-	zspeed;
+	zspeed,
+    min_speed;
 	
 {
 	float urban_exp[6] = { 0.15, 0.15, 0.20, 0.25, 0.30, 0.30 },
@@ -1081,7 +1095,7 @@ float	speed,
 		exponent = rural_exp[stability_class-1];
 	
 	est_speed = speed * pow( REF_HEIGHT/zspeed, exponent );
-	est_speed = max( est_speed, MIN_SPEED );
+	est_speed = max( est_speed, min_speed );
 	return (est_speed);
 }
 	
