@@ -10,14 +10,19 @@ from metpy.units import units
 from pandas import to_timedelta 
 
 from .cliljegren cimport *
+from .constants import MIN_SPEED
 from .calc import relative_humidity as rhTd
 from .utils import datetime_check
+
+# Expose cython constants to python
+LILJEGREN_D_GLOBE   = units.Quantity(_D_GLOBE,   'meter')
+LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.initializedcheck(False)
 @cython.always_allow_keywords(True)
-def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=0.0508 ):
+def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=_D_GLOBE ):
     """
     Compute convective heat transfer coefficient 
   
@@ -163,7 +168,7 @@ def globe_temperature(
     """
 
     cdef:
-        float dGlobe
+        float _d_globe
         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
         float [::1] presView     = pres.astype(  numpy.float32 )
         float [::1] speedView    = speed.astype( numpy.float32 )
@@ -177,10 +182,11 @@ def globe_temperature(
         Py_ssize_t i, size = temp_air.shape[0]
 
     if d_globe is None:
-        dGlobe = D_GLOBE                                                          # Use default value from C source code
+        _d_globe = _D_GLOBE                                                          # Use default value from C source code
     else:
-        dGlobe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude
- 
+        _d_globe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude
+
+     
     out = numpy.empty( size, dtype=numpy.float32 )
     cdef float [:] outView = out
 
@@ -188,7 +194,7 @@ def globe_temperature(
         outView[i] = Tglobe(
             temp_airView[i], relhumView[i], presView[i], 
             speedView[i], solarView[i], fdirView[i],
-            czaView[i], dGlobe,
+            czaView[i], _d_globe,
         )
 
     return out 
@@ -296,13 +302,14 @@ def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
 def wetbulb_globe(
         datetime, lat, lon,
         solar, pres, temp_air, temp_dew, speed,
-        urban   = None, 
-        gmt     = None,
-        avg     = None,
-        zspeed  = None,
-        dT      = None,
-        d_globe = None,
-        use_spa = False, 
+        urban     = None, 
+        gmt       = None,
+        avg       = None,
+        zspeed    = None,
+        dT        = None,
+        min_speed = None,
+        d_globe   = None,
+        use_spa   = False, 
         **kwargs,
     ): 
 
@@ -343,6 +350,10 @@ def wetbulb_globe(
         use_spa (bool) : If set, use the National Renewable Energy 
             Laboratory (NREL) Solar Position Algorithm (SPA) to determine
             sun position. Default is to use the build-it, low precision model.
+        min_speed (Quantity) : Sets the minimum speed for the height-adjusted
+            wind speed. If this keyword is set, the larger of input value and
+            LILJEGREN_MIN_SPEED is used. The default value is MIN_SPEED, which
+            is 2 knots, and is larger than LILJEGREN_MIN_SPEED.
         d_globe (Quantity) : Diameter of the black globe thermometer
             unit of distance
 
@@ -368,7 +379,7 @@ def wetbulb_globe(
     cdef:
         Py_ssize_t i, size = datetime.shape[0]
         int res, spa=use_spa
-        float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, dGlobe  
+        float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, _min_speed, _d_globe  
 
     # Set default data averaging interval and compute time offset so that
     # time is in the middle of the sampling interval
@@ -410,12 +421,28 @@ def wetbulb_globe(
             numpy.full(size, -1.0, dtype=numpy.float32)
         ) 
 
+    # Set default value for minimum speed
+    if min_speed is None:
+        # Greater of MIN_SPEED for package (2 knots) and absolute min speed for algorithm
+        _min_speed = max(
+            MIN_SPEED,
+            LILJEGREN_MIN_SPEED
+        ).to('meter/second').magnitude
+    else:
+        # Greater of user input min_speed and absolute min speed for algorithm
+        _min_speed = max(
+            min_speed,
+            LILJEGREN_MIN_SPEED,
+        ).to('meter/second').magnitude
+    #printf("min speed %f\n", _min_speed)
+
     # Set default black globe thermometer diameter
     if d_globe is None:
-        dGlobe = D_GLOBE                                                          # Use default value from C source code
+        _d_globe = _D_GLOBE                                                          # Use default value from C source code
     else:
-        dGlobe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude
-      
+        _d_globe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude
+    
+    #printf("%f\n", _d_lobe)  
     if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
         lat = lat.repeat( size )
         lon = lon.repeat( size )
@@ -471,7 +498,7 @@ def wetbulb_globe(
             latView[i], lonView[i], 
             solarView[i], presView[i], temp_airView[i], 
             relhumView[i], speedView[i], zspeedView[i], dTView[i],
-            urbanView[i], spa, dGlobe, &est_speed, &solar_adj, &Tg, &Tnwb, &Tpsy, &Twbg
+            urbanView[i], spa, _min_speed, _d_globe, &est_speed, &solar_adj, &Tg, &Tnwb, &Tpsy, &Twbg
         )
 
         # If WBGT was success, then store variables in the outView
@@ -485,10 +512,11 @@ def wetbulb_globe(
 
     # Return dict with unit-aware values
     return {
-        'Tg'    : units.Quantity(out[0,:], 'degree_Celsius'),
-        'Tpsy'  : units.Quantity(out[1,:], 'degree_Celsius'),
-        'Tnwb'  : units.Quantity(out[2,:], 'degree_Celsius'),
-        'Twbg'  : units.Quantity(out[3,:], 'degree_Celsius'),
-        'solar' : units.Quantity(out[4,:], 'watt/meter**2'),
-        'speed' : units.Quantity(out[5,:], 'meter/second'),
+        'Tg'        : units.Quantity(out[0,:], 'degree_Celsius'),
+        'Tpsy'      : units.Quantity(out[1,:], 'degree_Celsius'),
+        'Tnwb'      : units.Quantity(out[2,:], 'degree_Celsius'),
+        'Twbg'      : units.Quantity(out[3,:], 'degree_Celsius'),
+        'solar'     : units.Quantity(out[4,:], 'watt/meter**2'),
+        'speed'     : units.Quantity(out[5,:], 'meter/second'),
+        'min_speed' : units.Quantity(_min_speed, 'meter/second'),
     }
