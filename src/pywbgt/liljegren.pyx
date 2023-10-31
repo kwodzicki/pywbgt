@@ -359,11 +359,12 @@ def wetbulb_globe(
 
     Returns:
         dict :
-            - Tg : Globe temperatures in ndarray
-            - Tpsy : psychrometric wet bulb temperatures in ndarray 
-            - Tnwb : Natural wet bulb temperatures in ndarray
-            - Twbg : Wet bulb-globe temperatures in ndarray
-            - Speed : Estimated 2m wind speed in meters/second; will be same as input if already 2m temp1
+            - Tg : Globe temperatures as Quantity
+            - Tpsy : psychrometric wet bulb temperatures as Quantity
+            - Tnwb : Natural wet bulb temperatures as Quantity
+            - Twbg : Wet bulb-globe temperatures as Quantity
+            - Speed : Estimated 2m wind speed as Quantity; will be same as input if already 2m wind speed 
+            - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity 
 
     Reference: 
         Liljegren, J. C., R. A. Carhart, P. Lawday, S. Tschopp, and R. Sharp:
@@ -512,11 +513,11 @@ def wetbulb_globe(
 
     # Return dict with unit-aware values
     return {
-        'Tg'        : units.Quantity(out[0,:], 'degree_Celsius'),
-        'Tpsy'      : units.Quantity(out[1,:], 'degree_Celsius'),
-        'Tnwb'      : units.Quantity(out[2,:], 'degree_Celsius'),
-        'Twbg'      : units.Quantity(out[3,:], 'degree_Celsius'),
-        'solar'     : units.Quantity(out[4,:], 'watt/meter**2'),
-        'speed'     : units.Quantity(out[5,:], 'meter/second'),
+        'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),
+        'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
+        'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
+        'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
+        'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
+        'speed'     : units.Quantity(out[5,:],   'meter/second'),
         'min_speed' : units.Quantity(_min_speed, 'meter/second'),
     }
