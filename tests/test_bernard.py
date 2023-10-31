@@ -46,6 +46,7 @@ class TestBernard(unittest.TestCase):
             numpy.resize(self.Tdew,  self.dates.size),
             numpy.resize(self.speed, self.dates.size),
             zspeed = self.zspeed,
+            min_speed = units.Quantity(0, 'm/s'),
         )
 
     def test_conv_heat_flow_coeff(self):
