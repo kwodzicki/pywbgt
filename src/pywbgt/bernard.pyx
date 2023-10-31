@@ -22,7 +22,7 @@ cimport cython
 
 from metpy.units import units
 
-from .constants import SIGMA, EPSILON
+from .constants import SIGMA, EPSILON, MIN_SPEED
 from .liljegren import solar_parameters
 from .calc import saturation_vapor_pressure, loglaw
 from .utils import datetime_check
@@ -465,9 +465,10 @@ def natural_wetbulb( temp_air, temp_psy, temp_g, speed ):
 def wetbulb_globe(
         datetime, lat, lon,
         solar, pres, temp_air, temp_dew, speed,
-        f_db   = None,
-        cosz   = None,
-        zspeed = None, 
+        f_db      = None,
+        cosz      = None,
+        zspeed    = None,
+        min_speed = None, 
         **kwargs,
     ):
     """
@@ -488,14 +489,21 @@ def wetbulb_globe(
         cosz (float) : Cosine of solar zenith angle
         zspeed (Quantity) : Height of the wind speed measurment.
             Default is 10 meters
+        min_speed (Quantity) : Sets the minimum speed for the height-adjusted
+            wind speed. If this keyword is set, the larger of input value and
+            MIN_SPEED is used. The default value is MIN_SPEED, which
+            is 2 knots.
 
     Returns:
         dict : 
-            - Tg : Globe temperatures in ndarray
-            - Tpsy : psychrometric wet bulb temperatures in ndarray
-            - Tnwb : Natural wet bulb temperatures in ndarray
-            - Twbg : Wet bulb-globe temperatures in ndarray
-            - solar : Solar irradiance from Liljegren
+            - Tg : Globe temperatures as Quantity
+            - Tpsy : psychrometric wet bulb temperatures as Quantity
+            - Tnwb : Natural wet bulb temperatures as Quantity
+            - Twbg : Wet bulb-globe temperatures as Quantity
+            - solar : Solar irradiance from Liljegren as Quantity
+            - speed : 2 meter adjusted wind speed as Quantity; will be same as input if already 2m wind speed
+            - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity
+
     """
 
     datetime = datetime_check(datetime)
@@ -515,7 +523,20 @@ def wetbulb_globe(
     temp_air = temp_air.to( 'degree_Celsius' ).magnitude
     temp_dew = temp_dew.to( 'degree_Celsius' ).magnitude
     pres   = pres.to(   'hPa'            ).magnitude
-    speed  = loglaw( speed, zspeed, ).to('meter/second')
+
+    if min_speed is None:
+        min_speed = MIN_SPEED
+    else:
+        min_speed = max(
+            min_speed,
+            MIN_SPEED,
+        )
+ 
+    speed = numpy.clip(
+        loglaw(speed, zspeed),
+        min_speed,
+        None,
+    ).to('meter/second')
 
     temp_g = globe_temperature(
         temp_air, 
@@ -537,10 +558,11 @@ def wetbulb_globe(
     )
 
     return {
-        'Tg'    : units.Quantity(temp_g,   'degree_Celsius'),
-        'Tpsy'  : units.Quantity(temp_psy, 'degree_Celsius'),
-        'Tnwb'  : units.Quantity(temp_nwb, 'degree_Celsius'),
-        'Twbg'  : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
-        'solar' : units.Quantity( solar, 'watt/m**2' ),
-        'speed' : speed.to('meter/second'),
+        'Tg'        : units.Quantity(temp_g,   'degree_Celsius'),
+        'Tpsy'      : units.Quantity(temp_psy, 'degree_Celsius'),
+        'Tnwb'      : units.Quantity(temp_nwb, 'degree_Celsius'),
+        'Twbg'      : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
+        'solar'     : units.Quantity( solar, 'watt/m**2' ),
+        'speed'     : speed.to('meter/second'),
+        'min_speed' : min_speed.to('meter/second'),
     }
