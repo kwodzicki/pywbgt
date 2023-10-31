@@ -526,11 +526,6 @@ def wetbulb_globe(
 
     if min_speed is None:
         min_speed = MIN_SPEED
-    else:
-        min_speed = max(
-            min_speed,
-            MIN_SPEED,
-        )
  
     speed = numpy.clip(
         loglaw(speed, zspeed),
