@@ -163,9 +163,10 @@ An example of this process is outlined below:
         {key : (stackvar, val) for key, val in wetbulb_data.items()}
     ).unstack() 
 
-One major points to note is that the wind speed needs to be calculated from u- and v-components; use the `metpy.calc.wind_speed()` function to maintain unit information.
+One major point to note is that the wind speed will likely need to be calculated from u- and v-components.
+To do this, use the `metpy.calc.wind_speed()` function to maintain unit information.
 
-If working with accumlated fields (e.g., download solar radation from a model or reanalysis), some 'unit trickery' may be required.
+If working with accumlated fields (e.g., downward solar radation from a model or reanalysis), some 'unit trickery' may be required.
 For example, in the ERA5-Land dataset, solar radiation is accumlated over a given interval as denoted by the `step` variable in the grib files.
 This means the data are in units of `Joules / m**2`.
 To get to `Watt/m**2` units we can do the following:
