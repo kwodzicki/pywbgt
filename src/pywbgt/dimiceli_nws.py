@@ -18,8 +18,9 @@ from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import nws_boyer
+from .utils import datetime_check
 
-def adjust_speed_2m(speed, zspeed=None, min_speed=MIN_SPEED):
+def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
     """
     Adjust to 2m wind speed and clip
 
@@ -29,10 +30,9 @@ def adjust_speed_2m(speed, zspeed=None, min_speed=MIN_SPEED):
 
     Arguments:
         speed (Quantity) : Wind speed; units of speed
+        zspeed (Quantity) : Height of the wind speed measurement.
 
     Keyword arguments:
-        zspeed (Quantity) : Height of the wind speed measurment.
-            Default is 10 meters
         min_speed (Quantity) : Sets the minimum speed for the height-adjusted
             wind speed. If this keyword is set, the larger of input value and
              DIMICELI_MIN_SPEED is used. The default value is MIN_SPEED, which
@@ -45,9 +45,6 @@ def adjust_speed_2m(speed, zspeed=None, min_speed=MIN_SPEED):
             been clipped to.
 
     """
-
-    if zspeed is None:
-        zspeed = units.Quantity(10.0, 'meter')
 
     min_speed = max(min_speed, DIMICELI_MIN_SPEED)
     speed2m   = np.clip(
@@ -271,23 +268,27 @@ def wetbulb_globe(
 
     Returns:
         dict : 
-            - Tg : Globe temperatures in ndarray
-            - Tpsy : psychrometric wet bulb temperatures in ndarray
-            - Tnwb : Natural wet bulb temperatures in ndarray
-            - Twbg : Wet bulb-globe temperatures in ndarray
-            - solar : Solar irradiance from Liljegren 
+            - Tg : Globe temperatures as Quantity
+            - Tpsy : psychrometric wet bulb temperatures as Quantity
+            - Tnwb : Natural wet bulb temperatures as Quantity
+            - Twbg : Wet bulb-globe temperatures as Quantity
+            - solar : Solar irradiance from Liljegren as Quantity 
+            - speed : Estimated 2m wind speed as Quantity; will be same as input if already 2m wind speed
+            - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity
+
     """
 
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')
 
+    datetime  = datetime_check(datetime)
     solar     = solar.to(   'watt/m**2'     ).magnitude
     pres      = pres.to(    'hPa'           ).magnitude
     temp_air  = temp_air.to('degree_Celsius').magnitude
     temp_dew  = temp_dew.to('degree_Celsius').magnitude
     speed2m, min_speed = adjust_speed_2m(
         speed,
-        zspeed    = zspeed,
+        zspeed,
         min_speed = min_speed,
     )
 
@@ -331,6 +332,6 @@ def wetbulb_globe(
         'Tnwb'      : units.Quantity(temp_nwb, 'degree_Celsius'), 
         'Twbg'      : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
         'solar'     : units.Quantity( solar, 'watt/m**2'),
-        'speed'     : speed2m.to('meter per second'),
-        'min_speed' : min_speed,
+        'speed'     : speed2m.to('meter/second'),
+        'min_speed' : min_speed.to('meter/second'),
     }
