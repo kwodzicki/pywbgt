@@ -127,6 +127,15 @@ For example:
     from pywbgt import wbgt
     vals = wbgt('liljegren', datetime, lat, lon, ..., zspeed=units.Quantity(3, 'ft'))
 
+Another useful keyword argument is `min_speed`, wherein the minimum speed allowed for the 2m-adjusted wind speeds is set.
+After adjusting wind speeds to 2m height, this value is use to clip the wind speeds so that none are below this value.
+By default, `min_speed = Quantity(2.0, 'knot')` as ASOS stations report any wind speed of <= 2 knots as calm.
+This value can be overridden to the extent possible by the various algorithms.
+For example, there is a hard minimum speed of 1690 m/hr (~1 mph) for the Dimiceli method and 0.13 m/s for the Liljegren method.
+If a user inputs a value for `min_speed` less than either of these values, the user input is overridden and the hard limit used.
+Data dictionaries returned by the methods include a `min_speed` key/value pair indicating the value used in the algorithm.
+Note that this value must be a unit-aware object.
+
 For more information about other keyword arguments, please refer to the function docstrings.
 
 ## Xarray Support
