@@ -14,7 +14,7 @@ EPSILON = 0.98
 METHODS = [
     'bernard',
     'dimiceli',
-    'dimiceii_nws',
+    'dimiceli_nws',
     'liljegren',
 ]
 

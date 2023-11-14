@@ -82,11 +82,15 @@ def solar_parameters(
         datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
         lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
         lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
+        solar (ndarray) : Solar irradiance values (Watt/m**2)
 
     Keyword arguments:
         avg (ndarray) : averaging time of the meteorological inputs (minutes)
         gmt (ndarray) : LST-GMT difference  (hours; negative in USA)
-
+        use_spa (bool) : If set, the National Renewable Energy Laboratory (NREL)
+            Solar Position Algorithm (SPA) is used to compute solar parameters.
+            By default, the algorithm included in the Liljegren C-code is used.
+ 
     Returns:
         tuple : Three (3) ndarrays containing:
             - Potentially modified Solar values

@@ -10,14 +10,14 @@ these adjustments may lead to different results.
 
 """
 
-import numpy
+import numpy as np
 from metpy.units import units
 
 from .constants import SIGMA, MIN_SPEED, DIMICELI_MIN_SPEED
-from .calc import relative_humidity, loglaw
 from .liljegren import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import nws_boyer
+from .calc import relative_humidity, loglaw
 from .utils import datetime_check
 
 def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
@@ -77,7 +77,8 @@ def conv_heat_flow_coeff(cosz, **kwargs):
   
     """
 
-    return np.where(cosz > 0.0, 0.228, 0.0)
+    return 0.228
+    #return np.where(cosz > 0.0, 0.228, 0.0)
 
 def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
@@ -109,9 +110,9 @@ def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
 
     return (
-        numpy.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
+        np.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
         (1.0007 + 3.46e-6 * pres) *
-        6.112 * numpy.exp( 17.502 * temp_air / (240.97 + temp_air) )
+        6.112 * np.exp( 17.502 * temp_air / (240.97 + temp_air) )
     )
 
 def thermal_emissivity( temp_air, temp_dew, pres ):
