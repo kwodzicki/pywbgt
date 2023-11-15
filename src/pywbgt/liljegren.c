@@ -3258,7 +3258,7 @@ static const char __pyx_k_dt[] = "dt";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_id[] = "id";
 static const char __pyx_k_to[] = "to";
-static const char __pyx_k__45[] = "?";
+static const char __pyx_k__47[] = "?";
 static const char __pyx_k_abc[] = "abc";
 static const char __pyx_k_and[] = " and ";
 static const char __pyx_k_avg[] = "avg";
@@ -3414,6 +3414,7 @@ static const char __pyx_k_to_timedelta[] = "to_timedelta";
 static const char __pyx_k_version_info[] = "version_info";
 static const char __pyx_k_watt_meter_2[] = "watt/meter**2";
 static const char __pyx_k_class_getitem[] = "__class_getitem__";
+static const char __pyx_k_datime_adjust[] = "datime_adjust";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_wetbulb_globe[] = "wetbulb_globe";
 static const char __pyx_k_AssertionError[] = "AssertionError";
@@ -3512,13 +3513,14 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_12__defaults__(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, float __pyx_v_diameter); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_avg, PyObject *__pyx_v_gmt, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza, PyObject *__pyx_v_d_globe); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza); /* proto */
-static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_pres, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_speed, PyObject *__pyx_v_urban, PyObject *__pyx_v_gmt, PyObject *__pyx_v_avg, PyObject *__pyx_v_zspeed, PyObject *__pyx_v_dT, PyObject *__pyx_v_min_speed, PyObject *__pyx_v_d_globe, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_datime_adjust(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_avg, PyObject *__pyx_v_gmt); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_14__defaults__(CYTHON_UNUSED PyObject *__pyx_self); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_2conv_heat_trans_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, float __pyx_v_diameter); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_4solar_parameters(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_avg, PyObject *__pyx_v_gmt, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_6globe_temperature(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza, PyObject *__pyx_v_d_globe); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_8psychrometric_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_10natural_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza); /* proto */
+static PyObject *__pyx_pf_6pywbgt_9liljegren_12wetbulb_globe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_pres, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_speed, PyObject *__pyx_v_urban, PyObject *__pyx_v_gmt, PyObject *__pyx_v_avg, PyObject *__pyx_v_zspeed, PyObject *__pyx_v_dT, PyObject *__pyx_v_min_speed, PyObject *__pyx_v_d_globe, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs); /* proto */
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3649,7 +3651,7 @@ typedef struct {
   PyObject *__pyx_n_s_View_MemoryView;
   PyObject *__pyx_kp_u__2;
   PyObject *__pyx_n_s__3;
-  PyObject *__pyx_n_s__45;
+  PyObject *__pyx_n_s__47;
   PyObject *__pyx_kp_u__6;
   PyObject *__pyx_kp_u__7;
   PyObject *__pyx_n_s_abc;
@@ -3681,6 +3683,7 @@ typedef struct {
   PyObject *__pyx_n_s_d_globe_2;
   PyObject *__pyx_n_s_datetime;
   PyObject *__pyx_n_s_datetime_check;
+  PyObject *__pyx_n_s_datime_adjust;
   PyObject *__pyx_n_s_day;
   PyObject *__pyx_n_s_dayView;
   PyObject *__pyx_n_s_dday;
@@ -3886,19 +3889,21 @@ typedef struct {
   PyObject *__pyx_tuple__30;
   PyObject *__pyx_tuple__32;
   PyObject *__pyx_tuple__34;
-  PyObject *__pyx_tuple__35;
+  PyObject *__pyx_tuple__36;
   PyObject *__pyx_tuple__37;
-  PyObject *__pyx_tuple__38;
+  PyObject *__pyx_tuple__39;
   PyObject *__pyx_tuple__40;
   PyObject *__pyx_tuple__42;
   PyObject *__pyx_tuple__44;
+  PyObject *__pyx_tuple__46;
   PyObject *__pyx_codeobj__29;
   PyObject *__pyx_codeobj__31;
   PyObject *__pyx_codeobj__33;
-  PyObject *__pyx_codeobj__36;
-  PyObject *__pyx_codeobj__39;
+  PyObject *__pyx_codeobj__35;
+  PyObject *__pyx_codeobj__38;
   PyObject *__pyx_codeobj__41;
   PyObject *__pyx_codeobj__43;
+  PyObject *__pyx_codeobj__45;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -4012,7 +4017,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_View_MemoryView);
   Py_CLEAR(clear_module_state->__pyx_kp_u__2);
   Py_CLEAR(clear_module_state->__pyx_n_s__3);
-  Py_CLEAR(clear_module_state->__pyx_n_s__45);
+  Py_CLEAR(clear_module_state->__pyx_n_s__47);
   Py_CLEAR(clear_module_state->__pyx_kp_u__6);
   Py_CLEAR(clear_module_state->__pyx_kp_u__7);
   Py_CLEAR(clear_module_state->__pyx_n_s_abc);
@@ -4044,6 +4049,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_d_globe_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_datetime);
   Py_CLEAR(clear_module_state->__pyx_n_s_datetime_check);
+  Py_CLEAR(clear_module_state->__pyx_n_s_datime_adjust);
   Py_CLEAR(clear_module_state->__pyx_n_s_day);
   Py_CLEAR(clear_module_state->__pyx_n_s_dayView);
   Py_CLEAR(clear_module_state->__pyx_n_s_dday);
@@ -4249,19 +4255,21 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_tuple__30);
   Py_CLEAR(clear_module_state->__pyx_tuple__32);
   Py_CLEAR(clear_module_state->__pyx_tuple__34);
-  Py_CLEAR(clear_module_state->__pyx_tuple__35);
+  Py_CLEAR(clear_module_state->__pyx_tuple__36);
   Py_CLEAR(clear_module_state->__pyx_tuple__37);
-  Py_CLEAR(clear_module_state->__pyx_tuple__38);
+  Py_CLEAR(clear_module_state->__pyx_tuple__39);
   Py_CLEAR(clear_module_state->__pyx_tuple__40);
   Py_CLEAR(clear_module_state->__pyx_tuple__42);
   Py_CLEAR(clear_module_state->__pyx_tuple__44);
+  Py_CLEAR(clear_module_state->__pyx_tuple__46);
   Py_CLEAR(clear_module_state->__pyx_codeobj__29);
   Py_CLEAR(clear_module_state->__pyx_codeobj__31);
   Py_CLEAR(clear_module_state->__pyx_codeobj__33);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__36);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__39);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__35);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__38);
   Py_CLEAR(clear_module_state->__pyx_codeobj__41);
   Py_CLEAR(clear_module_state->__pyx_codeobj__43);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__45);
   return 0;
 }
 #endif
@@ -4353,7 +4361,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_View_MemoryView);
   Py_VISIT(traverse_module_state->__pyx_kp_u__2);
   Py_VISIT(traverse_module_state->__pyx_n_s__3);
-  Py_VISIT(traverse_module_state->__pyx_n_s__45);
+  Py_VISIT(traverse_module_state->__pyx_n_s__47);
   Py_VISIT(traverse_module_state->__pyx_kp_u__6);
   Py_VISIT(traverse_module_state->__pyx_kp_u__7);
   Py_VISIT(traverse_module_state->__pyx_n_s_abc);
@@ -4385,6 +4393,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_d_globe_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_datetime);
   Py_VISIT(traverse_module_state->__pyx_n_s_datetime_check);
+  Py_VISIT(traverse_module_state->__pyx_n_s_datime_adjust);
   Py_VISIT(traverse_module_state->__pyx_n_s_day);
   Py_VISIT(traverse_module_state->__pyx_n_s_dayView);
   Py_VISIT(traverse_module_state->__pyx_n_s_dday);
@@ -4590,19 +4599,21 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_tuple__30);
   Py_VISIT(traverse_module_state->__pyx_tuple__32);
   Py_VISIT(traverse_module_state->__pyx_tuple__34);
-  Py_VISIT(traverse_module_state->__pyx_tuple__35);
+  Py_VISIT(traverse_module_state->__pyx_tuple__36);
   Py_VISIT(traverse_module_state->__pyx_tuple__37);
-  Py_VISIT(traverse_module_state->__pyx_tuple__38);
+  Py_VISIT(traverse_module_state->__pyx_tuple__39);
   Py_VISIT(traverse_module_state->__pyx_tuple__40);
   Py_VISIT(traverse_module_state->__pyx_tuple__42);
   Py_VISIT(traverse_module_state->__pyx_tuple__44);
+  Py_VISIT(traverse_module_state->__pyx_tuple__46);
   Py_VISIT(traverse_module_state->__pyx_codeobj__29);
   Py_VISIT(traverse_module_state->__pyx_codeobj__31);
   Py_VISIT(traverse_module_state->__pyx_codeobj__33);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__36);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__39);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__35);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__38);
   Py_VISIT(traverse_module_state->__pyx_codeobj__41);
   Py_VISIT(traverse_module_state->__pyx_codeobj__43);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__45);
   return 0;
 }
 #endif
@@ -4730,7 +4741,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_View_MemoryView __pyx_mstate_global->__pyx_n_s_View_MemoryView
 #define __pyx_kp_u__2 __pyx_mstate_global->__pyx_kp_u__2
 #define __pyx_n_s__3 __pyx_mstate_global->__pyx_n_s__3
-#define __pyx_n_s__45 __pyx_mstate_global->__pyx_n_s__45
+#define __pyx_n_s__47 __pyx_mstate_global->__pyx_n_s__47
 #define __pyx_kp_u__6 __pyx_mstate_global->__pyx_kp_u__6
 #define __pyx_kp_u__7 __pyx_mstate_global->__pyx_kp_u__7
 #define __pyx_n_s_abc __pyx_mstate_global->__pyx_n_s_abc
@@ -4762,6 +4773,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_d_globe_2 __pyx_mstate_global->__pyx_n_s_d_globe_2
 #define __pyx_n_s_datetime __pyx_mstate_global->__pyx_n_s_datetime
 #define __pyx_n_s_datetime_check __pyx_mstate_global->__pyx_n_s_datetime_check
+#define __pyx_n_s_datime_adjust __pyx_mstate_global->__pyx_n_s_datime_adjust
 #define __pyx_n_s_day __pyx_mstate_global->__pyx_n_s_day
 #define __pyx_n_s_dayView __pyx_mstate_global->__pyx_n_s_dayView
 #define __pyx_n_s_dday __pyx_mstate_global->__pyx_n_s_dday
@@ -4967,19 +4979,21 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_tuple__30 __pyx_mstate_global->__pyx_tuple__30
 #define __pyx_tuple__32 __pyx_mstate_global->__pyx_tuple__32
 #define __pyx_tuple__34 __pyx_mstate_global->__pyx_tuple__34
-#define __pyx_tuple__35 __pyx_mstate_global->__pyx_tuple__35
+#define __pyx_tuple__36 __pyx_mstate_global->__pyx_tuple__36
 #define __pyx_tuple__37 __pyx_mstate_global->__pyx_tuple__37
-#define __pyx_tuple__38 __pyx_mstate_global->__pyx_tuple__38
+#define __pyx_tuple__39 __pyx_mstate_global->__pyx_tuple__39
 #define __pyx_tuple__40 __pyx_mstate_global->__pyx_tuple__40
 #define __pyx_tuple__42 __pyx_mstate_global->__pyx_tuple__42
 #define __pyx_tuple__44 __pyx_mstate_global->__pyx_tuple__44
+#define __pyx_tuple__46 __pyx_mstate_global->__pyx_tuple__46
 #define __pyx_codeobj__29 __pyx_mstate_global->__pyx_codeobj__29
 #define __pyx_codeobj__31 __pyx_mstate_global->__pyx_codeobj__31
 #define __pyx_codeobj__33 __pyx_mstate_global->__pyx_codeobj__33
-#define __pyx_codeobj__36 __pyx_mstate_global->__pyx_codeobj__36
-#define __pyx_codeobj__39 __pyx_mstate_global->__pyx_codeobj__39
+#define __pyx_codeobj__35 __pyx_mstate_global->__pyx_codeobj__35
+#define __pyx_codeobj__38 __pyx_mstate_global->__pyx_codeobj__38
 #define __pyx_codeobj__41 __pyx_mstate_global->__pyx_codeobj__41
 #define __pyx_codeobj__43 __pyx_mstate_global->__pyx_codeobj__43
+#define __pyx_codeobj__45 __pyx_mstate_global->__pyx_codeobj__45
 /* #### Code section: module_code ### */
 
 /* "View.MemoryView":131
@@ -19865,12 +19879,359 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
 /* "pywbgt/liljegren.pyx":21
  * LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
  * 
+ * def datime_adjust(datetime, avg, gmt):             # <<<<<<<<<<<<<<
+ *     """
+ *     Adjust datetime based on averaging window and gmt
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_6pywbgt_9liljegren_1datime_adjust(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_datime_adjust, "\n    Adjust datetime based on averaging window and gmt\n\n    Arguments:\n        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data\n        gmt (ndarray) LST-GMT difference  (hours; negative in USA)\n        avg (ndarray) : averaging time of the meteorological inputs (minutes)\n\n    Returns:\n        pandas.DatetimeIndex : Adjusted datetimes based on the avg and\n            gmt values\n\n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_1datime_adjust = {"datime_adjust", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_1datime_adjust, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_datime_adjust};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_1datime_adjust(PyObject *__pyx_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_datetime = 0;
+  PyObject *__pyx_v_avg = 0;
+  PyObject *__pyx_v_gmt = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[3] = {0,0,0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("datime_adjust (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_datetime,&__pyx_n_s_avg,&__pyx_n_s_gmt,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
+        case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+        CYTHON_FALLTHROUGH;
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_datetime)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+        CYTHON_FALLTHROUGH;
+        case  1:
+        if (likely((values[1] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_avg)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("datime_adjust", 1, 3, 3, 1); __PYX_ERR(1, 21, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (likely((values[2] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_gmt)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+        else {
+          __Pyx_RaiseArgtupleInvalid("datime_adjust", 1, 3, 3, 2); __PYX_ERR(1, 21, __pyx_L3_error)
+        }
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "datime_adjust") < 0)) __PYX_ERR(1, 21, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 3)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+      values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
+      values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+    }
+    __pyx_v_datetime = values[0];
+    __pyx_v_avg = values[1];
+    __pyx_v_gmt = values[2];
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("datime_adjust", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 21, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("pywbgt.liljegren.datime_adjust", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_datime_adjust(__pyx_self, __pyx_v_datetime, __pyx_v_avg, __pyx_v_gmt);
+
+  /* function exit code */
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_6pywbgt_9liljegren_datime_adjust(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_avg, PyObject *__pyx_v_gmt) {
+  PyObject *__pyx_v_dt = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_4;
+  int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("datime_adjust", 0);
+  __Pyx_INCREF(__pyx_v_datetime);
+  __Pyx_INCREF(__pyx_v_avg);
+
+  /* "pywbgt/liljegren.pyx":36
+ *     """
+ * 
+ *     datetime = datetime_check(datetime)             # <<<<<<<<<<<<<<
+ * 
+ *     # Set default data averaging interval and compute time offset so that
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_datetime_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 36, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  __pyx_t_4 = 0;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_datetime};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 36, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  }
+  __Pyx_DECREF_SET(__pyx_v_datetime, __pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "pywbgt/liljegren.pyx":40
+ *     # Set default data averaging interval and compute time offset so that
+ *     # time is in the middle of the sampling interval
+ *     if avg is None:             # <<<<<<<<<<<<<<
+ *         avg = 1.0
+ *     dt = to_timedelta( avg/2.0, 'minute')
+ */
+  __pyx_t_5 = (__pyx_v_avg == Py_None);
+  if (__pyx_t_5) {
+
+    /* "pywbgt/liljegren.pyx":41
+ *     # time is in the middle of the sampling interval
+ *     if avg is None:
+ *         avg = 1.0             # <<<<<<<<<<<<<<
+ *     dt = to_timedelta( avg/2.0, 'minute')
+ * 
+ */
+    __Pyx_INCREF(__pyx_float_1_0);
+    __Pyx_DECREF_SET(__pyx_v_avg, __pyx_float_1_0);
+
+    /* "pywbgt/liljegren.pyx":40
+ *     # Set default data averaging interval and compute time offset so that
+ *     # time is in the middle of the sampling interval
+ *     if avg is None:             # <<<<<<<<<<<<<<
+ *         avg = 1.0
+ *     dt = to_timedelta( avg/2.0, 'minute')
+ */
+  }
+
+  /* "pywbgt/liljegren.pyx":42
+ *     if avg is None:
+ *         avg = 1.0
+ *     dt = to_timedelta( avg/2.0, 'minute')             # <<<<<<<<<<<<<<
+ * 
+ *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_to_timedelta); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 42, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_avg, __pyx_float_2_0, 2.0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 42, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_6 = NULL;
+  __pyx_t_4 = 0;
+  #if CYTHON_UNPACK_METHODS
+  if (unlikely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_6)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_6);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[3] = {__pyx_t_6, __pyx_t_3, __pyx_n_u_minute};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 42, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  }
+  __pyx_v_dt = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "pywbgt/liljegren.pyx":45
+ * 
+ *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
+ *     if gmt is not None:             # <<<<<<<<<<<<<<
+ *         dt = dt + to_timedelta(gmt, 'hour')
+ * 
+ */
+  __pyx_t_5 = (__pyx_v_gmt != Py_None);
+  if (__pyx_t_5) {
+
+    /* "pywbgt/liljegren.pyx":46
+ *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
+ *     if gmt is not None:
+ *         dt = dt + to_timedelta(gmt, 'hour')             # <<<<<<<<<<<<<<
+ * 
+ *     # Adjust time using time delta
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_to_timedelta); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 46, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = NULL;
+    __pyx_t_4 = 0;
+    #if CYTHON_UNPACK_METHODS
+    if (unlikely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+      if (likely(__pyx_t_3)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+        __Pyx_INCREF(__pyx_t_3);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_2, function);
+        __pyx_t_4 = 1;
+      }
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_v_gmt, __pyx_n_u_hour};
+      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
+      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 46, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    }
+    __pyx_t_2 = PyNumber_Add(__pyx_v_dt, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 46, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF_SET(__pyx_v_dt, __pyx_t_2);
+    __pyx_t_2 = 0;
+
+    /* "pywbgt/liljegren.pyx":45
+ * 
+ *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
+ *     if gmt is not None:             # <<<<<<<<<<<<<<
+ *         dt = dt + to_timedelta(gmt, 'hour')
+ * 
+ */
+  }
+
+  /* "pywbgt/liljegren.pyx":49
+ * 
+ *     # Adjust time using time delta
+ *     return datetime - dt             # <<<<<<<<<<<<<<
+ * 
+ * @cython.boundscheck(False)
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_2 = PyNumber_Subtract(__pyx_v_datetime, __pyx_v_dt); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 49, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "pywbgt/liljegren.pyx":21
+ * LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
+ * 
+ * def datime_adjust(datetime, avg, gmt):             # <<<<<<<<<<<<<<
+ *     """
+ *     Adjust datetime based on averaging window and gmt
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_AddTraceback("pywbgt.liljegren.datime_adjust", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_dt);
+  __Pyx_XDECREF(__pyx_v_datetime);
+  __Pyx_XDECREF(__pyx_v_avg);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pywbgt/liljegren.pyx":51
+ *     return datetime - dt
+ * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.initializedcheck(False)
  */
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_12__defaults__(CYTHON_UNUSED PyObject *__pyx_self) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_14__defaults__(CYTHON_UNUSED PyObject *__pyx_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -19880,20 +20241,20 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_12__defaults__(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__defaults__", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_diameter); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_self)->__pyx_arg_diameter); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1)) __PYX_ERR(1, 21, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1)) __PYX_ERR(1, 51, __pyx_L1_error);
   __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2)) __PYX_ERR(1, 21, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2)) __PYX_ERR(1, 51, __pyx_L1_error);
   __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(Py_None);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, Py_None)) __PYX_ERR(1, 21, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, Py_None)) __PYX_ERR(1, 51, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -19912,16 +20273,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_12__defaults__(CYTHON_UNUSED PyObje
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6pywbgt_9liljegren_1conv_heat_trans_coeff(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6pywbgt_9liljegren_3conv_heat_trans_coeff(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_conv_heat_trans_coeff, "\n    Compute convective heat transfer coefficient \n  \n    Wrapper for the h_sphere_in_air C function from WBGT v1.1\n  \n    Arguments:\n        temp_air (ndarray) : Ambient air temperature in Kelvin\n        pres (ndarray) : Barometric pressure in hPa/mb\n        speed (ndarray) : Air/wind seed in m/s\n  \n    Keyword arguments:\n        diameter (float) : Diameter of the sphere in meters; default value\n            is 0.0508 and is taken from the C code\n  \n    Returns:\n        ndarray : convective heat transfer coefficients\n\n    ");
-static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_1conv_heat_trans_coeff = {"conv_heat_trans_coeff", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_1conv_heat_trans_coeff, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_conv_heat_trans_coeff};
-static PyObject *__pyx_pw_6pywbgt_9liljegren_1conv_heat_trans_coeff(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_2conv_heat_trans_coeff, "\n    Compute convective heat transfer coefficient \n  \n    Wrapper for the h_sphere_in_air C function from WBGT v1.1\n  \n    Arguments:\n        temp_air (ndarray) : Ambient air temperature in Kelvin\n        pres (ndarray) : Barometric pressure in hPa/mb\n        speed (ndarray) : Air/wind seed in m/s\n  \n    Keyword arguments:\n        diameter (float) : Diameter of the sphere in meters; default value\n            is 0.0508 and is taken from the C code\n  \n    Returns:\n        ndarray : convective heat transfer coefficients\n\n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_3conv_heat_trans_coeff = {"conv_heat_trans_coeff", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_3conv_heat_trans_coeff, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_2conv_heat_trans_coeff};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_3conv_heat_trans_coeff(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19975,7 +20336,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 51, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -19983,9 +20344,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 51, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("conv_heat_trans_coeff", 0, 3, 4, 1); __PYX_ERR(1, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("conv_heat_trans_coeff", 0, 3, 4, 1); __PYX_ERR(1, 51, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -19993,21 +20354,21 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 51, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("conv_heat_trans_coeff", 0, 3, 4, 2); __PYX_ERR(1, 21, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("conv_heat_trans_coeff", 0, 3, 4, 2); __PYX_ERR(1, 51, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_diameter);
           if (value) { values[3] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 21, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 51, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "conv_heat_trans_coeff") < 0)) __PYX_ERR(1, 21, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "conv_heat_trans_coeff") < 0)) __PYX_ERR(1, 51, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -20024,14 +20385,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
     __pyx_v_pres = values[1];
     __pyx_v_speed = values[2];
     if (values[3]) {
-      __pyx_v_diameter = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_diameter == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 25, __pyx_L3_error)
+      __pyx_v_diameter = __pyx_PyFloat_AsFloat(values[3]); if (unlikely((__pyx_v_diameter == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 55, __pyx_L3_error)
     } else {
       __pyx_v_diameter = __pyx_dynamic_args->__pyx_arg_diameter;
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("conv_heat_trans_coeff", 0, 3, 4, __pyx_nargs); __PYX_ERR(1, 21, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("conv_heat_trans_coeff", 0, 3, 4, __pyx_nargs); __PYX_ERR(1, 51, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20045,7 +20406,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(__pyx_self, __pyx_v_temp_air, __pyx_v_pres, __pyx_v_speed, __pyx_v_diameter);
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_2conv_heat_trans_coeff(__pyx_self, __pyx_v_temp_air, __pyx_v_pres, __pyx_v_speed, __pyx_v_diameter);
 
   /* function exit code */
   {
@@ -20058,7 +20419,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, float __pyx_v_diameter) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_2conv_heat_trans_coeff(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, float __pyx_v_diameter) {
   Py_ssize_t __pyx_v_i;
   Py_ssize_t __pyx_v_size;
   PyObject *__pyx_v_h = NULL;
@@ -20087,51 +20448,51 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("conv_heat_trans_coeff", 1);
 
-  /* "pywbgt/liljegren.pyx":45
+  /* "pywbgt/liljegren.pyx":75
  *     """
  * 
  *     cdef Py_ssize_t i, size = temp_air.shape[0]             # <<<<<<<<<<<<<<
  * 
  *     h = numpy.empty( size, dtype = numpy.float32 )
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 45, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 45, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 75, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_size = __pyx_t_3;
 
-  /* "pywbgt/liljegren.pyx":47
+  /* "pywbgt/liljegren.pyx":77
  *     cdef Py_ssize_t i, size = temp_air.shape[0]
  * 
  *     h = numpy.empty( size, dtype = numpy.float32 )             # <<<<<<<<<<<<<<
  * 
  *     cdef:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_empty); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(1, 47, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(1, 77, __pyx_L1_error);
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_numpy); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_float32); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(1, 47, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 47, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 77, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -20139,30 +20500,30 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
   __pyx_v_h = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "pywbgt/liljegren.pyx":50
+  /* "pywbgt/liljegren.pyx":80
  * 
  *     cdef:
  *         float [::1] hView        = h # Initialize array to write data to             # <<<<<<<<<<<<<<
  *         float [::1] temp_airView = temp_air.astype( numpy.float32 )
  *         float [::1] presView     = pres.astype( numpy.float32 )
  */
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_v_h, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 50, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_v_h, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 80, __pyx_L1_error)
   __pyx_v_hView = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":51
+  /* "pywbgt/liljegren.pyx":81
  *     cdef:
  *         float [::1] hView        = h # Initialize array to write data to
  *         float [::1] temp_airView = temp_air.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] presView     = pres.astype( numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 51, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 51, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 51, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 81, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -20184,28 +20545,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
     __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 51, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 81, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_6, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 51, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_6, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 81, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_temp_airView = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":52
+  /* "pywbgt/liljegren.pyx":82
  *         float [::1] hView        = h # Initialize array to write data to
  *         float [::1] temp_airView = temp_air.astype( numpy.float32 )
  *         float [::1] presView     = pres.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = NULL;
@@ -20227,28 +20588,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
     __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 52, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 82, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_6, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 52, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_6, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_presView = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":53
+  /* "pywbgt/liljegren.pyx":83
  *         float [::1] temp_airView = temp_air.astype( numpy.float32 )
  *         float [::1] presView     = pres.astype( numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  * 
  *     for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 53, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 53, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 53, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -20270,17 +20631,17 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
     __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 53, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 83, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_6, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 53, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_6, PyBUF_WRITABLE); if (unlikely(!__pyx_t_7.memview)) __PYX_ERR(1, 83, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_speedView = __pyx_t_7;
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":55
+  /* "pywbgt/liljegren.pyx":85
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  * 
  *     for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel             # <<<<<<<<<<<<<<
@@ -20317,7 +20678,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
                         {
                             __pyx_v_i = (Py_ssize_t)(0 + 1 * __pyx_t_9);
 
-                            /* "pywbgt/liljegren.pyx":57
+                            /* "pywbgt/liljegren.pyx":87
  *     for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel
  *         hView[i] = h_sphere_in_air(
  *             diameter, temp_airView[i], presView[i], speedView[i]             # <<<<<<<<<<<<<<
@@ -20328,7 +20689,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
                             __pyx_t_12 = __pyx_v_i;
                             __pyx_t_13 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":56
+                            /* "pywbgt/liljegren.pyx":86
  * 
  *     for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel
  *         hView[i] = h_sphere_in_air(             # <<<<<<<<<<<<<<
@@ -20350,7 +20711,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
         #endif
       }
 
-      /* "pywbgt/liljegren.pyx":55
+      /* "pywbgt/liljegren.pyx":85
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  * 
  *     for i in prange( size, nogil=True ):                                          # Iterate over all values in parallel             # <<<<<<<<<<<<<<
@@ -20369,7 +20730,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
       }
   }
 
-  /* "pywbgt/liljegren.pyx":60
+  /* "pywbgt/liljegren.pyx":90
  *         )
  * 
  *     return h                                                     # Reshape to same shape as temp_air             # <<<<<<<<<<<<<<
@@ -20381,8 +20742,8 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
   __pyx_r = __pyx_v_h;
   goto __pyx_L0;
 
-  /* "pywbgt/liljegren.pyx":21
- * LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
+  /* "pywbgt/liljegren.pyx":51
+ *     return datetime - dt
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
@@ -20410,7 +20771,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
   return __pyx_r;
 }
 
-/* "pywbgt/liljegren.pyx":62
+/* "pywbgt/liljegren.pyx":92
  *     return h                                                     # Reshape to same shape as temp_air
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -20419,16 +20780,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_conv_heat_trans_coeff(CYTHON_UNUSED
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6pywbgt_9liljegren_3solar_parameters(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6pywbgt_9liljegren_5solar_parameters(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_2solar_parameters, "\n    Calculate solar parameters based on date and location\n\n    The following quantities are calculated:\n      - Modifies solar values to be consistent with normsolar from C function\n      - cosine of the solar zenith angle\n      - fraction of the solar irradiance due to the direct beam\n\n    Arguments:\n        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data\n        lat (ndarray) : Latitude of location(s) to compute parameters for; decimal\n        lon (ndarray) : Longitude of location(s) to compute parameters for; decimal\n        solar (ndarray) : Solar irradiance values (Watt/m**2)\n\n    Keyword arguments:\n        avg (ndarray) : averaging time of the meteorological inputs (minutes)\n        gmt (ndarray) : LST-GMT difference  (hours; negative in USA)\n        use_spa (bool) : If set, the National Renewable Energy Laboratory (NREL)\n            Solar Position Algorithm (SPA) is used to compute solar parameters.\n            By default, the algorithm included in the Liljegren C-code is used.\n \n    Returns:\n        tuple : Three (3) ndarrays containing:\n            - Potentially modified Solar values\n            - cosine of zenith angle\n            - fraction of solar irradiance due to the direct beam\n \n    ");
-static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_3solar_parameters = {"solar_parameters", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_3solar_parameters, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_2solar_parameters};
-static PyObject *__pyx_pw_6pywbgt_9liljegren_3solar_parameters(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_4solar_parameters, "\n    Calculate solar parameters based on date and location\n\n    The following quantities are calculated:\n      - Modifies solar values to be consistent with normsolar from C function\n      - cosine of the solar zenith angle\n      - fraction of the solar irradiance due to the direct beam\n\n    Arguments:\n        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data\n        lat (ndarray) : Latitude of location(s) to compute parameters for; decimal\n        lon (ndarray) : Longitude of location(s) to compute parameters for; decimal\n        solar (ndarray) : Solar irradiance values (Watt/m**2)\n\n    Keyword arguments:\n        avg (ndarray) : averaging time of the meteorological inputs (minutes)\n        gmt (ndarray) : LST-GMT difference  (hours; negative in USA)\n        use_spa (bool) : If set, the National Renewable Energy Laboratory (NREL)\n            Solar Position Algorithm (SPA) is used to compute solar parameters.\n            By default, the algorithm included in the Liljegren C-code is used.\n \n    Returns:\n        tuple : Three (3) ndarrays containing:\n            - Potentially modified Solar values\n            - cosine of zenith angle\n            - fraction of solar irradiance due to the direct beam\n \n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_5solar_parameters = {"solar_parameters", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_5solar_parameters, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_4solar_parameters};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_5solar_parameters(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -20467,7 +20828,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject **__pyx_pyargnames[] = {&__pyx_n_s_datetime,&__pyx_n_s_lat,&__pyx_n_s_lon,&__pyx_n_s_solar,&__pyx_n_s_avg,&__pyx_n_s_gmt,&__pyx_n_s_use_spa,0};
 
-    /* "pywbgt/liljegren.pyx":68
+    /* "pywbgt/liljegren.pyx":98
  * def solar_parameters(
  *         datetime, lat, lon, solar,
  *         avg     = None,             # <<<<<<<<<<<<<<
@@ -20476,7 +20837,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[4] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":69
+    /* "pywbgt/liljegren.pyx":99
  *         datetime, lat, lon, solar,
  *         avg     = None,
  *         gmt     = None,             # <<<<<<<<<<<<<<
@@ -20485,7 +20846,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[5] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":70
+    /* "pywbgt/liljegren.pyx":100
  *         avg     = None,
  *         gmt     = None,
  *         use_spa = False,             # <<<<<<<<<<<<<<
@@ -20520,7 +20881,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -20528,9 +20889,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, 1); __PYX_ERR(1, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, 1); __PYX_ERR(1, 92, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -20538,9 +20899,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, 2); __PYX_ERR(1, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, 2); __PYX_ERR(1, 92, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -20548,35 +20909,35 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, 3); __PYX_ERR(1, 62, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, 3); __PYX_ERR(1, 92, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_avg);
           if (value) { values[4] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_gmt);
           if (value) { values[5] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_use_spa);
           if (value) { values[6] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 62, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 92, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values + 0, kwd_pos_args, "solar_parameters") < 0)) __PYX_ERR(1, 62, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values + 0, kwd_pos_args, "solar_parameters") < 0)) __PYX_ERR(1, 92, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -20604,7 +20965,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, __pyx_nargs); __PYX_ERR(1, 62, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 7, __pyx_nargs); __PYX_ERR(1, 92, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20619,9 +20980,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6pywbgt_9liljegren_2solar_parameters(__pyx_self, __pyx_v_datetime, __pyx_v_lat, __pyx_v_lon, __pyx_v_solar, __pyx_v_avg, __pyx_v_gmt, __pyx_v_use_spa, __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_4solar_parameters(__pyx_self, __pyx_v_datetime, __pyx_v_lat, __pyx_v_lon, __pyx_v_solar, __pyx_v_avg, __pyx_v_gmt, __pyx_v_use_spa, __pyx_v_kwargs);
 
-  /* "pywbgt/liljegren.pyx":62
+  /* "pywbgt/liljegren.pyx":92
  *     return h                                                     # Reshape to same shape as temp_air
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -20641,13 +21002,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_avg, PyObject *__pyx_v_gmt, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_4solar_parameters(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_avg, PyObject *__pyx_v_gmt, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs) {
   CYTHON_UNUSED int __pyx_v_res;
   int __pyx_v_spa;
   Py_ssize_t __pyx_v_i;
   Py_ssize_t __pyx_v_size;
   double __pyx_v_dday;
-  PyObject *__pyx_v_dt = NULL;
   PyObject *__pyx_v_out = NULL;
   __Pyx_memviewslice __pyx_v_outView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_latView = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -20690,16 +21050,15 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   __Pyx_INCREF(__pyx_v_datetime);
   __Pyx_INCREF(__pyx_v_lat);
   __Pyx_INCREF(__pyx_v_lon);
-  __Pyx_INCREF(__pyx_v_avg);
 
-  /* "pywbgt/liljegren.pyx":102
+  /* "pywbgt/liljegren.pyx":132
  *     """
  * 
- *     datetime = datetime_check(datetime)             # <<<<<<<<<<<<<<
+ *     datetime = datime_adjust(datetime, avg, gmt)             # <<<<<<<<<<<<<<
  * 
  *     cdef:
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_datetime_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 102, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_datime_adjust); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -20716,267 +21075,133 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_datetime};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    PyObject *__pyx_callargs[4] = {__pyx_t_3, __pyx_v_datetime, __pyx_v_avg, __pyx_v_gmt};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 3+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 102, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 132, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF_SET(__pyx_v_datetime, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/liljegren.pyx":105
+  /* "pywbgt/liljegren.pyx":135
  * 
  *     cdef:
  *         int res, spa = use_spa             # <<<<<<<<<<<<<<
  *         Py_ssize_t i, size = datetime.shape[0]
  *         double dday
  */
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_use_spa); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 105, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_use_spa); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 135, __pyx_L1_error)
   __pyx_v_spa = __pyx_t_4;
 
-  /* "pywbgt/liljegren.pyx":106
+  /* "pywbgt/liljegren.pyx":136
  *     cdef:
  *         int res, spa = use_spa
  *         Py_ssize_t i, size = datetime.shape[0]             # <<<<<<<<<<<<<<
  *         double dday
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 106, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 106, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 136, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 106, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 136, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_size = __pyx_t_5;
 
-  /* "pywbgt/liljegren.pyx":109
+  /* "pywbgt/liljegren.pyx":139
  *         double dday
- * 
- *     if avg is None:             # <<<<<<<<<<<<<<
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')
- */
-  __pyx_t_6 = (__pyx_v_avg == Py_None);
-  if (__pyx_t_6) {
-
-    /* "pywbgt/liljegren.pyx":110
- * 
- *     if avg is None:
- *         avg = 1.0             # <<<<<<<<<<<<<<
- *     dt = to_timedelta( avg/2.0, 'minute')
- *     if gmt is not None:
- */
-    __Pyx_INCREF(__pyx_float_1_0);
-    __Pyx_DECREF_SET(__pyx_v_avg, __pyx_float_1_0);
-
-    /* "pywbgt/liljegren.pyx":109
- *         double dday
- * 
- *     if avg is None:             # <<<<<<<<<<<<<<
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')
- */
-  }
-
-  /* "pywbgt/liljegren.pyx":111
- *     if avg is None:
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')             # <<<<<<<<<<<<<<
- *     if gmt is not None:
- *         dt = dt + to_timedelta(gmt, 'hour')
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_to_timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 111, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_avg, __pyx_float_2_0, 2.0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 111, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = NULL;
-  __pyx_t_4 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_4 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_t_3, __pyx_n_u_minute};
-    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 111, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-  __pyx_v_dt = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  /* "pywbgt/liljegren.pyx":112
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')
- *     if gmt is not None:             # <<<<<<<<<<<<<<
- *         dt = dt + to_timedelta(gmt, 'hour')
- * 
- */
-  __pyx_t_6 = (__pyx_v_gmt != Py_None);
-  if (__pyx_t_6) {
-
-    /* "pywbgt/liljegren.pyx":113
- *     dt = to_timedelta( avg/2.0, 'minute')
- *     if gmt is not None:
- *         dt = dt + to_timedelta(gmt, 'hour')             # <<<<<<<<<<<<<<
- * 
- *     datetime = datetime - dt
- */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_to_timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 113, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = NULL;
-    __pyx_t_4 = 0;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_3)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_3);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
-        __pyx_t_4 = 1;
-      }
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_v_gmt, __pyx_n_u_hour};
-      __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 113, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    }
-    __pyx_t_1 = PyNumber_Add(__pyx_v_dt, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 113, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF_SET(__pyx_v_dt, __pyx_t_1);
-    __pyx_t_1 = 0;
-
-    /* "pywbgt/liljegren.pyx":112
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')
- *     if gmt is not None:             # <<<<<<<<<<<<<<
- *         dt = dt + to_timedelta(gmt, 'hour')
- * 
- */
-  }
-
-  /* "pywbgt/liljegren.pyx":115
- *         dt = dt + to_timedelta(gmt, 'hour')
- * 
- *     datetime = datetime - dt             # <<<<<<<<<<<<<<
- * 
- *     if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
- */
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_datetime, __pyx_v_dt); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 115, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF_SET(__pyx_v_datetime, __pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "pywbgt/liljegren.pyx":117
- *     datetime = datetime - dt
  * 
  *     if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data             # <<<<<<<<<<<<<<
  *         lat = lat.repeat( size )
  *         lon = lon.repeat( size )
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 117, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 117, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(1, 117, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 139, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 139, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_6 < 0))) __PYX_ERR(1, 139, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_6) {
 
-    /* "pywbgt/liljegren.pyx":118
+    /* "pywbgt/liljegren.pyx":140
  * 
  *     if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
  *         lat = lat.repeat( size )             # <<<<<<<<<<<<<<
  *         lon = lon.repeat( size )
  * 
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_repeat); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 118, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 118, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_repeat); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 140, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 140, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_7 = NULL;
     __pyx_t_4 = 0;
     #if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
       if (likely(__pyx_t_7)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_7);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __Pyx_DECREF_SET(__pyx_t_2, function);
         __pyx_t_4 = 1;
       }
     }
     #endif
     {
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_t_3};
-      __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 118, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 140, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
-    __Pyx_DECREF_SET(__pyx_v_lat, __pyx_t_2);
-    __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_lat, __pyx_t_1);
+    __pyx_t_1 = 0;
 
-    /* "pywbgt/liljegren.pyx":119
+    /* "pywbgt/liljegren.pyx":141
  *     if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
  *         lat = lat.repeat( size )
  *         lon = lon.repeat( size )             # <<<<<<<<<<<<<<
  * 
  *     out = solar.astype( numpy.float32 ).reshape( (1, size) ).repeat(3, axis=0)
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_repeat); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 119, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 119, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_repeat); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 141, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 141, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_7 = NULL;
     __pyx_t_4 = 0;
     #if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_2);
       if (likely(__pyx_t_7)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
         __Pyx_INCREF(__pyx_t_7);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __Pyx_DECREF_SET(__pyx_t_2, function);
         __pyx_t_4 = 1;
       }
     }
     #endif
     {
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_t_3};
-      __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 119, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 141, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
-    __Pyx_DECREF_SET(__pyx_v_lon, __pyx_t_2);
-    __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_lon, __pyx_t_1);
+    __pyx_t_1 = 0;
 
-    /* "pywbgt/liljegren.pyx":117
- *     datetime = datetime - dt
+    /* "pywbgt/liljegren.pyx":139
+ *         double dday
  * 
  *     if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data             # <<<<<<<<<<<<<<
  *         lat = lat.repeat( size )
@@ -20984,18 +21209,18 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
  */
   }
 
-  /* "pywbgt/liljegren.pyx":121
+  /* "pywbgt/liljegren.pyx":143
  *         lon = lon.repeat( size )
  * 
  *     out = solar.astype( numpy.float32 ).reshape( (1, size) ).repeat(3, axis=0)             # <<<<<<<<<<<<<<
  * 
  *     cdef:
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_7 = NULL;
@@ -21014,34 +21239,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   #endif
   {
     PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_t_8};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 121, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 143, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_reshape); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_reshape); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 143, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_INCREF(__pyx_int_1);
   __Pyx_GIVEREF(__pyx_int_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_int_1)) __PYX_ERR(1, 121, __pyx_L1_error);
-  __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_1)) __PYX_ERR(1, 121, __pyx_L1_error);
-  __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_int_1)) __PYX_ERR(1, 143, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_2);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_t_2)) __PYX_ERR(1, 143, __pyx_L1_error);
+  __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_3, function);
       __pyx_t_4 = 1;
@@ -21049,425 +21274,425 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_8};
-    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_8};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 121, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 143, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_repeat); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_repeat); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 121, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_axis, __pyx_int_0) < 0) __PYX_ERR(1, 121, __pyx_L1_error)
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__11, __pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 143, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_axis, __pyx_int_0) < 0) __PYX_ERR(1, 143, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_tuple__11, __pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_out = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "pywbgt/liljegren.pyx":124
+  /* "pywbgt/liljegren.pyx":146
  * 
  *     cdef:
  *         float [:, ::1] outView = out             # <<<<<<<<<<<<<<
  * 
  *         float [::1] latView  = lat.astype(    numpy.float32 )
  */
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(1, 124, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(1, 146, __pyx_L1_error)
   __pyx_v_outView = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":126
+  /* "pywbgt/liljegren.pyx":148
  *         float [:, ::1] outView = out
  * 
  *         float [::1] latView  = lat.astype(    numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] lonView  = lon.astype(    numpy.float32 )
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 126, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 126, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 148, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 148, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_1};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_2};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 126, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 148, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(1, 126, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(1, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_latView = __pyx_t_10;
   __pyx_t_10.memview = NULL;
   __pyx_t_10.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":127
+  /* "pywbgt/liljegren.pyx":149
  * 
  *         float [::1] latView  = lat.astype(    numpy.float32 )
  *         float [::1] lonView  = lon.astype(    numpy.float32 )             # <<<<<<<<<<<<<<
  * 
  *         int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 127, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 127, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 127, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 149, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_3};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_3};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 127, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 149, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(1, 127, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_10.memview)) __PYX_ERR(1, 149, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_lonView = __pyx_t_10;
   __pyx_t_10.memview = NULL;
   __pyx_t_10.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":129
+  /* "pywbgt/liljegren.pyx":151
  *         float [::1] lonView  = lon.astype(    numpy.float32 )
  * 
  *         int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )
  *         int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_year); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 129, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 129, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 129, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 129, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 129, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_year); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 151, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 151, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 151, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 151, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_1};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_2};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 129, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 151, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 129, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_yearView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":130
+  /* "pywbgt/liljegren.pyx":152
  * 
  *         int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )
  *         int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )
  *         int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_month); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 130, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_month); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 152, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 130, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 130, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 130, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 130, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 152, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_3};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_3};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 130, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 130, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 152, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_monthView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":131
+  /* "pywbgt/liljegren.pyx":153
  *         int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )
  *         int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )
  *         int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
  *         int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_day); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 131, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 131, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 131, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 131, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 131, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_day); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 153, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 153, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 153, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 153, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 153, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_1};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_2};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 131, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 153, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 131, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 153, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_dayView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":132
+  /* "pywbgt/liljegren.pyx":154
  *         int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )
  *         int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )
  *         int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )
  *         int [::1] secondView = datetime.second.values.astype( numpy.int32 )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_hour); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 132, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_hour); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 154, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 132, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 132, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 132, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 132, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_3};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_3};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 132, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 154, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 132, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 154, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_hourView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":133
+  /* "pywbgt/liljegren.pyx":155
  *         int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )
  *         int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
  *         int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] secondView = datetime.second.values.astype( numpy.int32 )
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_minute); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 133, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 133, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 133, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 133, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 133, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_minute); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 155, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 155, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 155, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 155, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 155, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
     if (likely(__pyx_t_3)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
       __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_1};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_t_2};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 133, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 155, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 133, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 155, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_minuteView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":134
+  /* "pywbgt/liljegren.pyx":156
  *         int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
  *         int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )
  *         int [::1] secondView = datetime.second.values.astype( numpy.int32 )             # <<<<<<<<<<<<<<
  * 
  *     for i in prange( size, nogil=True ):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_second); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 134, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_second); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 156, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_values); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_values); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 134, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 134, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 134, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 134, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = NULL;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
+  if (likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
     }
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_3};
-    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_3};
+    __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 134, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 156, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 134, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_8, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 156, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __pyx_v_secondView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":136
+  /* "pywbgt/liljegren.pyx":158
  *         int [::1] secondView = datetime.second.values.astype( numpy.int32 )
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
- *       #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
  *         dday  = (
+ *             dayView[i] +
  */
   {
       #ifdef WITH_THREAD
@@ -21502,8 +21727,8 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
                             __pyx_v_dday = ((double)__PYX_NAN());
                             __pyx_v_res = ((int)0xbad0bad0);
 
-                            /* "pywbgt/liljegren.pyx":139
- *       #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
+                            /* "pywbgt/liljegren.pyx":160
+ *     for i in prange( size, nogil=True ):
  *         dday  = (
  *             dayView[i] +             # <<<<<<<<<<<<<<
  *             ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
@@ -21511,7 +21736,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
  */
                             __pyx_t_14 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":140
+                            /* "pywbgt/liljegren.pyx":161
  *         dday  = (
  *             dayView[i] +
  *             ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0             # <<<<<<<<<<<<<<
@@ -21522,8 +21747,8 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
                             __pyx_t_16 = __pyx_v_i;
                             __pyx_t_17 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":139
- *       #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
+                            /* "pywbgt/liljegren.pyx":160
+ *     for i in prange( size, nogil=True ):
  *         dday  = (
  *             dayView[i] +             # <<<<<<<<<<<<<<
  *             ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
@@ -21531,7 +21756,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
  */
                             __pyx_v_dday = ((*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_dayView.data) + __pyx_t_14)) ))) + (((double)(((((*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_hourView.data) + __pyx_t_15)) ))) * 60) + (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_minuteView.data) + __pyx_t_16)) )))) * 60) + (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_secondView.data) + __pyx_t_17)) ))))) / 86400.0));
 
-                            /* "pywbgt/liljegren.pyx":143
+                            /* "pywbgt/liljegren.pyx":164
  *         )                                                                         # Compute fractional day
  *         res = calc_solar_parameters(
  *             yearView[i], monthView[i], dday, latView[i], lonView[i],             # <<<<<<<<<<<<<<
@@ -21543,7 +21768,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
                             __pyx_t_15 = __pyx_v_i;
                             __pyx_t_14 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":144
+                            /* "pywbgt/liljegren.pyx":165
  *         res = calc_solar_parameters(
  *             yearView[i], monthView[i], dday, latView[i], lonView[i],
  *             spa, &outView[0,i], &outView[1,i], &outView[2,i]             # <<<<<<<<<<<<<<
@@ -21557,7 +21782,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
                             __pyx_t_22 = 2;
                             __pyx_t_23 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":142
+                            /* "pywbgt/liljegren.pyx":163
  *             ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
  *         )                                                                         # Compute fractional day
  *         res = calc_solar_parameters(             # <<<<<<<<<<<<<<
@@ -21578,12 +21803,12 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
         #endif
       }
 
-      /* "pywbgt/liljegren.pyx":136
+      /* "pywbgt/liljegren.pyx":158
  *         int [::1] secondView = datetime.second.values.astype( numpy.int32 )
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
- *       #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
  *         dday  = (
+ *             dayView[i] +
  */
       /*finally:*/ {
         /*normal exit:*/{
@@ -21591,13 +21816,13 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
           __Pyx_FastGIL_Forget();
           Py_BLOCK_THREADS
           #endif
-          goto __pyx_L8;
+          goto __pyx_L6;
         }
-        __pyx_L8:;
+        __pyx_L6:;
       }
   }
 
-  /* "pywbgt/liljegren.pyx":147
+  /* "pywbgt/liljegren.pyx":168
  *         )                                                                         # Run the C function
  * 
  *     return out             # <<<<<<<<<<<<<<
@@ -21609,7 +21834,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "pywbgt/liljegren.pyx":62
+  /* "pywbgt/liljegren.pyx":92
  *     return h                                                     # Reshape to same shape as temp_air
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -21630,7 +21855,6 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   __Pyx_AddTraceback("pywbgt.liljegren.solar_parameters", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_dt);
   __Pyx_XDECREF(__pyx_v_out);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_outView, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_latView, 1);
@@ -21644,13 +21868,12 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
   __Pyx_XDECREF(__pyx_v_datetime);
   __Pyx_XDECREF(__pyx_v_lat);
   __Pyx_XDECREF(__pyx_v_lon);
-  __Pyx_XDECREF(__pyx_v_avg);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-/* "pywbgt/liljegren.pyx":149
+/* "pywbgt/liljegren.pyx":170
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -21659,16 +21882,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_2solar_parameters(CYTHON_UNUSED PyO
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6pywbgt_9liljegren_5globe_temperature(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6pywbgt_9liljegren_7globe_temperature(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_4globe_temperature, "\n    Compute globe temperature using Liljegren method\n\n    Arguments:\n        temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius\n        temp_dew (ndarray) : Dew point temperature; degree Celsius\n        pres (ndarray) : Barometric pressure; hPa\n        speed (ndarray) : wind speed, m/s\n        solar (ndarray) : Solar irradiance, W/m**2\n        fdir (ndarray) : Fraction of solar irradiance due to direct beam\n        cza (ndarray) : Cosine of solar zenith angle\n\n    Returns:\n        ndarray : Globe temperature\n\n    ");
-static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_5globe_temperature = {"globe_temperature", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_5globe_temperature, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_4globe_temperature};
-static PyObject *__pyx_pw_6pywbgt_9liljegren_5globe_temperature(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_6globe_temperature, "\n    Compute globe temperature using Liljegren method\n\n    Arguments:\n        temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius\n        temp_dew (ndarray) : Dew point temperature; degree Celsius\n        pres (ndarray) : Barometric pressure; hPa\n        speed (ndarray) : wind speed, m/s\n        solar (ndarray) : Solar irradiance, W/m**2\n        fdir (ndarray) : Fraction of solar irradiance due to direct beam\n        cza (ndarray) : Cosine of solar zenith angle\n\n    Returns:\n        ndarray : Globe temperature\n\n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_7globe_temperature = {"globe_temperature", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_7globe_temperature, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_6globe_temperature};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_7globe_temperature(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -21705,7 +21928,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject **__pyx_pyargnames[] = {&__pyx_n_s_temp_air,&__pyx_n_s_temp_dew,&__pyx_n_s_pres,&__pyx_n_s_speed,&__pyx_n_s_solar,&__pyx_n_s_fdir,&__pyx_n_s_cza,&__pyx_n_s_d_globe,0};
 
-    /* "pywbgt/liljegren.pyx":155
+    /* "pywbgt/liljegren.pyx":176
  * def globe_temperature(
  *         temp_air, temp_dew, pres, speed, solar, fdir, cza,
  *         d_globe = None,             # <<<<<<<<<<<<<<
@@ -21742,7 +21965,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -21750,9 +21973,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 1); __PYX_ERR(1, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 1); __PYX_ERR(1, 170, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -21760,9 +21983,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 2); __PYX_ERR(1, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 2); __PYX_ERR(1, 170, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -21770,9 +21993,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 3); __PYX_ERR(1, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 3); __PYX_ERR(1, 170, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
@@ -21780,9 +22003,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[4]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 4); __PYX_ERR(1, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 4); __PYX_ERR(1, 170, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
@@ -21790,9 +22013,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[5]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 5); __PYX_ERR(1, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 5); __PYX_ERR(1, 170, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
@@ -21800,21 +22023,21 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[6]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 6); __PYX_ERR(1, 149, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, 6); __PYX_ERR(1, 170, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  7:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_d_globe);
           if (value) { values[7] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 149, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 170, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "globe_temperature") < 0)) __PYX_ERR(1, 149, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "globe_temperature") < 0)) __PYX_ERR(1, 170, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -21842,7 +22065,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, __pyx_nargs); __PYX_ERR(1, 149, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("globe_temperature", 0, 7, 8, __pyx_nargs); __PYX_ERR(1, 170, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -21856,9 +22079,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6pywbgt_9liljegren_4globe_temperature(__pyx_self, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_pres, __pyx_v_speed, __pyx_v_solar, __pyx_v_fdir, __pyx_v_cza, __pyx_v_d_globe);
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_6globe_temperature(__pyx_self, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_pres, __pyx_v_speed, __pyx_v_solar, __pyx_v_fdir, __pyx_v_cza, __pyx_v_d_globe);
 
-  /* "pywbgt/liljegren.pyx":149
+  /* "pywbgt/liljegren.pyx":170
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -21877,7 +22100,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza, PyObject *__pyx_v_d_globe) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_6globe_temperature(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza, PyObject *__pyx_v_d_globe) {
   float __pyx_v__d_globe;
   __Pyx_memviewslice __pyx_v_temp_airView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_presView = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -21918,21 +22141,21 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("globe_temperature", 1);
 
-  /* "pywbgt/liljegren.pyx":176
+  /* "pywbgt/liljegren.pyx":197
  *     cdef:
  *         float _d_globe
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  */
-  __pyx_t_2 = __Pyx_PyFloat_AddObjC(__pyx_v_temp_air, __pyx_float_273_15, 273.15, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 176, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyFloat_AddObjC(__pyx_v_temp_air, __pyx_float_273_15, 273.15, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 176, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 176, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 176, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -21954,28 +22177,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 176, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 176, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 197, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_temp_airView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":177
+  /* "pywbgt/liljegren.pyx":198
  *         float _d_globe
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
  *         float [::1] presView     = pres.astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 177, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 177, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 177, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 198, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -21997,28 +22220,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 177, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 198, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 177, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 198, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_presView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":178
+  /* "pywbgt/liljegren.pyx":199
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 178, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 178, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 178, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -22040,28 +22263,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 178, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 199, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 178, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 199, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_speedView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":179
+  /* "pywbgt/liljegren.pyx":200
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  *         float [::1] solarView    = solar.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )
  *         float [::1] czaView      = cza.astype(   numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 179, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 179, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 179, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 200, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -22083,28 +22306,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 179, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 200, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 179, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 200, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_solarView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":180
+  /* "pywbgt/liljegren.pyx":201
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] czaView      = cza.astype(   numpy.float32 )
  *         float [::1] relhumView   = (
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_fdir, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 180, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_fdir, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 180, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 180, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -22126,28 +22349,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 180, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 201, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 180, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 201, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_fdirView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":181
+  /* "pywbgt/liljegren.pyx":202
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )
  *         float [::1] czaView      = cza.astype(   numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] relhumView   = (
  *             rhTd(temp_air, temp_dew).astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cza, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 181, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cza, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 181, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 181, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -22169,24 +22392,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 181, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 202, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 181, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 202, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_czaView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":183
+  /* "pywbgt/liljegren.pyx":204
  *         float [::1] czaView      = cza.astype(   numpy.float32 )
  *         float [::1] relhumView   = (
  *             rhTd(temp_air, temp_dew).astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 183, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -22206,16 +22429,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_temp_air, __pyx_v_temp_dew};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 183, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 204, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 183, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 183, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 183, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 204, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -22237,33 +22460,33 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 183, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 204, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 183, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 204, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_relhumView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":186
+  /* "pywbgt/liljegren.pyx":207
  *         )
  * 
  *         Py_ssize_t i, size = temp_air.shape[0]             # <<<<<<<<<<<<<<
  * 
  *     if d_globe is None:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 186, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 186, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 186, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 207, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_size = __pyx_t_7;
 
-  /* "pywbgt/liljegren.pyx":188
+  /* "pywbgt/liljegren.pyx":209
  *         Py_ssize_t i, size = temp_air.shape[0]
  * 
  *     if d_globe is None:             # <<<<<<<<<<<<<<
@@ -22273,7 +22496,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
   __pyx_t_8 = (__pyx_v_d_globe == Py_None);
   if (__pyx_t_8) {
 
-    /* "pywbgt/liljegren.pyx":189
+    /* "pywbgt/liljegren.pyx":210
  * 
  *     if d_globe is None:
  *         _d_globe = _D_GLOBE                                                          # Use default value from C source code             # <<<<<<<<<<<<<<
@@ -22282,7 +22505,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
  */
     __pyx_v__d_globe = D_GLOBE;
 
-    /* "pywbgt/liljegren.pyx":188
+    /* "pywbgt/liljegren.pyx":209
  *         Py_ssize_t i, size = temp_air.shape[0]
  * 
  *     if d_globe is None:             # <<<<<<<<<<<<<<
@@ -22292,7 +22515,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
     goto __pyx_L3;
   }
 
-  /* "pywbgt/liljegren.pyx":191
+  /* "pywbgt/liljegren.pyx":212
  *         _d_globe = _D_GLOBE                                                          # Use default value from C source code
  *     else:
  *         _d_globe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude             # <<<<<<<<<<<<<<
@@ -22300,7 +22523,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
  * 
  */
   /*else*/ {
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_d_globe, __pyx_n_s_to); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 191, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_d_globe, __pyx_n_s_to); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_3 = NULL;
     __pyx_t_5 = 0;
@@ -22320,16 +22543,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_n_u_meter};
       __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 191, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 212, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 191, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_astype); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 191, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 191, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_1 = NULL;
@@ -22351,48 +22574,48 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 191, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 212, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 191, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_9 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_9 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 191, __pyx_L1_error)
+    __pyx_t_9 = __pyx_PyFloat_AsFloat(__pyx_t_4); if (unlikely((__pyx_t_9 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 212, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_v__d_globe = __pyx_t_9;
   }
   __pyx_L3:;
 
-  /* "pywbgt/liljegren.pyx":194
+  /* "pywbgt/liljegren.pyx":215
  * 
  * 
  *     out = numpy.empty( size, dtype=numpy.float32 )             # <<<<<<<<<<<<<<
  *     cdef float [:] outView = out
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_empty); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_4 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_4);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(1, 194, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4)) __PYX_ERR(1, 215, __pyx_L1_error);
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(1, 194, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_10) < 0) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-  __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 194, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_10)) __PYX_ERR(1, 215, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -22400,19 +22623,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
   __pyx_v_out = __pyx_t_10;
   __pyx_t_10 = 0;
 
-  /* "pywbgt/liljegren.pyx":195
+  /* "pywbgt/liljegren.pyx":216
  * 
  *     out = numpy.empty( size, dtype=numpy.float32 )
  *     cdef float [:] outView = out             # <<<<<<<<<<<<<<
  * 
  *     for i in prange( size, nogil=True ):
  */
-  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 195, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_to_MemoryviewSlice_ds_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_11.memview)) __PYX_ERR(1, 216, __pyx_L1_error)
   __pyx_v_outView = __pyx_t_11;
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":197
+  /* "pywbgt/liljegren.pyx":218
  *     cdef float [:] outView = out
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -22449,7 +22672,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
                         {
                             __pyx_v_i = (Py_ssize_t)(0 + 1 * __pyx_t_12);
 
-                            /* "pywbgt/liljegren.pyx":199
+                            /* "pywbgt/liljegren.pyx":220
  *     for i in prange( size, nogil=True ):
  *         outView[i] = Tglobe(
  *             temp_airView[i], relhumView[i], presView[i],             # <<<<<<<<<<<<<<
@@ -22460,7 +22683,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
                             __pyx_t_15 = __pyx_v_i;
                             __pyx_t_16 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":200
+                            /* "pywbgt/liljegren.pyx":221
  *         outView[i] = Tglobe(
  *             temp_airView[i], relhumView[i], presView[i],
  *             speedView[i], solarView[i], fdirView[i],             # <<<<<<<<<<<<<<
@@ -22471,7 +22694,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
                             __pyx_t_18 = __pyx_v_i;
                             __pyx_t_19 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":201
+                            /* "pywbgt/liljegren.pyx":222
  *             temp_airView[i], relhumView[i], presView[i],
  *             speedView[i], solarView[i], fdirView[i],
  *             czaView[i], _d_globe,             # <<<<<<<<<<<<<<
@@ -22480,7 +22703,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
  */
                             __pyx_t_20 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":198
+                            /* "pywbgt/liljegren.pyx":219
  * 
  *     for i in prange( size, nogil=True ):
  *         outView[i] = Tglobe(             # <<<<<<<<<<<<<<
@@ -22502,7 +22725,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
         #endif
       }
 
-      /* "pywbgt/liljegren.pyx":197
+      /* "pywbgt/liljegren.pyx":218
  *     cdef float [:] outView = out
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -22521,7 +22744,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
       }
   }
 
-  /* "pywbgt/liljegren.pyx":204
+  /* "pywbgt/liljegren.pyx":225
  *         )
  * 
  *     return out             # <<<<<<<<<<<<<<
@@ -22533,7 +22756,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "pywbgt/liljegren.pyx":149
+  /* "pywbgt/liljegren.pyx":170
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -22567,7 +22790,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "pywbgt/liljegren.pyx":206
+/* "pywbgt/liljegren.pyx":227
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -22576,16 +22799,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_4globe_temperature(CYTHON_UNUSED Py
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6pywbgt_9liljegren_7psychrometric_wetbulb(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6pywbgt_9liljegren_9psychrometric_wetbulb(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_6psychrometric_wetbulb, "\n    Compute psychrometeric wet bulb temperature using Liljegren method\n\n    Arguments:\n        temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius\n        temp_dew (Quantity) : Dew point temperature; units of temperature\n        pres (ndarray) : Barometric pressure; hPa\n\n    Returns:\n        ndarray : pyschrometric Wet bulb temperature\n\n    ");
-static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_7psychrometric_wetbulb = {"psychrometric_wetbulb", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_7psychrometric_wetbulb, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_6psychrometric_wetbulb};
-static PyObject *__pyx_pw_6pywbgt_9liljegren_7psychrometric_wetbulb(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_8psychrometric_wetbulb, "\n    Compute psychrometeric wet bulb temperature using Liljegren method\n\n    Arguments:\n        temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius\n        temp_dew (Quantity) : Dew point temperature; units of temperature\n        pres (ndarray) : Barometric pressure; hPa\n\n    Returns:\n        ndarray : pyschrometric Wet bulb temperature\n\n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_9psychrometric_wetbulb = {"psychrometric_wetbulb", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_9psychrometric_wetbulb, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_8psychrometric_wetbulb};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_9psychrometric_wetbulb(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -22635,7 +22858,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 206, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 227, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -22643,9 +22866,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 206, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 227, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("psychrometric_wetbulb", 1, 3, 3, 1); __PYX_ERR(1, 206, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("psychrometric_wetbulb", 1, 3, 3, 1); __PYX_ERR(1, 227, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -22653,14 +22876,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 206, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 227, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("psychrometric_wetbulb", 1, 3, 3, 2); __PYX_ERR(1, 206, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("psychrometric_wetbulb", 1, 3, 3, 2); __PYX_ERR(1, 227, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "psychrometric_wetbulb") < 0)) __PYX_ERR(1, 206, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "psychrometric_wetbulb") < 0)) __PYX_ERR(1, 227, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 3)) {
       goto __pyx_L5_argtuple_error;
@@ -22675,7 +22898,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("psychrometric_wetbulb", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 206, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("psychrometric_wetbulb", 1, 3, 3, __pyx_nargs); __PYX_ERR(1, 227, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22689,7 +22912,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(__pyx_self, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_pres);
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_8psychrometric_wetbulb(__pyx_self, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_pres);
 
   /* function exit code */
   {
@@ -22702,7 +22925,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_8psychrometric_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres) {
   __Pyx_memviewslice __pyx_v_temp_airView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_presView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_relhumView = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -22734,21 +22957,21 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("psychrometric_wetbulb", 1);
 
-  /* "pywbgt/liljegren.pyx":225
+  /* "pywbgt/liljegren.pyx":246
  * 
  *     cdef:
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] relhumView   = (
  */
-  __pyx_t_2 = __Pyx_PyFloat_AddObjC(__pyx_v_temp_air, __pyx_float_273_15, 273.15, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 225, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyFloat_AddObjC(__pyx_v_temp_air, __pyx_float_273_15, 273.15, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 225, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 225, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 225, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 246, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -22770,28 +22993,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 225, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 246, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 225, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 246, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_temp_airView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":226
+  /* "pywbgt/liljegren.pyx":247
  *     cdef:
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
  *         float [::1] presView     = pres.astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] relhumView   = (
  *             rhTd( temp_air, temp_dew ).astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 226, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 226, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 226, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 247, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -22813,24 +23036,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 226, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 247, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 226, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 247, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_presView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":228
+  /* "pywbgt/liljegren.pyx":249
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] relhumView   = (
  *             rhTd( temp_air, temp_dew ).astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -22850,16 +23073,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
     PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_temp_air, __pyx_v_temp_dew};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 228, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 249, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 228, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 228, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 228, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 249, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -22881,17 +23104,17 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 228, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 249, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 228, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 249, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_relhumView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":231
+  /* "pywbgt/liljegren.pyx":252
  *         )
  * 
  *         float tmp, fill = 0.0             # <<<<<<<<<<<<<<
@@ -22900,7 +23123,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
   __pyx_v_fill = 0.0;
 
-  /* "pywbgt/liljegren.pyx":232
+  /* "pywbgt/liljegren.pyx":253
  * 
  *         float tmp, fill = 0.0
  *         int   rad  = 0             # <<<<<<<<<<<<<<
@@ -22909,59 +23132,59 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
   __pyx_v_rad = 0;
 
-  /* "pywbgt/liljegren.pyx":234
+  /* "pywbgt/liljegren.pyx":255
  *         int   rad  = 0
  * 
  *         Py_ssize_t i, size = temp_air.shape[0]             # <<<<<<<<<<<<<<
  * 
  *     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 234, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 234, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 255, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 234, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 255, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_size = __pyx_t_7;
 
-  /* "pywbgt/liljegren.pyx":236
+  /* "pywbgt/liljegren.pyx":257
  *         Py_ssize_t i, size = temp_air.shape[0]
  * 
  *     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )             # <<<<<<<<<<<<<<
  *     cdef float [::1] outView = out
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(1, 257, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(1, 236, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(1, 257, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(1, 236, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 236, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -22969,19 +23192,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
   __pyx_v_out = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "pywbgt/liljegren.pyx":237
+  /* "pywbgt/liljegren.pyx":258
  * 
  *     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
  *     cdef float [::1] outView = out             # <<<<<<<<<<<<<<
  * 
  *     for i in prange( size, nogil=True ):
  */
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 237, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 258, __pyx_L1_error)
   __pyx_v_outView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":239
+  /* "pywbgt/liljegren.pyx":260
  *     cdef float [::1] outView = out
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -23020,7 +23243,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
                             /* Initialize private variables to invalid values */
                             __pyx_v_tmp = ((float)__PYX_NAN());
 
-                            /* "pywbgt/liljegren.pyx":241
+                            /* "pywbgt/liljegren.pyx":262
  *     for i in prange( size, nogil=True ):
  *         tmp = Twb(
  *             temp_airView[i],             # <<<<<<<<<<<<<<
@@ -23029,7 +23252,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
                             __pyx_t_11 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":242
+                            /* "pywbgt/liljegren.pyx":263
  *         tmp = Twb(
  *             temp_airView[i],
  *             relhumView[i],             # <<<<<<<<<<<<<<
@@ -23038,7 +23261,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
                             __pyx_t_12 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":243
+                            /* "pywbgt/liljegren.pyx":264
  *             temp_airView[i],
  *             relhumView[i],
  *             presView[i],             # <<<<<<<<<<<<<<
@@ -23047,7 +23270,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
                             __pyx_t_13 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":240
+                            /* "pywbgt/liljegren.pyx":261
  * 
  *     for i in prange( size, nogil=True ):
  *         tmp = Twb(             # <<<<<<<<<<<<<<
@@ -23056,7 +23279,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
                             __pyx_v_tmp = Twb((*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_temp_airView.data) + __pyx_t_11)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_relhumView.data) + __pyx_t_12)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_presView.data) + __pyx_t_13)) ))), __pyx_v_fill, __pyx_v_fill, __pyx_v_fill, __pyx_v_fill, __pyx_v_rad);
 
-                            /* "pywbgt/liljegren.pyx":246
+                            /* "pywbgt/liljegren.pyx":267
  *             fill, fill, fill, fill, rad
  *         )
  *         if tmp > -9999.0:             # <<<<<<<<<<<<<<
@@ -23066,7 +23289,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
                             __pyx_t_14 = (__pyx_v_tmp > -9999.0);
                             if (__pyx_t_14) {
 
-                              /* "pywbgt/liljegren.pyx":247
+                              /* "pywbgt/liljegren.pyx":268
  *         )
  *         if tmp > -9999.0:
  *             outView[i] = tmp             # <<<<<<<<<<<<<<
@@ -23076,7 +23299,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
                               __pyx_t_13 = __pyx_v_i;
                               *((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_outView.data) + __pyx_t_13)) )) = __pyx_v_tmp;
 
-                              /* "pywbgt/liljegren.pyx":246
+                              /* "pywbgt/liljegren.pyx":267
  *             fill, fill, fill, fill, rad
  *         )
  *         if tmp > -9999.0:             # <<<<<<<<<<<<<<
@@ -23097,7 +23320,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
         #endif
       }
 
-      /* "pywbgt/liljegren.pyx":239
+      /* "pywbgt/liljegren.pyx":260
  *     cdef float [::1] outView = out
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -23116,7 +23339,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
       }
   }
 
-  /* "pywbgt/liljegren.pyx":249
+  /* "pywbgt/liljegren.pyx":270
  *             outView[i] = tmp
  * 
  *     return out             # <<<<<<<<<<<<<<
@@ -23128,7 +23351,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "pywbgt/liljegren.pyx":206
+  /* "pywbgt/liljegren.pyx":227
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -23157,7 +23380,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
   return __pyx_r;
 }
 
-/* "pywbgt/liljegren.pyx":251
+/* "pywbgt/liljegren.pyx":272
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -23166,16 +23389,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_6psychrometric_wetbulb(CYTHON_UNUSE
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6pywbgt_9liljegren_9natural_wetbulb(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6pywbgt_9liljegren_11natural_wetbulb(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_8natural_wetbulb, "\n    Compute natural wet bulb temperature using Liljegren method\n\n    Arguments:\n      temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius\n      temp_dew (Quantity) : Dew point temperature; units of temperature\n      pres (ndarray) : Barometric pressure; hPa\n      speed (ndarray) : wind speed, m/s\n      solar (ndarray) : Solar irradiance, W/m**2\n      fdir (ndarray) : Fraction of solar irradiance due to direct beam\n      cza (ndarray) : Cosine of solar zenith angle\n\n    Returns:\n      ndarray : natural Wet bulb temperature\n\n    ");
-static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_9natural_wetbulb = {"natural_wetbulb", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_9natural_wetbulb, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_8natural_wetbulb};
-static PyObject *__pyx_pw_6pywbgt_9liljegren_9natural_wetbulb(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_10natural_wetbulb, "\n    Compute natural wet bulb temperature using Liljegren method\n\n    Arguments:\n      temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius\n      temp_dew (Quantity) : Dew point temperature; units of temperature\n      pres (ndarray) : Barometric pressure; hPa\n      speed (ndarray) : wind speed, m/s\n      solar (ndarray) : Solar irradiance, W/m**2\n      fdir (ndarray) : Fraction of solar irradiance due to direct beam\n      cza (ndarray) : Cosine of solar zenith angle\n\n    Returns:\n      ndarray : natural Wet bulb temperature\n\n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_11natural_wetbulb = {"natural_wetbulb", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_11natural_wetbulb, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_10natural_wetbulb};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_11natural_wetbulb(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -23237,7 +23460,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -23245,9 +23468,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 1); __PYX_ERR(1, 251, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 1); __PYX_ERR(1, 272, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -23255,9 +23478,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 2); __PYX_ERR(1, 251, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 2); __PYX_ERR(1, 272, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -23265,9 +23488,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 3); __PYX_ERR(1, 251, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 3); __PYX_ERR(1, 272, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
@@ -23275,9 +23498,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[4]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 4); __PYX_ERR(1, 251, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 4); __PYX_ERR(1, 272, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
@@ -23285,9 +23508,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[5]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 5); __PYX_ERR(1, 251, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 5); __PYX_ERR(1, 272, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
@@ -23295,14 +23518,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[6]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 251, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 272, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 6); __PYX_ERR(1, 251, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, 6); __PYX_ERR(1, 272, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "natural_wetbulb") < 0)) __PYX_ERR(1, 251, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "natural_wetbulb") < 0)) __PYX_ERR(1, 272, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 7)) {
       goto __pyx_L5_argtuple_error;
@@ -23325,7 +23548,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, __pyx_nargs); __PYX_ERR(1, 251, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("natural_wetbulb", 1, 7, 7, __pyx_nargs); __PYX_ERR(1, 272, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23339,7 +23562,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(__pyx_self, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_pres, __pyx_v_speed, __pyx_v_solar, __pyx_v_fdir, __pyx_v_cza);
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_10natural_wetbulb(__pyx_self, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_pres, __pyx_v_speed, __pyx_v_solar, __pyx_v_fdir, __pyx_v_cza);
 
   /* function exit code */
   {
@@ -23352,7 +23575,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_10natural_wetbulb(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_pres, PyObject *__pyx_v_speed, PyObject *__pyx_v_solar, PyObject *__pyx_v_fdir, PyObject *__pyx_v_cza) {
   __Pyx_memviewslice __pyx_v_temp_airView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_presView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_speedView = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -23392,21 +23615,21 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("natural_wetbulb", 1);
 
-  /* "pywbgt/liljegren.pyx":274
+  /* "pywbgt/liljegren.pyx":295
  * 
  *     cdef:
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  */
-  __pyx_t_2 = __Pyx_PyFloat_AddObjC(__pyx_v_temp_air, __pyx_float_273_15, 273.15, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyFloat_AddObjC(__pyx_v_temp_air, __pyx_float_273_15, 273.15, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 295, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -23428,28 +23651,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 274, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 295, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 274, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 295, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_temp_airView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":275
+  /* "pywbgt/liljegren.pyx":296
  *     cdef:
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
  *         float [::1] presView     = pres.astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 275, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 275, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 275, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 296, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -23471,28 +23694,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 275, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 296, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 275, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 296, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_presView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":276
+  /* "pywbgt/liljegren.pyx":297
  *         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 276, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 276, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 276, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 297, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -23514,28 +23737,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 276, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 297, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 276, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 297, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_speedView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":277
+  /* "pywbgt/liljegren.pyx":298
  *         float [::1] presView     = pres.astype(  numpy.float32 )
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  *         float [::1] solarView    = solar.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )
  *         float [::1] czaView      = cza.astype(   numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 277, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 277, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 277, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 298, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -23557,28 +23780,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 277, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 298, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 277, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 298, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_solarView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":278
+  /* "pywbgt/liljegren.pyx":299
  *         float [::1] speedView    = speed.astype( numpy.float32 )
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] czaView      = cza.astype(   numpy.float32 )
  *         float [::1] relhumView   = (
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_fdir, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 278, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_fdir, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 278, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 278, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -23600,28 +23823,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 278, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 299, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 278, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 299, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_fdirView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":279
+  /* "pywbgt/liljegren.pyx":300
  *         float [::1] solarView    = solar.astype( numpy.float32 )
  *         float [::1] fdirView     = fdir.astype(  numpy.float32 )
  *         float [::1] czaView      = cza.astype(   numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] relhumView   = (
  *             rhTd( temp_air, temp_dew ).astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cza, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_cza, __pyx_n_s_astype); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 300, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = NULL;
@@ -23643,24 +23866,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 279, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 300, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 279, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 300, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_czaView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":281
+  /* "pywbgt/liljegren.pyx":302
  *         float [::1] czaView      = cza.astype(   numpy.float32 )
  *         float [::1] relhumView   = (
  *             rhTd( temp_air, temp_dew ).astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_4 = NULL;
   __pyx_t_5 = 0;
@@ -23680,16 +23903,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     PyObject *__pyx_callargs[3] = {__pyx_t_4, __pyx_v_temp_air, __pyx_v_temp_dew};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 281, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 302, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 302, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -23711,17 +23934,17 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 281, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 302, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 281, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_6.memview)) __PYX_ERR(1, 302, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_relhumView = __pyx_t_6;
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":285
+  /* "pywbgt/liljegren.pyx":306
  * 
  *         float tmp
  *         int rad = 1             # <<<<<<<<<<<<<<
@@ -23730,59 +23953,59 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
  */
   __pyx_v_rad = 1;
 
-  /* "pywbgt/liljegren.pyx":287
+  /* "pywbgt/liljegren.pyx":308
  *         int rad = 1
  * 
  *         Py_ssize_t i, size = temp_air.shape[0]             # <<<<<<<<<<<<<<
  * 
  *     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 287, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 287, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_7 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 308, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_size = __pyx_t_7;
 
-  /* "pywbgt/liljegren.pyx":289
+  /* "pywbgt/liljegren.pyx":310
  *         Py_ssize_t i, size = temp_air.shape[0]
  * 
  *     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )             # <<<<<<<<<<<<<<
  *     cdef float [:] outView = out
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_numpy); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_nan); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_2);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(1, 289, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_2)) __PYX_ERR(1, 310, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_3);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(1, 289, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_3)) __PYX_ERR(1, 310, __pyx_L1_error);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(1, 289, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 289, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 310, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -23790,19 +24013,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
   __pyx_v_out = __pyx_t_8;
   __pyx_t_8 = 0;
 
-  /* "pywbgt/liljegren.pyx":290
+  /* "pywbgt/liljegren.pyx":311
  * 
  *     out = numpy.full( size, numpy.nan, dtype=numpy.float32 )
  *     cdef float [:] outView = out             # <<<<<<<<<<<<<<
  * 
  *     for i in prange( size, nogil=True ):
  */
-  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(1, 290, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_to_MemoryviewSlice_ds_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_9.memview)) __PYX_ERR(1, 311, __pyx_L1_error)
   __pyx_v_outView = __pyx_t_9;
   __pyx_t_9.memview = NULL;
   __pyx_t_9.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":292
+  /* "pywbgt/liljegren.pyx":313
  *     cdef float [:] outView = out
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -23841,7 +24064,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
                             /* Initialize private variables to invalid values */
                             __pyx_v_tmp = ((float)__PYX_NAN());
 
-                            /* "pywbgt/liljegren.pyx":294
+                            /* "pywbgt/liljegren.pyx":315
  *     for i in prange( size, nogil=True ):
  *         tmp = Twb(
  *             temp_airView[i], relhumView[i], presView[i],             # <<<<<<<<<<<<<<
@@ -23852,7 +24075,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
                             __pyx_t_13 = __pyx_v_i;
                             __pyx_t_14 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":295
+                            /* "pywbgt/liljegren.pyx":316
  *         tmp = Twb(
  *             temp_airView[i], relhumView[i], presView[i],
  *             speedView[i], solarView[i], fdirView[i], czaView[i], rad             # <<<<<<<<<<<<<<
@@ -23864,7 +24087,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
                             __pyx_t_17 = __pyx_v_i;
                             __pyx_t_18 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":293
+                            /* "pywbgt/liljegren.pyx":314
  * 
  *     for i in prange( size, nogil=True ):
  *         tmp = Twb(             # <<<<<<<<<<<<<<
@@ -23873,7 +24096,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
  */
                             __pyx_v_tmp = Twb((*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_temp_airView.data) + __pyx_t_12)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_relhumView.data) + __pyx_t_13)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_presView.data) + __pyx_t_14)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_speedView.data) + __pyx_t_15)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_solarView.data) + __pyx_t_16)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_fdirView.data) + __pyx_t_17)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_czaView.data) + __pyx_t_18)) ))), __pyx_v_rad);
 
-                            /* "pywbgt/liljegren.pyx":297
+                            /* "pywbgt/liljegren.pyx":318
  *             speedView[i], solarView[i], fdirView[i], czaView[i], rad
  *         )
  *         if tmp > -9999.0:             # <<<<<<<<<<<<<<
@@ -23883,7 +24106,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
                             __pyx_t_19 = (__pyx_v_tmp > -9999.0);
                             if (__pyx_t_19) {
 
-                              /* "pywbgt/liljegren.pyx":298
+                              /* "pywbgt/liljegren.pyx":319
  *         )
  *         if tmp > -9999.0:
  *             outView[i] = tmp             # <<<<<<<<<<<<<<
@@ -23893,7 +24116,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
                               __pyx_t_18 = __pyx_v_i;
                               *((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_18 * __pyx_v_outView.strides[0]) )) = __pyx_v_tmp;
 
-                              /* "pywbgt/liljegren.pyx":297
+                              /* "pywbgt/liljegren.pyx":318
  *             speedView[i], solarView[i], fdirView[i], czaView[i], rad
  *         )
  *         if tmp > -9999.0:             # <<<<<<<<<<<<<<
@@ -23914,7 +24137,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
         #endif
       }
 
-      /* "pywbgt/liljegren.pyx":292
+      /* "pywbgt/liljegren.pyx":313
  *     cdef float [:] outView = out
  * 
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -23933,7 +24156,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
       }
   }
 
-  /* "pywbgt/liljegren.pyx":300
+  /* "pywbgt/liljegren.pyx":321
  *             outView[i] = tmp
  * 
  *     return out             # <<<<<<<<<<<<<<
@@ -23945,7 +24168,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "pywbgt/liljegren.pyx":251
+  /* "pywbgt/liljegren.pyx":272
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -23979,7 +24202,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
   return __pyx_r;
 }
 
-/* "pywbgt/liljegren.pyx":302
+/* "pywbgt/liljegren.pyx":323
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -23988,16 +24211,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_8natural_wetbulb(CYTHON_UNUSED PyOb
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_6pywbgt_9liljegren_11wetbulb_globe(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_6pywbgt_9liljegren_13wetbulb_globe(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_10wetbulb_globe, "\n    Calculate the outdoor wet bulb-globe temperature\n\n    Cython wrapper for Liljegren C code for calculating the outdoor\n    wet bulb-globe temperature,, which is the weighted sum of the    air temperature (dry bulb), the globe temperature, and the \n    natural wet bulb temperature:\n\n        Twbg = 0.1 * temp_air + 0.7 * Tnwb + 0.2 * Tg.\n\n    The program predicts Tnwb and Tg using meteorological input data\n    then combines the results to produce Twbg.\n\n    Arguments:\n        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data\n        lat (ndarray) : Latitude corresponding to data values (decimal).\n            Can be one (1) element array; will be expanded to match dates/data\n        lon (ndarray) : Longitude correspondning to data values (decimal).\n            Can be one (1) element array; will be expanded to match dates/data\n        solar (Quantity) : solar irradiance; units of any power over area\n        pres (Qantity) : barometric pressure; units of pressure\n        temp_air (Quantity) : air (dry bulb) temperature; units of temperature\n        temp_dew (Quantity) : Dew point temperature; units of temperature\n        speed (Quatity) : wind speed; units of speed\n\n    Keyword arguments:\n        urban (ndarray) : Boolean flag indicating if \"urban\" (1) or\n            \"rural\" (0) for wind speed power law exponent\n            Can be one (1) element array; will be expanded to match dates/data\n        gmt (ndarray) LST-GMT difference  (hours; negative in USA)\n        avg (ndarray) : averaging time of the meteorological inputs (minutes)\n        zspeed (Quantity) : height of wind speed measurement; unit of distance\n        dT (Quantity) : Vertical temperature difference; upper minus lower;\n            unit of temperature\n        use_spa (bool) : If set, use the National Renewable Energy \n            Laboratory (NREL) Solar Position Algorithm (SPA) to determine\n            sun position. Default is to use the build-it,"" low precision model.\n        min_speed (Quantity) : Sets the minimum speed for the height-adjusted\n            wind speed. If this keyword is set, the larger of input value and\n            LILJEGREN_MIN_SPEED is used. The default value is MIN_SPEED, which\n            is 2 knots, and is larger than LILJEGREN_MIN_SPEED.\n        d_globe (Quantity) : Diameter of the black globe thermometer\n            unit of distance\n\n    Returns:\n        dict :\n            - Tg : Globe temperatures as Quantity\n            - Tpsy : psychrometric wet bulb temperatures as Quantity\n            - Tnwb : Natural wet bulb temperatures as Quantity\n            - Twbg : Wet bulb-globe temperatures as Quantity\n            - Speed : Estimated 2m wind speed as Quantity; will be same as input if already 2m wind speed \n            - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity \n\n    Reference: \n        Liljegren, J. C., R. A. Carhart, P. Lawday, S. Tschopp, and R. Sharp:\n            Modeling the Wet Bulb Globe Temperature Using Standard Meteorological\n            Measurements. The Journal of Occupational and Environmental Hygiene,\n            vol. 5:10, pp. 645-655, 2008.\n\n    ");
-static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_11wetbulb_globe = {"wetbulb_globe", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_11wetbulb_globe, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_10wetbulb_globe};
-static PyObject *__pyx_pw_6pywbgt_9liljegren_11wetbulb_globe(PyObject *__pyx_self, 
+PyDoc_STRVAR(__pyx_doc_6pywbgt_9liljegren_12wetbulb_globe, "\n    Calculate the outdoor wet bulb-globe temperature\n\n    Cython wrapper for Liljegren C code for calculating the outdoor\n    wet bulb-globe temperature,, which is the weighted sum of the    air temperature (dry bulb), the globe temperature, and the \n    natural wet bulb temperature:\n\n        Twbg = 0.1 * temp_air + 0.7 * Tnwb + 0.2 * Tg.\n\n    The program predicts Tnwb and Tg using meteorological input data\n    then combines the results to produce Twbg.\n\n    Arguments:\n        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data\n        lat (ndarray) : Latitude corresponding to data values (decimal).\n            Can be one (1) element array; will be expanded to match dates/data\n        lon (ndarray) : Longitude correspondning to data values (decimal).\n            Can be one (1) element array; will be expanded to match dates/data\n        solar (Quantity) : solar irradiance; units of any power over area\n        pres (Qantity) : barometric pressure; units of pressure\n        temp_air (Quantity) : air (dry bulb) temperature; units of temperature\n        temp_dew (Quantity) : Dew point temperature; units of temperature\n        speed (Quatity) : wind speed; units of speed\n\n    Keyword arguments:\n        urban (ndarray) : Boolean flag indicating if \"urban\" (1) or\n            \"rural\" (0) for wind speed power law exponent\n            Can be one (1) element array; will be expanded to match dates/data\n        gmt (ndarray) LST-GMT difference  (hours; negative in USA)\n        avg (ndarray) : averaging time of the meteorological inputs (minutes)\n        zspeed (Quantity) : height of wind speed measurement; unit of distance\n        dT (Quantity) : Vertical temperature difference; upper minus lower;\n            unit of temperature\n        use_spa (bool) : If set, use the National Renewable Energy \n            Laboratory (NREL) Solar Position Algorithm (SPA) to determine\n            sun position. Default is to use the build-it,"" low precision model.\n        min_speed (Quantity) : Sets the minimum speed for the height-adjusted\n            wind speed. If this keyword is set, the larger of input value and\n            LILJEGREN_MIN_SPEED is used. The default value is MIN_SPEED, which\n            is 2 knots, and is larger than LILJEGREN_MIN_SPEED.\n        d_globe (Quantity) : Diameter of the black globe thermometer\n            unit of distance\n\n    Returns:\n        dict :\n            - Tg : Globe temperatures as Quantity\n            - Tpsy : psychrometric wet bulb temperatures as Quantity\n            - Tnwb : Natural wet bulb temperatures as Quantity\n            - Twbg : Wet bulb-globe temperatures as Quantity\n            - Speed : Estimated 2m wind speed as Quantity; will be same as input if already 2m wind speed \n            - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity \n\n    Reference: \n        Liljegren, J. C., R. A. Carhart, P. Lawday, S. Tschopp, and R. Sharp:\n            Modeling the Wet Bulb Globe Temperature Using Standard Meteorological\n            Measurements. The Journal of Occupational and Environmental Hygiene,\n            vol. 5:10, pp. 645-655, 2008.\n\n    ");
+static PyMethodDef __pyx_mdef_6pywbgt_9liljegren_13wetbulb_globe = {"wetbulb_globe", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_6pywbgt_9liljegren_13wetbulb_globe, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_6pywbgt_9liljegren_12wetbulb_globe};
+static PyObject *__pyx_pw_6pywbgt_9liljegren_13wetbulb_globe(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -24045,7 +24268,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject **__pyx_pyargnames[] = {&__pyx_n_s_datetime,&__pyx_n_s_lat,&__pyx_n_s_lon,&__pyx_n_s_solar,&__pyx_n_s_pres,&__pyx_n_s_temp_air,&__pyx_n_s_temp_dew,&__pyx_n_s_speed,&__pyx_n_s_urban,&__pyx_n_s_gmt,&__pyx_n_s_avg,&__pyx_n_s_zspeed,&__pyx_n_s_dT,&__pyx_n_s_min_speed,&__pyx_n_s_d_globe,&__pyx_n_s_use_spa,0};
 
-    /* "pywbgt/liljegren.pyx":309
+    /* "pywbgt/liljegren.pyx":330
  *         datetime, lat, lon,
  *         solar, pres, temp_air, temp_dew, speed,
  *         urban     = None,             # <<<<<<<<<<<<<<
@@ -24054,7 +24277,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[8] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":310
+    /* "pywbgt/liljegren.pyx":331
  *         solar, pres, temp_air, temp_dew, speed,
  *         urban     = None,
  *         gmt       = None,             # <<<<<<<<<<<<<<
@@ -24063,7 +24286,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[9] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":311
+    /* "pywbgt/liljegren.pyx":332
  *         urban     = None,
  *         gmt       = None,
  *         avg       = None,             # <<<<<<<<<<<<<<
@@ -24072,7 +24295,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[10] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":312
+    /* "pywbgt/liljegren.pyx":333
  *         gmt       = None,
  *         avg       = None,
  *         zspeed    = None,             # <<<<<<<<<<<<<<
@@ -24081,7 +24304,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[11] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":313
+    /* "pywbgt/liljegren.pyx":334
  *         avg       = None,
  *         zspeed    = None,
  *         dT        = None,             # <<<<<<<<<<<<<<
@@ -24090,7 +24313,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[12] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":314
+    /* "pywbgt/liljegren.pyx":335
  *         zspeed    = None,
  *         dT        = None,
  *         min_speed = None,             # <<<<<<<<<<<<<<
@@ -24099,7 +24322,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[13] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":315
+    /* "pywbgt/liljegren.pyx":336
  *         dT        = None,
  *         min_speed = None,
  *         d_globe   = None,             # <<<<<<<<<<<<<<
@@ -24108,7 +24331,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
  */
     values[14] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
 
-    /* "pywbgt/liljegren.pyx":316
+    /* "pywbgt/liljegren.pyx":337
  *         min_speed = None,
  *         d_globe   = None,
  *         use_spa   = False,             # <<<<<<<<<<<<<<
@@ -24161,7 +24384,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
@@ -24169,9 +24392,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[1]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 1); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 1); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
@@ -24179,9 +24402,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[2]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 2); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 2); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  3:
@@ -24189,9 +24412,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[3]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 3); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 3); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  4:
@@ -24199,9 +24422,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[4]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 4); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 4); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  5:
@@ -24209,9 +24432,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[5]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 5); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 5); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  6:
@@ -24219,9 +24442,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[6]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 6); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 6); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  7:
@@ -24229,70 +24452,70 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[7]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         else {
-          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 7); __PYX_ERR(1, 302, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, 7); __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  8:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_urban);
           if (value) { values[8] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  9:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_gmt);
           if (value) { values[9] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 10:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_avg);
           if (value) { values[10] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 11:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_zspeed);
           if (value) { values[11] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 12:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_dT);
           if (value) { values[12] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 13:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_min_speed);
           if (value) { values[13] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 14:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_d_globe);
           if (value) { values[14] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case 15:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_use_spa);
           if (value) { values[15] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 302, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(1, 323, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values + 0, kwd_pos_args, "wetbulb_globe") < 0)) __PYX_ERR(1, 302, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values + 0, kwd_pos_args, "wetbulb_globe") < 0)) __PYX_ERR(1, 323, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -24343,7 +24566,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, __pyx_nargs); __PYX_ERR(1, 302, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("wetbulb_globe", 0, 8, 16, __pyx_nargs); __PYX_ERR(1, 323, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -24358,9 +24581,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(__pyx_self, __pyx_v_datetime, __pyx_v_lat, __pyx_v_lon, __pyx_v_solar, __pyx_v_pres, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_speed, __pyx_v_urban, __pyx_v_gmt, __pyx_v_avg, __pyx_v_zspeed, __pyx_v_dT, __pyx_v_min_speed, __pyx_v_d_globe, __pyx_v_use_spa, __pyx_v_kwargs);
+  __pyx_r = __pyx_pf_6pywbgt_9liljegren_12wetbulb_globe(__pyx_self, __pyx_v_datetime, __pyx_v_lat, __pyx_v_lon, __pyx_v_solar, __pyx_v_pres, __pyx_v_temp_air, __pyx_v_temp_dew, __pyx_v_speed, __pyx_v_urban, __pyx_v_gmt, __pyx_v_avg, __pyx_v_zspeed, __pyx_v_dT, __pyx_v_min_speed, __pyx_v_d_globe, __pyx_v_use_spa, __pyx_v_kwargs);
 
-  /* "pywbgt/liljegren.pyx":302
+  /* "pywbgt/liljegren.pyx":323
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -24380,7 +24603,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_pres, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_speed, PyObject *__pyx_v_urban, PyObject *__pyx_v_gmt, PyObject *__pyx_v_avg, PyObject *__pyx_v_zspeed, PyObject *__pyx_v_dT, PyObject *__pyx_v_min_speed, PyObject *__pyx_v_d_globe, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs) {
+static PyObject *__pyx_pf_6pywbgt_9liljegren_12wetbulb_globe(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_datetime, PyObject *__pyx_v_lat, PyObject *__pyx_v_lon, PyObject *__pyx_v_solar, PyObject *__pyx_v_pres, PyObject *__pyx_v_temp_air, PyObject *__pyx_v_temp_dew, PyObject *__pyx_v_speed, PyObject *__pyx_v_urban, PyObject *__pyx_v_gmt, PyObject *__pyx_v_avg, PyObject *__pyx_v_zspeed, PyObject *__pyx_v_dT, PyObject *__pyx_v_min_speed, PyObject *__pyx_v_d_globe, PyObject *__pyx_v_use_spa, CYTHON_UNUSED PyObject *__pyx_v_kwargs) {
   Py_ssize_t __pyx_v_i;
   Py_ssize_t __pyx_v_size;
   int __pyx_v_res;
@@ -24393,7 +24616,6 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   float __pyx_v_est_speed;
   float __pyx_v__min_speed;
   float __pyx_v__d_globe;
-  PyObject *__pyx_v_dt = NULL;
   __Pyx_memviewslice __pyx_v_latView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_lonView = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_urbanView = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -24455,18 +24677,17 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __Pyx_INCREF(__pyx_v_lat);
   __Pyx_INCREF(__pyx_v_lon);
   __Pyx_INCREF(__pyx_v_urban);
-  __Pyx_INCREF(__pyx_v_avg);
   __Pyx_INCREF(__pyx_v_zspeed);
   __Pyx_INCREF(__pyx_v_dT);
 
-  /* "pywbgt/liljegren.pyx":381
+  /* "pywbgt/liljegren.pyx":402
  *     """
  * 
- *     datetime = datetime_check(datetime)             # <<<<<<<<<<<<<<
+ *     datetime = datime_adjust(datetime, avg, gmt)             # <<<<<<<<<<<<<<
  * 
  *     # Define size of output arrays based on size of input
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_datetime_check); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 381, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_datime_adjust); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 402, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -24483,177 +24704,43 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_v_datetime};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    PyObject *__pyx_callargs[4] = {__pyx_t_3, __pyx_v_datetime, __pyx_v_avg, __pyx_v_gmt};
+    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 3+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 381, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 402, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
   __Pyx_DECREF_SET(__pyx_v_datetime, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/liljegren.pyx":385
+  /* "pywbgt/liljegren.pyx":406
  *     # Define size of output arrays based on size of input
  *     cdef:
  *         Py_ssize_t i, size = datetime.shape[0]             # <<<<<<<<<<<<<<
  *         int res, spa=use_spa
  *         float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, _min_speed, _d_globe
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 385, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 406, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 385, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 406, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 385, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(1, 406, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_size = __pyx_t_5;
 
-  /* "pywbgt/liljegren.pyx":386
+  /* "pywbgt/liljegren.pyx":407
  *     cdef:
  *         Py_ssize_t i, size = datetime.shape[0]
  *         int res, spa=use_spa             # <<<<<<<<<<<<<<
  *         float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, _min_speed, _d_globe
  * 
  */
-  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_use_spa); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 386, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyInt_As_int(__pyx_v_use_spa); if (unlikely((__pyx_t_4 == (int)-1) && PyErr_Occurred())) __PYX_ERR(1, 407, __pyx_L1_error)
   __pyx_v_spa = __pyx_t_4;
 
-  /* "pywbgt/liljegren.pyx":391
- *     # Set default data averaging interval and compute time offset so that
- *     # time is in the middle of the sampling interval
- *     if avg is None:             # <<<<<<<<<<<<<<
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')
- */
-  __pyx_t_6 = (__pyx_v_avg == Py_None);
-  if (__pyx_t_6) {
-
-    /* "pywbgt/liljegren.pyx":392
- *     # time is in the middle of the sampling interval
- *     if avg is None:
- *         avg = 1.0             # <<<<<<<<<<<<<<
- *     dt = to_timedelta( avg/2.0, 'minute')
- * 
- */
-    __Pyx_INCREF(__pyx_float_1_0);
-    __Pyx_DECREF_SET(__pyx_v_avg, __pyx_float_1_0);
-
-    /* "pywbgt/liljegren.pyx":391
- *     # Set default data averaging interval and compute time offset so that
- *     # time is in the middle of the sampling interval
- *     if avg is None:             # <<<<<<<<<<<<<<
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')
- */
-  }
-
-  /* "pywbgt/liljegren.pyx":393
- *     if avg is None:
- *         avg = 1.0
- *     dt = to_timedelta( avg/2.0, 'minute')             # <<<<<<<<<<<<<<
- * 
- *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
- */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_to_timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 393, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyFloat_TrueDivideObjC(__pyx_v_avg, __pyx_float_2_0, 2.0, 0, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 393, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_7 = NULL;
-  __pyx_t_4 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (unlikely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_7)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_7);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_1, function);
-      __pyx_t_4 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[3] = {__pyx_t_7, __pyx_t_3, __pyx_n_u_minute};
-    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 393, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  }
-  __pyx_v_dt = __pyx_t_2;
-  __pyx_t_2 = 0;
-
-  /* "pywbgt/liljegren.pyx":396
- * 
- *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
- *     if gmt is not None:             # <<<<<<<<<<<<<<
- *         dt = dt + to_timedelta(gmt, 'hour')
- * 
- */
-  __pyx_t_6 = (__pyx_v_gmt != Py_None);
-  if (__pyx_t_6) {
-
-    /* "pywbgt/liljegren.pyx":397
- *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
- *     if gmt is not None:
- *         dt = dt + to_timedelta(gmt, 'hour')             # <<<<<<<<<<<<<<
- * 
- *     # Adjust time using time delta
- */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_to_timedelta); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 397, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = NULL;
-    __pyx_t_4 = 0;
-    #if CYTHON_UNPACK_METHODS
-    if (unlikely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_3)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_3);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
-        __pyx_t_4 = 1;
-      }
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_v_gmt, __pyx_n_u_hour};
-      __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 397, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    }
-    __pyx_t_1 = PyNumber_Add(__pyx_v_dt, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 397, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF_SET(__pyx_v_dt, __pyx_t_1);
-    __pyx_t_1 = 0;
-
-    /* "pywbgt/liljegren.pyx":396
- * 
- *     # If gmt is NOT None (i.e., it is set), then adjust the time delta
- *     if gmt is not None:             # <<<<<<<<<<<<<<
- *         dt = dt + to_timedelta(gmt, 'hour')
- * 
- */
-  }
-
-  /* "pywbgt/liljegren.pyx":400
- * 
- *     # Adjust time using time delta
- *     datetime = datetime - dt             # <<<<<<<<<<<<<<
- * 
- *     # Generate or repeat urban value based on input
- */
-  __pyx_t_1 = PyNumber_Subtract(__pyx_v_datetime, __pyx_v_dt); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 400, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF_SET(__pyx_v_datetime, __pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "pywbgt/liljegren.pyx":403
+  /* "pywbgt/liljegren.pyx":411
  * 
  *     # Generate or repeat urban value based on input
  *     if urban is None:             # <<<<<<<<<<<<<<
@@ -24663,101 +24750,101 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __pyx_t_6 = (__pyx_v_urban == Py_None);
   if (__pyx_t_6) {
 
-    /* "pywbgt/liljegren.pyx":404
+    /* "pywbgt/liljegren.pyx":412
  *     # Generate or repeat urban value based on input
  *     if urban is None:
  *         urban = numpy.zeros( size, dtype = numpy.int32 )             # <<<<<<<<<<<<<<
  *     elif len(urban) == 1:
  *         urban = urban.repeat( size )
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 404, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_zeros); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 404, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 404, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_zeros); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 404, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_GIVEREF(__pyx_t_1);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1)) __PYX_ERR(1, 404, __pyx_L1_error);
-    __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 404, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 404, __pyx_L1_error)
+    __Pyx_GIVEREF(__pyx_t_2);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_2)) __PYX_ERR(1, 412, __pyx_L1_error);
+    __pyx_t_2 = 0;
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 404, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_int32); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(1, 404, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_8) < 0) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 404, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 412, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF_SET(__pyx_v_urban, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":403
+    /* "pywbgt/liljegren.pyx":411
  * 
  *     # Generate or repeat urban value based on input
  *     if urban is None:             # <<<<<<<<<<<<<<
  *         urban = numpy.zeros( size, dtype = numpy.int32 )
  *     elif len(urban) == 1:
  */
-    goto __pyx_L5;
+    goto __pyx_L3;
   }
 
-  /* "pywbgt/liljegren.pyx":405
+  /* "pywbgt/liljegren.pyx":413
  *     if urban is None:
  *         urban = numpy.zeros( size, dtype = numpy.int32 )
  *     elif len(urban) == 1:             # <<<<<<<<<<<<<<
  *         urban = urban.repeat( size )
  * 
  */
-  __pyx_t_5 = PyObject_Length(__pyx_v_urban); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(1, 405, __pyx_L1_error)
+  __pyx_t_5 = PyObject_Length(__pyx_v_urban); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(1, 413, __pyx_L1_error)
   __pyx_t_6 = (__pyx_t_5 == 1);
   if (__pyx_t_6) {
 
-    /* "pywbgt/liljegren.pyx":406
+    /* "pywbgt/liljegren.pyx":414
  *         urban = numpy.zeros( size, dtype = numpy.int32 )
  *     elif len(urban) == 1:
  *         urban = urban.repeat( size )             # <<<<<<<<<<<<<<
  * 
  *     # Generature or repeat wind speed observation height based on input
  */
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_urban, __pyx_n_s_repeat); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 406, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 406, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_urban, __pyx_n_s_repeat); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 414, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 414, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_2 = NULL;
+    __pyx_t_1 = NULL;
     __pyx_t_4 = 0;
     #if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(__pyx_t_1))) {
-      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
-      if (likely(__pyx_t_2)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-        __Pyx_INCREF(__pyx_t_2);
+    if (likely(PyMethod_Check(__pyx_t_2))) {
+      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
+      if (likely(__pyx_t_1)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+        __Pyx_INCREF(__pyx_t_1);
         __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __Pyx_DECREF_SET(__pyx_t_2, function);
         __pyx_t_4 = 1;
       }
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_t_3};
-      __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_t_3};
+      __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 406, __pyx_L1_error)
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 414, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
-      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     }
     __Pyx_DECREF_SET(__pyx_v_urban, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":405
+    /* "pywbgt/liljegren.pyx":413
  *     if urban is None:
  *         urban = numpy.zeros( size, dtype = numpy.int32 )
  *     elif len(urban) == 1:             # <<<<<<<<<<<<<<
@@ -24765,9 +24852,9 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  * 
  */
   }
-  __pyx_L5:;
+  __pyx_L3:;
 
-  /* "pywbgt/liljegren.pyx":409
+  /* "pywbgt/liljegren.pyx":417
  * 
  *     # Generature or repeat wind speed observation height based on input
  *     if zspeed is None:             # <<<<<<<<<<<<<<
@@ -24777,196 +24864,196 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __pyx_t_6 = (__pyx_v_zspeed == Py_None);
   if (__pyx_t_6) {
 
-    /* "pywbgt/liljegren.pyx":411
+    /* "pywbgt/liljegren.pyx":419
  *     if zspeed is None:
  *         zspeed = (
  *             units.meter *             # <<<<<<<<<<<<<<
  *             numpy.full(size, 10.0, dtype=numpy.float32)
  *         )
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 411, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_meter); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 411, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_meter); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 419, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":412
+    /* "pywbgt/liljegren.pyx":420
  *         zspeed = (
  *             units.meter *
  *             numpy.full(size, 10.0, dtype=numpy.float32)             # <<<<<<<<<<<<<<
  *         )
  *     elif not hasattr( zspeed, 'size' ):
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_numpy); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_numpy); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_full); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_full); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __pyx_t_8 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 412, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 420, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_8);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_8)) __PYX_ERR(1, 412, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_8)) __PYX_ERR(1, 420, __pyx_L1_error);
     __Pyx_INCREF(__pyx_float_10_0);
     __Pyx_GIVEREF(__pyx_float_10_0);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_float_10_0)) __PYX_ERR(1, 412, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_float_10_0)) __PYX_ERR(1, 420, __pyx_L1_error);
     __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(1, 412, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 412, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_1, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 420, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":411
+    /* "pywbgt/liljegren.pyx":419
  *     if zspeed is None:
  *         zspeed = (
  *             units.meter *             # <<<<<<<<<<<<<<
  *             numpy.full(size, 10.0, dtype=numpy.float32)
  *         )
  */
-    __pyx_t_8 = PyNumber_Multiply(__pyx_t_1, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 411, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_Multiply(__pyx_t_2, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 419, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF_SET(__pyx_v_zspeed, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":409
+    /* "pywbgt/liljegren.pyx":417
  * 
  *     # Generature or repeat wind speed observation height based on input
  *     if zspeed is None:             # <<<<<<<<<<<<<<
  *         zspeed = (
  *             units.meter *
  */
-    goto __pyx_L6;
+    goto __pyx_L4;
   }
 
-  /* "pywbgt/liljegren.pyx":414
+  /* "pywbgt/liljegren.pyx":422
  *             numpy.full(size, 10.0, dtype=numpy.float32)
  *         )
  *     elif not hasattr( zspeed, 'size' ):             # <<<<<<<<<<<<<<
  *         zspeed = (
  *             zspeed.units *
  */
-  __pyx_t_6 = __Pyx_HasAttr(__pyx_v_zspeed, __pyx_n_u_size); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(1, 414, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_HasAttr(__pyx_v_zspeed, __pyx_n_u_size); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(1, 422, __pyx_L1_error)
   __pyx_t_10 = (!__pyx_t_6);
   if (__pyx_t_10) {
 
-    /* "pywbgt/liljegren.pyx":416
+    /* "pywbgt/liljegren.pyx":424
  *     elif not hasattr( zspeed, 'size' ):
  *         zspeed = (
  *             zspeed.units *             # <<<<<<<<<<<<<<
  *             numpy.full(size, zspeed.magnitude, dtype=numpy.float32)
  *         )
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 416, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 424, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
 
-    /* "pywbgt/liljegren.pyx":417
+    /* "pywbgt/liljegren.pyx":425
  *         zspeed = (
  *             zspeed.units *
  *             numpy.full(size, zspeed.magnitude, dtype=numpy.float32)             # <<<<<<<<<<<<<<
  *         )
  *     elif zspeed.size != size:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 417, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 417, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 417, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 417, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_full); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 417, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __pyx_t_9 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 425, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 425, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_9);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_9)) __PYX_ERR(1, 417, __pyx_L1_error);
-    __Pyx_GIVEREF(__pyx_t_2);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_2)) __PYX_ERR(1, 417, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_9)) __PYX_ERR(1, 425, __pyx_L1_error);
+    __Pyx_GIVEREF(__pyx_t_1);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_t_1)) __PYX_ERR(1, 425, __pyx_L1_error);
     __pyx_t_9 = 0;
-    __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 417, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 417, __pyx_L1_error)
+    __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 425, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 417, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(1, 417, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_7) < 0) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 417, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 425, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pywbgt/liljegren.pyx":416
+    /* "pywbgt/liljegren.pyx":424
  *     elif not hasattr( zspeed, 'size' ):
  *         zspeed = (
  *             zspeed.units *             # <<<<<<<<<<<<<<
  *             numpy.full(size, zspeed.magnitude, dtype=numpy.float32)
  *         )
  */
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 416, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = PyNumber_Multiply(__pyx_t_8, __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 424, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    __Pyx_DECREF_SET(__pyx_v_zspeed, __pyx_t_2);
-    __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_zspeed, __pyx_t_1);
+    __pyx_t_1 = 0;
 
-    /* "pywbgt/liljegren.pyx":414
+    /* "pywbgt/liljegren.pyx":422
  *             numpy.full(size, 10.0, dtype=numpy.float32)
  *         )
  *     elif not hasattr( zspeed, 'size' ):             # <<<<<<<<<<<<<<
  *         zspeed = (
  *             zspeed.units *
  */
-    goto __pyx_L6;
+    goto __pyx_L4;
   }
 
-  /* "pywbgt/liljegren.pyx":419
+  /* "pywbgt/liljegren.pyx":427
  *             numpy.full(size, zspeed.magnitude, dtype=numpy.float32)
  *         )
  *     elif zspeed.size != size:             # <<<<<<<<<<<<<<
  *         raise Exception("Size mismatch between 'zspeed' and other variables!")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 419, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 419, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 427, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 427, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = PyObject_RichCompare(__pyx_t_2, __pyx_t_7, Py_NE); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 419, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_8 = PyObject_RichCompare(__pyx_t_1, __pyx_t_7, Py_NE); __Pyx_XGOTREF(__pyx_t_8); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 427, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 419, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_8); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 427, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   if (unlikely(__pyx_t_10)) {
 
-    /* "pywbgt/liljegren.pyx":420
+    /* "pywbgt/liljegren.pyx":428
  *         )
  *     elif zspeed.size != size:
  *         raise Exception("Size mismatch between 'zspeed' and other variables!")             # <<<<<<<<<<<<<<
  * 
  *     # Set default temperature differential between 10m and 2m samples
  */
-    __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 420, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_Call(((PyObject *)(&((PyTypeObject*)PyExc_Exception)[0])), __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 428, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_Raise(__pyx_t_8, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __PYX_ERR(1, 420, __pyx_L1_error)
+    __PYX_ERR(1, 428, __pyx_L1_error)
 
-    /* "pywbgt/liljegren.pyx":419
+    /* "pywbgt/liljegren.pyx":427
  *             numpy.full(size, zspeed.magnitude, dtype=numpy.float32)
  *         )
  *     elif zspeed.size != size:             # <<<<<<<<<<<<<<
@@ -24974,9 +25061,9 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  * 
  */
   }
-  __pyx_L6:;
+  __pyx_L4:;
 
-  /* "pywbgt/liljegren.pyx":423
+  /* "pywbgt/liljegren.pyx":431
  * 
  *     # Set default temperature differential between 10m and 2m samples
  *     if dT is None:             # <<<<<<<<<<<<<<
@@ -24986,71 +25073,71 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __pyx_t_10 = (__pyx_v_dT == Py_None);
   if (__pyx_t_10) {
 
-    /* "pywbgt/liljegren.pyx":425
+    /* "pywbgt/liljegren.pyx":433
  *     if dT is None:
  *         dT = (
  *             units.degree_Celsius *             # <<<<<<<<<<<<<<
  *             numpy.full(size, -1.0, dtype=numpy.float32)
  *         )
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 425, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_degree_Celsius); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 425, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_degree_Celsius); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":426
+    /* "pywbgt/liljegren.pyx":434
  *         dT = (
  *             units.degree_Celsius *
  *             numpy.full(size, -1.0, dtype=numpy.float32)             # <<<<<<<<<<<<<<
  *         )
  * 
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_numpy); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 426, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_numpy); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_full); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 426, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 434, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_8 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 426, __pyx_L1_error)
+    __pyx_t_8 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 426, __pyx_L1_error)
+    __pyx_t_3 = PyTuple_New(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_GIVEREF(__pyx_t_8);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8)) __PYX_ERR(1, 426, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_8)) __PYX_ERR(1, 434, __pyx_L1_error);
     __Pyx_INCREF(__pyx_float_neg_1_0);
     __Pyx_GIVEREF(__pyx_float_neg_1_0);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_float_neg_1_0)) __PYX_ERR(1, 426, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_float_neg_1_0)) __PYX_ERR(1, 434, __pyx_L1_error);
     __pyx_t_8 = 0;
-    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 426, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 426, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 426, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_9);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(1, 426, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 426, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 434, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 434, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (PyDict_SetItem(__pyx_t_8, __pyx_n_s_dtype, __pyx_t_9) < 0) __PYX_ERR(1, 434, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
+    __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 434, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_9);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":425
+    /* "pywbgt/liljegren.pyx":433
  *     if dT is None:
  *         dT = (
  *             units.degree_Celsius *             # <<<<<<<<<<<<<<
  *             numpy.full(size, -1.0, dtype=numpy.float32)
  *         )
  */
-    __pyx_t_8 = PyNumber_Multiply(__pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 425, __pyx_L1_error)
+    __pyx_t_8 = PyNumber_Multiply(__pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 433, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF_SET(__pyx_v_dT, __pyx_t_8);
     __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":423
+    /* "pywbgt/liljegren.pyx":431
  * 
  *     # Set default temperature differential between 10m and 2m samples
  *     if dT is None:             # <<<<<<<<<<<<<<
@@ -25059,7 +25146,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
   }
 
-  /* "pywbgt/liljegren.pyx":430
+  /* "pywbgt/liljegren.pyx":438
  * 
  *     # Set default value for minimum speed
  *     if min_speed is None:             # <<<<<<<<<<<<<<
@@ -25069,36 +25156,36 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __pyx_t_10 = (__pyx_v_min_speed == Py_None);
   if (__pyx_t_10) {
 
-    /* "pywbgt/liljegren.pyx":434
+    /* "pywbgt/liljegren.pyx":442
  *         _min_speed = max(
  *             MIN_SPEED,
  *             LILJEGREN_MIN_SPEED             # <<<<<<<<<<<<<<
  *         ).to('meter/second').magnitude
  *     else:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_LILJEGREN_MIN_SPEED); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 434, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_LILJEGREN_MIN_SPEED); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 442, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
 
-    /* "pywbgt/liljegren.pyx":433
+    /* "pywbgt/liljegren.pyx":441
  *         # Greater of MIN_SPEED for package (2 knots) and absolute min speed for algorithm
  *         _min_speed = max(
  *             MIN_SPEED,             # <<<<<<<<<<<<<<
  *             LILJEGREN_MIN_SPEED
  *         ).to('meter/second').magnitude
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_MIN_SPEED); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 433, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_MIN_SPEED); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 441, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
 
-    /* "pywbgt/liljegren.pyx":434
+    /* "pywbgt/liljegren.pyx":442
  *         _min_speed = max(
  *             MIN_SPEED,
  *             LILJEGREN_MIN_SPEED             # <<<<<<<<<<<<<<
  *         ).to('meter/second').magnitude
  *     else:
  */
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_9, __pyx_t_7, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 434, __pyx_L1_error)
-    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 434, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_9, __pyx_t_7, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 442, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 442, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_10) {
       __Pyx_INCREF(__pyx_t_9);
       __pyx_t_3 = __pyx_t_9;
@@ -25109,14 +25196,14 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-    /* "pywbgt/liljegren.pyx":435
+    /* "pywbgt/liljegren.pyx":443
  *             MIN_SPEED,
  *             LILJEGREN_MIN_SPEED
  *         ).to('meter/second').magnitude             # <<<<<<<<<<<<<<
  *     else:
  *         # Greater of user input min_speed and absolute min speed for algorithm
  */
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 435, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 443, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __pyx_t_3 = NULL;
@@ -25137,28 +25224,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_kp_u_meter_second};
       __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 435, __pyx_L1_error)
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 443, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     }
-    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 435, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 443, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_11 = __pyx_PyFloat_AsFloat(__pyx_t_9); if (unlikely((__pyx_t_11 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 435, __pyx_L1_error)
+    __pyx_t_11 = __pyx_PyFloat_AsFloat(__pyx_t_9); if (unlikely((__pyx_t_11 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 443, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_v__min_speed = __pyx_t_11;
 
-    /* "pywbgt/liljegren.pyx":430
+    /* "pywbgt/liljegren.pyx":438
  * 
  *     # Set default value for minimum speed
  *     if min_speed is None:             # <<<<<<<<<<<<<<
  *         # Greater of MIN_SPEED for package (2 knots) and absolute min speed for algorithm
  *         _min_speed = max(
  */
-    goto __pyx_L8;
+    goto __pyx_L6;
   }
 
-  /* "pywbgt/liljegren.pyx":441
+  /* "pywbgt/liljegren.pyx":449
  *             min_speed,
  *             LILJEGREN_MIN_SPEED,
  *         ).to('meter/second').magnitude             # <<<<<<<<<<<<<<
@@ -25167,17 +25254,17 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
   /*else*/ {
 
-    /* "pywbgt/liljegren.pyx":440
+    /* "pywbgt/liljegren.pyx":448
  *         _min_speed = max(
  *             min_speed,
  *             LILJEGREN_MIN_SPEED,             # <<<<<<<<<<<<<<
  *         ).to('meter/second').magnitude
  *     #printf("min speed %f\n", _min_speed)
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_LILJEGREN_MIN_SPEED); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 440, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_LILJEGREN_MIN_SPEED); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 448, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
 
-    /* "pywbgt/liljegren.pyx":439
+    /* "pywbgt/liljegren.pyx":447
  *         # Greater of user input min_speed and absolute min speed for algorithm
  *         _min_speed = max(
  *             min_speed,             # <<<<<<<<<<<<<<
@@ -25187,16 +25274,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __Pyx_INCREF(__pyx_v_min_speed);
     __pyx_t_3 = __pyx_v_min_speed;
 
-    /* "pywbgt/liljegren.pyx":440
+    /* "pywbgt/liljegren.pyx":448
  *         _min_speed = max(
  *             min_speed,
  *             LILJEGREN_MIN_SPEED,             # <<<<<<<<<<<<<<
  *         ).to('meter/second').magnitude
  *     #printf("min speed %f\n", _min_speed)
  */
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_8, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 440, __pyx_L1_error)
-    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 440, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_8, __pyx_t_3, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 448, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_10 < 0))) __PYX_ERR(1, 448, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_10) {
       __Pyx_INCREF(__pyx_t_8);
       __pyx_t_7 = __pyx_t_8;
@@ -25207,14 +25294,14 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-    /* "pywbgt/liljegren.pyx":441
+    /* "pywbgt/liljegren.pyx":449
  *             min_speed,
  *             LILJEGREN_MIN_SPEED,
  *         ).to('meter/second').magnitude             # <<<<<<<<<<<<<<
  *     #printf("min speed %f\n", _min_speed)
  * 
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_to); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 441, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_to); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 449, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_t_7 = NULL;
@@ -25235,20 +25322,20 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
       PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_kp_u_meter_second};
       __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 441, __pyx_L1_error)
+      if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 449, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 441, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 449, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __pyx_t_11 = __pyx_PyFloat_AsFloat(__pyx_t_8); if (unlikely((__pyx_t_11 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 441, __pyx_L1_error)
+    __pyx_t_11 = __pyx_PyFloat_AsFloat(__pyx_t_8); if (unlikely((__pyx_t_11 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 449, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __pyx_v__min_speed = __pyx_t_11;
   }
-  __pyx_L8:;
+  __pyx_L6:;
 
-  /* "pywbgt/liljegren.pyx":445
+  /* "pywbgt/liljegren.pyx":453
  * 
  *     # Set default black globe thermometer diameter
  *     if d_globe is None:             # <<<<<<<<<<<<<<
@@ -25258,7 +25345,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __pyx_t_10 = (__pyx_v_d_globe == Py_None);
   if (__pyx_t_10) {
 
-    /* "pywbgt/liljegren.pyx":446
+    /* "pywbgt/liljegren.pyx":454
  *     # Set default black globe thermometer diameter
  *     if d_globe is None:
  *         _d_globe = _D_GLOBE                                                          # Use default value from C source code             # <<<<<<<<<<<<<<
@@ -25267,17 +25354,17 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
     __pyx_v__d_globe = D_GLOBE;
 
-    /* "pywbgt/liljegren.pyx":445
+    /* "pywbgt/liljegren.pyx":453
  * 
  *     # Set default black globe thermometer diameter
  *     if d_globe is None:             # <<<<<<<<<<<<<<
  *         _d_globe = _D_GLOBE                                                          # Use default value from C source code
  *     else:
  */
-    goto __pyx_L9;
+    goto __pyx_L7;
   }
 
-  /* "pywbgt/liljegren.pyx":448
+  /* "pywbgt/liljegren.pyx":456
  *         _d_globe = _D_GLOBE                                                          # Use default value from C source code
  *     else:
  *         _d_globe = d_globe.to('meter').astype(numpy.float32).magnitude              # Ensure is in units of meter, convert to 32-bit float, and get magnitude             # <<<<<<<<<<<<<<
@@ -25285,7 +25372,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  *     #printf("%f\n", _d_lobe)
  */
   /*else*/ {
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_d_globe, __pyx_n_s_to); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 448, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_v_d_globe, __pyx_n_s_to); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 456, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __pyx_t_3 = NULL;
     __pyx_t_4 = 0;
@@ -25305,16 +25392,16 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
       PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_n_u_meter};
       __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 448, __pyx_L1_error)
+      if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 456, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 448, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 456, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 448, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 456, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 448, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 456, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __pyx_t_9 = NULL;
@@ -25336,40 +25423,40 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
       __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 448, __pyx_L1_error)
+      if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 456, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     }
-    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 448, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 456, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    __pyx_t_11 = __pyx_PyFloat_AsFloat(__pyx_t_7); if (unlikely((__pyx_t_11 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 448, __pyx_L1_error)
+    __pyx_t_11 = __pyx_PyFloat_AsFloat(__pyx_t_7); if (unlikely((__pyx_t_11 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 456, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
     __pyx_v__d_globe = __pyx_t_11;
   }
-  __pyx_L9:;
+  __pyx_L7:;
 
-  /* "pywbgt/liljegren.pyx":451
+  /* "pywbgt/liljegren.pyx":459
  * 
  *     #printf("%f\n", _d_lobe)
  *     if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data             # <<<<<<<<<<<<<<
  *         lat = lat.repeat( size )
  *         lon = lon.repeat( size )
  */
-  __pyx_t_5 = PyObject_Length(__pyx_v_lat); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(1, 451, __pyx_L1_error)
+  __pyx_t_5 = PyObject_Length(__pyx_v_lat); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(1, 459, __pyx_L1_error)
   __pyx_t_10 = (__pyx_t_5 == 1);
   if (__pyx_t_10) {
 
-    /* "pywbgt/liljegren.pyx":452
+    /* "pywbgt/liljegren.pyx":460
  *     #printf("%f\n", _d_lobe)
  *     if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
  *         lat = lat.repeat( size )             # <<<<<<<<<<<<<<
  *         lon = lon.repeat( size )
  * 
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_repeat); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 452, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_repeat); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 460, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 452, __pyx_L1_error)
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 460, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_9 = NULL;
     __pyx_t_4 = 0;
@@ -25390,23 +25477,23 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
       __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 452, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 460, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF_SET(__pyx_v_lat, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "pywbgt/liljegren.pyx":453
+    /* "pywbgt/liljegren.pyx":461
  *     if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
  *         lat = lat.repeat( size )
  *         lon = lon.repeat( size )             # <<<<<<<<<<<<<<
  * 
  *     # Define array views for faster/parallel iteration
  */
-    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_repeat); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 453, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_repeat); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 461, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 453, __pyx_L1_error)
+    __pyx_t_3 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 461, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __pyx_t_9 = NULL;
     __pyx_t_4 = 0;
@@ -25427,14 +25514,14 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
       __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 453, __pyx_L1_error)
+      if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 461, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_7);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     }
     __Pyx_DECREF_SET(__pyx_v_lon, __pyx_t_7);
     __pyx_t_7 = 0;
 
-    /* "pywbgt/liljegren.pyx":451
+    /* "pywbgt/liljegren.pyx":459
  * 
  *     #printf("%f\n", _d_lobe)
  *     if len( lat ) == 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data             # <<<<<<<<<<<<<<
@@ -25443,18 +25530,18 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
   }
 
-  /* "pywbgt/liljegren.pyx":457
+  /* "pywbgt/liljegren.pyx":465
  *     # Define array views for faster/parallel iteration
  *     cdef:
  *         float [::1] latView    = lat.astype(   numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] lonView    = lon.astype(   numpy.float32 )
  *         int   [::1] urbanView  = urban.astype( numpy.int32   )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 457, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 465, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 457, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 465, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 457, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 465, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -25476,28 +25563,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 457, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 465, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 457, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 465, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_latView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":458
+  /* "pywbgt/liljegren.pyx":466
  *     cdef:
  *         float [::1] latView    = lat.astype(   numpy.float32 )
  *         float [::1] lonView    = lon.astype(   numpy.float32 )             # <<<<<<<<<<<<<<
  *         int   [::1] urbanView  = urban.astype( numpy.int32   )
  * 
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 458, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 458, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 458, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -25519,28 +25606,28 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 458, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 466, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 458, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 466, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_lonView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":459
+  /* "pywbgt/liljegren.pyx":467
  *         float [::1] latView    = lat.astype(   numpy.float32 )
  *         float [::1] lonView    = lon.astype(   numpy.float32 )
  *         int   [::1] urbanView  = urban.astype( numpy.int32   )             # <<<<<<<<<<<<<<
  * 
  *         int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_urban, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 459, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_urban, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 467, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 459, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 467, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 459, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 467, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -25562,34 +25649,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 459, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 467, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 459, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 467, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_urbanView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":461
+  /* "pywbgt/liljegren.pyx":469
  *         int   [::1] urbanView  = urban.astype( numpy.int32   )
  * 
  *         int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )
  *         int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_year); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 461, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_year); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 461, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 461, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 461, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 461, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 469, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -25611,34 +25698,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 461, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 469, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 461, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 469, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_yearView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":462
+  /* "pywbgt/liljegren.pyx":470
  * 
  *         int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )
  *         int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )
  *         int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_month); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 462, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_month); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 462, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 462, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 462, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 462, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 470, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -25660,34 +25747,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 462, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 470, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 462, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 470, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_monthView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":463
+  /* "pywbgt/liljegren.pyx":471
  *         int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )
  *         int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )
  *         int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
  *         int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_day); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 463, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_day); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 463, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 463, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 463, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 463, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -25709,34 +25796,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 463, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 471, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 463, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 471, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_dayView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":464
+  /* "pywbgt/liljegren.pyx":472
  *         int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )
  *         int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )
  *         int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )
  *         int [::1] secondView   = datetime.second.values.astype( numpy.int32 )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_hour); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 464, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_hour); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 464, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 464, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 464, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 464, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -25758,34 +25845,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 464, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 472, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 464, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 472, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_hourView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":465
+  /* "pywbgt/liljegren.pyx":473
  *         int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )
  *         int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
  *         int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )             # <<<<<<<<<<<<<<
  *         int [::1] secondView   = datetime.second.values.astype( numpy.int32 )
  * 
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_minute); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 465, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_minute); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 465, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 465, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 465, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 465, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_int32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -25807,34 +25894,34 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 465, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 473, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 465, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 473, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_minuteView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":466
+  /* "pywbgt/liljegren.pyx":474
  *         int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
  *         int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )
  *         int [::1] secondView   = datetime.second.values.astype( numpy.int32 )             # <<<<<<<<<<<<<<
  * 
  *         float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_second); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 466, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_n_s_second); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 466, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_values); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 466, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 466, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 466, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 474, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -25856,24 +25943,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 466, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 474, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 466, __pyx_L1_error)
+  __pyx_t_13 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_13.memview)) __PYX_ERR(1, 474, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_secondView = __pyx_t_13;
   __pyx_t_13.memview = NULL;
   __pyx_t_13.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":468
+  /* "pywbgt/liljegren.pyx":476
  *         int [::1] secondView   = datetime.second.values.astype( numpy.int32 )
  * 
  *         float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
  *         float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  */
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 468, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -25893,19 +25980,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_kp_u_watt_m_2};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 468, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 476, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 468, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 468, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 468, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 468, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -25927,24 +26014,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 468, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 476, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 468, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 476, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_solarView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":469
+  /* "pywbgt/liljegren.pyx":477
  * 
  *         float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
  *         float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  *         float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 469, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_pres, __pyx_n_s_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_9 = NULL;
   __pyx_t_4 = 0;
@@ -25964,19 +26051,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_n_u_hPa};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 469, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 469, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 469, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 469, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 469, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 477, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -25998,24 +26085,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 469, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 477, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 469, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 477, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_presView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":470
+  /* "pywbgt/liljegren.pyx":478
  *         float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
  *         float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
  *         float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
  *         float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
  */
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 470, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -26035,19 +26122,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_n_u_degree_Celsius};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 470, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 478, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 470, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 470, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 470, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 470, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 478, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -26069,24 +26156,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 470, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 478, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 470, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 478, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_temp_airView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":471
+  /* "pywbgt/liljegren.pyx":479
  *         float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
  *         float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  *         float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
  *         float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_speed, __pyx_n_s_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_9 = NULL;
   __pyx_t_4 = 0;
@@ -26106,19 +26193,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_kp_u_m_s};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 471, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 479, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 479, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -26140,24 +26227,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 471, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 479, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 471, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 479, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_speedView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":472
+  /* "pywbgt/liljegren.pyx":480
  *         float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  *         float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
  *         float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  *         float [::1] relhumView = (
  */
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 472, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_zspeed, __pyx_n_s_to); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 480, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -26177,19 +26264,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     PyObject *__pyx_callargs[2] = {__pyx_t_3, __pyx_n_u_meter};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 472, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 480, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 472, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 480, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 472, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 480, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 472, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 480, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 472, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 480, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
@@ -26211,24 +26298,24 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 472, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 480, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 472, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 480, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_zspeedView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":473
+  /* "pywbgt/liljegren.pyx":481
  *         float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
  *         float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
  *         float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )             # <<<<<<<<<<<<<<
  *         float [::1] relhumView = (
  *             100.0 *
  */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dT, __pyx_n_s_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 473, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_dT, __pyx_n_s_to); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 481, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_9 = NULL;
   __pyx_t_4 = 0;
@@ -26248,19 +26335,19 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_n_u_degree_Celsius};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 473, __pyx_L1_error)
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   }
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 473, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 481, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 473, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 481, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 473, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_numpy); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 481, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 473, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_float32); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 481, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
@@ -26282,78 +26369,43 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 473, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 473, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 481, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_dTView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":476
+  /* "pywbgt/liljegren.pyx":484
  *         float [::1] relhumView = (
  *             100.0 *
  *             rhTd(             # <<<<<<<<<<<<<<
  *                 temp_air.to('degree_Celsius').magnitude,
  *                 temp_dew.to('degree_Celsius').magnitude
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 476, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_rhTd); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 484, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
 
-  /* "pywbgt/liljegren.pyx":477
+  /* "pywbgt/liljegren.pyx":485
  *             100.0 *
  *             rhTd(
  *                 temp_air.to('degree_Celsius').magnitude,             # <<<<<<<<<<<<<<
  *                 temp_dew.to('degree_Celsius').magnitude
  *             )
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_to); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 477, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = NULL;
-  __pyx_t_4 = 0;
-  #if CYTHON_UNPACK_METHODS
-  if (likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_1)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_1);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_2, function);
-      __pyx_t_4 = 1;
-    }
-  }
-  #endif
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_1, __pyx_n_u_degree_Celsius};
-    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 477, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  }
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 477, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-  /* "pywbgt/liljegren.pyx":478
- *             rhTd(
- *                 temp_air.to('degree_Celsius').magnitude,
- *                 temp_dew.to('degree_Celsius').magnitude             # <<<<<<<<<<<<<<
- *             )
- *         ).astype( numpy.float32 )
- */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_dew, __pyx_n_s_to); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 478, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_air, __pyx_n_s_to); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_14 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (likely(PyMethod_Check(__pyx_t_1))) {
-    __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_1);
-    if (likely(__pyx_t_14)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-      __Pyx_INCREF(__pyx_t_14);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_1, function);
       __pyx_t_4 = 1;
@@ -26361,15 +26413,50 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_14, __pyx_n_u_degree_Celsius};
+    PyObject *__pyx_callargs[2] = {__pyx_t_2, __pyx_n_u_degree_Celsius};
     __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 478, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 485, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   }
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 478, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 485, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "pywbgt/liljegren.pyx":486
+ *             rhTd(
+ *                 temp_air.to('degree_Celsius').magnitude,
+ *                 temp_dew.to('degree_Celsius').magnitude             # <<<<<<<<<<<<<<
+ *             )
+ *         ).astype( numpy.float32 )
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp_dew, __pyx_n_s_to); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 486, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_14 = NULL;
+  __pyx_t_4 = 0;
+  #if CYTHON_UNPACK_METHODS
+  if (likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_14 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_14)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_14);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  #endif
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_14, __pyx_n_u_degree_Celsius};
+    __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 486, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  }
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_magnitude); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 486, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
@@ -26386,41 +26473,41 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_2, __pyx_t_1};
+    PyObject *__pyx_callargs[3] = {__pyx_t_3, __pyx_t_1, __pyx_t_2};
     __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_9, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 476, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 484, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   }
 
-  /* "pywbgt/liljegren.pyx":475
+  /* "pywbgt/liljegren.pyx":483
  *         float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
  *         float [::1] relhumView = (
  *             100.0 *             # <<<<<<<<<<<<<<
  *             rhTd(
  *                 temp_air.to('degree_Celsius').magnitude,
  */
-  __pyx_t_9 = PyNumber_Multiply(__pyx_float_100_0, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 475, __pyx_L1_error)
+  __pyx_t_9 = PyNumber_Multiply(__pyx_float_100_0, __pyx_t_8); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 483, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "pywbgt/liljegren.pyx":480
+  /* "pywbgt/liljegren.pyx":488
  *                 temp_dew.to('degree_Celsius').magnitude
  *             )
  *         ).astype( numpy.float32 )             # <<<<<<<<<<<<<<
  * 
  *     # Define output array for storing WBGT status code
  */
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 480, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_astype); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 480, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_n_s_numpy); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 488, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 480, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 488, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_9 = NULL;
   __pyx_t_4 = 0;
@@ -26437,85 +26524,85 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_t_1};
+    PyObject *__pyx_callargs[2] = {__pyx_t_9, __pyx_t_2};
     __pyx_t_7 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 480, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 488, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 480, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(__pyx_t_7, PyBUF_WRITABLE); if (unlikely(!__pyx_t_12.memview)) __PYX_ERR(1, 488, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_v_relhumView = __pyx_t_12;
   __pyx_t_12.memview = NULL;
   __pyx_t_12.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":483
+  /* "pywbgt/liljegren.pyx":491
  * 
  *     # Define output array for storing WBGT status code
  *     out = numpy.full( (6, size), numpy.nan, dtype = numpy.float32 )             # <<<<<<<<<<<<<<
  *     cdef float [:,::1] outView = out
  * 
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_full); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_full); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __pyx_t_7 = PyInt_FromSsize_t(__pyx_v_size); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 483, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 491, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_int_6);
   __Pyx_GIVEREF(__pyx_int_6);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_int_6)) __PYX_ERR(1, 483, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_int_6)) __PYX_ERR(1, 491, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_7);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_7)) __PYX_ERR(1, 483, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_7)) __PYX_ERR(1, 491, __pyx_L1_error);
   __pyx_t_7 = 0;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_numpy); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_nan); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_nan); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __pyx_t_7 = PyTuple_New(2); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_1)) __PYX_ERR(1, 483, __pyx_L1_error);
+  __Pyx_GIVEREF(__pyx_t_2);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 0, __pyx_t_2)) __PYX_ERR(1, 491, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_9);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_9)) __PYX_ERR(1, 483, __pyx_L1_error);
-  __pyx_t_1 = 0;
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_7, 1, __pyx_t_9)) __PYX_ERR(1, 491, __pyx_L1_error);
+  __pyx_t_2 = 0;
   __pyx_t_9 = 0;
-  __pyx_t_9 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_numpy); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 483, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_numpy); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 491, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_float32); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 491, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_float32); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 483, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_dtype, __pyx_t_2) < 0) __PYX_ERR(1, 483, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 483, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_9, __pyx_n_s_dtype, __pyx_t_1) < 0) __PYX_ERR(1, 491, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_8, __pyx_t_7, __pyx_t_9); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 491, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_v_out = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_v_out = __pyx_t_1;
+  __pyx_t_1 = 0;
 
-  /* "pywbgt/liljegren.pyx":484
+  /* "pywbgt/liljegren.pyx":492
  *     # Define output array for storing WBGT status code
  *     out = numpy.full( (6, size), numpy.nan, dtype = numpy.float32 )
  *     cdef float [:,::1] outView = out             # <<<<<<<<<<<<<<
  * 
  *     # Iterate (in parallel) over all values in the input arrays
  */
-  __pyx_t_15 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_15.memview)) __PYX_ERR(1, 484, __pyx_L1_error)
+  __pyx_t_15 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_float(__pyx_v_out, PyBUF_WRITABLE); if (unlikely(!__pyx_t_15.memview)) __PYX_ERR(1, 492, __pyx_L1_error)
   __pyx_v_outView = __pyx_t_15;
   __pyx_t_15.memview = NULL;
   __pyx_t_15.data = NULL;
 
-  /* "pywbgt/liljegren.pyx":487
+  /* "pywbgt/liljegren.pyx":495
  * 
  *     # Iterate (in parallel) over all values in the input arrays
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -26560,7 +26647,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_v_res = ((int)0xbad0bad0);
                             __pyx_v_solar_adj = ((float)__PYX_NAN());
 
-                            /* "pywbgt/liljegren.pyx":489
+                            /* "pywbgt/liljegren.pyx":497
  *     for i in prange( size, nogil=True ):
  *         # Ensure that variables are defined for each thread
  *         Tg        = 0.0             # <<<<<<<<<<<<<<
@@ -26569,7 +26656,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_v_Tg = 0.0;
 
-                            /* "pywbgt/liljegren.pyx":490
+                            /* "pywbgt/liljegren.pyx":498
  *         # Ensure that variables are defined for each thread
  *         Tg        = 0.0
  *         Tpsy      = 0.0             # <<<<<<<<<<<<<<
@@ -26578,7 +26665,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_v_Tpsy = 0.0;
 
-                            /* "pywbgt/liljegren.pyx":491
+                            /* "pywbgt/liljegren.pyx":499
  *         Tg        = 0.0
  *         Tpsy      = 0.0
  *         Tnwb      = 0.0             # <<<<<<<<<<<<<<
@@ -26587,7 +26674,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_v_Tnwb = 0.0;
 
-                            /* "pywbgt/liljegren.pyx":492
+                            /* "pywbgt/liljegren.pyx":500
  *         Tpsy      = 0.0
  *         Tnwb      = 0.0
  *         Twbg      = 0.0             # <<<<<<<<<<<<<<
@@ -26596,7 +26683,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_v_Twbg = 0.0;
 
-                            /* "pywbgt/liljegren.pyx":493
+                            /* "pywbgt/liljegren.pyx":501
  *         Tnwb      = 0.0
  *         Twbg      = 0.0
  *         solar_adj = 0.0             # <<<<<<<<<<<<<<
@@ -26605,7 +26692,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_v_solar_adj = 0.0;
 
-                            /* "pywbgt/liljegren.pyx":494
+                            /* "pywbgt/liljegren.pyx":502
  *         Twbg      = 0.0
  *         solar_adj = 0.0
  *         est_speed = speedView[i]             # <<<<<<<<<<<<<<
@@ -26615,7 +26702,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_18 = __pyx_v_i;
                             __pyx_v_est_speed = (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_speedView.data) + __pyx_t_18)) )));
 
-                            /* "pywbgt/liljegren.pyx":500
+                            /* "pywbgt/liljegren.pyx":508
  *         # zero (0) because all time adjustment is done above in Cython
  *         res = calc_wbgt(
  *             yearView[i], monthView[i], dayView[i],             # <<<<<<<<<<<<<<
@@ -26626,7 +26713,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_19 = __pyx_v_i;
                             __pyx_t_20 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":501
+                            /* "pywbgt/liljegren.pyx":509
  *         res = calc_wbgt(
  *             yearView[i], monthView[i], dayView[i],
  *             hourView[i], minuteView[i], secondView[i],             # <<<<<<<<<<<<<<
@@ -26637,7 +26724,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_22 = __pyx_v_i;
                             __pyx_t_23 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":503
+                            /* "pywbgt/liljegren.pyx":511
  *             hourView[i], minuteView[i], secondView[i],
  *             0, 0,
  *             latView[i], lonView[i],             # <<<<<<<<<<<<<<
@@ -26647,7 +26734,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_24 = __pyx_v_i;
                             __pyx_t_25 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":504
+                            /* "pywbgt/liljegren.pyx":512
  *             0, 0,
  *             latView[i], lonView[i],
  *             solarView[i], presView[i], temp_airView[i],             # <<<<<<<<<<<<<<
@@ -26658,7 +26745,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_27 = __pyx_v_i;
                             __pyx_t_28 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":505
+                            /* "pywbgt/liljegren.pyx":513
  *             latView[i], lonView[i],
  *             solarView[i], presView[i], temp_airView[i],
  *             relhumView[i], speedView[i], zspeedView[i], dTView[i],             # <<<<<<<<<<<<<<
@@ -26670,7 +26757,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_31 = __pyx_v_i;
                             __pyx_t_32 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":506
+                            /* "pywbgt/liljegren.pyx":514
  *             solarView[i], presView[i], temp_airView[i],
  *             relhumView[i], speedView[i], zspeedView[i], dTView[i],
  *             urbanView[i], spa, _min_speed, _d_globe, &est_speed, &solar_adj, &Tg, &Tnwb, &Tpsy, &Twbg             # <<<<<<<<<<<<<<
@@ -26679,7 +26766,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_t_33 = __pyx_v_i;
 
-                            /* "pywbgt/liljegren.pyx":499
+                            /* "pywbgt/liljegren.pyx":507
  *         # Run WBGT code; note that GMT and AVG input arguments are set to
  *         # zero (0) because all time adjustment is done above in Cython
  *         res = calc_wbgt(             # <<<<<<<<<<<<<<
@@ -26688,7 +26775,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
                             __pyx_v_res = calc_wbgt((*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_yearView.data) + __pyx_t_18)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_monthView.data) + __pyx_t_19)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_dayView.data) + __pyx_t_20)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_hourView.data) + __pyx_t_21)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_minuteView.data) + __pyx_t_22)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_secondView.data) + __pyx_t_23)) ))), 0, 0, (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_latView.data) + __pyx_t_24)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_lonView.data) + __pyx_t_25)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_solarView.data) + __pyx_t_26)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_presView.data) + __pyx_t_27)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_temp_airView.data) + __pyx_t_28)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_relhumView.data) + __pyx_t_29)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_speedView.data) + __pyx_t_30)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_zspeedView.data) + __pyx_t_31)) ))), (*((float *) ( /* dim=0 */ ((char *) (((float *) __pyx_v_dTView.data) + __pyx_t_32)) ))), (*((int *) ( /* dim=0 */ ((char *) (((int *) __pyx_v_urbanView.data) + __pyx_t_33)) ))), __pyx_v_spa, __pyx_v__min_speed, __pyx_v__d_globe, (&__pyx_v_est_speed), (&__pyx_v_solar_adj), (&__pyx_v_Tg), (&__pyx_v_Tnwb), (&__pyx_v_Tpsy), (&__pyx_v_Twbg));
 
-                            /* "pywbgt/liljegren.pyx":510
+                            /* "pywbgt/liljegren.pyx":518
  * 
  *         # If WBGT was success, then store variables in the outView
  *         if res == 0:             # <<<<<<<<<<<<<<
@@ -26698,7 +26785,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                             __pyx_t_10 = (__pyx_v_res == 0);
                             if (__pyx_t_10) {
 
-                              /* "pywbgt/liljegren.pyx":511
+                              /* "pywbgt/liljegren.pyx":519
  *         # If WBGT was success, then store variables in the outView
  *         if res == 0:
  *             outView[0,i] = Tg             # <<<<<<<<<<<<<<
@@ -26709,7 +26796,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                               __pyx_t_32 = __pyx_v_i;
                               *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_33 * __pyx_v_outView.strides[0]) )) + __pyx_t_32)) )) = __pyx_v_Tg;
 
-                              /* "pywbgt/liljegren.pyx":512
+                              /* "pywbgt/liljegren.pyx":520
  *         if res == 0:
  *             outView[0,i] = Tg
  *             outView[1,i] = Tpsy             # <<<<<<<<<<<<<<
@@ -26720,7 +26807,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                               __pyx_t_33 = __pyx_v_i;
                               *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_32 * __pyx_v_outView.strides[0]) )) + __pyx_t_33)) )) = __pyx_v_Tpsy;
 
-                              /* "pywbgt/liljegren.pyx":513
+                              /* "pywbgt/liljegren.pyx":521
  *             outView[0,i] = Tg
  *             outView[1,i] = Tpsy
  *             outView[2,i] = Tnwb             # <<<<<<<<<<<<<<
@@ -26731,7 +26818,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                               __pyx_t_32 = __pyx_v_i;
                               *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_33 * __pyx_v_outView.strides[0]) )) + __pyx_t_32)) )) = __pyx_v_Tnwb;
 
-                              /* "pywbgt/liljegren.pyx":514
+                              /* "pywbgt/liljegren.pyx":522
  *             outView[1,i] = Tpsy
  *             outView[2,i] = Tnwb
  *             outView[3,i] = Twbg             # <<<<<<<<<<<<<<
@@ -26742,7 +26829,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                               __pyx_t_33 = __pyx_v_i;
                               *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_32 * __pyx_v_outView.strides[0]) )) + __pyx_t_33)) )) = __pyx_v_Twbg;
 
-                              /* "pywbgt/liljegren.pyx":515
+                              /* "pywbgt/liljegren.pyx":523
  *             outView[2,i] = Tnwb
  *             outView[3,i] = Twbg
  *             outView[4,i] = solar_adj             # <<<<<<<<<<<<<<
@@ -26753,7 +26840,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                               __pyx_t_32 = __pyx_v_i;
                               *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_33 * __pyx_v_outView.strides[0]) )) + __pyx_t_32)) )) = __pyx_v_solar_adj;
 
-                              /* "pywbgt/liljegren.pyx":516
+                              /* "pywbgt/liljegren.pyx":524
  *             outView[3,i] = Twbg
  *             outView[4,i] = solar_adj
  *             outView[5,i] = est_speed             # <<<<<<<<<<<<<<
@@ -26764,7 +26851,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
                               __pyx_t_33 = __pyx_v_i;
                               *((float *) ( /* dim=1 */ ((char *) (((float *) ( /* dim=0 */ (__pyx_v_outView.data + __pyx_t_32 * __pyx_v_outView.strides[0]) )) + __pyx_t_33)) )) = __pyx_v_est_speed;
 
-                              /* "pywbgt/liljegren.pyx":510
+                              /* "pywbgt/liljegren.pyx":518
  * 
  *         # If WBGT was success, then store variables in the outView
  *         if res == 0:             # <<<<<<<<<<<<<<
@@ -26785,7 +26872,7 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
         #endif
       }
 
-      /* "pywbgt/liljegren.pyx":487
+      /* "pywbgt/liljegren.pyx":495
  * 
  *     # Iterate (in parallel) over all values in the input arrays
  *     for i in prange( size, nogil=True ):             # <<<<<<<<<<<<<<
@@ -26798,13 +26885,13 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
           __Pyx_FastGIL_Forget();
           Py_BLOCK_THREADS
           #endif
-          goto __pyx_L13;
+          goto __pyx_L11;
         }
-        __pyx_L13:;
+        __pyx_L11:;
       }
   }
 
-  /* "pywbgt/liljegren.pyx":519
+  /* "pywbgt/liljegren.pyx":527
  * 
  *     # Return dict with unit-aware values
  *     return {             # <<<<<<<<<<<<<<
@@ -26813,30 +26900,30 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
  */
   __Pyx_XDECREF(__pyx_r);
 
-  /* "pywbgt/liljegren.pyx":520
+  /* "pywbgt/liljegren.pyx":528
  *     # Return dict with unit-aware values
  *     return {
  *         'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 520, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 520, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(7); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 528, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 520, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__13); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 520, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__13); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_8))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_8);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_8);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_8, function);
       __pyx_t_4 = 1;
@@ -26844,39 +26931,39 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_7, __pyx_n_u_degree_Celsius};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_7, __pyx_n_u_degree_Celsius};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 520, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 528, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_Tg, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_Tg, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "pywbgt/liljegren.pyx":521
+  /* "pywbgt/liljegren.pyx":529
  *     return {
  *         'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 521, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 521, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 521, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__14); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_7);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_7, function);
       __pyx_t_4 = 1;
@@ -26884,39 +26971,39 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_8, __pyx_n_u_degree_Celsius};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_8, __pyx_n_u_degree_Celsius};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 521, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 529, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_Tpsy, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_Tpsy, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "pywbgt/liljegren.pyx":522
+  /* "pywbgt/liljegren.pyx":530
  *         'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 522, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 522, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__15); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 522, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__15); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_8))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_8);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_8);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_8, function);
       __pyx_t_4 = 1;
@@ -26924,39 +27011,39 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_7, __pyx_n_u_degree_Celsius};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_7, __pyx_n_u_degree_Celsius};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 522, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 530, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_Tnwb, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_Tnwb, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "pywbgt/liljegren.pyx":523
+  /* "pywbgt/liljegren.pyx":531
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 523, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 531, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 523, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 531, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__16); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 523, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__16); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 531, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_7);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_7, function);
       __pyx_t_4 = 1;
@@ -26964,39 +27051,39 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_8, __pyx_n_u_degree_Celsius};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_8, __pyx_n_u_degree_Celsius};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 523, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 531, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_Twbg, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_Twbg, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "pywbgt/liljegren.pyx":524
+  /* "pywbgt/liljegren.pyx":532
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),             # <<<<<<<<<<<<<<
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),
  *         'min_speed' : units.Quantity(_min_speed, 'meter/second'),
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 524, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 524, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__17); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 524, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__17); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_8))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_8);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_8);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_8, function);
       __pyx_t_4 = 1;
@@ -27004,39 +27091,39 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_7, __pyx_kp_u_watt_meter_2};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_7, __pyx_kp_u_watt_meter_2};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 524, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 532, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_solar, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_solar, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "pywbgt/liljegren.pyx":525
+  /* "pywbgt/liljegren.pyx":533
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),             # <<<<<<<<<<<<<<
  *         'min_speed' : units.Quantity(_min_speed, 'meter/second'),
  *     }
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 525, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_n_s_units); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 525, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__18); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 525, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetItem(__pyx_v_out, __pyx_tuple__18); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_7))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_7);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_7);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_7);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_7, function);
       __pyx_t_4 = 1;
@@ -27044,38 +27131,38 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_8, __pyx_kp_u_meter_second};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_8, __pyx_kp_u_meter_second};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 525, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 533, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_speed, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_speed, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-  /* "pywbgt/liljegren.pyx":526
+  /* "pywbgt/liljegren.pyx":534
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),
  *         'min_speed' : units.Quantity(_min_speed, 'meter/second'),             # <<<<<<<<<<<<<<
  *     }
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 526, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_n_s_units); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 526, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_n_s_Quantity); if (unlikely(!__pyx_t_8)) __PYX_ERR(1, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_7 = PyFloat_FromDouble(__pyx_v__min_speed); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 526, __pyx_L1_error)
+  __pyx_t_7 = PyFloat_FromDouble(__pyx_v__min_speed); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 534, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_1 = NULL;
+  __pyx_t_2 = NULL;
   __pyx_t_4 = 0;
   #if CYTHON_UNPACK_METHODS
   if (unlikely(PyMethod_Check(__pyx_t_8))) {
-    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_8);
-    if (likely(__pyx_t_1)) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_8);
+    if (likely(__pyx_t_2)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_8);
-      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_2);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_8, function);
       __pyx_t_4 = 1;
@@ -27083,21 +27170,21 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   }
   #endif
   {
-    PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_t_7, __pyx_kp_u_meter_second};
+    PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_t_7, __pyx_kp_u_meter_second};
     __pyx_t_9 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_4, 2+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 526, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(1, 534, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
   }
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_u_min_speed, __pyx_t_9) < 0) __PYX_ERR(1, 520, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_u_min_speed, __pyx_t_9) < 0) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-  __pyx_r = __pyx_t_2;
-  __pyx_t_2 = 0;
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/liljegren.pyx":302
+  /* "pywbgt/liljegren.pyx":323
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
@@ -27120,7 +27207,6 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __Pyx_AddTraceback("pywbgt.liljegren.wetbulb_globe", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_dt);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_latView, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_lonView, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_urbanView, 1);
@@ -27143,7 +27229,6 @@ static PyObject *__pyx_pf_6pywbgt_9liljegren_10wetbulb_globe(CYTHON_UNUSED PyObj
   __Pyx_XDECREF(__pyx_v_lat);
   __Pyx_XDECREF(__pyx_v_lon);
   __Pyx_XDECREF(__pyx_v_urban);
-  __Pyx_XDECREF(__pyx_v_avg);
   __Pyx_XDECREF(__pyx_v_zspeed);
   __Pyx_XDECREF(__pyx_v_dT);
   __Pyx_XGIVEREF(__pyx_r);
@@ -28160,7 +28245,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_View_MemoryView, __pyx_k_View_MemoryView, sizeof(__pyx_k_View_MemoryView), 0, 0, 1, 1},
     {&__pyx_kp_u__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 1, 0, 0},
     {&__pyx_n_s__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 0, 1, 1},
-    {&__pyx_n_s__45, __pyx_k__45, sizeof(__pyx_k__45), 0, 0, 1, 1},
+    {&__pyx_n_s__47, __pyx_k__47, sizeof(__pyx_k__47), 0, 0, 1, 1},
     {&__pyx_kp_u__6, __pyx_k__6, sizeof(__pyx_k__6), 0, 1, 0, 0},
     {&__pyx_kp_u__7, __pyx_k__7, sizeof(__pyx_k__7), 0, 1, 0, 0},
     {&__pyx_n_s_abc, __pyx_k_abc, sizeof(__pyx_k_abc), 0, 0, 1, 1},
@@ -28192,6 +28277,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_d_globe_2, __pyx_k_d_globe_2, sizeof(__pyx_k_d_globe_2), 0, 0, 1, 1},
     {&__pyx_n_s_datetime, __pyx_k_datetime, sizeof(__pyx_k_datetime), 0, 0, 1, 1},
     {&__pyx_n_s_datetime_check, __pyx_k_datetime_check, sizeof(__pyx_k_datetime_check), 0, 0, 1, 1},
+    {&__pyx_n_s_datime_adjust, __pyx_k_datime_adjust, sizeof(__pyx_k_datime_adjust), 0, 0, 1, 1},
     {&__pyx_n_s_day, __pyx_k_day, sizeof(__pyx_k_day), 0, 0, 1, 1},
     {&__pyx_n_s_dayView, __pyx_k_dayView, sizeof(__pyx_k_dayView), 0, 0, 1, 1},
     {&__pyx_n_s_dday, __pyx_k_dday, sizeof(__pyx_k_dday), 0, 0, 1, 1},
@@ -28439,91 +28525,91 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "pywbgt/liljegren.pyx":121
+  /* "pywbgt/liljegren.pyx":143
  *         lon = lon.repeat( size )
  * 
  *     out = solar.astype( numpy.float32 ).reshape( (1, size) ).repeat(3, axis=0)             # <<<<<<<<<<<<<<
  * 
  *     cdef:
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_int_3); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 121, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_int_3); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(1, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "pywbgt/liljegren.pyx":420
+  /* "pywbgt/liljegren.pyx":428
  *         )
  *     elif zspeed.size != size:
  *         raise Exception("Size mismatch between 'zspeed' and other variables!")             # <<<<<<<<<<<<<<
  * 
  *     # Set default temperature differential between 10m and 2m samples
  */
-  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Size_mismatch_between_zspeed_and); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 420, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_Size_mismatch_between_zspeed_and); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(1, 428, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "pywbgt/liljegren.pyx":520
+  /* "pywbgt/liljegren.pyx":528
  *     # Return dict with unit-aware values
  *     return {
  *         'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  */
-  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_int_0, __pyx_slice__5); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 520, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_int_0, __pyx_slice__5); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(1, 528, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
 
-  /* "pywbgt/liljegren.pyx":521
+  /* "pywbgt/liljegren.pyx":529
  *     return {
  *         'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  */
-  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_int_1, __pyx_slice__5); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(1, 521, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_int_1, __pyx_slice__5); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(1, 529, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
-  /* "pywbgt/liljegren.pyx":522
+  /* "pywbgt/liljegren.pyx":530
  *         'Tg'        : units.Quantity(out[0,:],   'degree_Celsius'),
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  */
-  __pyx_tuple__15 = PyTuple_Pack(2, __pyx_int_2, __pyx_slice__5); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 522, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(2, __pyx_int_2, __pyx_slice__5); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(1, 530, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__15);
   __Pyx_GIVEREF(__pyx_tuple__15);
 
-  /* "pywbgt/liljegren.pyx":523
+  /* "pywbgt/liljegren.pyx":531
  *         'Tpsy'      : units.Quantity(out[1,:],   'degree_Celsius'),
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),             # <<<<<<<<<<<<<<
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),
  */
-  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_int_3, __pyx_slice__5); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(1, 523, __pyx_L1_error)
+  __pyx_tuple__16 = PyTuple_Pack(2, __pyx_int_3, __pyx_slice__5); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(1, 531, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "pywbgt/liljegren.pyx":524
+  /* "pywbgt/liljegren.pyx":532
  *         'Tnwb'      : units.Quantity(out[2,:],   'degree_Celsius'),
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),             # <<<<<<<<<<<<<<
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),
  *         'min_speed' : units.Quantity(_min_speed, 'meter/second'),
  */
-  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_int_4, __pyx_slice__5); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 524, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_int_4, __pyx_slice__5); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(1, 532, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
 
-  /* "pywbgt/liljegren.pyx":525
+  /* "pywbgt/liljegren.pyx":533
  *         'Twbg'      : units.Quantity(out[3,:],   'degree_Celsius'),
  *         'solar'     : units.Quantity(out[4,:],   'watt/meter**2'),
  *         'speed'     : units.Quantity(out[5,:],   'meter/second'),             # <<<<<<<<<<<<<<
  *         'min_speed' : units.Quantity(_min_speed, 'meter/second'),
  *     }
  */
-  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_int_5, __pyx_slice__5); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 525, __pyx_L1_error)
+  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_int_5, __pyx_slice__5); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(1, 533, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__18);
   __Pyx_GIVEREF(__pyx_tuple__18);
 
@@ -28631,83 +28717,95 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   /* "pywbgt/liljegren.pyx":21
  * LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
  * 
+ * def datime_adjust(datetime, avg, gmt):             # <<<<<<<<<<<<<<
+ *     """
+ *     Adjust datetime based on averaging window and gmt
+ */
+  __pyx_tuple__30 = PyTuple_Pack(4, __pyx_n_s_datetime, __pyx_n_s_avg, __pyx_n_s_gmt, __pyx_n_s_dt); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_datime_adjust, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(1, 21, __pyx_L1_error)
+
+  /* "pywbgt/liljegren.pyx":51
+ *     return datetime - dt
+ * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.initializedcheck(False)
  */
-  __pyx_tuple__30 = PyTuple_Pack(11, __pyx_n_s_temp_air, __pyx_n_s_pres, __pyx_n_s_speed, __pyx_n_s_diameter, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_h, __pyx_n_s_hView, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_speedView); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(1, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__30);
-  __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_conv_heat_trans_coeff, 21, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __pyx_tuple__32 = PyTuple_Pack(11, __pyx_n_s_temp_air, __pyx_n_s_pres, __pyx_n_s_speed, __pyx_n_s_diameter, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_h, __pyx_n_s_hView, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_speedView); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 51, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__32);
+  __Pyx_GIVEREF(__pyx_tuple__32);
+  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(4, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_conv_heat_trans_coeff, 51, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(1, 51, __pyx_L1_error)
 
-  /* "pywbgt/liljegren.pyx":62
+  /* "pywbgt/liljegren.pyx":92
  *     return h                                                     # Reshape to same shape as temp_air
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_tuple__32 = PyTuple_Pack(24, __pyx_n_s_datetime, __pyx_n_s_lat, __pyx_n_s_lon, __pyx_n_s_solar, __pyx_n_s_avg, __pyx_n_s_gmt, __pyx_n_s_use_spa, __pyx_n_s_kwargs, __pyx_n_s_res, __pyx_n_s_spa, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_dday, __pyx_n_s_dt, __pyx_n_s_out, __pyx_n_s_outView, __pyx_n_s_latView, __pyx_n_s_lonView, __pyx_n_s_yearView, __pyx_n_s_monthView, __pyx_n_s_dayView, __pyx_n_s_hourView, __pyx_n_s_minuteView, __pyx_n_s_secondView); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(1, 62, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__32);
-  __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(7, 0, 0, 24, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_solar_parameters, 62, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(1, 62, __pyx_L1_error)
-  __pyx_tuple__34 = PyTuple_Pack(3, Py_None, Py_None, ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(1, 62, __pyx_L1_error)
+  __pyx_tuple__34 = PyTuple_Pack(23, __pyx_n_s_datetime, __pyx_n_s_lat, __pyx_n_s_lon, __pyx_n_s_solar, __pyx_n_s_avg, __pyx_n_s_gmt, __pyx_n_s_use_spa, __pyx_n_s_kwargs, __pyx_n_s_res, __pyx_n_s_spa, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_dday, __pyx_n_s_out, __pyx_n_s_outView, __pyx_n_s_latView, __pyx_n_s_lonView, __pyx_n_s_yearView, __pyx_n_s_monthView, __pyx_n_s_dayView, __pyx_n_s_hourView, __pyx_n_s_minuteView, __pyx_n_s_secondView); if (unlikely(!__pyx_tuple__34)) __PYX_ERR(1, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__34);
   __Pyx_GIVEREF(__pyx_tuple__34);
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(7, 0, 0, 23, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__34, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_solar_parameters, 92, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(1, 92, __pyx_L1_error)
+  __pyx_tuple__36 = PyTuple_Pack(3, Py_None, Py_None, ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__36)) __PYX_ERR(1, 92, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__36);
+  __Pyx_GIVEREF(__pyx_tuple__36);
 
-  /* "pywbgt/liljegren.pyx":149
+  /* "pywbgt/liljegren.pyx":170
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_tuple__35 = PyTuple_Pack(20, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_pres, __pyx_n_s_speed, __pyx_n_s_solar, __pyx_n_s_fdir, __pyx_n_s_cza, __pyx_n_s_d_globe, __pyx_n_s_d_globe_2, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_speedView, __pyx_n_s_solarView, __pyx_n_s_fdirView, __pyx_n_s_czaView, __pyx_n_s_relhumView, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__35)) __PYX_ERR(1, 149, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__35);
-  __Pyx_GIVEREF(__pyx_tuple__35);
-  __pyx_codeobj__36 = (PyObject*)__Pyx_PyCode_New(8, 0, 0, 20, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__35, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_globe_temperature, 149, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__36)) __PYX_ERR(1, 149, __pyx_L1_error)
-  __pyx_tuple__37 = PyTuple_Pack(1, Py_None); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(1, 149, __pyx_L1_error)
+  __pyx_tuple__37 = PyTuple_Pack(20, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_pres, __pyx_n_s_speed, __pyx_n_s_solar, __pyx_n_s_fdir, __pyx_n_s_cza, __pyx_n_s_d_globe, __pyx_n_s_d_globe_2, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_speedView, __pyx_n_s_solarView, __pyx_n_s_fdirView, __pyx_n_s_czaView, __pyx_n_s_relhumView, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__37)) __PYX_ERR(1, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__37);
   __Pyx_GIVEREF(__pyx_tuple__37);
+  __pyx_codeobj__38 = (PyObject*)__Pyx_PyCode_New(8, 0, 0, 20, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_globe_temperature, 170, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__38)) __PYX_ERR(1, 170, __pyx_L1_error)
+  __pyx_tuple__39 = PyTuple_Pack(1, Py_None); if (unlikely(!__pyx_tuple__39)) __PYX_ERR(1, 170, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__39);
+  __Pyx_GIVEREF(__pyx_tuple__39);
 
-  /* "pywbgt/liljegren.pyx":206
+  /* "pywbgt/liljegren.pyx":227
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_tuple__38 = PyTuple_Pack(13, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_pres, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_relhumView, __pyx_n_s_tmp, __pyx_n_s_fill, __pyx_n_s_rad, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__38)) __PYX_ERR(1, 206, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__38);
-  __Pyx_GIVEREF(__pyx_tuple__38);
-  __pyx_codeobj__39 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__38, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_psychrometric_wetbulb, 206, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__39)) __PYX_ERR(1, 206, __pyx_L1_error)
-
-  /* "pywbgt/liljegren.pyx":251
- *     return out
- * 
- * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
- * @cython.wraparound(False)   # Deactivate negative indexing.
- * @cython.initializedcheck(False)   # Deactivate initialization checking.
- */
-  __pyx_tuple__40 = PyTuple_Pack(20, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_pres, __pyx_n_s_speed, __pyx_n_s_solar, __pyx_n_s_fdir, __pyx_n_s_cza, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_speedView, __pyx_n_s_solarView, __pyx_n_s_fdirView, __pyx_n_s_czaView, __pyx_n_s_relhumView, __pyx_n_s_tmp, __pyx_n_s_rad, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(1, 251, __pyx_L1_error)
+  __pyx_tuple__40 = PyTuple_Pack(13, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_pres, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_relhumView, __pyx_n_s_tmp, __pyx_n_s_fill, __pyx_n_s_rad, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__40)) __PYX_ERR(1, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__40);
   __Pyx_GIVEREF(__pyx_tuple__40);
-  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(7, 0, 0, 20, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__40, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_natural_wetbulb, 251, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(1, 251, __pyx_L1_error)
+  __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 13, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__40, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_psychrometric_wetbulb, 227, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(1, 227, __pyx_L1_error)
 
-  /* "pywbgt/liljegren.pyx":302
+  /* "pywbgt/liljegren.pyx":272
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_tuple__42 = PyTuple_Pack(48, __pyx_n_s_datetime, __pyx_n_s_lat, __pyx_n_s_lon, __pyx_n_s_solar, __pyx_n_s_pres, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_speed, __pyx_n_s_urban, __pyx_n_s_gmt, __pyx_n_s_avg, __pyx_n_s_zspeed, __pyx_n_s_dT, __pyx_n_s_min_speed, __pyx_n_s_d_globe, __pyx_n_s_use_spa, __pyx_n_s_kwargs, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_res, __pyx_n_s_spa, __pyx_n_s_Tg, __pyx_n_s_Tpsy, __pyx_n_s_Tnwb, __pyx_n_s_Twbg, __pyx_n_s_solar_adj, __pyx_n_s_est_speed, __pyx_n_s_min_speed_2, __pyx_n_s_d_globe_2, __pyx_n_s_dt, __pyx_n_s_latView, __pyx_n_s_lonView, __pyx_n_s_urbanView, __pyx_n_s_yearView, __pyx_n_s_monthView, __pyx_n_s_dayView, __pyx_n_s_hourView, __pyx_n_s_minuteView, __pyx_n_s_secondView, __pyx_n_s_solarView, __pyx_n_s_presView, __pyx_n_s_temp_airView, __pyx_n_s_speedView, __pyx_n_s_zspeedView, __pyx_n_s_dTView, __pyx_n_s_relhumView, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 302, __pyx_L1_error)
+  __pyx_tuple__42 = PyTuple_Pack(20, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_pres, __pyx_n_s_speed, __pyx_n_s_solar, __pyx_n_s_fdir, __pyx_n_s_cza, __pyx_n_s_temp_airView, __pyx_n_s_presView, __pyx_n_s_speedView, __pyx_n_s_solarView, __pyx_n_s_fdirView, __pyx_n_s_czaView, __pyx_n_s_relhumView, __pyx_n_s_tmp, __pyx_n_s_rad, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__42)) __PYX_ERR(1, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__42);
   __Pyx_GIVEREF(__pyx_tuple__42);
-  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(16, 0, 0, 48, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_wetbulb_globe, 302, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(1, 302, __pyx_L1_error)
-  __pyx_tuple__44 = PyTuple_Pack(8, Py_None, Py_None, Py_None, Py_None, Py_None, Py_None, Py_None, ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(1, 302, __pyx_L1_error)
+  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(7, 0, 0, 20, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__42, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_natural_wetbulb, 272, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(1, 272, __pyx_L1_error)
+
+  /* "pywbgt/liljegren.pyx":323
+ *     return out
+ * 
+ * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
+ * @cython.wraparound(False)   # Deactivate negative indexing.
+ * @cython.initializedcheck(False)   # Deactivate initialization checking.
+ */
+  __pyx_tuple__44 = PyTuple_Pack(47, __pyx_n_s_datetime, __pyx_n_s_lat, __pyx_n_s_lon, __pyx_n_s_solar, __pyx_n_s_pres, __pyx_n_s_temp_air, __pyx_n_s_temp_dew, __pyx_n_s_speed, __pyx_n_s_urban, __pyx_n_s_gmt, __pyx_n_s_avg, __pyx_n_s_zspeed, __pyx_n_s_dT, __pyx_n_s_min_speed, __pyx_n_s_d_globe, __pyx_n_s_use_spa, __pyx_n_s_kwargs, __pyx_n_s_i, __pyx_n_s_size, __pyx_n_s_res, __pyx_n_s_spa, __pyx_n_s_Tg, __pyx_n_s_Tpsy, __pyx_n_s_Tnwb, __pyx_n_s_Twbg, __pyx_n_s_solar_adj, __pyx_n_s_est_speed, __pyx_n_s_min_speed_2, __pyx_n_s_d_globe_2, __pyx_n_s_latView, __pyx_n_s_lonView, __pyx_n_s_urbanView, __pyx_n_s_yearView, __pyx_n_s_monthView, __pyx_n_s_dayView, __pyx_n_s_hourView, __pyx_n_s_minuteView, __pyx_n_s_secondView, __pyx_n_s_solarView, __pyx_n_s_presView, __pyx_n_s_temp_airView, __pyx_n_s_speedView, __pyx_n_s_zspeedView, __pyx_n_s_dTView, __pyx_n_s_relhumView, __pyx_n_s_out, __pyx_n_s_outView); if (unlikely(!__pyx_tuple__44)) __PYX_ERR(1, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__44);
   __Pyx_GIVEREF(__pyx_tuple__44);
+  __pyx_codeobj__45 = (PyObject*)__Pyx_PyCode_New(16, 0, 0, 47, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__44, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pywbgt_liljegren_pyx, __pyx_n_s_wetbulb_globe, 323, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__45)) __PYX_ERR(1, 323, __pyx_L1_error)
+  __pyx_tuple__46 = PyTuple_Pack(8, Py_None, Py_None, Py_None, Py_None, Py_None, Py_None, Py_None, ((PyObject *)Py_False)); if (unlikely(!__pyx_tuple__46)) __PYX_ERR(1, 323, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__46);
+  __Pyx_GIVEREF(__pyx_tuple__46);
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -29975,7 +30073,7 @@ if (!__Pyx_RefNanny) {
  * LILJEGREN_D_GLOBE   = units.Quantity(_D_GLOBE,   'meter')
  * LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')             # <<<<<<<<<<<<<<
  * 
- * @cython.boundscheck(False)
+ * def datime_adjust(datetime, avg, gmt):
  */
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_units); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 19, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
@@ -30002,15 +30100,27 @@ if (!__Pyx_RefNanny) {
   /* "pywbgt/liljegren.pyx":21
  * LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
  * 
+ * def datime_adjust(datetime, avg, gmt):             # <<<<<<<<<<<<<<
+ *     """
+ *     Adjust datetime based on averaging window and gmt
+ */
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_1datime_adjust, 0, __pyx_n_s_datime_adjust, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_datime_adjust, __pyx_t_4) < 0) __PYX_ERR(1, 21, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+  /* "pywbgt/liljegren.pyx":51
+ *     return datetime - dt
+ * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.initializedcheck(False)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_1conv_heat_trans_coeff, 0, __pyx_n_s_conv_heat_trans_coeff, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 21, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_3conv_heat_trans_coeff, 0, __pyx_n_s_conv_heat_trans_coeff, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 51, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_4, sizeof(__pyx_defaults), 0)) __PYX_ERR(1, 21, __pyx_L1_error)
+  if (!__Pyx_CyFunction_InitDefaults(__pyx_t_4, sizeof(__pyx_defaults), 0)) __PYX_ERR(1, 51, __pyx_L1_error)
 
-  /* "pywbgt/liljegren.pyx":25
+  /* "pywbgt/liljegren.pyx":55
  * @cython.initializedcheck(False)
  * @cython.always_allow_keywords(True)
  * def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=_D_GLOBE ):             # <<<<<<<<<<<<<<
@@ -30018,71 +30128,71 @@ if (!__Pyx_RefNanny) {
  *     Compute convective heat transfer coefficient
  */
   __Pyx_CyFunction_Defaults(__pyx_defaults, __pyx_t_4)->__pyx_arg_diameter = D_GLOBE;
-  __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_4, __pyx_pf_6pywbgt_9liljegren_12__defaults__);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_conv_heat_trans_coeff, __pyx_t_4) < 0) __PYX_ERR(1, 21, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsGetter(__pyx_t_4, __pyx_pf_6pywbgt_9liljegren_14__defaults__);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_conv_heat_trans_coeff, __pyx_t_4) < 0) __PYX_ERR(1, 51, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/liljegren.pyx":62
+  /* "pywbgt/liljegren.pyx":92
  *     return h                                                     # Reshape to same shape as temp_air
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_3solar_parameters, 0, __pyx_n_s_solar_parameters, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 62, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_5solar_parameters, 0, __pyx_n_s_solar_parameters, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 92, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__34);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_solar_parameters, __pyx_t_4) < 0) __PYX_ERR(1, 62, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__36);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_solar_parameters, __pyx_t_4) < 0) __PYX_ERR(1, 92, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/liljegren.pyx":149
+  /* "pywbgt/liljegren.pyx":170
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_5globe_temperature, 0, __pyx_n_s_globe_temperature, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__36)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 149, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_7globe_temperature, 0, __pyx_n_s_globe_temperature, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__38)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__37);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_globe_temperature, __pyx_t_4) < 0) __PYX_ERR(1, 149, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__39);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_globe_temperature, __pyx_t_4) < 0) __PYX_ERR(1, 170, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/liljegren.pyx":206
+  /* "pywbgt/liljegren.pyx":227
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_7psychrometric_wetbulb, 0, __pyx_n_s_psychrometric_wetbulb, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__39)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 206, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_9psychrometric_wetbulb, 0, __pyx_n_s_psychrometric_wetbulb, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_psychrometric_wetbulb, __pyx_t_4) < 0) __PYX_ERR(1, 206, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_psychrometric_wetbulb, __pyx_t_4) < 0) __PYX_ERR(1, 227, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/liljegren.pyx":251
+  /* "pywbgt/liljegren.pyx":272
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_9natural_wetbulb, 0, __pyx_n_s_natural_wetbulb, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__41)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 251, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_11natural_wetbulb, 0, __pyx_n_s_natural_wetbulb, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_natural_wetbulb, __pyx_t_4) < 0) __PYX_ERR(1, 251, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_natural_wetbulb, __pyx_t_4) < 0) __PYX_ERR(1, 272, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/liljegren.pyx":302
+  /* "pywbgt/liljegren.pyx":323
  *     return out
  * 
  * @cython.boundscheck(False)  # Deactivate bounds checking             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)   # Deactivate negative indexing.
  * @cython.initializedcheck(False)   # Deactivate initialization checking.
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_11wetbulb_globe, 0, __pyx_n_s_wetbulb_globe, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 302, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_9liljegren_13wetbulb_globe, 0, __pyx_n_s_wetbulb_globe, NULL, __pyx_n_s_pywbgt_liljegren, __pyx_d, ((PyObject *)__pyx_codeobj__45)); if (unlikely(!__pyx_t_4)) __PYX_ERR(1, 323, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__44);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_wetbulb_globe, __pyx_t_4) < 0) __PYX_ERR(1, 302, __pyx_L1_error)
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_tuple__46);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_wetbulb_globe, __pyx_t_4) < 0) __PYX_ERR(1, 323, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "pywbgt/liljegren.pyx":1
@@ -37352,7 +37462,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__45);
+        name = __Pyx_NewRef(__pyx_n_s__47);
     }
     return name;
 }

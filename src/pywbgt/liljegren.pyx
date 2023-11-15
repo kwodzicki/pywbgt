@@ -18,6 +18,36 @@ from .utils import datetime_check
 LILJEGREN_D_GLOBE   = units.Quantity(_D_GLOBE,   'meter')
 LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
 
+def datime_adjust(datetime, avg, gmt):
+    """
+    Adjust datetime based on averaging window and gmt
+
+    Arguments:
+        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
+        gmt (ndarray) LST-GMT difference  (hours; negative in USA)
+        avg (ndarray) : averaging time of the meteorological inputs (minutes)
+
+    Returns:
+        pandas.DatetimeIndex : Adjusted datetimes based on the avg and
+            gmt values
+
+    """
+ 
+    datetime = datetime_check(datetime)
+
+    # Set default data averaging interval and compute time offset so that
+    # time is in the middle of the sampling interval
+    if avg is None:
+        avg = 1.0
+    dt = to_timedelta( avg/2.0, 'minute')
+
+    # If gmt is NOT None (i.e., it is set), then adjust the time delta
+    if gmt is not None:
+        dt = dt + to_timedelta(gmt, 'hour')
+
+    # Adjust time using time delta
+    return datetime - dt
+
 @cython.boundscheck(False)
 @cython.wraparound(False)
 @cython.initializedcheck(False)
@@ -99,20 +129,12 @@ def solar_parameters(
  
     """
 
-    datetime = datetime_check(datetime)
+    datetime = datime_adjust(datetime, avg, gmt)
 
     cdef:
         int res, spa = use_spa
         Py_ssize_t i, size = datetime.shape[0]
         double dday
-
-    if avg is None: 
-        avg = 1.0
-    dt = to_timedelta( avg/2.0, 'minute')
-    if gmt is not None:
-        dt = dt + to_timedelta(gmt, 'hour')
-
-    datetime = datetime - dt
 
     if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
         lat = lat.repeat( size )
@@ -134,7 +156,6 @@ def solar_parameters(
         int [::1] secondView = datetime.second.values.astype( numpy.int32 )
  
     for i in prange( size, nogil=True ):
-      #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
         dday  = (
             dayView[i] + 
             ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
@@ -378,26 +399,13 @@ def wetbulb_globe(
 
     """
 
-    datetime = datetime_check(datetime)
+    datetime = datime_adjust(datetime, avg, gmt)
 
     # Define size of output arrays based on size of input
     cdef:
         Py_ssize_t i, size = datetime.shape[0]
         int res, spa=use_spa
         float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, _min_speed, _d_globe  
-
-    # Set default data averaging interval and compute time offset so that
-    # time is in the middle of the sampling interval
-    if avg is None:
-        avg = 1.0  
-    dt = to_timedelta( avg/2.0, 'minute')
-
-    # If gmt is NOT None (i.e., it is set), then adjust the time delta
-    if gmt is not None:
-        dt = dt + to_timedelta(gmt, 'hour')
-
-    # Adjust time using time delta
-    datetime = datetime - dt
 
     # Generate or repeat urban value based on input
     if urban is None: 

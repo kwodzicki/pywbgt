@@ -110,7 +110,7 @@ class TestBernard(unittest.TestCase):
         ]
 
         test_vals = self.compute_wbgt()['Tg'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=12)
 
     def test_natural_wetbulb(self):
 
@@ -122,7 +122,7 @@ class TestBernard(unittest.TestCase):
         ] 
 
         test_vals = self.compute_wbgt()['Tnwb'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=13)
 
     def test_wetbulb_globe(self):
         
@@ -134,4 +134,4 @@ class TestBernard(unittest.TestCase):
         ] 
 
         test_vals = self.compute_wbgt()['Twbg'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=13)

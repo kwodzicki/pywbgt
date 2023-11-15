@@ -495,8 +495,12 @@ float	lat,		/* north latitude									*/
     seconds       = seconds % 3600;
     spa.minute    = (int) seconds / 60.0;
     spa.second    = seconds % 60;
+    //Some default values that need to be set
     spa.pressure  = 1010.0;
     spa.temperature = 10.0;
+    spa.elevation   = 0.0;
+    spa.delta_t     = 0.0;
+    spa.delta_ut1   = 0.0;
 
     result = spa_calculate( &spa );
     if (result == 0){ 

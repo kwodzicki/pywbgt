@@ -46,7 +46,6 @@ class TestSolarParams( unittest.TestCase ):
     numpy.testing.assert_almost_equal( res[1,:], self.ref_COSZ )
   
   def test_compare_spa(self):
-
     dates = pandas.date_range('2000-06-01', '2000-07-01', freq='1H')
 
     lats  = numpy.full( dates.size, degMinSec2Frac( *self.lats ) )
