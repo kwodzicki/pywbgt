@@ -80,10 +80,10 @@ def wbgt( method, *args, **kwargs ):
 
     args = list(args)
     for i, arg in enumerate(args):
-        try:
-            args[i] = arg.values * arg.metpy.units
-        except:
-            pass
+        if not hasattr(arg, 'metpy'):
+            continue
+
+        args[i] = arg.metpy.quantify().data
 
     if method == 'liljegren':
         return liljegrenWBGT( *args, **kwargs )
