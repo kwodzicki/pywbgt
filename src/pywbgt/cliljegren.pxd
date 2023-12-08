@@ -8,8 +8,12 @@ cython, muse create hearder information
 
 cdef extern from "src/liljegren_c.c" nogil:
     # Expose define to cython
-    float _D_GLOBE   "D_GLOBE"
-    float _MIN_SPEED "MIN_SPEED"
+    float _D_GLOBE       "D_GLOBE"
+    float _MIN_SPEED     "MIN_SPEED"
+    float _CZA_MIN       "CZA_MIN"
+    float _NORMSOLAR_MAX "NORMSOLAR_MAX"
+    float _SOLAR_CONST   "SOLAR_CONST"
+    float _REF_HEIGHT    "REF_HEIGHT"
 
     # Expose functions to cython
     int calc_wbgt(
@@ -31,7 +35,6 @@ cdef extern from "src/liljegren_c.c" nogil:
         float zspeed,
         float dT,
         int urban,
-        int use_spa,
         float min_speed,
         float d_globe,
         float* est_speed,
@@ -52,14 +55,28 @@ cdef extern from "src/liljegren_c.c" nogil:
     int calc_solar_parameters(
         int year,
         int month,
-        double day, 
+        double day,
         float lat,
         float lon,
-        int use_spa,
         float* solar,
         float* cza,
         float* fdir,
-    ) 
+    )
+
+    int stab_srdt(
+        int daytime,
+        float speed,
+        float solar,
+        float dT,
+    )
+
+    float est_wind_speed(
+        float speed,
+        float zspeed,
+        int stability_class,
+        int urban,
+        float min_speed,
+    )
 
     float Tglobe(
         float Tair,

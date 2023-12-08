@@ -5,8 +5,10 @@ import pandas
 import numpy
 from metpy.units import units
 
-from pywbgt import wbgt
-from pywbgt.liljegren import solar_parameters
+#from pywbgt.liljegren import wetbulb_globe_orig as wetbulb_globe
+from pywbgt.liljegren import wetbulb_globe
+from pywbgt.solar import solar_parameters
+#from pywbgt.liljegren import solar_parameters
 
 def degMinSec2Frac( degree, minute, second ):
 
@@ -41,32 +43,31 @@ class TestSolarParams( unittest.TestCase ):
     res = solar_parameters(
         self.dates, lats, lons,
         solar, 
-        use_spa=False,
     )
     numpy.testing.assert_almost_equal( res[1,:], self.ref_COSZ )
   
-  def test_compare_spa(self):
-    dates = pandas.date_range('2000-06-01', '2000-07-01', freq='1H')
+  #def test_compare_spa(self):
+  #  dates = pandas.date_range('2000-06-01', '2000-07-01', freq='1H')
 
-    lats  = numpy.full( dates.size, degMinSec2Frac( *self.lats ) )
-    lons  = numpy.full( dates.size, degMinSec2Frac( *self.lons ) )
+  #  lats  = numpy.full( dates.size, degMinSec2Frac( *self.lats ) )
+  #  lons  = numpy.full( dates.size, degMinSec2Frac( *self.lons ) )
 
-    solar = numpy.full( dates.size, 1000 )
+  #  solar = numpy.full( dates.size, 1000 )
 
-    expAct = []
-    for use_spa in [False, True]:
-      expAct.append(
-        solar_parameters(
-        dates,
-        lats, lons,
-        solar, 
-        use_spa=use_spa,
-      )
-    )
+  #  expAct = []
+  #  for use_spa in [False, True]:
+  #    expAct.append(
+  #      solar_parameters(
+  #      dates,
+  #      lats, lons,
+  #      solar, 
+  #      use_spa=use_spa,
+  #    )
+  #  )
 
-    numpy.testing.assert_almost_equal(
-      expAct[0][1,:], expAct[1][1,:], decimal=4
-    )
+  #  numpy.testing.assert_almost_equal(
+  #    expAct[0][1,:], expAct[1][1,:], decimal=4
+  #  )
 
 class TestWBGT( unittest.TestCase ):
 
@@ -86,7 +87,7 @@ class TestWBGT( unittest.TestCase ):
     self.lats   = numpy.full( self.solar.size, degMinSec2Frac(*lats) )
     self.lons   = numpy.full( self.solar.size, degMinSec2Frac(*lons) )
 
-    self.res    = wbgt('liljegren', 
+    self.res    = wetbulb_globe( 
       dates.repeat( self.solar.size ), self.lats, self.lons,
       self.solar,
       self.pres,

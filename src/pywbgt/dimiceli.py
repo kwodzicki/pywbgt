@@ -14,7 +14,7 @@ import numpy as np
 from metpy.units import units
 
 from .constants import SIGMA, MIN_SPEED, DIMICELI_MIN_SPEED
-from .liljegren import solar_parameters
+from .solar import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer
 from .calc import relative_humidity, loglaw

@@ -23,7 +23,7 @@ cimport cython
 from metpy.units import units
 
 from .constants import SIGMA, EPSILON, MIN_SPEED
-from .liljegren import solar_parameters
+from .solar import solar_parameters
 from .calc import saturation_vapor_pressure, loglaw
 from .utils import datetime_check
 

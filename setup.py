@@ -20,27 +20,14 @@ EXT_LILJEGREN = Extension(
     f'{NAME}.liljegren',
     [
         os.path.join('src', NAME, 'liljegren'+EXT),
-        os.path.join('src', NAME, 'src', 'spa_c.c'),
     ],
     include_dirs = [os.path.join('src', NAME, 'src')],
-    depends = ['spa_c.h'],
     **EXTS_KWARGS,
 )
 
 EXT_BERNARD = Extension( 
     f'{NAME}.bernard',
     sources = [os.path.join('src', NAME, 'bernard'+EXT)],
-    **EXTS_KWARGS,
-)
-
-EXT_SPA = Extension( 
-    f'{NAME}.spa',
-    sources = [
-        os.path.join('src', NAME, 'spa'+EXT),
-        os.path.join('src', NAME, 'src', 'spa_c.c'),
-    ],
-    include_dirs = [os.path.join('src', NAME, 'src')],
-    depends = ['spa_c.h'],
     **EXTS_KWARGS,
 )
 
@@ -53,7 +40,6 @@ EXT_PSY_WETBULB = Extension(
 EXTENSIONS = [
     EXT_LILJEGREN,
     EXT_BERNARD,
-    EXT_SPA,
     EXT_PSY_WETBULB,
 ]
 
