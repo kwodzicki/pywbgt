@@ -38,4 +38,4 @@ dependencies = [
 where = ["src"]
 
 [tool.setuptools.package-data]
-"*" = ["**/*.pyx"]
+"*" = ["**/*.pyx", "**/*.c"]

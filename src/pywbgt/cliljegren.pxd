@@ -15,36 +15,6 @@ cdef extern from "src/liljegren_c.c" nogil:
     float _SOLAR_CONST   "SOLAR_CONST"
     float _REF_HEIGHT    "REF_HEIGHT"
 
-    # Expose functions to cython
-    int calc_wbgt(
-        int year,
-        int month,
-        int day,
-        int hour,
-        int minute,
-        int second,
-        int gmt,
-        int avg,
-        float lat,
-        float lon,
-        float solar,
-        float pres,
-        float Tair,
-        float relhum,
-        float speed,
-        float zspeed,
-        float dT,
-        int urban,
-        float min_speed,
-        float d_globe,
-        float* est_speed,
-        float* solar_adj,
-        float* Tg,
-        float* Tnwb,
-        float* Tpsy,
-        float* Twbg,
-    )
-
     float h_sphere_in_air(
         float diameter,
         float Tair,

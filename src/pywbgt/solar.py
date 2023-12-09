@@ -102,11 +102,12 @@ def solar_parameters(
         temp = np.full(ntime, TEMP)
     elif temp.size <= 1:
         temp = temp.repeat(ntime)
-    
-    solardist, zenith = solar_position(
+   
+    return _solar_parameters(
         datetime,
         lat,
         lon,
+        solar,
         elev,
         pressure,
         temp,
@@ -114,29 +115,12 @@ def solar_parameters(
         0,
     )
 
-    cza      = np.cos(np.deg2rad(zenith))
-    fdir     = np.zeros(cza.shape, dtype=np.float32)
-
-    toasolar = LILJEGREN_SOLAR_CONST * np.clip(cza, 0.0, None) / solardist**2
-    toasolar[cza < LILJEGREN_CZA_MIN] = 0.0
-
-    idx      = toasolar > 0.0
-    
-    normsolar  = np.clip(solar[idx]/toasolar[idx], None, LILJEGREN_NORMSOLAR_MAX)
-    solar[idx] = normsolar * toasolar[idx]
-    fdir[idx]  = np.where(
-        normsolar > 0.0,
-        np.clip(np.exp(3.0-1.34*normsolar-1.65/normsolar), 0.0, 0.9),
-        0.0,
-    )
-
-    return np.where(idx, solar, 0.0), cza, fdir
-
 @njit(parallel=True)
-def solar_position(
+def _solar_parameters(
     unixtime,
     lat,
     lon,
+    solar,
     elev,
     pressure,
     temp,
@@ -163,8 +147,8 @@ def solar_position(
 
     """
 
-    solardist = np.empty(unixtime.size, dtype=np.float32)
-    zenith    = np.empty(unixtime.size, dtype=np.float32)
+    cza   = np.empty(unixtime.size, dtype=np.float32)
+    fdir  = np.empty(unixtime.size, dtype=np.float32)
 
     for i in prange(unixtime.size):
         jd    = spa.julian_day(unixtime[i])
@@ -173,7 +157,6 @@ def solar_position(
         jce   = spa.julian_ephemeris_century(jde)
         jme   = spa.julian_ephemeris_millennium(jce)
         R     = spa.heliocentric_radius_vector(jme)
-        solardist[i] = R
 
         L     = spa.heliocentric_longitude(jme)
         B     = spa.heliocentric_latitude(jme)
@@ -215,6 +198,28 @@ def solar_position(
         delta_e     = spa.atmospheric_refraction_correction(
             pressure[i], temp[i], e0, atmos_refract,
         )
-        zenith[i] = 90.0-spa.topocentric_elevation_angle(e0, delta_e)
 
-    return solardist, zenith
+        cza[i] = np.cos(
+            np.deg2rad(90.0-spa.topocentric_elevation_angle(e0, delta_e))
+        )
+
+        if (cza[i] < LILJEGREN_CZA_MIN):
+            solar[i] = 0.0
+            fdir[i]  = 0.0
+        else:
+            toasolar = LILJEGREN_SOLAR_CONST * max(cza[i], 0.0) / R**2
+    
+            # Limit maximum value of norm solar 
+            normsolar  = min(
+                solar[i]/toasolar,
+                LILJEGREN_NORMSOLAR_MAX,
+            )
+
+            solar[i] = normsolar * toasolar
+            if normsolar > 0.0:
+                fdir[i] = np.exp(3.0-1.34*normsolar-1.65/normsolar)
+                fdir[i] = max(min(fdir[i], 0.9), 0.0)
+            else:
+                fdir[i] = 0.0
+
+    return solar, cza, fdir
