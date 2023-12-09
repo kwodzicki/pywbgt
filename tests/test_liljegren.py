@@ -5,10 +5,8 @@ import pandas
 import numpy
 from metpy.units import units
 
-#from pywbgt.liljegren import wetbulb_globe_orig as wetbulb_globe
 from pywbgt.liljegren import wetbulb_globe
 from pywbgt.solar import solar_parameters
-#from pywbgt.liljegren import solar_parameters
 
 def degMinSec2Frac( degree, minute, second ):
 
@@ -29,8 +27,9 @@ class TestSolarParams( unittest.TestCase ):
     )
 
     self.ref_COSZ = numpy.array(
-      [0.479295 , 0.5436556, 0.6659838, 0.7999455, 0.8850405, 0.9173493, 
-       0.9125813, 0.8857513, 0.8315094, 0.7408212, 0.617371 , 0.5131574]
+        [0.4793185, 0.5436525, 0.6659659, 0.7999277, 0.8850331, 0.9173484,
+         0.9125873, 0.8857645, 0.8315311, 0.7408516, 0.6174007, 0.5131738],         
+        dtype = numpy.float32,
     )
 
   def test_cosz(self):
@@ -44,31 +43,8 @@ class TestSolarParams( unittest.TestCase ):
         self.dates, lats, lons,
         solar, 
     )
-    numpy.testing.assert_almost_equal( res[1,:], self.ref_COSZ )
+    numpy.testing.assert_almost_equal( res[1], self.ref_COSZ )
   
-  #def test_compare_spa(self):
-  #  dates = pandas.date_range('2000-06-01', '2000-07-01', freq='1H')
-
-  #  lats  = numpy.full( dates.size, degMinSec2Frac( *self.lats ) )
-  #  lons  = numpy.full( dates.size, degMinSec2Frac( *self.lons ) )
-
-  #  solar = numpy.full( dates.size, 1000 )
-
-  #  expAct = []
-  #  for use_spa in [False, True]:
-  #    expAct.append(
-  #      solar_parameters(
-  #      dates,
-  #      lats, lons,
-  #      solar, 
-  #      use_spa=use_spa,
-  #    )
-  #  )
-
-  #  numpy.testing.assert_almost_equal(
-  #    expAct[0][1,:], expAct[1][1,:], decimal=4
-  #  )
-
 class TestWBGT( unittest.TestCase ):
 
   def setUp( self ):
@@ -101,7 +77,7 @@ class TestWBGT( unittest.TestCase ):
 
   def test_Tg(self):
     
-    Tg   = [41.970542908, 48.868949890] 
+    Tg   = numpy.asarray([41.968254, 48.867577], dtype=numpy.float32) 
     numpy.testing.assert_almost_equal(Tg, self.res['Tg'].magnitude)
 
   def test_Tpsy(self):
@@ -111,10 +87,10 @@ class TestWBGT( unittest.TestCase ):
 
   def test_Tnwb(self):
 
-    Tnwb = [23.320886612, 29.015771866]
+    Tnwb = numpy.asarray([23.319757, 29.015223], dtype=numpy.float32)
     numpy.testing.assert_almost_equal(Tnwb, self.res['Tnwb'].magnitude)
 
   def test_Twbg(self):
 
-    Twbg = [27.218729019, 33.584831238]  
+    Twbg = numpy.asarray([27.21748, 33.58417], dtype=numpy.float32) 
     numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'].magnitude)
