@@ -22,17 +22,6 @@ cdef extern from "src/liljegren_c.c" nogil:
         float speed,
     )
 
-    int calc_solar_parameters(
-        int year,
-        int month,
-        double day,
-        float lat,
-        float lon,
-        float* solar,
-        float* cza,
-        float* fdir,
-    )
-
     int stab_srdt(
         int daytime,
         float speed,

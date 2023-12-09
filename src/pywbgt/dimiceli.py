@@ -18,7 +18,6 @@ from .solar import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import malchaire, hunter_minyard, nws_boyer
 from .calc import relative_humidity, loglaw
-from .utils import datetime_check
 
 def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
     """
@@ -285,7 +284,6 @@ def wetbulb_globe(
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')
 
-    datetime  = datetime_check(datetime)
     solar     = solar.to(   'watt/m**2'     ).magnitude
     pres      = pres.to(    'hPa'           ).magnitude
     temp_air  = temp_air.to('degree_Celsius').magnitude

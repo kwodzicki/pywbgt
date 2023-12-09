@@ -21,7 +21,6 @@ LILJEGREN_SOLAR_CONST   = _SOLAR_CONST
 from .constants import MIN_SPEED
 from .calc import relative_humidity as rhTd
 from .solar import solar_parameters as sparms
-from .utils import datetime_adjust
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -63,84 +62,6 @@ def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=_D_GLOBE ):
         )
   
     return h                                                     # Reshape to same shape as temp_air 
-
-@cython.boundscheck(False)  # Deactivate bounds checking
-@cython.wraparound(False)   # Deactivate negative indexing.
-@cython.initializedcheck(False)   # Deactivate initialization checking.
-@cython.always_allow_keywords(True)
-def solar_parameters(
-        datetime, lat, lon, solar,
-        avg     = None,
-        gmt     = None,
-        use_spa = False,
-        **kwargs,
-    ):
-    """
-    Calculate solar parameters based on date and location
-
-    The following quantities are calculated:
-      - Modifies solar values to be consistent with normsolar from C function
-      - cosine of the solar zenith angle
-      - fraction of the solar irradiance due to the direct beam
-
-    Arguments:
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
-        lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
-        lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
-        solar (ndarray) : Solar irradiance values (Watt/m**2)
-
-    Keyword arguments:
-        avg (ndarray) : averaging time of the meteorological inputs (minutes)
-        gmt (ndarray) : LST-GMT difference  (hours; negative in USA)
-        use_spa (bool) : If set, the National Renewable Energy Laboratory (NREL)
-            Solar Position Algorithm (SPA) is used to compute solar parameters.
-            By default, the algorithm included in the Liljegren C-code is used.
-
-    Returns:
-        tuple : Three (3) ndarrays containing:
-            - Potentially modified Solar values
-            - cosine of zenith angle
-            - fraction of solar irradiance due to the direct beam
-
-    """
-
-    datetime = datetime_adjust(datetime, avg, gmt)
-
-    cdef:
-        int res, spa = use_spa
-        Py_ssize_t i, size = datetime.shape[0]
-        double dday
-
-    if lat.size <= 1:                                                         # If input latitude is only one (1) element, as
-        lat = lat.repeat( size )
-        lon = lon.repeat( size )
-
-    out = solar.astype( numpy.float32 ).reshape( (1, size) ).repeat(3, axis=0)
-
-    cdef:
-        float [:, ::1] outView = out
-
-        float [::1] latView  = lat.astype(    numpy.float32 )
-        float [::1] lonView  = lon.astype(    numpy.float32 )
-
-        int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )
-        int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )
-        int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )
-        int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
-        int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )
-        int [::1] secondView = datetime.second.values.astype( numpy.int32 )
-
-    for i in prange( size, nogil=True ):
-        dday  = (
-            dayView[i] +
-            ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
-        )                                                                         # Compute fractional day
-        res = calc_solar_parameters(
-            yearView[i], monthView[i], dday, latView[i], lonView[i],
-            &outView[0,i], &outView[1,i], &outView[2,i]
-        )                                                                         # Run the C function
-
-    return out
 
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
@@ -370,8 +291,6 @@ def wetbulb_globe(
 
     """
 
-    datetime = datetime_adjust(datetime, gmt, avg)
-
     # Define size of output arrays based on size of input
     cdef:
         Py_ssize_t i, size = datetime.shape[0]
@@ -455,22 +374,15 @@ def wetbulb_globe(
         float [::1] lonView    = lon.astype(   numpy.float32 )
         int   [::1] urbanView  = urban.astype( numpy.int32   )
 
-        int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )
-        int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )
-        int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )  
-        int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
-        int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )
-        int [::1] secondView   = datetime.second.values.astype( numpy.int32 )
- 
-        float [::1] solar_adjView =  solar_adj.astype( numpy.float32 )
-        float [::1] czaView       = cza.astype( numpy.float32)
-        float [::1] fdirView      = fdir.astype( numpy.float32)
+        float [::1] solar_adjView   =  solar_adj.astype( numpy.float32 )
+        float [::1] czaView         = cza.astype( numpy.float32)
+        float [::1] fdirView        = fdir.astype( numpy.float32)
 
-        float [::1] presView        =     pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
-        float [::1] temp_airView    = temp_air.to( 'kelvin'     ).magnitude.astype( numpy.float32 )
-        float [::1] speedView       =    speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
-        float [::1] zspeedView      =   zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
-        float [::1] dTView          =       dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
+        float [::1] presView        =     pres.to('hPa'           ).magnitude.astype( numpy.float32 )
+        float [::1] temp_airView    = temp_air.to('kelvin'        ).magnitude.astype( numpy.float32 )
+        float [::1] speedView       =    speed.to('m/s'           ).magnitude.astype( numpy.float32 )
+        float [::1] zspeedView      =   zspeed.to('meter'         ).magnitude.astype( numpy.float32 )
+        float [::1] dTView          =       dT.to('degree_Celsius').magnitude.astype( numpy.float32 )
         float [::1] relhumView = (
             rhTd(
                 temp_air.to('degree_Celsius').magnitude,
