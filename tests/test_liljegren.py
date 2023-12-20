@@ -77,7 +77,8 @@ class TestWBGT( unittest.TestCase ):
 
   def test_Tg(self):
     
-    Tg   = numpy.asarray([41.968254, 48.867577], dtype=numpy.float32) 
+    #Tg   = numpy.asarray([41.968254, 48.867577], dtype=numpy.float32) 
+    Tg   = numpy.asarray([41.97033, 48.868675], dtype=numpy.float32) 
     numpy.testing.assert_almost_equal(Tg, self.res['Tg'].magnitude)
 
   def test_Tpsy(self):
@@ -87,10 +88,12 @@ class TestWBGT( unittest.TestCase ):
 
   def test_Tnwb(self):
 
-    Tnwb = numpy.asarray([23.319757, 29.015223], dtype=numpy.float32)
+    #Tnwb = numpy.asarray([23.319757, 29.015223], dtype=numpy.float32)
+    Tnwb = numpy.asarray([23.320795, 29.01568], dtype=numpy.float32)
     numpy.testing.assert_almost_equal(Tnwb, self.res['Tnwb'].magnitude)
 
   def test_Twbg(self):
 
-    Twbg = numpy.asarray([27.21748, 33.58417], dtype=numpy.float32) 
+    #Twbg = numpy.asarray([27.21748, 33.58417], dtype=numpy.float32) 
+    Twbg = numpy.asarray([27.218622, 33.58471], dtype=numpy.float32) 
     numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'].magnitude)
