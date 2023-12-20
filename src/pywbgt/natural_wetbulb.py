@@ -3,7 +3,8 @@ Various algorithms for computing natural wetbulb
 
 """
 
-from .calc import relative_humidity
+from metpy.units import units
+from metpy.calc import relative_humidity_from_dewpoint as relative_humidity
 
 def malchaire(temp_air, temp_dew, temp_psy, temp_g ):
     """
@@ -27,7 +28,13 @@ def malchaire(temp_air, temp_dew, temp_psy, temp_g ):
 
     """
 
-    relhum = relative_humidity( temp_air, temp_dew )
+    relhum = (
+        relative_humidity(
+            units.Quantity(temp_air, 'degC'),
+            units.Quantity(temp_dew, 'degC'),
+        )
+        .magnitude
+    )
     return (
         (0.16*(temp_g-temp_air) + 0.8)/200.0 *
         (560.0 - 2.0*relhum - 5.0*temp_air) - 0.8 + temp_psy

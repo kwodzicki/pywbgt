@@ -16,25 +16,31 @@ Bernard, T.E., & Pourmoghani, M. (1999).
 from cython.parallel import prange
 import numpy
 
-from libc.math cimport fabs, pow, log10
+from libc.math cimport fabs, exp, pow, log10
 cimport numpy
 cimport cython
 
 from metpy.units import units
+from metpy.calc import saturation_vapor_pressure
 
-from .constants import SIGMA, EPSILON, MIN_SPEED
+from .constants import SIGMA, MIN_SPEED
 from .solar import solar_parameters
-from .calc import saturation_vapor_pressure, loglaw
+from .calc import loglaw
 
 cdef:
     int   MAX_ITER  = 50
     float CtoK      = 273.15
     float CONVERGE  = 1.0E-3
     float ALPHA_SFC = 0.00
+    float EPSILON   = 0.98 # Emissivity of black globe
     float NaN       = numpy.nan
     float SIGMAB    = SIGMA
-    float EPS       = EPSILON
 
+@cython.cdivision(True)
+cdef double emis_atm(double esat) nogil:
+
+    return 0.575 * pow(esat, 0.143)
+  
 @cython.cdivision(True)
 cdef double _conv_heat_trans_coeff(
         double temp_g, double temp_air, double speed,
@@ -68,6 +74,7 @@ cdef double _conv_heat_trans_coeff(
 @cython.cdivision(True)
 cdef double _globe_temperature(
         double temp_air,
+        double esat,
         double speed,
         double pres,
         float solar, 
@@ -78,7 +85,9 @@ cdef double _globe_temperature(
     Determine globe temperature through iterative solver
 
     Aruguments:
-        temp_air (ndarray) : Ambient temperature; Kelvin 
+        temp_air (double) : Ambient temperature; Celsius
+        esat (double) : Atmospheric vapor pressure;
+            i.e., esat of dew point temperature; hPa
         speed (ndarray) : Wind speed; meters/second
         pres (ndarray) : Atmospheric pressure; hPa
         solar (ndarray) : Radiant heat flux incident on the globe;
@@ -92,6 +101,7 @@ cdef double _globe_temperature(
 
     """
 
+    temp_air = temp_air + CtoK
     cdef:
         int ii
         double h, temp_g_new, temp_g = temp_air
@@ -99,9 +109,10 @@ cdef double _globe_temperature(
     for ii in range( MAX_ITER ):
         h = _conv_heat_trans_coeff( temp_g, temp_air, speed )
         temp_g_new = pow(
+            #(1.0+emis_atm(esat))/2.0*temp_air**4 +
             temp_air**4 +
             solar/SIGMAB/2.0 * (1 + f_db*(1/2.0/cosz - 1.0) + ALPHA_SFC) -
-            h/EPS/SIGMAB * (temp_g-temp_air),
+            h/EPSILON/SIGMAB * (temp_g-temp_air),
             0.25
         )
 
@@ -219,8 +230,9 @@ def factor_e( speed ):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globe_temperature_64(
+def _globe_temperature_64(
         double [::1] temp_air,
+        double [::1] esat,
         double [::1] speed,
         double [::1] pres,
         float  [::1] solar,
@@ -241,7 +253,8 @@ def globe_temperature_64(
 
     for i in prange( size, nogil=True ):
         temp_g_view[i] = _globe_temperature( 
-            temp_air[i]+CtoK,
+            temp_air[i],
+            esat[i],
             speed[i],
             pres[i],
             solar[i],
@@ -253,8 +266,9 @@ def globe_temperature_64(
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globe_temperature_32(
+def _globe_temperature_32(
         float [::1] temp_air,
+        float [::1] esat,
         float [::1] speed,
         float [::1] pres,
         float [::1] solar,
@@ -276,7 +290,8 @@ def globe_temperature_32(
 
     for i in prange( size, nogil=True ):
         temp_g_view[i] = <float>_globe_temperature( 
-            <double>temp_air[i]+CtoK,
+            <double>temp_air[i],
+            <double>esat[i],
             <double>speed[i],
             <double>pres[i],
             solar[i],
@@ -288,12 +303,13 @@ def globe_temperature_32(
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def globe_temperature(temp_air, speed, pres, solar, f_db, cosz):
+def globe_temperature(temp_air, vapor_air, speed, pres, solar, f_db, cosz):
     """
     Determine globe temperature through iterative solver
 
     Arguments:
         temp_air (ndarray) : Ambient temperature; degree Celsius
+        vapor_air (ndarray) : ambient vapor pressure in hectoPascals
         speed (ndarray) : Wind speed; meters/second
         pres (ndarray) : Atmospheric pressure; hPa
         solar (ndarray) : Radiant heat flux incident on the globe;
@@ -305,23 +321,24 @@ def globe_temperature(temp_air, speed, pres, solar, f_db, cosz):
     """
 
     # if these variables are NOT all the same type, make them all float32
-    if not temp_air.dtype == speed.dtype == pres.dtype:
-        temp_air = temp_air.astype(numpy.float32)
-        speed    =    speed.astype(numpy.float32)
-        pres     =     pres.astype(numpy.float32)
+    if not temp_air.dtype == vapor_air.dtype == speed.dtype == pres.dtype:
+        temp_air  =  temp_air.astype(numpy.float32)
+        vapor_air = vapor_air.astype(numpy.float32)
+        speed     =     speed.astype(numpy.float32)
+        pres      =      pres.astype(numpy.float32)
 
     # If these variables are NOT all float32, force to float32
     if not solar.dtype == f_db.dtype == cosz.dtype == numpy.float32:
         solar = solar.astype(numpy.float32)
         f_db  =  f_db.astype(numpy.float32)
-        cosz  =  cosz.astype(numpy.float32)
+        cosz  =  cosz.astype(numpy.float32)    
 
     # Run 64-bit version
     if temp_air.dtype == numpy.float64:
-        return globe_temperature_64(temp_air, speed, pres, solar, f_db, cosz)
+        return _globe_temperature_64(temp_air, vapor_air, speed, pres, solar, f_db, cosz)
     # Run 32-bit version
     if temp_air.dtype == numpy.float32:
-        return globe_temperature_32(temp_air, speed, pres, solar, f_db, cosz)
+        return _globe_temperature_32(temp_air, vapor_air, speed, pres, solar, f_db, cosz)
     # Error as MUST input floating-point values
     raise Exception('Must imput floating-point values')
 
@@ -335,16 +352,25 @@ def psychrometric_wetbulb(temp_air, vapor_air=None, temp_dew=None, relhum=None):
 
     Keyword arguments:
         vapor_air (ndarray) : ambient vapor pressure in kiloPascals
-        temp_dew (ndarray) : Dew point temperature in degree Celsius
+        temp_dew (pint.Quantity) : Dew point temperature in unit of temperature 
         relhum (ndarray) : Relative humidity as fraction
 
     """
 
     if vapor_air is None:
         if temp_dew is not None:
-            vapor_air = saturation_vapor_pressure( temp_dew )/10.0
+            vapor_air = (
+                saturation_vapor_pressure( temp_dew )
+                .to('kPa')
+                .magnitude
+            )
         elif relhum is not None:
-            vapor_air = relhum * saturation_vapor_pressure( temp_air )/10.0
+            vapor_air = (
+                relhum *
+                saturation_vapor_pressure( units.Quantity(temp_air, 'degC') )
+                .to('kPa')
+                .magnitude
+            )
         else:
             raise Exception(
                 'Must input one of "vapor_air", "relhum", or "temp_dew"'
@@ -355,7 +381,7 @@ def psychrometric_wetbulb(temp_air, vapor_air=None, temp_dew=None, relhum=None):
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def natural_wetbulb_64(
+def _natural_wetbulb_64(
         double [::1] temp_air,
         double [::1] temp_psy,
         double [::1] temp_g,
@@ -388,7 +414,7 @@ def natural_wetbulb_64(
 @cython.boundscheck(False)  # Deactivate bounds checking
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
-def natural_wetbulb_32(
+def _natural_wetbulb_32(
         float [::1] temp_air,
         float [::1] temp_psy,
         float [::1] temp_g,
@@ -456,9 +482,9 @@ def natural_wetbulb( temp_air, temp_psy, temp_g, speed ):
         speed    =    speed.astype(numpy.float32)
 
     if temp_air.dtype == numpy.float64:
-        return natural_wetbulb_64(temp_air, temp_psy, temp_g, speed)
+        return _natural_wetbulb_64(temp_air, temp_psy, temp_g, speed)
     if temp_air.dtype == numpy.float32:
-        return natural_wetbulb_32(temp_air, temp_psy, temp_g, speed)
+        return _natural_wetbulb_32(temp_air, temp_psy, temp_g, speed)
     raise Exception('Must imput floating-point values')
 
 def wetbulb_globe(
@@ -498,7 +524,7 @@ def wetbulb_globe(
             - Tg : Globe temperatures as Quantity
             - Tpsy : psychrometric wet bulb temperatures as Quantity
             - Tnwb : Natural wet bulb temperatures as Quantity
-            - Twbg : Wet bulb-globe temperatures as Quantity
+    g       - Twbg : Wet bulb-globe temperatures as Quantity
             - solar : Solar irradiance from Liljegren as Quantity
             - speed : 2 meter adjusted wind speed as Quantity; will be same as input if already 2m wind speed
             - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity
@@ -518,9 +544,9 @@ def wetbulb_globe(
             f_db = solar[2]
         solar = solar[0]
 
-    temp_air = temp_air.to( 'degree_Celsius' ).magnitude
-    temp_dew = temp_dew.to( 'degree_Celsius' ).magnitude
-    pres   = pres.to(   'hPa'            ).magnitude
+    vapor_air = saturation_vapor_pressure(temp_dew)
+    temp_air  = temp_air.to( 'degree_Celsius' ).magnitude
+    pres      = pres.to(   'hPa'            ).magnitude
 
     if min_speed is None:
         min_speed = MIN_SPEED
@@ -533,6 +559,7 @@ def wetbulb_globe(
 
     temp_g = globe_temperature(
         temp_air, 
+        vapor_air.to('hPa').magnitude,
         speed.magnitude,
         pres,
         solar,
@@ -541,7 +568,7 @@ def wetbulb_globe(
     )
     temp_psy = psychrometric_wetbulb(
         temp_air,
-        temp_dew = temp_dew
+        vapor_air = vapor_air.to('kPa').magnitude,
     )
     temp_nwb = natural_wetbulb(
         temp_air,

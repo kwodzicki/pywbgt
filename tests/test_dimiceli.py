@@ -125,10 +125,7 @@ class TestDimiceli(unittest.TestCase):
 
         ref_vals = [18.59627755506145, 27.445752527955726]
 
-        test_vals = dimiceli.psychrometric_wetbulb(
-            self.Tair.to('degC').magnitude,
-            self.Tdew.to('degC').magnitude,
-        )
+        test_vals = dimiceli.psychrometric_wetbulb(self.Tair, self.Tdew)
 
         numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 

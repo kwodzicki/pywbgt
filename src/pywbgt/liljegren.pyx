@@ -8,6 +8,7 @@ cimport numpy
 cimport cython
 
 from metpy.units import units
+from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
 from .cliljegren cimport *
 
@@ -19,7 +20,6 @@ LILJEGREN_NORMSOLAR_MAX = _NORMSOLAR_MAX
 LILJEGREN_SOLAR_CONST   = _SOLAR_CONST
 
 from .constants import MIN_SPEED
-from .calc import relative_humidity as rhTd
 from .solar import solar_parameters as sparms
 
 @cython.boundscheck(False)
@@ -97,7 +97,12 @@ def globe_temperature(
         float [::1] fdirView     = fdir.astype(  numpy.float32 )
         float [::1] czaView      = cza.astype(   numpy.float32 )
         float [::1] relhumView   = (
-            rhTd(temp_air, temp_dew).astype( numpy.float32 )
+            rhTd(
+                units.Quantity(temp_air, 'degC'),
+                units.Quantity(temp_dew, 'degC'),
+            )
+            .magnitude
+            .astype( numpy.float32 )
         )
 
         Py_ssize_t i, size = temp_air.shape[0]
@@ -142,7 +147,12 @@ def psychrometric_wetbulb( temp_air, temp_dew, pres ):
         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
         float [::1] presView     = pres.astype(  numpy.float32 )
         float [::1] relhumView   = (
-            rhTd( temp_air, temp_dew ).astype( numpy.float32 )
+            rhTd(
+                units.Quantity(temp_air, 'degC'),
+                units.Quantity(temp_dew, 'degC'),
+            )
+            .magnitude
+            .astype( numpy.float32 )
         )
 
         float tmp, fill = 0.0
@@ -175,7 +185,7 @@ def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
 
     Arguments:
       temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius
-      temp_dew (Quantity) : Dew point temperature; units of temperature
+      temp_dew (ndarray) : Dew point temperature; units of temperature
       pres (ndarray) : Barometric pressure; hPa
       speed (ndarray) : wind speed, m/s
       solar (ndarray) : Solar irradiance, W/m**2
@@ -195,7 +205,12 @@ def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
         float [::1] fdirView     = fdir.astype(  numpy.float32 )
         float [::1] czaView      = cza.astype(   numpy.float32 )
         float [::1] relhumView   = (
-            rhTd( temp_air, temp_dew ).astype( numpy.float32 )
+            rhTd(
+                units.Quantity(temp_air, 'degC'),
+                units.Quantity(temp_dew, 'degC'),
+            )
+            .magnitude
+            .astype( numpy.float32 )
         )
 
         float tmp
@@ -383,12 +398,11 @@ def wetbulb_globe(
         float [::1] speedView       =    speed.to('m/s'           ).magnitude.astype( numpy.float32 )
         float [::1] zspeedView      =   zspeed.to('meter'         ).magnitude.astype( numpy.float32 )
         float [::1] dTView          =       dT.to('degree_Celsius').magnitude.astype( numpy.float32 )
-        float [::1] relhumView = (
-            rhTd(
-                temp_air.to('degree_Celsius').magnitude,
-                temp_dew.to('degree_Celsius').magnitude,
-            )
-        ).astype( numpy.float32 )
+        float [::1] relhumView      = (
+            rhTd(temp_air, temp_dew)
+            .magnitude
+            .astype( numpy.float32 )
+        )
 
 
     # Iterate (in parallel) over all values in the input arrays
