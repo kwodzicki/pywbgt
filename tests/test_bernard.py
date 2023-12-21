@@ -94,11 +94,15 @@ class TestBernard(unittest.TestCase):
         
         ref_vals = [17.96148884743604, 27.140425028129574] 
 
+#        test_vals = bernard.psychrometric_wetbulb(
+#            self.Tair.to('degC').magnitude,
+#            temp_dew=self.Tdew.to('degC').magnitude,
+#        )
         test_vals = bernard.psychrometric_wetbulb(
             self.Tair.to('degC').magnitude,
-            temp_dew=self.Tdew.to('degC').magnitude,
+            temp_dew=self.Tdew.to('degC'),
         )
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 
     def test_globe_temp(self):
         

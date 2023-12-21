@@ -20817,7 +20817,7 @@ static PyObject *__pyx_pf_6pywbgt_21psychrometric_wetbulb_2iribarne(CYTHON_UNUSE
                             goto __pyx_L10;
                             __pyx_L10:;
                             #ifdef _OPENMP
-                            #pragma omp critical(__pyx_parallel_lastprivates0)
+                            #pragma omp critical(__pyx_parallel_lastprivates4)
                             #endif /* _OPENMP */
                             {
                                 __pyx_parallel_temp0 = __pyx_v_i;
