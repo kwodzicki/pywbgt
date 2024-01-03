@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name        = "pywbgt"
-version     = "2.0.1"
+version     = "2.0.2"
 description = "Package for estimating wetbulb globe temperature using various algorithms"
 readme      = "README.md"
 authors     = [

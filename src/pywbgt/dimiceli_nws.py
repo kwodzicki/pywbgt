@@ -20,6 +20,8 @@ from .psychrometric_wetbulb import stull
 from .natural_wetbulb import nws_boyer
 from .calc import loglaw
 
+MIN_COSZ = np.cos(np.deg2rad(87.0))
+
 def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
     """
     Adjust to 2m wind speed and clip
@@ -77,8 +79,7 @@ def conv_heat_flow_coeff(cosz, **kwargs):
   
     """
 
-    #return 0.228
-    return np.where(cosz > 0.0, 0.228, 0.0)
+    return np.where(cosz > MIN_COSZ, 0.228, 0.0)
 
 def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
@@ -200,14 +201,21 @@ def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
   
     """
 
-    fac_b = factor_b( temp_air, temp_dew, pres, solar, f_db, cosz)
     fac_c = factor_c( speed, cosz )
+    fac_b = factor_b(
+        temp_air,
+        temp_dew,
+        pres,
+        np.where(fac_c > 0.0, solar, 0.0),
+        f_db,
+        cosz,
+    )
 
 
     return np.where(
-        cosz > 0,
+        fac_c > 0,
         (fac_b + fac_c*temp_air + 7.68e6) / (fac_c + 2.56e5),
-        temp_air,
+        fac_b**0.25,
     )
 
 def psychrometric_wetbulb( temp_air, temp_dew ):
