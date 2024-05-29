@@ -10,15 +10,17 @@ these adjustments may lead to different results.
 
 """
 
-import numpy
+import numpy as np
 from metpy.units import units
+from metpy.calc import relative_humidity_from_dewpoint as relative_humidity
 
 from .constants import SIGMA, MIN_SPEED, DIMICELI_MIN_SPEED
-from .calc import relative_humidity, loglaw
-from .liljegren import solar_parameters
+from .solar import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import nws_boyer
-from .utils import datetime_check
+from .calc import loglaw
+
+MIN_COSZ = np.cos(np.deg2rad(87.0))
 
 def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
     """
@@ -77,7 +79,7 @@ def conv_heat_flow_coeff(cosz, **kwargs):
   
     """
 
-    return np.where(cosz > 0.0, 0.228, 0.0)
+    return np.where(cosz > MIN_COSZ, 0.228, 0.0)
 
 def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
@@ -109,9 +111,9 @@ def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
 
     return (
-        numpy.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
+        np.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
         (1.0007 + 3.46e-6 * pres) *
-        6.112 * numpy.exp( 17.502 * temp_air / (240.97 + temp_air) )
+        6.112 * np.exp( 17.502 * temp_air / (240.97 + temp_air) )
     )
 
 def thermal_emissivity( temp_air, temp_dew, pres ):
@@ -199,10 +201,22 @@ def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
   
     """
 
-    fac_b = factor_b( temp_air, temp_dew, pres, solar, f_db, cosz)
     fac_c = factor_c( speed, cosz )
+    fac_b = factor_b(
+        temp_air,
+        temp_dew,
+        pres,
+        np.where(fac_c > 0.0, solar, 0.0),
+        f_db,
+        cosz,
+    )
 
-    return (fac_b + fac_c*temp_air + 7.68e6) / (fac_c + 2.56e5)
+
+    return np.where(
+        fac_c > 0,
+        (fac_b + fac_c*temp_air + 7.68e6) / (fac_c + 2.56e5),
+        fac_b**0.25,
+    )
 
 def psychrometric_wetbulb( temp_air, temp_dew ):
     """
@@ -215,12 +229,13 @@ def psychrometric_wetbulb( temp_air, temp_dew ):
     https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
   
     Inputs:
-        temp_air (ndarray) : Ambient (dry bulb) temperature (degree C)
-        temp_dew (ndarray) : Dew point temperature (degree C)
+        temp_air (pint.Quantity) : Ambient (dry bulb) temperature (degree C)
+        temp_dew (pint.Quantity) : Dew point temperature (degree C)
   
     """
 
-    relhum = relative_humidity( temp_air, temp_dew ) * 100.0
+    relhum   = relative_humidity( temp_air, temp_dew ).to('percent').magnitude
+    temp_air = temp_air.to('degC').magnitude
     return (
            -5.806    + 0.672   *temp_air -  0.006   *temp_air**2       +
          (  0.061    + 0.004   *temp_air + 99.000e-6*temp_air**2) * relhum +
@@ -281,7 +296,15 @@ def wetbulb_globe(
     if zspeed is None:
         zspeed = units.Quantity(10.0, 'meter')
 
-    datetime  = datetime_check(datetime)
+    # Compute psychrometric wetbulb before stripping temperature units
+    wb_method = kwargs.get('wetbulb', 'DIMICELI').upper()
+    if wb_method == 'DIMICELI':
+        temp_psy = psychrometric_wetbulb(temp_air, temp_dew)
+    elif wb_method == 'STULL':
+        temp_psy = stull(temp_air, temp_dew)
+    else:
+        raise Exception( f"Invalid option for 'wetbulb' : {wb_method}" )
+
     solar     = solar.to(   'watt/m**2'     ).magnitude
     pres      = pres.to(    'hPa'           ).magnitude
     temp_air  = temp_air.to('degree_Celsius').magnitude
@@ -310,14 +333,6 @@ def wetbulb_globe(
         f_db,
         cosz,
     )
-
-    wb_method = kwargs.get('wetbulb', 'DIMICELI').upper()
-    if wb_method == 'DIMICELI':
-        temp_psy = psychrometric_wetbulb( temp_air, temp_dew)
-    elif wb_method == 'STULL':
-        temp_psy = stull( temp_air, temp_dew)
-    else:
-        raise Exception( f"Invalid option for 'wetbulb' : {wb_method}" )
 
     temp_nwb  = nws_boyer(
         temp_air,

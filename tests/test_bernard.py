@@ -52,10 +52,10 @@ class TestBernard(unittest.TestCase):
     def test_conv_heat_flow_coeff(self):
 
         ref_vals = [
-             7.335649258049876, 17.239835857124724,  7.297282852987763,
-            17.237462152087303,  7.301638680294556, 17.23687275664054,
-             7.30179322137431,  17.236670700514786,  7.298272284705485,
-            17.23822423913286,   7.300158403564784, 17.23957048141723,
+             7.33563906422347, 17.23983369440773,  7.29728047905653,
+            17.23746167679371,  7.30163605847636, 17.23687164492864,
+             7.30178758577696, 17.23666888682254,  7.29826760007174,
+            17.23822295266038,  7.30015437019847, 17.23957011909292,
         ]
 
         temp_g = self.compute_wbgt()['Tg']
@@ -94,44 +94,47 @@ class TestBernard(unittest.TestCase):
         
         ref_vals = [17.96148884743604, 27.140425028129574] 
 
+#        test_vals = bernard.psychrometric_wetbulb(
+#            self.Tair.to('degC').magnitude,
+#            temp_dew=self.Tdew.to('degC').magnitude,
+#        )
         test_vals = bernard.psychrometric_wetbulb(
             self.Tair.to('degC').magnitude,
-            temp_dew=self.Tdew.to('degC').magnitude,
+            temp_dew=self.Tdew.to('degC'),
         )
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
 
     def test_globe_temp(self):
         
         ref_vals = [
-            43.37438061016138, 47.25171782800197, 40.871948729574626,
-            46.48048629244579, 41.14928878477076, 46.291353905818596,
-            41.15916066936984, 46.22673501041123, 40.9347933837588,
-            46.72643804797883, 41.05484196199592, 47.16474553354357,
+            43.373697999106, 47.251008278667, 40.871798055794, 46.480333391746,
+            41.149121325362, 46.290998065833, 41.158800636094, 46.226155488287,
+            40.934495622227, 46.726021531819, 41.054584894706, 47.164626916066,
         ]
 
         test_vals = self.compute_wbgt()['Tg'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=12)
 
     def test_natural_wetbulb(self):
 
         ref_vals = [
-            22.597532207220826, 30.103354485130065, 21.971924237074138,
-            29.91054660124102, 22.04125925087317, 29.86326350458422,
-            22.04372722202294, 29.84710878073238, 21.98763540062018,
-            29.97203454012428, 22.01764754517946, 30.081611411515464,
+            22.597361554457 , 30.1031770977963, 21.9718865686289,
+            29.910508376066 , 22.0412173860209, 29.8631745445878,
+            22.043637213704 , 29.8469639002014, 21.9875609602373,
+            29.9719304110844, 22.0175832783571, 30.081581757146,
         ] 
 
         test_vals = self.compute_wbgt()['Tnwb'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=13)
 
     def test_wetbulb_globe(self):
         
         ref_vals = [
-            26.993148667086857, 34.02269170519144, 26.054736711866823,
-            33.73347987935787, 26.15873923256537, 33.662555234372675,
-            26.16244118929003, 33.638323148594914, 26.07830345718589,
-            33.82571178768276, 26.123321674024808, 33.99007709476954,
+            26.9928926879412, 34.0224256241908, 26.054680209199 ,
+            33.7334225415954, 26.158676435287 , 33.6624217943781,
+            26.1623061768116, 33.6381058277984, 26.0781917966116,
+            33.8255555941229, 26.1232252737912, 33.9900326132153,
         ] 
 
         test_vals = self.compute_wbgt()['Twbg'].magnitude
-        numpy.testing.assert_equal(test_vals, ref_vals)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=13)

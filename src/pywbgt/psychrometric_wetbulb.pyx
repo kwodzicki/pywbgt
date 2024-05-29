@@ -6,10 +6,12 @@ Algorithms for computing psychrometric wetbulb temperature
 from cython.parallel import prange
 import numpy
 
+from libc.math cimport exp, fabsf
+
 cimport numpy
 cimport cython
 
-from .calc import relative_humidity
+from metpy.calc import relative_humidity_from_dewpoint as relative_humidity
 
 cdef:
     float C0  =   26.66082
@@ -20,16 +22,6 @@ cdef:
     float L   =    2.54e6 # J/kg
     float eps =    0.622
     float f   = Cp/L/eps
-
-cdef extern from "math.h":
-    
-    double exp(double x) nogil
-
-cdef float abs( float val ) nogil:
-
-    if (val < 0.0):
-        return (-1) * val
-    return val
 
 cdef float saturation( float T ) nogil:
 
@@ -70,7 +62,7 @@ cdef float _iribarne_wb( float temp_a, float temp_d, float pres, int maxfev, flo
         denom   = e_wb*(C1-C2/temp_w**2) - f*pres
         adjust  = numer / denom
         temp_w -= adjust 
-        if abs(adjust) < xtol: return temp_w
+        if fabsf(adjust) < xtol: return temp_w
         maxfev -= 1
 
     return 0.0/0.0
@@ -87,16 +79,20 @@ def stull( temp_a, temp_d ):
             https://journals.ametsoc.org/view/journals/apme/50/11/jamc-d-11-0143.1.xml
 
     Arguments:
-        temp_a (ndarray) : Ambient (dry bulb) temperature (degree C)
-        temp_d (ndarray) : Dew point temperature (degree C)
+        temp_a (pint.Quantity) : Ambient (dry bulb) temperature 
+        temp_d (pint.Quantity) : Dew point temperature
 
     """
 
-    relhum = relative_humidity( temp_a, temp_d ) * 100.0
-    return temp_a*numpy.arctan( 0.151977*(relhum + 8.313659)**(1.0/2.0) ) +\
-           numpy.arctan( temp_a + relhum ) - numpy.arctan( relhum - 1.676331 ) +\
-           0.00391838*relhum**(3.0/2.0)*numpy.arctan( 0.023101*relhum ) -\
-           4.686035
+    relhum = relative_humidity( temp_a, temp_d ).to('percent').magnitude
+    temp_a = temp_a.to('degC').magnitude
+
+    return (
+        temp_a*numpy.arctan( 0.151977*(relhum + 8.313659)**(1.0/2.0) ) +
+        numpy.arctan( temp_a + relhum ) - numpy.arctan( relhum - 1.676331 ) +
+        0.00391838*relhum**(3.0/2.0)*numpy.arctan( 0.023101*relhum ) -
+        4.686035
+    )
 
 @cython.binding(True)
 @cython.boundscheck(False)
@@ -111,8 +107,8 @@ def iribarne(temp_a, temp_d, pres=None, **kwargs):
     temperature, dew point temperature, and atmospheric pressure.
  
     Arguments:
-        temp_a : Dry-bulb temperature (Kelvin)
-        temp_d : Dew-point temperature (Kelvin)
+        temp_a (pint.Quantity): Dry-bulb temperature 
+        temp_d (pint.Quantity) : Dew-point temperature
 
     Keyword arguments:
         pres  : Atmoshperic pressure (hPa)
@@ -133,8 +129,18 @@ def iribarne(temp_a, temp_d, pres=None, **kwargs):
     out = numpy.empty( size, dtype = numpy.float32 )
     cdef:
         float [::1] out_view    = out
-        float [::1] temp_a_view = temp_a.astype( numpy.float32 )
-        float [::1] temp_d_view = temp_d.astype( numpy.float32 )
+        float [::1] temp_a_view = (
+            temp_a
+            .to('kelvin')
+            .magnitude
+            .astype( numpy.float32 )
+        )
+        float [::1] temp_d_view = (
+            temp_d
+            .to('kelvin')
+            .magnitude
+            .astype( numpy.float32 )
+        )
         float [::1] pres_view   = (
             numpy.full( size, 1013.25, dtype=numpy.float32 )
             if pres is None else
@@ -143,8 +149,8 @@ def iribarne(temp_a, temp_d, pres=None, **kwargs):
 
     for i in prange( size, nogil=True ):
         out_view[i] = _iribarne_wb(
-            temp_a_view[i]+273.15,
-            temp_d_view[i]+273.15,
+            temp_a_view[i],
+            temp_d_view[i],
             pres_view[i],
             maxfev,
             xtol,

@@ -1,22 +1,26 @@
 from cython.parallel import prange
 import numpy
 
-from libc.stdio cimport printf
+#from libc.stdio cimport printf
+from libc.math cimport fmaxf
 
 cimport numpy
 cimport cython
 
 from metpy.units import units
-from pandas import to_timedelta 
+from metpy.calc import relative_humidity_from_dewpoint as rhTd
 
 from .cliljegren cimport *
-from .constants import MIN_SPEED
-from .calc import relative_humidity as rhTd
-from .utils import datetime_check
 
 # Expose cython constants to python
-LILJEGREN_D_GLOBE   = units.Quantity(_D_GLOBE,   'meter')
-LILJEGREN_MIN_SPEED = units.Quantity(_MIN_SPEED, 'meter/second')
+LILJEGREN_D_GLOBE       = units.Quantity(_D_GLOBE,   'meter')
+LILJEGREN_MIN_SPEED     = units.Quantity(_MIN_SPEED, 'meter/second')
+LILJEGREN_CZA_MIN       = _CZA_MIN
+LILJEGREN_NORMSOLAR_MAX = _NORMSOLAR_MAX
+LILJEGREN_SOLAR_CONST   = _SOLAR_CONST
+
+from .constants import MIN_SPEED
+from .solar import solar_parameters as sparms
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -63,89 +67,6 @@ def conv_heat_trans_coeff( temp_air, pres, speed, float diameter=_D_GLOBE ):
 @cython.wraparound(False)   # Deactivate negative indexing.
 @cython.initializedcheck(False)   # Deactivate initialization checking.
 @cython.always_allow_keywords(True)
-def solar_parameters(
-        datetime, lat, lon, solar,
-        avg     = None,
-        gmt     = None,
-        use_spa = False,
-        **kwargs,
-    ):
-    """
-    Calculate solar parameters based on date and location
-
-    The following quantities are calculated:
-      - Modifies solar values to be consistent with normsolar from C function
-      - cosine of the solar zenith angle
-      - fraction of the solar irradiance due to the direct beam
-
-    Arguments:
-        datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
-        lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
-        lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
-
-    Keyword arguments:
-        avg (ndarray) : averaging time of the meteorological inputs (minutes)
-        gmt (ndarray) : LST-GMT difference  (hours; negative in USA)
-
-    Returns:
-        tuple : Three (3) ndarrays containing:
-            - Potentially modified Solar values
-            - cosine of zenith angle
-            - fraction of solar irradiance due to the direct beam
- 
-    """
-
-    datetime = datetime_check(datetime)
-
-    cdef:
-        int res, spa = use_spa
-        Py_ssize_t i, size = datetime.shape[0]
-        double dday
-
-    if avg is None: 
-        avg = 1.0
-    dt = to_timedelta( avg/2.0, 'minute')
-    if gmt is not None:
-        dt = dt + to_timedelta(gmt, 'hour')
-
-    datetime = datetime - dt
-
-    if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
-        lat = lat.repeat( size )
-        lon = lon.repeat( size )
-
-    out = solar.astype( numpy.float32 ).reshape( (1, size) ).repeat(3, axis=0)
-
-    cdef:
-        float [:, ::1] outView = out
-
-        float [::1] latView  = lat.astype(    numpy.float32 )
-        float [::1] lonView  = lon.astype(    numpy.float32 )
-
-        int [::1] yearView   = datetime.year.values.astype(   numpy.int32 )
-        int [::1] monthView  = datetime.month.values.astype(  numpy.int32 )
-        int [::1] dayView    = datetime.day.values.astype(    numpy.int32 )  
-        int [::1] hourView   = datetime.hour.values.astype(   numpy.int32 )
-        int [::1] minuteView = datetime.minute.values.astype( numpy.int32 )
-        int [::1] secondView = datetime.second.values.astype( numpy.int32 )
- 
-    for i in prange( size, nogil=True ):
-      #dday  = day[i] + (hour[i]*60 + minute[i] - 0.5*avg[i])/1440.0            # Compute fractional day
-        dday  = (
-            dayView[i] + 
-            ((hourView[i]*60 + minuteView[i])*60 + secondView[i])/86400.0
-        )                                                                         # Compute fractional day
-        res = calc_solar_parameters(
-            yearView[i], monthView[i], dday, latView[i], lonView[i], 
-            spa, &outView[0,i], &outView[1,i], &outView[2,i] 
-        )                                                                         # Run the C function
-
-    return out
-
-@cython.boundscheck(False)  # Deactivate bounds checking
-@cython.wraparound(False)   # Deactivate negative indexing.
-@cython.initializedcheck(False)   # Deactivate initialization checking.
-@cython.always_allow_keywords(True)
 def globe_temperature(
         temp_air, temp_dew, pres, speed, solar, fdir, cza,
         d_globe = None,
@@ -176,7 +97,12 @@ def globe_temperature(
         float [::1] fdirView     = fdir.astype(  numpy.float32 )
         float [::1] czaView      = cza.astype(   numpy.float32 )
         float [::1] relhumView   = (
-            rhTd(temp_air, temp_dew).astype( numpy.float32 )
+            rhTd(
+                units.Quantity(temp_air, 'degC'),
+                units.Quantity(temp_dew, 'degC'),
+            )
+            .magnitude
+            .astype( numpy.float32 )
         )
 
         Py_ssize_t i, size = temp_air.shape[0]
@@ -221,7 +147,12 @@ def psychrometric_wetbulb( temp_air, temp_dew, pres ):
         float [::1] temp_airView = (temp_air + 273.15).astype(  numpy.float32 )
         float [::1] presView     = pres.astype(  numpy.float32 )
         float [::1] relhumView   = (
-            rhTd( temp_air, temp_dew ).astype( numpy.float32 )
+            rhTd(
+                units.Quantity(temp_air, 'degC'),
+                units.Quantity(temp_dew, 'degC'),
+            )
+            .magnitude
+            .astype( numpy.float32 )
         )
 
         float tmp, fill = 0.0
@@ -254,7 +185,7 @@ def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
 
     Arguments:
       temp_air (ndarray) : Air (dry bulb) temperature; degree Celsius
-      temp_dew (Quantity) : Dew point temperature; units of temperature
+      temp_dew (ndarray) : Dew point temperature; units of temperature
       pres (ndarray) : Barometric pressure; hPa
       speed (ndarray) : wind speed, m/s
       solar (ndarray) : Solar irradiance, W/m**2
@@ -274,7 +205,12 @@ def natural_wetbulb( temp_air, temp_dew, pres, speed, solar, fdir, cza ):
         float [::1] fdirView     = fdir.astype(  numpy.float32 )
         float [::1] czaView      = cza.astype(   numpy.float32 )
         float [::1] relhumView   = (
-            rhTd( temp_air, temp_dew ).astype( numpy.float32 )
+            rhTd(
+                units.Quantity(temp_air, 'degC'),
+                units.Quantity(temp_dew, 'degC'),
+            )
+            .magnitude
+            .astype( numpy.float32 )
         )
 
         float tmp
@@ -309,7 +245,6 @@ def wetbulb_globe(
         dT        = None,
         min_speed = None,
         d_globe   = None,
-        use_spa   = False, 
         **kwargs,
     ): 
 
@@ -347,9 +282,6 @@ def wetbulb_globe(
         zspeed (Quantity) : height of wind speed measurement; unit of distance
         dT (Quantity) : Vertical temperature difference; upper minus lower;
             unit of temperature
-        use_spa (bool) : If set, use the National Renewable Energy 
-            Laboratory (NREL) Solar Position Algorithm (SPA) to determine
-            sun position. Default is to use the build-it, low precision model.
         min_speed (Quantity) : Sets the minimum speed for the height-adjusted
             wind speed. If this keyword is set, the larger of input value and
             LILJEGREN_MIN_SPEED is used. The default value is MIN_SPEED, which
@@ -374,26 +306,10 @@ def wetbulb_globe(
 
     """
 
-    datetime = datetime_check(datetime)
-
     # Define size of output arrays based on size of input
     cdef:
         Py_ssize_t i, size = datetime.shape[0]
-        int res, spa=use_spa
-        float Tg, Tpsy, Tnwb, Twbg, solar_adj, est_speed, _min_speed, _d_globe  
-
-    # Set default data averaging interval and compute time offset so that
-    # time is in the middle of the sampling interval
-    if avg is None:
-        avg = 1.0  
-    dt = to_timedelta( avg/2.0, 'minute')
-
-    # If gmt is NOT None (i.e., it is set), then adjust the time delta
-    if gmt is not None:
-        dt = dt + to_timedelta(gmt, 'hour')
-
-    # Adjust time using time delta
-    datetime = datetime - dt
+        float _min_speed, _d_globe
 
     # Generate or repeat urban value based on input
     if urban is None: 
@@ -448,68 +364,112 @@ def wetbulb_globe(
         lat = lat.repeat( size )
         lon = lon.repeat( size )
 
+    #solar_adj, cza, fdir = solar_parameters(
+    solar_adj, cza, fdir = sparms(
+        datetime,
+        lat,
+        lon,
+        solar.to('watt/m**2').magnitude,
+        gmt,
+        avg,
+        **kwargs,
+    )
+
+    # Define output array for storing WBGT status code
+    out = numpy.full( (6, size), numpy.nan, dtype = numpy.float32 )
+
     # Define array views for faster/parallel iteration
     cdef:
+        int daytime, stability_class
+        float Tg, Tpsy, Tnwb, Twbg, est_speed  
+    
+        float [:,::1] outView = out 
+
         float [::1] latView    = lat.astype(   numpy.float32 )
         float [::1] lonView    = lon.astype(   numpy.float32 )
         int   [::1] urbanView  = urban.astype( numpy.int32   )
 
-        int [::1] yearView     = datetime.year.values.astype(   numpy.int32 )
-        int [::1] monthView    = datetime.month.values.astype(  numpy.int32 )
-        int [::1] dayView      = datetime.day.values.astype(    numpy.int32 )  
-        int [::1] hourView     = datetime.hour.values.astype(   numpy.int32 )
-        int [::1] minuteView   = datetime.minute.values.astype( numpy.int32 )
-        int [::1] secondView   = datetime.second.values.astype( numpy.int32 )
- 
-        float [::1] solarView  =  solar.to( 'watt/m**2'      ).magnitude.astype( numpy.float32 )
-        float [::1] presView   =   pres.to( 'hPa'            ).magnitude.astype( numpy.float32 )
-        float [::1] temp_airView   =   temp_air.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
-        float [::1] speedView  =  speed.to( 'm/s'            ).magnitude.astype( numpy.float32 )
-        float [::1] zspeedView = zspeed.to( 'meter'          ).magnitude.astype( numpy.float32 )
-        float [::1] dTView     =     dT.to( 'degree_Celsius' ).magnitude.astype( numpy.float32 )
-        float [::1] relhumView = (
-            100.0 *
-            rhTd(
-                temp_air.to('degree_Celsius').magnitude,
-                temp_dew.to('degree_Celsius').magnitude
-            )
-        ).astype( numpy.float32 )
+        float [::1] solar_adjView   =  solar_adj.astype( numpy.float32 )
+        float [::1] czaView         = cza.astype( numpy.float32)
+        float [::1] fdirView        = fdir.astype( numpy.float32)
 
-    # Define output array for storing WBGT status code
-    out = numpy.full( (6, size), numpy.nan, dtype = numpy.float32 )
-    cdef float [:,::1] outView = out 
+        float [::1] presView        =     pres.to('hPa'           ).magnitude.astype( numpy.float32 )
+        float [::1] temp_airView    = temp_air.to('kelvin'        ).magnitude.astype( numpy.float32 )
+        float [::1] speedView       =    speed.to('m/s'           ).magnitude.astype( numpy.float32 )
+        float [::1] zspeedView      =   zspeed.to('meter'         ).magnitude.astype( numpy.float32 )
+        float [::1] dTView          =       dT.to('degree_Celsius').magnitude.astype( numpy.float32 )
+        float [::1] relhumView      = (
+            rhTd(temp_air, temp_dew)
+            .magnitude
+            .astype( numpy.float32 )
+        )
+
 
     # Iterate (in parallel) over all values in the input arrays
     for i in prange( size, nogil=True ):
+        if zspeedView[i] == _REF_HEIGHT:
+            est_speed = fmaxf(speedView[i], _min_speed)
+        else:
+            if czaView[i] > 0.0:
+                daytime = 1
+            stability_class = stab_srdt(
+                daytime,
+                speedView[i],
+                solar_adjView[i],
+                dTView[i],
+            )
+            est_speed = est_wind_speed(
+                speedView[i],
+                zspeedView[i],
+                stability_class,
+                urbanView[i],
+                _min_speed,
+            )
+ 
         # Ensure that variables are defined for each thread
-        Tg        = 0.0
-        Tpsy      = 0.0
-        Tnwb      = 0.0
-        Twbg      = 0.0
-        solar_adj = 0.0 
-        est_speed = speedView[i]
-
-        #printf( 'From cython : %f %f\n', est_speed, speedView[i] )
-        # Run WBGT code; note that GMT and AVG input arguments are set to
-        # zero (0) because all time adjustment is done above in Cython
-        res = calc_wbgt( 
-            yearView[i], monthView[i], dayView[i], 
-            hourView[i], minuteView[i], secondView[i], 
-            0, 0,
-            latView[i], lonView[i], 
-            solarView[i], presView[i], temp_airView[i], 
-            relhumView[i], speedView[i], zspeedView[i], dTView[i],
-            urbanView[i], spa, _min_speed, _d_globe, &est_speed, &solar_adj, &Tg, &Tnwb, &Tpsy, &Twbg
+        Tg = Tglobe(
+            temp_airView[i],
+            relhumView[i],
+            presView[i],
+            est_speed,
+            solar_adjView[i],
+            fdirView[i],
+            czaView[i],
+            _d_globe,
         )
+        if Tg == -9999:
+            continue
 
-        # If WBGT was success, then store variables in the outView
-        if res == 0:
-            outView[0,i] = Tg
-            outView[1,i] = Tpsy
-            outView[2,i] = Tnwb
-            outView[3,i] = Twbg
-            outView[4,i] = solar_adj
-            outView[5,i] = est_speed
+        Tnwb = Twb(
+            temp_airView[i],
+            relhumView[i],
+            presView[i],
+            est_speed,
+            solar_adjView[i],
+            fdirView[i],
+            czaView[i],
+            1,
+        )
+        if Tnwb == -9999:
+            continue
+
+        Tpsy = Twb(
+            temp_airView[i],
+            relhumView[i],
+            presView[i],
+            est_speed,
+            solar_adjView[i],
+            fdirView[i],
+            czaView[i],
+            0,
+        )
+ 
+        outView[0,i] = Tg
+        outView[1,i] = Tpsy
+        outView[2,i] = Tnwb
+        outView[3,i] = 0.1*(temp_airView[i]-273.15) + 0.2*Tg + 0.7*Tnwb
+        outView[4,i] = solar_adjView[i]
+        outView[5,i] = est_speed
 
     # Return dict with unit-aware values
     return {

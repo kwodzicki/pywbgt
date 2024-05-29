@@ -127,6 +127,15 @@ For example:
     from pywbgt import wbgt
     vals = wbgt('liljegren', datetime, lat, lon, ..., zspeed=units.Quantity(3, 'ft'))
 
+Another useful keyword argument is `min_speed`, wherein the minimum speed allowed for the 2m-adjusted wind speeds is set.
+After adjusting wind speeds to 2m height, this value is use to clip the wind speeds so that none are below this value.
+By default, `min_speed = Quantity(2.0, 'knot')` as ASOS stations report any wind speed of <= 2 knots as calm.
+This value can be overridden to the extent possible by the various algorithms.
+For example, there is a hard minimum speed of 1690 m/hr (~1 mph) for the Dimiceli method and 0.13 m/s for the Liljegren method.
+If a user inputs a value for `min_speed` less than either of these values, the user input is overridden and the hard limit used.
+Data dictionaries returned by the methods include a `min_speed` key/value pair indicating the value used in the algorithm.
+Note that this value must be a unit-aware object.
+
 For more information about other keyword arguments, please refer to the function docstrings.
 
 ## Xarray Support
@@ -179,13 +188,19 @@ To get to `Watt/m**2` units we can do the following:
 This ensures that the `ssrd` DataArray is explicitly tagged with units using the `.metpy.quantify()` method and then is divided by the accumulation time in seconds.
 It is important to note that this will give the average radiation over the entire accumulation period NOT the instanteous value measured at the given model/reanalysis time step.
 
+# Solar position calculations
+The Liljegren code provides an algorithm for calculating solar position parameters; however, the algorithm is only valid from 1950 to 2050.
+To get around this limiation, the Python pvlib package is used to calculate the solar position using their implementation of the National Renewable Energy Laboratory Solar Postition Algorithm (SPA).
+The Python implementation of the SPA code is combined with the solar parameters code of the Liljegren algorithm to create a hybrid function for calculating the adjusted solar irradiance, cosine of solar zenith angle, and fraction of direct beam radiation.
+This new `solar_parameters()` function is used in all the included algorithms to compute the parameters requried to estimate WBGT.
+
 # Notes on the algorithms
 
 ### Liljegren et al.
 
 The most robust algorithm with explicit calculation of many aspects of the WBGT, this has been the de facto standard for WBGT computation.
 One limitation of this algorithm is that the included code for estimating solar position is most accurate for dates between 1950 to 2050.
-To compensate for this limitation, the NREL SPA algorithm has been integrated to enable highly accurate solar position calculations.
+As previously mentioned, this is overriden by the pvlib SPA implemenation and augmented code for computing the solar parameters.
 
 ### Dimiceli et al.
 
