@@ -56,7 +56,7 @@ def datetime_check(datetime):
 def convert_units(val: Union['DataArray', 'ndarray'], unit_str: str):
 
     # If is an xarray object with metpy attribute
-    if hastattr(val, 'metpy'):
+    if hasattr(val, 'metpy'):
         return (
             val
             .metpy
