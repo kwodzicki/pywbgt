@@ -3,21 +3,22 @@ Package for estimating wetbulb globe temperature
 
 Various algorithms for estimating wetbulb globe
 temperature from standard meteorological variables.
- 
+
 """
 
-from .constants     import METHODS
-from .liljegren     import wetbulb_globe as liljegrenWBGT
-from .bernard       import wetbulb_globe as bernardWBGT
-from .dimiceli      import wetbulb_globe as dimiceliWBGT
-from .dimiceli_nws  import wetbulb_globe as dimiceli_nwsWBGT
+from .constants import METHODS
+from .liljegren import wetbulb_globe as liljegrenWBGT
+from .bernard import wetbulb_globe as bernardWBGT
+from .dimiceli import wetbulb_globe as dimiceliWBGT
+from .dimiceli_nws import wetbulb_globe as dimiceli_nwsWBGT
 
-def wbgt( method, *args, **kwargs ):
+
+def wbgt(method: str, *args, **kwargs):
     """
     Estimate wet bulb globe temperature
 
     Wrapper for the various WBGT algorithms provided
-    by this package. Set the method to use for 
+    by this package. Set the method to use for
     estimating WBGT and you're off
 
     Arguments:
@@ -36,7 +37,7 @@ def wbgt( method, *args, **kwargs ):
     Keyword arguments:
         f_db (float) : Direct beam radiation from the sun. Valid for
             the Dimiceli and Bernard methods. Type: fraction
-        cosz (float) : Cosine of solar zenith angle. Valid for 
+        cosz (float) : Cosine of solar zenith angle. Valid for
             Dimiceli and Bernard methods
         zspeed (Quantity) : Height of the wind speed measurment.
             Default is 10 meters
@@ -75,8 +76,10 @@ def wbgt( method, *args, **kwargs ):
     """
 
     method = method.lower()
-    if method not in METHODS:    
-        raise Exception( f'Unsupported WBGT method : {method}! Must be one of {METHODS}' )
+    if method not in METHODS:
+        raise Exception(
+            f'Unsupported WBGT method : {method}! Must be one of {METHODS}'
+        )
 
     args = list(args)
     for i, arg in enumerate(args):
@@ -86,12 +89,17 @@ def wbgt( method, *args, **kwargs ):
         args[i] = arg.metpy.quantify().data
 
     if method == 'liljegren':
-        return liljegrenWBGT( *args, **kwargs )
-    if method == 'bernard':
-        return bernardWBGT( *args, **kwargs )
-    if method == 'dimiceli':
-        return dimiceliWBGT( *args, **kwargs )
-    if method == 'dimiceli_nws':
-        return dimiceli_nwsWBGT( *args, **kwargs )
+        return liljegrenWBGT(*args, **kwargs)
 
-    raise Exception( f'Unsupported WBGT method : {method}! Must be one of {METHODS}' )
+    if method == 'bernard':
+        return bernardWBGT(*args, **kwargs)
+
+    if method == 'dimiceli':
+        return dimiceliWBGT(*args, **kwargs)
+
+    if method == 'dimiceli_nws':
+        return dimiceli_nwsWBGT(*args, **kwargs)
+
+    raise Exception(
+        f'Unsupported WBGT method : {method}! Must be one of {METHODS}'
+    )

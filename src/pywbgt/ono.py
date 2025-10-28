@@ -7,12 +7,20 @@ import numpy as np
 
 from .calc import relative_humidity
 
-def ono( datetime, lat, lon,
-        solar, pres, temp_air, temp_dew, speed,
-        f_db=None,
-        cosz=None,
-        **kwargs,
-    ):
+
+def ono(
+    datetime,
+    lat,
+    lon,
+    solar,
+    pres,
+    temp_air,
+    temp_dew,
+    speed,
+    f_db=None,
+    cosz=None,
+    **kwargs,
+):
     """
     Compute WBGT using Dimiceli method
 
@@ -43,18 +51,18 @@ def ono( datetime, lat, lon,
 
     """
 
-    solar    =    solar.to( 'kilowatt/m**2'     ).magnitude
-    pres     =     pres.to( 'hPa'               ).magnitude
-    temp_air = temp_air.to( 'degree_Celsius'    ).magnitude
-    temp_dew = temp_dew.to( 'degree_Celsius'    ).magnitude
-    speed    =    speed.to( 'meters per second' ).magnitude
+    solar = solar.to('kilowatt/m**2').magnitude
+    pres = pres.to('hPa').magnitude
+    temp_air = temp_air.to('degree_Celsius').magnitude
+    temp_dew = temp_dew.to('degree_Celsius').magnitude
+    speed = speed.to('meters per second').magnitude
 
-    relhum = relative_humidity( temp_air, temp_dew ) * 100.0
+    relhum = relative_humidity(temp_air, temp_dew) * 100.0
 
     wbgt = (
         0.73500 * temp_air +
         0.03740 * relhum +
-        0.00292 * temp_air*relhum +
+        0.00292 * temp_air * relhum +
         7.61900 * solar -
         4.55700 * solar**2 -
         0.05720 * speed -
@@ -62,8 +70,8 @@ def ono( datetime, lat, lon,
     )
 
     return {
-        'Tg'   : np.nan,
-        'Tpsy' : np.nan,
-        'Tnwb' : np.nan,
-        'Twbg' : wbgt
+        'Tg': np.nan,
+        'Tpsy': np.nan,
+        'Tnwb': np.nan,
+        'Twbg': wbgt
     }

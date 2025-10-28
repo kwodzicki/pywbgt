@@ -170,53 +170,349 @@ PROCESS DISCLOSED, OR REPRESENTS THAT ITS USE WOULD NOT INFRINGE PRIVATELY OWNED
 #define	DEG_RAD	0.017453292519943295
 #define	RAD_DEG	57.295779513082323
 
-double acos(),
-       asin(),
-       atan2(),
-       cos(),
-       fabs(),
-       modf(),
-       sin(),
-       tan();
+// double acos(),
+//        asin(),
+//        atan2(),
+//        cos(),
+//        fabs(),
+//        modf(),
+//        sin(),
+//        tan();
 
+/* ============================================================================
+ * 'daynum()' returns the sequential daynumber of a calendar date during a
+ *  Gregorian calendar year (for years 1 onward).
+ *  The integer arguments are the four-digit year, the month number, and
+ *  the day of month number.
+ *  (Jan. 1 = 01/01 = 001; Dec. 31 = 12/31 = 365 or 366.)
+ *  A value of -1 is returned if the year is out of bounds.
+ */
 
-int solarposition(year, month, day, days_1900, latitude, longitude,
-                  ap_ra, ap_dec, altitude, refraction, azimuth, distance)
+/* Author: Nels Larson
+ *         Pacific Northwest Lab.
+ *         P.O. Box 999
+ *         Richland, WA 99352
+ *         U.S.A.
+ */
 
-int    year,          /* Four digit year (Gregorian calendar).
-                       *   [1950 through 2049; 0 o.k. if using days_1900] */
-       month;         /* Month number.
-                       *   [1 through 12; 0 o.k. if using daynumber for day] */
-double day,           /* Calendar day.fraction, or daynumber.fraction.
-                       *   [If month is NOT 0:
-                       *      0 through 32; 31st @ 18:10:00 UT = 31.75694
-                       *    If month IS 0:
-                       *      0 through 367; 366 @ 18:10:00 UT = 366.75694] */
-       days_1900,     /* Days since 1900 January 0 @ 00:00:00 UT.
-                       *   [18262.0 (1950/01/00) through 54788.0 (2049/12/32);
-                       *    1990/01/01 @ 18:10:00 UT = 32873.75694;
-                       *    0.0 o.k. if using {year, month, day} or
-                       *    {year, daynumber}] */
-       latitude,      /* Observation site geographic latitude.
-                       *   [degrees.fraction, North positive] */
-       longitude,     /* Observation site geographic longitude.
-                       *   [degrees.fraction, East positive] */
-       *ap_ra,        /* Apparent solar right ascension.
-                       *   [hours; 0.0 <= *ap_ra < 24.0] */
-       *ap_dec,       /* Apparent solar declination.
-                       *   [degrees; -90.0 <= *ap_dec <= 90.0] */
-       *altitude,     /* Solar altitude, uncorrected for refraction.
-                       *   [degrees; -90.0 <= *altitude <= 90.0] */
-       *refraction,   /* Refraction correction for solar altitude.
-                       * Add this to altitude to compensate for refraction.
-                       *   [degrees; 0.0 <= *refraction] */
-       *azimuth,      /* Solar azimuth.
-                       *   [degrees; 0.0 <= *azimuth < 360.0, East is 90.0] */
-       *distance;     /* Distance of Sun from Earth (heliocentric-geocentric).
-                       *   [astronomical units; 1 a.u. is mean distance] */
-
+int daynum(int year, int month, int day)
 {
-  int    daynum();        /* Computes a sequential daynumber during a year. */
+  static int begmonth[13] = {0,0,31,59,90,120,151,181,212,243,273,304,334};
+  int dnum,
+      leapyr = 0;
+
+  /* There is no year 0 in the Gregorian calendar and the leap year cycle
+   * changes for earlier years. */
+
+  if (year < 1)
+    return (-1);
+
+  /* Leap years are divisible by 4, except for centurial years not divisible
+   * by 400. */
+
+  if (((year%4) == 0 && (year%100) != 0) || (year%400) == 0)
+    leapyr = 1;
+
+  dnum = begmonth[month] + day;
+  if (leapyr && (month > 2))
+    dnum += 1;
+
+  return (dnum);
+}
+
+/* ============================================================================
+ *  Purpose: calculate the dew point (phase=0) or frost point (phase=1) 
+ *           temperature, K.
+ */
+ 
+float dew_point(
+    float e, // vapor pressure, mb,
+    int phase
+)
+{
+	float z, tdk;
+	
+	if ( phase == 0 ) {	/* dew point */
+		z = log( e / (6.1121*1.004) );
+		tdk = 273.15 + 240.97*z/(17.502-z);
+	}
+	else {	            /* frost point */
+		z = log( e / (6.1115*1.004) );
+		tdk = 273.15 + 272.55*z/(22.452-z);
+	}
+	
+	return(tdk);
+}
+ 
+/* ============================================================================
+ *  Purpose: calculate the saturation vapor pressure (mb) over liquid water
+ *           (phase = 0) or ice (phase = 1).
+ *
+ *  Reference: Buck's (1981) approximation (eqn 3) of Wexler's (1976) formulae.
+ */
+ 
+float esat(
+    float tk, // air temperature K
+    int phase
+)
+{
+	float y, es;
+	
+	if ( phase == 0 ) {	/* over liquid water */
+		y = (tk - 273.15)/(tk - 32.18);
+		es = 6.1121 * exp( 17.502 * y );
+/*		es = (1.0007 + (3.46E-6 * pres)) * es /* correction for moist air, if pressure is available */
+	} 
+	else {			/* over ice */
+		y = (tk - 273.15)/(tk - 0.6);
+		es = 6.1115 * exp( 22.452 * y );
+/*		es = (1.0003 + (4.18E-6 * pres)) * es /* correction for moist air, if pressure is available */
+	}
+	
+	es = 1.004 * es;  /* correction for moist air, if pressure is not available; for pressure > 800 mb */
+/*	es = 1.0034 * es; /* correction for moist air, if pressure is not available; for pressure down to 200 mb */
+
+	return ( es );
+}
+
+/* ============================================================================
+ *  Purpose: calculate the atmospheric emissivity.
+ *
+ *  Reference: Oke (2nd edition), page 373.
+ */
+ 
+float emis_atm(
+    float Tair, // air temperature, K
+    float rh // relative humidity, fraction between 0 and 1
+)
+{
+	float e = rh * esat(Tair,0);
+	return( 0.575 * pow(e, 0.143) );
+}
+
+
+/* ============================================================================
+ *  Purpose: calculate the heat of evaporation, J/(kg K), for temperature
+ *           in the range 283-313 K.
+ *
+ *  Reference: Van Wylen and Sonntag, Table A.1.1
+ */
+ 
+float evap(
+    float Tair // air temperature, K
+)
+{			 
+	return( (313.15 - Tair)/30. * (-71100.) + 2.4073E6 );
+}
+
+
+/* ============================================================================
+ *  Purpose: estimate 2-m wind speed for all stability conditions
+ *
+ *  Reference: EPA-454/5-99-005, 2000, section 6.2.5
+ */
+
+float est_wind_speed(
+    float speed,
+    float zspeed,
+    int stability_class,
+    int urban,
+    float min_speed
+)
+{
+	float urban_exp[6] = { 0.15, 0.15, 0.20, 0.25, 0.30, 0.30 },
+		rural_exp[6] = { 0.07, 0.07, 0.10, 0.15, 0.35, 0.55 },
+		exponent,
+		est_speed;
+		
+	if ( urban )
+		exponent = urban_exp[stability_class-1];
+	else
+		exponent = rural_exp[stability_class-1];
+	
+	est_speed = speed * pow( REF_HEIGHT/zspeed, exponent );
+	est_speed = max( est_speed, min_speed );
+	return (est_speed);
+}
+
+
+
+/* ============================================================================
+ *  Purpose: calculate the diffusivity of water vapor in air, m2/s
+ *
+ *  Reference: BSL, page 505.
+ */
+ 
+float diffusivity(
+    float Tair,	// Air temperature, K
+	float Pair // Barometric pressure, mb
+)
+{
+	static float Pcrit_air = 36.4, 
+			 Pcrit_h2o = 218., 
+			 Tcrit_air = 132., 
+			 Tcrit_h2o = 647.3,
+			 a = 3.640E-4, 
+			 b = 2.334;
+			 
+	float	Patm, Pcrit13, Tcrit512, Tcrit12, Mmix;
+	
+	Pcrit13  = pow( ( Pcrit_air * Pcrit_h2o ),(1./3.) );
+	Tcrit512 = pow( ( Tcrit_air * Tcrit_h2o ),(5./12.) );
+	Tcrit12  = sqrt( Tcrit_air * Tcrit_h2o );
+	Mmix = sqrt( 1./M_AIR + 1./M_H2O );
+	Patm = Pair / 1013.25 ; /* convert pressure from mb to atmospheres */
+	
+	return( a * pow( (Tair/Tcrit12),b) * Pcrit13 * Tcrit512 * Mmix / Patm * 1E-4 );
+}
+
+
+/* ============================================================================
+ *  Purpose: calculate the viscosity of air, kg/(m s)
+ *
+ *  Reference: BSL, page 23.
+ */
+ 
+float viscosity(
+    float Tair	// air temperature, K
+) 
+{
+	static float sigma = 3.617,
+			 eps_kappa = 97.0;
+
+	float Tr, omega;
+	
+	Tr = Tair / eps_kappa;
+	omega = ( Tr - 2.9 ) / 0.4 * ( -0.034 ) + 1.048;
+	return( 2.6693E-6 * sqrt( M_AIR*Tair ) / ( sigma * sigma * omega ) );
+}
+
+/* ============================================================================
+ *  Purpose: calculate the thermal conductivity of air, W/(m K)
+ *
+ *  Reference: BSL, page 257.
+ */
+ 
+float thermal_cond(
+    float Tair // air temperature, K
+)
+{			 
+
+	return( ( Cp + 1.25 * R_AIR ) * viscosity(Tair) );
+}
+
+/* ============================================================================
+ * Purpose: to calculate the convective heat transfer coefficient, W/(m2 K)
+ *          for flow around a sphere.
+ *
+ * Reference: Bird, Stewart, and Lightfoot (BSL), page 409. 
+ *
+ */
+ 
+float h_sphere_in_air(
+    float diameter, // sphere diameter, m
+	float Tair,	// air temperature, K
+	float Pair,	// barometric pressure, mb
+	float speed // fluid (air) speed, m/s
+)
+{
+	float	density,
+		Re,	/* Reynolds number							*/
+		Nu;	/* Nusselt number								*/
+		
+	density = Pair * 100. / ( R_AIR * Tair );
+	//Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
+    //Don't need to do max(speeds) because already handled in min function
+	Re = speed * density * diameter / viscosity(Tair);
+	Nu = 2.0 + 0.6 * sqrt(Re) * pow(Pr,0.3333);
+	return( Nu * thermal_cond(Tair) / diameter );
+}
+
+/* ============================================================================
+ * Purpose: to calculate the convective heat transfer coefficient in W/(m2 K)
+ *          for a long cylinder in cross flow.
+ *
+ * Reference: Bedingfield and Drew, eqn 32 
+ *
+ */
+ 
+float h_cylinder_in_air(
+    float diameter, // cylinder diameter, m
+    float length, // cylinder length, m
+    float Tair, // air temperature, K
+    float Pair, // barometric pressure, mb
+    float speed // fluid (wind) speed, m/s
+)
+{
+	static float a = 0.56,  /* parameters from Bedingfield and Drew */
+			 b = 0.281,
+			 c = 0.4;
+			 
+	float	density,
+		Re,	/* Reynolds number								*/
+		Nu;	/* Nusselt number									*/
+		
+	density = Pair * 100. / ( R_AIR * Tair );
+	//Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
+    //Don't need to do max(speeds) because already handled in min function
+	Re = speed * density * diameter / viscosity(Tair);
+	Nu = b * pow(Re,(1.-c)) * pow(Pr,(1.-a));
+	return( Nu * thermal_cond(Tair) / diameter );
+}
+ 
+
+
+// Solar position code
+int solarposition(
+    int year,
+    int month,
+    double day,
+    double days_1900,
+    double latitude,      
+    double longitude,
+    double *ap_ra,
+    double *ap_dec,
+    double *altitude,
+    double *refraction,
+    double *azimuth,
+    double *distance
+)
+
+/*
+year: Four digit year (Gregorian calendar).
+    [1950 through 2049; 0 o.k. if using days_1900]
+month: Month number.
+    [1 through 12; 0 o.k. if using daynumber for day]
+day: Calendar day.fraction, or daynumber.fraction.
+    [If month is NOT 0:
+    0 through 32; 31st @ 18:10:00 UT = 31.75694
+    If month IS 0:
+    0 through 367; 366 @ 18:10:00 UT = 366.75694]
+days_1900: Days since 1900 January 0 @ 00:00:00 UT.
+    [18262.0 (1950/01/00) through 54788.0 (2049/12/32);
+    1990/01/01 @ 18:10:00 UT = 32873.75694;
+    0.0 o.k. if using {year, month, day} or
+    {year, daynumber}]
+latitude: Observation site geographic latitude.
+    [degrees.fraction, North positive]
+longitude: Observation site geographic longitude.
+    [degrees.fraction, East positive]
+*ap_ra: Apparent solar right ascension.
+    [hours; 0.0 <= *ap_ra < 24.0]
+*ap_dec: Apparent solar declination.
+    [degrees; -90.0 <= *ap_dec <= 90.0]
+*altitude: Solar altitude, uncorrected for refraction.
+    [degrees; -90.0 <= *altitude <= 90.0]
+*refraction: Refraction correction for solar altitude.
+    Add this to altitude to compensate for refraction.
+    [degrees; 0.0 <= *refraction]
+*azimuth: Solar azimuth.
+    [degrees; 0.0 <= *azimuth < 360.0, East is 90.0]
+*distance: Distance of Sun from Earth (heliocentric-geocentric).
+    [astronomical units; 1 a.u. is mean distance]
+*/
+{
+  // int    daynum();        /* Computes a sequential daynumber during a year. */
 
   int    daynumber,       /* Sequential daynumber during a year. */
          delta_days,      /* Whole days since 2000 January 0. */
@@ -455,19 +751,27 @@ double day,           /* Calendar day.fraction, or daynumber.fraction.
  *		 Argonne National Laboratory
  */
  
-int	calc_solar_parameters(year, month, day, lat, lon, solar, cza, fdir)
-
-int	year,		/* 4-digit year, e.g., 2007							*/
-	month;	/* 2-digit month; month = 0 implies day = day of year			*/
-
-double day;		/* day.fraction of month if month > 0;
-			   else day.fraction of year if month = 0 (GMT)				*/
-float	lat,		/* north latitude									*/
-	lon,		/* east latitude (negative in USA)						*/
-	*solar,	/* solar irradiance (W/m2)							*/
-	*cza,		/* cosine of solar zenith angle						*/
-	*fdir;	/* fraction of solar irradiance due to direct beam			*/
-	
+int	calc_solar_parameters(
+    int	year,
+    int month,
+    double day,
+    float lat,
+    float lon,
+    float *solar,
+    float *cza,	
+    float *fdir
+)
+/*	
+year: 4-digit year, e.g., 2007
+month: 2-digit month; month = 0 implies day = day of year
+double day: day.fraction of month if month > 0;
+    else day.fraction of year if month = 0 (GMT)
+lat: north latitude
+lon: east latitude (negative in USA)
+*solar: solar irradiance (W/m2)
+*cza: cosine of solar zenith angle
+*fdir: fraction of solar irradiance due to direct beam
+*/
 {
   int result, seconds;
 	float	toasolar, normsolar; 
@@ -517,6 +821,196 @@ float	lat,		/* north latitude									*/
 }
 
 /* ============================================================================
+ *  Purpose: estimate the stability class
+ *
+ *  Reference: EPA-454/5-99-005, 2000, section 6.2.5
+ */
+int stab_srdt(
+    int	daytime,
+    float speed,
+	float solar,
+	float dT
+)
+{
+	static int	lsrdt[6][8] = {
+			{1, 1, 2, 4, 0, 5, 6, 0},
+			{1, 2, 3, 4, 0, 5, 6, 0},
+			{2, 2, 3, 4, 0, 4, 4, 0},
+			{3, 3, 4, 4, 0, 0, 0, 0},
+			{3, 4, 4, 4, 0, 0, 0, 0},
+			{0, 0, 0, 0, 0, 0, 0, 0}
+	};
+			
+	int	i,j;
+	
+	if ( daytime ) {
+		if ( solar >= 925.0 )
+			j = 0;
+		else if ( solar >= 675.0 )
+			j = 1;
+		else if ( solar >= 175.0 )
+			j = 2;
+		else
+			j = 3;
+			
+		if ( speed >= 6.0 ) 
+			i = 4;
+		else if ( speed >= 5.0 )
+			i = 3;
+		else if ( speed >= 3.0 )
+			i = 2;
+		else if ( speed >= 2.0 )
+			i = 1;
+		else
+			i = 0;
+	} 
+	else {
+		if ( dT >= 0.0 )
+			j = 6;
+		else
+			j = 5;
+			
+		if ( speed >= 2.5 )
+			i = 2;
+		else if ( speed >= 2.0 )
+			i = 1;
+		else
+			i = 0;
+	}
+	return ( lsrdt[i][j] );
+}
+
+
+/* ============================================================================
+ *  Purpose: to calculate the natural wet bulb temperature.
+ *	
+ *  Author:  James C. Liljegren 
+ *		 Decision and Information Sciences Division
+ *		 Argonne National Laboratory
+ */
+ 
+float Twb(
+    float Tair,
+    float rh,
+    float Pair,
+    float speed,
+    float solar,
+    float fdir,
+    float cza,
+    int	rad
+)
+/*
+Tair: air (dry bulb) temperature, degC
+rh
+Pair: barometric pressure, mb
+speed: wind speed, m/s
+solar: solar irradiance, W/m2
+fdir: fraction of solar irradiance due to direct beam
+cza: cosine of solar zenith angle
+rad: switch to enable/disable radiative heating; 
+    no radiative heating --> pyschrometric wet bulb temp
+*/
+{
+	static float a = 0.56; /* from Bedingfield and Drew */
+	
+	float	sza, Tsfc, Tdew, Tref, Twb_prev, Twb_new,
+		eair, ewick, density, 
+		Sc,	/* Schmidt number */
+		h,	/* convective heat transfer coefficient */
+		Fatm, /* radiative heating term */
+    heat = 0.0; /* This is influence of radiation/convective heat transfer */
+
+	int	converged, iter;
+	
+	Tsfc      = Tair;
+	sza       = acos(cza); /* solar zenith angle, radians */
+	eair      = rh * esat(Tair,0);
+	Tdew      = dew_point(eair,0);
+	Twb_prev  = Tdew; /* first guess is the dew point temperature */
+	converged = FALSE;
+	iter      = 0;
+	do {
+		iter++;
+		Tref = 0.5*( Twb_prev + Tair );	/* evaluate properties at the average temperature */
+    if (rad == 1) {//If considering effects of radiation/heat transfer
+		  //h = h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
+		  Fatm = STEFANB * EMIS_WICK *
+		         ( 0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) ) - pow(Twb_prev,4.) )
+		       + (1.-ALB_WICK) * solar *
+		         ( (1.-fdir)*(1.+0.25*D_WICK/L_WICK) + fdir*((tan(sza)/PI)+0.25*D_WICK/L_WICK) + ALB_SFC );
+      heat = Fatm / h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
+    };
+		ewick   = esat(Twb_prev,0);
+		density = Pair * 100. / (R_AIR * Tref);
+		Sc      = viscosity(Tref)/(density*diffusivity(Tref,Pair));
+		Twb_new = Tair - evap(Tref)/RATIO * (ewick-eair)/(Pair-ewick) * pow(Pr/Sc,a) + heat; //(Fatm/h * rad);
+		if ( fabs(Twb_new-Twb_prev) < CONVERGENCE ) converged = TRUE;
+		Twb_prev = 0.9*Twb_prev + 0.1*Twb_new;
+    //printf( "Tref : %f  Twb_new : %f  Twb_prev : %f  \n", Tref, Twb_new, Twb_prev);
+	} while (!converged && iter < MAX_ITER);
+  //printf( "Converged : %d\n", converged );
+	if ( converged ) 
+		return (Twb_new-273.15);
+	else
+		return (-9999.);
+}
+
+/* ============================================================================
+ *  Purpose: to calculate the globe temperature.
+ *	
+ *  Author:  James C. Liljegren 
+ *		 Decision and Information Sciences Division
+ *		 Argonne National Laboratory
+ */
+ 
+float Tglobe(
+    float Tair,	// air (dry bulb) temperature, Kelvin
+    float rh, // relative humidity, fraction between 0 and 1
+    float Pair,	// barometric pressure, mb
+    float speed, // wind speed, m/s
+    float solar, // solar irradiance, W/m2
+    float fdir,	// fraction of solar irradiance due to direct beam
+    float cza, // cosine of solar zenith angle
+    float d_globe // diameter of black globe thermometer (meters)
+)
+{
+	float	Tsfc, Tref, Tglobe_prev, Tglobe_new, h;
+
+	int	converged, iter;
+
+    if (d_globe == 0.0){
+        d_globe = D_GLOBE;
+    };
+	
+	Tsfc = Tair;
+	Tglobe_prev = Tair; /* first guess is the air temperature */
+	converged = FALSE;
+	iter = 0;
+	do {
+		iter++;
+		Tref = 0.5*( Tglobe_prev + Tair );	/* evaluate properties at the average temperature */
+		//h = h_sphere_in_air(D_GLOBE, Tref, Pair, speed);
+		h = h_sphere_in_air(d_globe, Tref, Pair, speed);
+        //printf( "h : %f\n", h );
+		Tglobe_new = pow( 
+				0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) )
+				- h/(STEFANB*EMIS_GLOBE)*(Tglobe_prev - Tair)
+				+ solar/(2.*STEFANB*EMIS_GLOBE)*(1.-ALB_GLOBE)*(fdir*(1./(2.*cza)-1.)+1.+ ALB_SFC)
+				, 0.25);
+		if ( fabs(Tglobe_new-Tglobe_prev) < CONVERGENCE ) converged = TRUE;
+		Tglobe_prev = 0.9*Tglobe_prev + 0.1*Tglobe_new;
+    //printf( "Tref : %f   Tglobe_new : %f   Tglobe_prev : %f\n", Tref, Tglobe_new, Tglobe_prev);
+
+	} while (!converged && iter < MAX_ITER);
+  //printf( "Converged : %d\n", converged );
+	if ( converged ) 
+		return (Tglobe_new-273.15);
+	else
+		return (-9999.);
+		//return (0.0/0.0);
+}
+
+/* ============================================================================
  *  Purpose: to calculate the outdoor wet bulb-globe temperature, which is 
  *           the weighted sum of the air temperature (dry bulb), the globe temperature, 
  *           and the natural wet bulb temperature: Twbg = 0.1 * Tair + 0.7 * Tnwb + 0.2 * Tg.
@@ -539,51 +1033,72 @@ float	lat,		/* north latitude									*/
  *		 Argonne National Laboratory
  */
  
-int calc_wbgt(year, month, day, hour, minute, second, gmt, avg, lat, lon, 
-		solar, pres, Tair, relhum, speed, zspeed, dT, urban, min_speed, d_globe, 
-        est_speed, solar_adj, Tg, Tnwb, Tpsy, Twbg)
 
-int	year,		/* 4-digit, e.g. 2007								*/
-	month,	/* month (1-12) or month = 0 implies iday is day of year		*/
-	day,		/* day of month or day of year (1-366)					*/
-	hour,		/* hour in local standard time (LST)					*/
-	minute,	/* minutes past the hour							*/
-  second, /* seconds past the hour */
-	gmt,		/* LST-GMT difference, hours (negative in USA)				*/
-	avg,		/* averaging time of meteorological inputs, minutes			*/
-	urban;	/* select "urban" (1) or "rural" (0) wind speed power law exponent*/
-		
-float	lat,		/* north latitude, decimal							*/
-	lon,		/* east longitude, decimal (negative in USA)				*/
-	solar,	/* solar irradiance, W/m2							*/
-	pres,		/* barometric pressure, mb							*/
-	Tair,		/* air (dry bulb) temperature, degC						*/
-	relhum,	/* relative humidity, %								*/
-	speed,	/* wind speed, m/s								*/
-	zspeed,	/* height of wind speed measurement, m					*/
-	dT,		/* vertical temperature difference (upper minus lower), degC	*/
-    min_speed, /* minimum speed allowed for calculation */
-    d_globe, /* Diameter of black globe thermometer (meters) */
-	
-	*est_speed,	/* estimated speed at reference height, m/s				*/
-	*solar_adj,	/* (potentially) adjusted solar irradiance. W/m**2				*/
-	*Tg,		/* globe temperature, degC							*/
-	*Tnwb,	/* natural wet bulb temperature, degC					*/
-	*Tpsy,	/* psychrometric wet bulb temperature, degC				*/
-	*Twbg;	/* wet bulb globe temperature, degC						*/
-
+int calc_wbgt(
+    int year,
+    int month,
+    int day,
+    int hour,
+    int minute,
+    int second,
+    int gmt,
+    int avg,
+    float lat,
+    float lon,
+    float solar,
+    float pres,
+    float Tair,
+    float relhum,
+    float speed,
+    float zspeed,
+    float dT,
+    int urban,
+    float min_speed,
+    float d_globe,
+    float *est_speed,
+    float *solar_adj,
+    float *Tg,
+    float *Tnwb,
+    float *Tpsy,
+    float *Twbg
+ )
+/*
+year: 4-digit, e.g. 2007
+month: month (1-12) or month = 0 implies iday is day of year
+day: day of month or day of year (1-366)
+hour: hour in local standard time (LST)
+minute: minutes past the hour
+second: seconds past the hour
+gmt: LST-GMT difference, hours (negative in USA)
+avg: averaging time of meteorological inputs, minutes
+urban: select "urban" (1) or "rural" (0) wind speed power law exponent
+lat: north latitude, decimal
+lon: east longitude, decimal (negative in USA)
+solar: solar irradiance, W/m2
+pres: barometric pressure, mb
+Tair: air (dry bulb) temperature, degC
+relhum: relative humidity, %
+speed: wind speed, m/s
+zspeed: height of wind speed measurement, m	
+dT: vertical temperature difference (upper minus lower), degC
+min_speed: minimum speed allowed for calculation
+d_globe: Diameter of black globe thermometer (meters)
+*est_speed: estimated speed at reference height, m/s
+*solar_adj: (potentially) adjusted solar irradiance. W/m**2	
+*Tg: globe temperature, degC
+*Tnwb: natural wet bulb temperature, degC
+*Tpsy: psychrometric wet bulb temperature, degC	
+*Twbg: wet bulb globe temperature, degC	
+*/
 {
 	float	cza,	/* cosine of solar zenith angle						*/
 		fdir,	/* fraction of solar irradiance due to direct beam			*/
 		tk,	/* temperature converted to kelvin						*/
-		rh,	/* relative humidity, fraction between 0 and 1				*/
-		est_wind_speed(),
-		Tglobe(),
-		Twb();
+		rh;	/* relative humidity, fraction between 0 and 1				*/
 	
 	double hour_gmt, dday;
 	
-	int	daytime, stability_class, stab_srdt();
+	int	daytime, stability_class;
 
 /* Set min speed as maximum of input value and MIN_SPEED */
     min_speed = max(min_speed, MIN_SPEED);
@@ -648,565 +1163,3 @@ float	lat,		/* north latitude, decimal							*/
 	else
 		return 0;
 }
-
-/* ============================================================================
- *  Purpose: to calculate the natural wet bulb temperature.
- *	
- *  Author:  James C. Liljegren 
- *		 Decision and Information Sciences Division
- *		 Argonne National Laboratory
- */
- 
-float Twb(Tair, rh, Pair, speed, solar, fdir, cza, rad)
-
-float Tair,		/* air (dry bulb) temperature, degC						*/
-	rh,
-	Pair,		/* barometric pressure, mb							*/
-	speed,	/* wind speed, m/s								*/
-	solar,	/* solar irradiance, W/m2							*/
-	fdir,		/* fraction of solar irradiance due to direct beam			*/
-	cza;		/* cosine of solar zenith angle						*/
-	
-int	rad;		/* switch to enable/disable radiative heating; 
-			 * no radiative heating --> pyschrometric wet bulb temp		*/
-		
-{
-	static float a = 0.56; /* from Bedingfield and Drew */
-	
-	float	sza, Tsfc, Tdew, Tref, Twb_prev, Twb_new,
-		eair, ewick, density, 
-		Sc,	/* Schmidt number */
-		h,	/* convective heat transfer coefficient */
-		Fatm, /* radiative heating term */
-    heat = 0.0, /* This is influence of radiation/convective heat transfer */
-		esat(), dew_point(), h_cylinder_in_air(), 
-		viscosity(), diffusivity(), evap(), emis_atm();
-		
-	int	converged, iter;
-	
-	Tsfc      = Tair;
-	sza       = acos(cza); /* solar zenith angle, radians */
-	eair      = rh * esat(Tair,0);
-	Tdew      = dew_point(eair,0);
-	Twb_prev  = Tdew; /* first guess is the dew point temperature */
-	converged = FALSE;
-	iter      = 0;
-	do {
-		iter++;
-		Tref = 0.5*( Twb_prev + Tair );	/* evaluate properties at the average temperature */
-    if (rad == 1) {//If considering effects of radiation/heat transfer
-		  //h = h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
-		  Fatm = STEFANB * EMIS_WICK *
-		         ( 0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) ) - pow(Twb_prev,4.) )
-		       + (1.-ALB_WICK) * solar *
-		         ( (1.-fdir)*(1.+0.25*D_WICK/L_WICK) + fdir*((tan(sza)/PI)+0.25*D_WICK/L_WICK) + ALB_SFC );
-      heat = Fatm / h_cylinder_in_air(D_WICK, L_WICK, Tref, Pair, speed);
-    };
-		ewick   = esat(Twb_prev,0);
-		density = Pair * 100. / (R_AIR * Tref);
-		Sc      = viscosity(Tref)/(density*diffusivity(Tref,Pair));
-		Twb_new = Tair - evap(Tref)/RATIO * (ewick-eair)/(Pair-ewick) * pow(Pr/Sc,a) + heat; //(Fatm/h * rad);
-		if ( fabs(Twb_new-Twb_prev) < CONVERGENCE ) converged = TRUE;
-		Twb_prev = 0.9*Twb_prev + 0.1*Twb_new;
-    //printf( "Tref : %f  Twb_new : %f  Twb_prev : %f  \n", Tref, Twb_new, Twb_prev);
-	} while (!converged && iter < MAX_ITER);
-  //printf( "Converged : %d\n", converged );
-	if ( converged ) 
-		return (Twb_new-273.15);
-	else
-		return (-9999.);
-}
-
-/* ============================================================================
- * Purpose: to calculate the convective heat transfer coefficient in W/(m2 K)
- *          for a long cylinder in cross flow.
- *
- * Reference: Bedingfield and Drew, eqn 32 
- *
- */
- 
-float h_cylinder_in_air(diameter, length, Tair, Pair, speed)
- 
-float	diameter,	/* cylinder diameter, m								*/
-	length,	/* cylinder length, m								*/
-	Tair,		/* air temperature, K								*/
-	Pair,		/* barometric pressure, mb							*/
-	speed;	/* fluid (wind) speed, m/s							*/
-	
-{
-	static float a = 0.56,  /* parameters from Bedingfield and Drew */
-			 b = 0.281,
-			 c = 0.4;
-			 
-	float	density,
-		Re,	/* Reynolds number								*/
-		Nu,	/* Nusselt number									*/
-		viscosity(),
-		thermal_cond();
-		
-	density = Pair * 100. / ( R_AIR * Tair );
-	//Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
-    //Don't need to do max(speeds) because already handled in min function
-	Re = speed * density * diameter / viscosity(Tair);
-	Nu = b * pow(Re,(1.-c)) * pow(Pr,(1.-a));
-	return( Nu * thermal_cond(Tair) / diameter );
-}
- 
-/* ============================================================================
- *  Purpose: to calculate the globe temperature.
- *	
- *  Author:  James C. Liljegren 
- *		 Decision and Information Sciences Division
- *		 Argonne National Laboratory
- */
- 
-float Tglobe(Tair, rh, Pair, speed, solar, fdir, cza, d_globe)
-
-float Tair,		/* air (dry bulb) temperature, Kelvin						*/
-	rh,		/* relative humidity, fraction between 0 and 1				*/
-	Pair,		/* barometric pressure, mb							*/
-	speed,	/* wind speed, m/s								*/
-	solar,	/* solar irradiance, W/m2							*/
-	fdir,		/* fraction of solar irradiance due to direct beam			*/
-	cza,		/* cosine of solar zenith angle						*/
-  d_globe; /* diameter of black globe thermometer (meters) */
-	
-{
-	float	Tsfc, Tref, Tglobe_prev, Tglobe_new, h,
-		h_sphere_in_air(), emis_atm();
-		
-	int	converged, iter;
-
-    if (d_globe == 0.0){
-        d_globe = D_GLOBE;
-    };
-	
-	Tsfc = Tair;
-	Tglobe_prev = Tair; /* first guess is the air temperature */
-	converged = FALSE;
-	iter = 0;
-	do {
-		iter++;
-		Tref = 0.5*( Tglobe_prev + Tair );	/* evaluate properties at the average temperature */
-		//h = h_sphere_in_air(D_GLOBE, Tref, Pair, speed);
-		h = h_sphere_in_air(d_globe, Tref, Pair, speed);
-        //printf( "h : %f\n", h );
-		Tglobe_new = pow( 
-				0.5*( emis_atm(Tair,rh)*pow(Tair,4.) + EMIS_SFC*pow(Tsfc,4.) )
-				- h/(STEFANB*EMIS_GLOBE)*(Tglobe_prev - Tair)
-				+ solar/(2.*STEFANB*EMIS_GLOBE)*(1.-ALB_GLOBE)*(fdir*(1./(2.*cza)-1.)+1.+ ALB_SFC)
-				, 0.25);
-		if ( fabs(Tglobe_new-Tglobe_prev) < CONVERGENCE ) converged = TRUE;
-		Tglobe_prev = 0.9*Tglobe_prev + 0.1*Tglobe_new;
-    //printf( "Tref : %f   Tglobe_new : %f   Tglobe_prev : %f\n", Tref, Tglobe_new, Tglobe_prev);
-
-	} while (!converged && iter < MAX_ITER);
-  //printf( "Converged : %d\n", converged );
-	if ( converged ) 
-		return (Tglobe_new-273.15);
-	else
-		return (-9999.);
-		//return (0.0/0.0);
-}
-
-/* ============================================================================
- * Purpose: to calculate the convective heat transfer coefficient, W/(m2 K)
- *          for flow around a sphere.
- *
- * Reference: Bird, Stewart, and Lightfoot (BSL), page 409. 
- *
- */
- 
-float h_sphere_in_air(diameter, Tair, Pair, speed)
- 
-float	diameter,	/* sphere diameter, m							*/
-	Tair,		/* air temperature, K							*/
-	Pair,		/* barometric pressure, mb						*/
-	speed;	/* fluid (air) speed, m/s						*/
-	
-{
-	float	density,
-		Re,	/* Reynolds number							*/
-		Nu,	/* Nusselt number								*/
-		viscosity(),
-		thermal_cond();
-		
-	density = Pair * 100. / ( R_AIR * Tair );
-	//Re = max(speed,MIN_SPEED) * density * diameter / viscosity(Tair);
-    //Don't need to do max(speeds) because already handled in min function
-	Re = speed * density * diameter / viscosity(Tair);
-	Nu = 2.0 + 0.6 * sqrt(Re) * pow(Pr,0.3333);
-	return( Nu * thermal_cond(Tair) / diameter );
-}
- 
-
-/* ============================================================================
- *  Purpose: calculate the saturation vapor pressure (mb) over liquid water
- *           (phase = 0) or ice (phase = 1).
- *
- *  Reference: Buck's (1981) approximation (eqn 3) of Wexler's (1976) formulae.
- */
- 
-float esat(tk,phase)
-
-float	tk;	/* air temperature, K */
-int	phase;
-
-{
-	float y, es;
-	
-	if ( phase == 0 ) {	/* over liquid water */
-		y = (tk - 273.15)/(tk - 32.18);
-		es = 6.1121 * exp( 17.502 * y );
-/*		es = (1.0007 + (3.46E-6 * pres)) * es /* correction for moist air, if pressure is available */
-	} 
-	else {			/* over ice */
-		y = (tk - 273.15)/(tk - 0.6);
-		es = 6.1115 * exp( 22.452 * y );
-/*		es = (1.0003 + (4.18E-6 * pres)) * es /* correction for moist air, if pressure is available */
-	}
-	
-	es = 1.004 * es;  /* correction for moist air, if pressure is not available; for pressure > 800 mb */
-/*	es = 1.0034 * es; /* correction for moist air, if pressure is not available; for pressure down to 200 mb */
-
-	return ( es );
-}
-
-/* ============================================================================
- *  Purpose: calculate the dew point (phase=0) or frost point (phase=1) 
- *           temperature, K.
- */
- 
-float dew_point(e,phase)
-
-float	e;	/* vapor pressure, mb */
-int	phase;
-
-{
-	float z, tdk;
-	
-	if ( phase == 0 ) {	/* dew point */
-		z = log( e / (6.1121*1.004) );
-		tdk = 273.15 + 240.97*z/(17.502-z);
-	}
-	else {	            /* frost point */
-		z = log( e / (6.1115*1.004) );
-		tdk = 273.15 + 272.55*z/(22.452-z);
-	}
-	
-	return(tdk);
-}
- 
-/* ============================================================================
- *  Purpose: calculate the viscosity of air, kg/(m s)
- *
- *  Reference: BSL, page 23.
- */
- 
-float viscosity(Tair)
-
-float	Tair;	/* air temperature, K */
-
-{
-	static float sigma = 3.617,
-			 eps_kappa = 97.0;
-			 
-	float	Tr, omega;
-	
-	Tr = Tair / eps_kappa;
-	omega = ( Tr - 2.9 ) / 0.4 * ( -0.034 ) + 1.048;
-	return( 2.6693E-6 * sqrt( M_AIR*Tair ) / ( sigma * sigma * omega ) );
-}
-
-/* ============================================================================
- *  Purpose: calculate the thermal conductivity of air, W/(m K)
- *
- *  Reference: BSL, page 257.
- */
- 
-float thermal_cond(Tair)
-
-float	Tair;	/* air temperature, K */
-
-{			 
-	float	viscosity();
-
-	return( ( Cp + 1.25 * R_AIR ) * viscosity(Tair) );
-}
-
-/* ============================================================================
- *  Purpose: calculate the diffusivity of water vapor in air, m2/s
- *
- *  Reference: BSL, page 505.
- */
- 
-float diffusivity(Tair,Pair)
-
-float	Tair,	/* Air temperature, K */
-	Pair; /* Barometric pressure, mb */
-
-{
-	static float Pcrit_air = 36.4, 
-			 Pcrit_h2o = 218., 
-			 Tcrit_air = 132., 
-			 Tcrit_h2o = 647.3,
-			 a = 3.640E-4, 
-			 b = 2.334;
-			 
-	float	Patm, Pcrit13, Tcrit512, Tcrit12, Mmix;
-	
-	Pcrit13  = pow( ( Pcrit_air * Pcrit_h2o ),(1./3.) );
-	Tcrit512 = pow( ( Tcrit_air * Tcrit_h2o ),(5./12.) );
-	Tcrit12  = sqrt( Tcrit_air * Tcrit_h2o );
-	Mmix = sqrt( 1./M_AIR + 1./M_H2O );
-	Patm = Pair / 1013.25 ; /* convert pressure from mb to atmospheres */
-	
-	return( a * pow( (Tair/Tcrit12),b) * Pcrit13 * Tcrit512 * Mmix / Patm * 1E-4 );
-}
-
-/* ============================================================================
- *  Purpose: calculate the heat of evaporation, J/(kg K), for temperature
- *           in the range 283-313 K.
- *
- *  Reference: Van Wylen and Sonntag, Table A.1.1
- */
- 
-float evap(Tair)
-
-float	Tair;	/* air temperature, K */
-
-{			 
-	return( (313.15 - Tair)/30. * (-71100.) + 2.4073E6 );
-}
-
-/* ============================================================================
- *  Purpose: calculate the atmospheric emissivity.
- *
- *  Reference: Oke (2nd edition), page 373.
- */
- 
-float emis_atm(Tair, rh)
-
-float	Tair,	/* air temperature, K */
-	rh;	/* relative humidity, fraction between 0 and 1 */
-
-{
-	float e, esat();
-	
-	e = rh * esat(Tair,0);
-	return( 0.575 * pow(e, 0.143) );
-}
-
-
-
-/* ============================================================================
- * 'daynum()' returns the sequential daynumber of a calendar date during a
- *  Gregorian calendar year (for years 1 onward).
- *  The integer arguments are the four-digit year, the month number, and
- *  the day of month number.
- *  (Jan. 1 = 01/01 = 001; Dec. 31 = 12/31 = 365 or 366.)
- *  A value of -1 is returned if the year is out of bounds.
- */
-
-/* Author: Nels Larson
- *         Pacific Northwest Lab.
- *         P.O. Box 999
- *         Richland, WA 99352
- *         U.S.A.
- */
-
-int daynum(year, month, day)
-int year, month, day;
-{
-  static int begmonth[13] = {0,0,31,59,90,120,151,181,212,243,273,304,334};
-  int dnum,
-      leapyr = 0;
-
-  /* There is no year 0 in the Gregorian calendar and the leap year cycle
-   * changes for earlier years. */
-
-  if (year < 1)
-    return (-1);
-
-  /* Leap years are divisible by 4, except for centurial years not divisible
-   * by 400. */
-
-  if (((year%4) == 0 && (year%100) != 0) || (year%400) == 0)
-    leapyr = 1;
-
-  dnum = begmonth[month] + day;
-  if (leapyr && (month > 2))
-    dnum += 1;
-
-  return (dnum);
-}
-
-/* ============================================================================
- *  Purpose: estimate 2-m wind speed for all stability conditions
- *
- *  Reference: EPA-454/5-99-005, 2000, section 6.2.5
- */
-
-float est_wind_speed(speed, zspeed, stability_class, urban, min_speed)
-
-int	stability_class,
-	urban;
-	
-float	speed,
-	zspeed,
-    min_speed;
-	
-{
-	float urban_exp[6] = { 0.15, 0.15, 0.20, 0.25, 0.30, 0.30 },
-		rural_exp[6] = { 0.07, 0.07, 0.10, 0.15, 0.35, 0.55 },
-		exponent,
-		est_speed;
-		
-	if ( urban )
-		exponent = urban_exp[stability_class-1];
-	else
-		exponent = rural_exp[stability_class-1];
-	
-	est_speed = speed * pow( REF_HEIGHT/zspeed, exponent );
-	est_speed = max( est_speed, min_speed );
-	return (est_speed);
-}
-	
-/* ============================================================================
- *  Purpose: estimate the stability class
- *
- *  Reference: EPA-454/5-99-005, 2000, section 6.2.5
- */
-int stab_srdt(daytime, speed, solar, dT)
-
-int	daytime;
-
-float	speed,
-	solar,
-	dT;
-	
-{
-	static int	lsrdt[6][8] = {
-			{1, 1, 2, 4, 0, 5, 6, 0},
-			{1, 2, 3, 4, 0, 5, 6, 0},
-			{2, 2, 3, 4, 0, 4, 4, 0},
-			{3, 3, 4, 4, 0, 0, 0, 0},
-			{3, 4, 4, 4, 0, 0, 0, 0},
-			{0, 0, 0, 0, 0, 0, 0, 0}
-	};
-			
-	int	i,j;
-	
-	if ( daytime ) {
-		if ( solar >= 925.0 )
-			j = 0;
-		else if ( solar >= 675.0 )
-			j = 1;
-		else if ( solar >= 175.0 )
-			j = 2;
-		else
-			j = 3;
-			
-		if ( speed >= 6.0 ) 
-			i = 4;
-		else if ( speed >= 5.0 )
-			i = 3;
-		else if ( speed >= 3.0 )
-			i = 2;
-		else if ( speed >= 2.0 )
-			i = 1;
-		else
-			i = 0;
-	} 
-	else {
-		if ( dT >= 0.0 )
-			j = 6;
-		else
-			j = 5;
-			
-		if ( speed >= 2.5 )
-			i = 2;
-		else if ( speed >= 2.0 )
-			i = 1;
-		else
-			i = 0;
-	}
-	return ( lsrdt[i][j] );
-}
-
-
-/******************************************************************************************/
-
-/*
- *  Purpose: to demonstrate the use of the subroutine calc_wbgt to calculate
- *           the wet bulb-globe temperature (WBGT).  The program reads input 
- *           data from a file containing meteorological measurements then 
- *           calls calc_wbgt to compute the WBGT.
- *
- *           The inputs and outputs are fully described in calc_wbgt.
- *
- *  Author:  James C. Liljegren
- *		 Decision and Information Sciences Division
- *		 Argonne National Laboratory
- */		
- 
-int	main()
-
-{
-	char	string[MAXLINE];
-	int	urban, avg, calc_wbgt(), status, status2;
-	int	year, month = 0, day, time, hour, minute, gmt;
-	float	lat, lon;
-	float u30m, u10m, u2m, solar, Pair, RHair, Tair, dT30_2, dT10_2;
-	float speed, zspeed, est_speed, dT, Tg, Tg2, Tnwb, Tnwb2, Tpsy, Twbg, Twbg2;
-	
-	void	exit();
-	
-/* 
- *  input meteorological data from file
- */
-	fgets(string, MAXLINE, stdin); /* Skip header line */
-	fgets(string, MAXLINE, stdin);
-	sscanf(string, "%f %f %d %d %d %f %d", &lat, &lon, &year, &gmt, &avg, &zspeed, &urban);
-	fgets(string, MAXLINE, stdin); /* Skip column label line */
-
-	while ( fgets(string, MAXLINE, stdin) != NULL ) {
-	
-		sscanf(string, "%d %d %f %f %f %f %f %f %f %f %f",
-			&day, &time, &u30m, &u10m, &u2m, &solar, &Pair, &RHair, &Tair, &dT30_2, &dT10_2);
-		printf("%8.2f %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f %8.2f \n",
-			u30m, u10m, u2m, solar, Pair, RHair, Tair, dT30_2, dT10_2) ;
-
-/*
- *  separate time into hour and minutes
- */
-		hour = time / 100;
-		minute = time % 100;
-/*
- *  calculate WBGT; use the 2-m wind speed
- */
-		speed = u2m;
-		zspeed = 2.;
-		status = calc_wbgt(year, month, day, hour, minute, gmt, avg, lat, lon,
-				solar, Pair, Tair, RHair, speed, zspeed, dT, urban, &est_speed,
-				&Tg, &Tnwb, &Tpsy, &Twbg);
-/*
- *  calculate WBGT; estimate 2-m wind speed using the 10-m wind speed
- */
-		speed = u10m;
-		zspeed = 10.;
-		dT = dT10_2;
-		status2 = calc_wbgt(year, month, day, hour, minute, gmt, avg, lat, lon,
-				solar, Pair, Tair, RHair, speed, zspeed, dT, urban, &est_speed,
-				&Tg2, &Tnwb2, &Tpsy, &Twbg2);
-/*
- *  output the results
- */
-		printf("%10.6f \t %8.2f \t %8.2f \t %8.2f \t %8.2f \t %8.2f \t %8.2f \t %8.2f \t %8.2f \t %8.2f \n",
-			day+(60.*hour+minute)/1440., Twbg, Twbg2, Tg, Tg2, Tnwb, Tnwb2, Tpsy, u2m, est_speed) ;
-
-	}
-	
-	exit(0);
-}
-
