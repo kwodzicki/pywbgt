@@ -46,19 +46,6 @@ So, if the `.pyx` files are not run through Cython after making changes, none of
 
 Also note that Cython 3+ must be installed for this to work, as it is not installed as part of this package.
 
-# JupyterLab and Docker
-A Dockerfile and `run-jupyter.sh` shell script are provided to create and run a consistent environment for the package.
-This requires the user to have the Docker containerization program installed to work.
-Once the user has Docker installed, they can run the shell script using the following:
-
-    bash run-jupyter.sh
-
-This will build the Docker image including installing the `pywbgt` package in development mode.
-When the building of the image is complete, a JupyterLab instance will be reachable at `http://localhost:8080`.
-The passcode for JupyterLab is displayed in the command line output as part of the server URL.
-
-From here the user can run any Notebooks or scripts they wish with the confidence that their work is in a fully reproducible environment.
-
 # Using the package
 This package includes codes a few algorithms for estimating wetbulb temperature and natural wetbulb temperature that are not associated with the three main WBGT algorithms.
 Codes for adjusting wind speeds to given heights above ground level are also included.
