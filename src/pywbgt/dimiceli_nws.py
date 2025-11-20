@@ -11,6 +11,7 @@ these adjustments may lead to different results.
 """
 
 import numpy as np
+import xarray as xr
 from metpy.units import units
 from metpy.calc import relative_humidity_from_dewpoint as relative_humidity
 
@@ -19,8 +20,10 @@ from .solar import solar_parameters
 from .psychrometric_wetbulb import stull
 from .natural_wetbulb import nws_boyer
 from .calc import loglaw
+from .utils import convert_units
 
 MIN_COSZ = np.cos(np.deg2rad(87.0))
+
 
 def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
     """
@@ -49,13 +52,14 @@ def adjust_speed_2m(speed, zspeed, min_speed=MIN_SPEED):
     """
 
     min_speed = max(min_speed, DIMICELI_MIN_SPEED)
-    speed2m   = np.clip(
-        loglaw( speed, zspeed ),
+    speed2m = np.clip(
+        loglaw(speed, zspeed),
         min_speed,
         None,
     )
 
     return speed2m, min_speed
+
 
 def conv_heat_flow_coeff(cosz, **kwargs):
     """
@@ -76,12 +80,13 @@ def conv_heat_flow_coeff(cosz, **kwargs):
     Notes:
         Default value obtained from:
         https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
-  
+
     """
 
-    return np.where(cosz > MIN_COSZ, 0.228, 0.0)
+    return xr.where(cosz > MIN_COSZ, 0.228, 0.0)
 
-def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
+
+def atmospheric_vapor_pressure(temp_air, temp_dew, pres):
     """
     Compute atmospheric vapor pressure
 
@@ -99,11 +104,11 @@ def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
         come from Buck, A. 1981: New Equations for computing vapor pressure
         and enhancement factor and is an improved equation for calculating
         vapor pressure in air, as opposed to pure water vapor.
-  
+
         However, the first line of the equation does not make much sense.
         The base of the equation is from Bolton (1980), but the use of
-        (temp_d-temp_air) is odd. It is some kind of differential pressure factor.
-        Some quick testing indicates that this formula will ALWAYS give
+        (temp_d-temp_air) is odd. It is some kind of differential pressure
+        factor. Some quick testing indicates that this formula will ALWAYS give
         a slighly lower pressure value than the Bolton (1980) formula; however,
         the values tend to be farily similar as long as there is not a large
         differenc between temp_air and temp_d
@@ -111,52 +116,55 @@ def atmospheric_vapor_pressure( temp_air, temp_dew, pres ):
     """
 
     return (
-        np.exp( (17.67 * (temp_dew - temp_air) ) / (temp_dew + 243.5) ) *
+        np.exp((17.67 * (temp_dew - temp_air)) / (temp_dew + 243.5)) *
         (1.0007 + 3.46e-6 * pres) *
-        6.112 * np.exp( 17.502 * temp_air / (240.97 + temp_air) )
+        6.112 * np.exp(17.502 * temp_air / (240.97 + temp_air))
     )
 
-def thermal_emissivity( temp_air, temp_dew, pres ):
+
+def thermal_emissivity(temp_air, temp_dew, pres):
     """
     Compute thermal emissivity from readily available NWS values
-  
+
     Arguments:
         temp_air (float) : ambient temperature in degrees Celsius
         temp_dew (float) : dew point temperature in degrees Celsius
         pres (float) : Barometric pressure in hPa
-  
+
     Returns:
         float : thermal emissivity
-  
+
     """
 
     return (
         0.575 *
-        atmospheric_vapor_pressure( temp_air, temp_dew, pres )**(1.0/7.0)
+        atmospheric_vapor_pressure(temp_air, temp_dew, pres)**(1.0 / 7.0)
     )
 
-def factor_b( temp_air, temp_dew, pres, solar, f_db, cosz ):
+
+def factor_b(temp_air, temp_dew, pres, solar, f_db, cosz):
     """
 
     Arguments:
         temp_air (float) : ambient temperature in degrees Celsius
         temp_dew (float) : dew point temperature in degrees Celsius
-        pres (float) : Barometric pressure in hPa 
+        pres (float) : Barometric pressure in hPa
         solar (float) : solar irradiance in Watts per meter**2
         f_db (float) : Fraction of direct beam radiation
         cosz (float) : Cosine of solar zenith angle
-  
+
     """
 
     f_dif = 1.0 - f_db
     return (
-        solar * ( f_db/(4.0*SIGMA*cosz) + 1.2*f_dif/SIGMA ) +
-        thermal_emissivity( temp_air, temp_dew, pres ) * temp_air**4
+        solar * (f_db / (4.0 * SIGMA * cosz) + 1.2 * f_dif / SIGMA) +
+        thermal_emissivity(temp_air, temp_dew, pres) * temp_air**4
     )
+
 
 def factor_c(speed, cosz, chfc=None, **kwargs):
     """
-  
+
     Arguments:
         speed (float) : wind speed in meters per hour adjusted to 2 meters
             and clipped to (at the smallest value) DIMICELI_MIN_SPEED
@@ -175,33 +183,34 @@ def factor_c(speed, cosz, chfc=None, **kwargs):
         chfc = conv_heat_flow_coeff(cosz, **kwargs)
     return chfc * speed**0.58 / 5.3865e-8
 
-def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
+
+def globe_temperature(temp_air, temp_dew, pres, speed, solar, f_db, cosz):
     """
     Compute globe temperature
-  
+
     Arguments:
         temp_air (float) : ambient temperature in degrees Celsius
         temp_dew (float) : dew point temperature in degrees Celsius
-        pres (float) : Barometric pressure in hPa 
+        pres (float) : Barometric pressure in hPa
         speed (float) : wind speed in meters per hour adjusted to
             2 meters and clipped to (at the smallest value)
             DIMICELI_MIN_SPEED
         solar (float) : solar irradiance in Watts per meter**2
         f_db (float) : Fraction of direct beam radiation
         cosz (float) : Cosine of solar zenith angle
- 
+
     Returns:
         ndarray : Black globe temperature in degrees C
 
     Notes:
-        Chapter 26 of IAENG Transactions on Engineering Technologies: 
+        Chapter 26 of IAENG Transactions on Engineering Technologies:
           "Black Globe Temperature Estimate for the WBGT Index"
-    
+
         https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
-  
+
     """
 
-    fac_c = factor_c( speed, cosz )
+    fac_c = factor_c(speed, cosz)
     fac_b = factor_b(
         temp_air,
         temp_dew,
@@ -211,46 +220,53 @@ def globe_temperature( temp_air, temp_dew, pres, speed, solar, f_db, cosz ):
         cosz,
     )
 
-
-    return np.where(
+    return xr.where(
         fac_c > 0,
-        (fac_b + fac_c*temp_air + 7.68e6) / (fac_c + 2.56e5),
+        (fac_b + fac_c * temp_air + 7.68e6) / (fac_c + 2.56e5),
         fac_b**0.25,
     )
 
-def psychrometric_wetbulb( temp_air, temp_dew ):
+
+def psychrometric_wetbulb(temp_air, temp_dew):
     """
     Wet bulb temperature from Dimiceli method
-  
-    This formula for wet bulb temperature appears at the bottom of 
+
+    This formula for wet bulb temperature appears at the bottom of
     "Estimation of Black Globe Temperature for Calculation of the WBGT Index"
     by Dimiceli and Piltz.
-  
+
     https://www.weather.gov/media/tsa/pdf/WBGTpaper2.pdf
-  
+
     Inputs:
         temp_air (pint.Quantity) : Ambient (dry bulb) temperature (degree C)
         temp_dew (pint.Quantity) : Dew point temperature (degree C)
-  
+
     """
 
-    relhum   = relative_humidity( temp_air, temp_dew ).to('percent').magnitude
+    relhum = relative_humidity(temp_air, temp_dew).to('percent').magnitude
     temp_air = temp_air.to('degC').magnitude
     return (
-           -5.806    + 0.672   *temp_air -  0.006   *temp_air**2       +
-         (  0.061    + 0.004   *temp_air + 99.000e-6*temp_air**2) * relhum +
-         (-33.000e-6 - 5.000e-6*temp_air -  1.000e-7*temp_air**2) * relhum**2
+        -5.806 + 0.672 * temp_air - 0.006 * temp_air**2 +
+        (0.061 + 0.004 * temp_air + 99.000e-6 * temp_air**2) * relhum +
+        (-33.000e-6 - 5.000e-6 * temp_air - 1.000e-7 * temp_air**2) * relhum**2
     )
 
+
 def wetbulb_globe(
-        datetime, lat, lon,
-        solar, pres, temp_air, temp_dew, speed,
-        f_db      = None,
-        cosz      = None,
-        zspeed    = None,
-        min_speed = MIN_SPEED,
-        **kwargs,
-    ):
+    datetime,
+    lat,
+    lon,
+    solar,
+    pres,
+    temp_air,
+    temp_dew,
+    speed,
+    f_db=None,
+    cosz=None,
+    zspeed=None,
+    min_speed=MIN_SPEED,
+    **kwargs,
+):
     """
     Compute WBGT using Dimiceli method
 
@@ -279,17 +295,21 @@ def wetbulb_globe(
     Notes,
         Enacts 'Rectent Updates and Improvements' from the following
         white paper:
-            https://vlab.noaa.gov/documents/6609493/7858379/NDFD+WBGT+Description+Document.pdf/fb89cc3a-0536-111f-f124-e4c93c746ef7?t=1642792547129
+            https://vlab.noaa.gov/documents/6609493/7858379/
+            NDFD+WBGT+Description+Document.pdf/
+            fb89cc3a-0536-111f-f124-e4c93c746ef7?t=1642792547129
 
     Returns:
-        dict : 
+        dict :
             - Tg : Globe temperatures as Quantity
             - Tpsy : psychrometric wet bulb temperatures as Quantity
             - Tnwb : Natural wet bulb temperatures as Quantity
             - Twbg : Wet bulb-globe temperatures as Quantity
-            - solar : Solar irradiance from Liljegren as Quantity 
-            - speed : Estimated 2m wind speed as Quantity; will be same as input if already 2m wind speed
-            - min_speed : Minimum speed that adjusted wind speed is clipped to as Quantity
+            - solar : Solar irradiance from Liljegren as Quantity
+            - speed : Estimated 2m wind speed as Quantity; will be same as
+                input if already 2m wind speed
+            - min_speed : Minimum speed that adjusted wind speed is clipped
+                to as Quantity
 
     """
 
@@ -303,27 +323,28 @@ def wetbulb_globe(
     elif wb_method == 'STULL':
         temp_psy = stull(temp_air, temp_dew)
     else:
-        raise Exception( f"Invalid option for 'wetbulb' : {wb_method}" )
+        raise Exception(f"Invalid option for 'wetbulb' : {wb_method}")
 
-    solar     = solar.to(   'watt/m**2'     ).magnitude
-    pres      = pres.to(    'hPa'           ).magnitude
-    temp_air  = temp_air.to('degree_Celsius').magnitude
-    temp_dew  = temp_dew.to('degree_Celsius').magnitude
+    solar = convert_units(solar, 'watt/m**2')
+    pres = convert_units(pres, 'hPa')
+    temp_air = convert_units(temp_air, 'degree_Celsius')
+    temp_dew = convert_units(temp_dew, 'degree_Celsius')
     speed2m, min_speed = adjust_speed_2m(
         speed,
         zspeed,
-        min_speed = min_speed,
+        min_speed=min_speed,
     )
 
     if (f_db is None) or (cosz is None):
-        solar = solar_parameters(datetime, lat, lon, solar, **kwargs )
+        solar = solar_parameters(datetime, lat, lon, solar, **kwargs)
         if cosz is None:
             cosz = solar[1]
         if f_db is None:
             f_db = solar[2]
         solar = solar[0]
 
-    f_db = np.clip(f_db, 0.0, 0.75) # Constrain direct beam portion of radiation to 75%
+    # Constrain direct beam portion of radiation to 75%
+    f_db = np.clip(f_db, 0.0, 0.75)
     temp_g = globe_temperature(
         temp_air,
         temp_dew,
@@ -334,19 +355,22 @@ def wetbulb_globe(
         cosz,
     )
 
-    temp_nwb  = nws_boyer(
+    temp_nwb = nws_boyer(
         temp_air,
         temp_psy,
-        solar*f_db,
+        solar * f_db,
         speed2m.to('meter per second').magnitude,
     )
 
     return {
-        'Tg'        : units.Quantity(temp_g, 'degree_Celsius'),
-        'Tpsy'      : units.Quantity(temp_psy, 'degree_Celsius'),
-        'Tnwb'      : units.Quantity(temp_nwb, 'degree_Celsius'), 
-        'Twbg'      : units.Quantity(0.7*temp_nwb + 0.2*temp_g + 0.1*temp_air, 'degree_Celsius'),
-        'solar'     : units.Quantity( solar, 'watt/m**2'),
-        'speed'     : speed2m.to('meter/second'),
-        'min_speed' : min_speed.to('meter/second'),
+        'Tg': units.Quantity(temp_g, 'degree_Celsius'),
+        'Tpsy': units.Quantity(temp_psy, 'degree_Celsius'),
+        'Tnwb': units.Quantity(temp_nwb, 'degree_Celsius'),
+        'Twbg': units.Quantity(
+            0.7 * temp_nwb + 0.2 * temp_g + 0.1 * temp_air,
+            'degree_Celsius',
+        ),
+        'solar': units.Quantity(solar, 'watt/m**2'),
+        'speed': speed2m.to('meter/second'),
+        'min_speed': min_speed.to('meter/second'),
     }
