@@ -126,38 +126,41 @@ Note that this value must be a unit-aware object.
 For more information about other keyword arguments, please refer to the function docstrings.
 
 ## Xarray Support
-Xarray DataArray objects are 'supported' for the main `wbgt` function; however, there is some work that the user will likely have to do.
-First, the DataArray objects MUST be unit aware objects; i.e., `metpy` integration is enabled/working correctly.
-Next, all dimensions of the data must be stacked as the algorithms currently only support 1-D arrays as input.
-Then, the DataArray (variables) can be passed to the function.
-The output data from the function can then be merged into the stacked Dataset and unstacked.
+Support for Xarray has been improved, with support for passing in a single `Dataset` containing all requred variables
+I have also implemented N-D suport, with reording of data handled internally in the package for computation; this is invisible to the user.
+
+One limitation that still exists is lazy computation; all data is loaded before any computation occurs.
+
+For data variable naming within the `Dataset`, the datetime, latitude, and longitude variables MUST have CF-compliant axis attributes (e.g., `{'axis': 'X'}` for longitude).
+This is done to ensure time and location values are parsed correctly regardless of name.
+For all other inputs (see table above), the variable in the `Dataset` MUST match the argument name.
 
 An example of this process is outlined below:
 
     import xarray as xr
     from metpy.calc import wind_speed
 
-    stackvar = 'stacked'
     dataset  = xr.open_dataset('/path/to/file.nc')
-    dataset  = dataset.stack(
-        {stackvar : list(dataset.dims)}
+
+    # Ensure that coordinates have proper axis attrs
+    dataset['time'].attrs['axis'] = 'T'
+    dataset['latitude'].attrs['axis'] = 'Y'
+    dataset['longitude'].attrs['axis'] = 'X'
+
+    # Ensure variables are named correctly and we have wind speed
+    dataset = dataset.rename(
+        ssrd='solar',
+        sp='pres',
+        t2m='temp_air',
+        d2m='temp_dew',
+    ).assign(
+        speed=wind_speed(dataset.u10, dataset.v10),
     )
 
     wetbulb_data = wbgt(
         'dimiceli',
-        dataset.time,
-        dataset.latitude.values,
-        dataset.longitude.values,
-        dataset.ssrd,
-        dataset.sp,
-        dataset.t2m,
-        dataset.d2m,
-        wind_speed(dataset.u10, dataset.v10),
+        dataset,
     )
-
-    dataset = dataset.assign(
-        {key : (stackvar, val) for key, val in wetbulb_data.items()}
-    ).unstack() 
 
 One major point to note is that the wind speed will likely need to be calculated from u- and v-components.
 To do this, use the `metpy.calc.wind_speed()` function to maintain unit information.

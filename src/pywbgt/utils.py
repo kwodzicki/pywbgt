@@ -5,7 +5,10 @@ Common utilities used across the pywbgt packge are found here
 
 """
 
+from typing import Union
+
 from pandas import to_datetime, to_timedelta, DatetimeIndex
+
 
 def datetime_adjust(datetime, gmt, avg):
     """
@@ -28,7 +31,7 @@ def datetime_adjust(datetime, gmt, avg):
     # time is in the middle of the sampling interval
     if avg is None:
         avg = 1.0
-    dt = to_timedelta( avg/2.0, 'minute')
+    dt = to_timedelta(avg / 2.0, 'minute')
 
     # If gmt is NOT None (i.e., it is set), then adjust the time delta
     if gmt is not None:
@@ -36,6 +39,7 @@ def datetime_adjust(datetime, gmt, avg):
 
     # Adjust time using time delta
     return datetime - dt
+
 
 def datetime_check(datetime):
     """
@@ -49,3 +53,16 @@ def datetime_check(datetime):
     return to_datetime(datetime)
 
 
+def convert_units(val: Union['DataArray', 'ndarray'], unit_str: str):
+
+    # If is an xarray object with metpy attribute
+    if hasattr(val, 'metpy'):
+        return (
+            val
+            .metpy
+            .convert_units(unit_str)
+            .metpy
+            .dequantify()
+        )
+
+    return val.to(unit_str).magnitude

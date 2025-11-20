@@ -3,7 +3,8 @@ Calculate various atmospheric properties
 
 """
 
-from numpy import exp, log
+from numpy import log
+
 
 def loglaw(velo_ref, z_ref, z_new=2.0, z_rough=0.1, zp_displace=0.0):
     """
@@ -12,7 +13,7 @@ def loglaw(velo_ref, z_ref, z_new=2.0, z_rough=0.1, zp_displace=0.0):
     Arguments:
         velo_ref (pint.Quanity) : Known velocity at height z_ref with units
             of velocity
-        z_ref (pint.Quanityt) : Reference height where velo_Ref is known with 
+        z_ref (pint.Quanityt) : Reference height where velo_Ref is known with
             units of distance
 
     Keyword arguments:
@@ -28,7 +29,7 @@ def loglaw(velo_ref, z_ref, z_new=2.0, z_rough=0.1, zp_displace=0.0):
     """
 
     return (
-      velo_ref.to('meters per second')
-      * log( (z_new-zp_displace)  / z_rough )
-      / log( (z_ref.to('meters').magnitude-zp_displace)  / z_rough )
+        velo_ref.to('meters per second')
+        * log((z_new - zp_displace) / z_rough)
+        / log((z_ref.to('meters').magnitude - zp_displace) / z_rough)
     )
