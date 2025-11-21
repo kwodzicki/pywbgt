@@ -226,7 +226,7 @@ def wbgt(method: str, *args, **kwargs):
         # to the coords object
         val = res.pop(key)
         attrs = {
-            'units': val.units,
+            'units': str(val.units),
             **ATTRS.get(key, {}),
         }
         coords = coords.assign(
