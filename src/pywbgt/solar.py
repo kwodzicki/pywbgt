@@ -7,11 +7,7 @@ National Renewable Energy Laboratory (NREL) Solar Position Algorithm (SPA).
 
 """
 
-import os
-os.environ['PVLIB_USE_NUMBA'] = '1'  # Force use of numba in pvlib.spa module
-
 import numpy as np
-from numba import njit, prange
 from pvlib import spa
 
 from .utils import datetime_adjust
@@ -124,7 +120,6 @@ def solar_parameters(
     )
 
 
-@njit(parallel=True)
 def _solar_parameters(
     unixtime,
     lat,
@@ -156,86 +151,179 @@ def _solar_parameters(
 
     """
 
-    cza = np.empty(unixtime.size, dtype=np.float32)
-    fdir = np.empty(unixtime.size, dtype=np.float32)
+    jd = spa.julian_day(unixtime)
+    jde = spa.julian_ephemeris_day(jd, delta_t)
+    jc = spa.julian_century(jd)
+    jce = spa.julian_ephemeris_century(jde)
+    jme = spa.julian_ephemeris_millennium(jce)
+    R = heliocentric_radius_vector(jme)
 
-    for i in prange(unixtime.size):
-        jd = spa.julian_day(unixtime[i])
-        jde = spa.julian_ephemeris_day(jd, delta_t)
-        jc = spa.julian_century(jd)
-        jce = spa.julian_ephemeris_century(jde)
-        jme = spa.julian_ephemeris_millennium(jce)
-        R = spa.heliocentric_radius_vector(jme)
+    L = heliocentric_longitude(jme)
+    B = heliocentric_latitude(jme)
+    Theta = spa.geocentric_longitude(L)
+    beta = spa.geocentric_latitude(B)
+    delta_psi, delta_epsilon = longitude_obliquity_nutation(
+        jce,
+        spa.mean_elongation(jce),
+        spa.mean_anomaly_sun(jce),
+        spa.mean_anomaly_moon(jce),
+        spa.moon_argument_latitude(jce),
+        spa.moon_ascending_longitude(jce),
+    )
 
-        L = spa.heliocentric_longitude(jme)
-        B = spa.heliocentric_latitude(jme)
-        Theta = spa.geocentric_longitude(L)
-        beta = spa.geocentric_latitude(B)
-        x0 = spa.mean_elongation(jce)
-        x1 = spa.mean_anomaly_sun(jce)
-        x2 = spa.mean_anomaly_moon(jce)
-        x3 = spa.moon_argument_latitude(jce)
-        x4 = spa.moon_ascending_longitude(jce)
+    epsilon = spa.true_ecliptic_obliquity(
+        spa.mean_ecliptic_obliquity(jme),
+        delta_epsilon,
+    )
+    delta_tau = spa.aberration_correction(R)
 
-        l_o_nutation = np.empty((2,))
-        spa.longitude_obliquity_nutation(jce, x0, x1, x2, x3, x4, l_o_nutation)
+    lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
+    v = spa.apparent_sidereal_time(
+        spa.mean_sidereal_time(jd, jc),
+        delta_psi,
+        epsilon,
+    )
 
-        delta_psi = l_o_nutation[0]
-        delta_epsilon = l_o_nutation[1]
-        epsilon0 = spa.mean_ecliptic_obliquity(jme)
-        epsilon = spa.true_ecliptic_obliquity(epsilon0, delta_epsilon)
-        delta_tau = spa.aberration_correction(R)
-        lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
-        v0 = spa.mean_sidereal_time(jd, jc)
-        v = spa.apparent_sidereal_time(v0, delta_psi, epsilon)
-        alpha = spa.geocentric_sun_right_ascension(lamd, epsilon, beta)
-        delta = spa.geocentric_sun_declination(lamd, epsilon, beta)
+    alpha = spa.geocentric_sun_right_ascension(lamd, epsilon, beta)
+    delta = spa.geocentric_sun_declination(lamd, epsilon, beta)
 
-        H = spa.local_hour_angle(v, lon[i], alpha)
-        xi = spa.equatorial_horizontal_parallax(R)
-        u = spa.uterm(lat[i])
-        x = spa.xterm(u, lat[i], elev[i])
-        y = spa.yterm(u, lat[i], elev[i])
-        delta_alpha = spa.parallax_sun_right_ascension(x, xi, H, delta)
-        delta_prime = spa.topocentric_sun_declination(
-            delta,
-            x,
-            y,
-            xi,
-            delta_alpha,
-            H,
-        )
-        H_prime = spa.topocentric_local_hour_angle(H, delta_alpha)
-        e0 = spa.topocentric_elevation_angle_without_atmosphere(
-            lat[i],
-            delta_prime,
-            H_prime,
-        )
-        delta_e = spa.atmospheric_refraction_correction(
-            pressure[i], temp[i], e0, atmos_refract,
-        )
+    H = spa.local_hour_angle(v, lon, alpha)
+    xi = spa.equatorial_horizontal_parallax(R)
+    u = spa.uterm(lat)
+    x = spa.xterm(u, lat, elev)
+    y = spa.yterm(u, lat, elev)
 
-        cza[i] = np.cos(
-            np.deg2rad(90.0 - spa.topocentric_elevation_angle(e0, delta_e))
-        )
+    delta_alpha = spa.parallax_sun_right_ascension(x, xi, H, delta)
+    delta_prime = spa.topocentric_sun_declination(
+        delta,
+        x,
+        y,
+        xi,
+        delta_alpha,
+        H,
+    )
+    e0 = spa.topocentric_elevation_angle_without_atmosphere(
+        lat,
+        delta_prime,
+        spa.topocentric_local_hour_angle(H, delta_alpha),
+    )
+    delta_e = spa.atmospheric_refraction_correction(
+        pressure, temp, e0, atmos_refract,
+    )
 
-        if (cza[i] < LILJEGREN_CZA_MIN):
-            solar[i] = 0.0
-            fdir[i] = 0.0
-        else:
-            toasolar = LILJEGREN_SOLAR_CONST * max(cza[i], 0.0) / R**2
+    cza = np.cos(
+        np.deg2rad(90.0 - spa.topocentric_elevation_angle(e0, delta_e))
+    )
 
-            # Limit maximum value of norm solar
-            normsolar = min(
-                solar[i] / toasolar,
-                LILJEGREN_NORMSOLAR_MAX,
+    fdir = np.zeros(cza.shape)
+    idx = cza >= LILJEGREN_CZA_MIN
+    if idx.any():
+        toasolar = LILJEGREN_SOLAR_CONST * cza[idx].clip(min=0.0) / R[idx]**2
+
+        # Limit maximum value of norm solar
+        normsolar = (solar[idx] / toasolar).clip(max=LILJEGREN_NORMSOLAR_MAX)
+
+        solar[idx] = normsolar * toasolar
+        iidx = normsolar > 0.0
+        if iidx.any():
+            _fdir = np.zeros(normsolar.shape)
+            _fdir[iidx] = np.exp(
+                3.0 - 1.34 * normsolar[iidx] - 1.65 / normsolar[iidx]
             )
+            fdir[idx] = _fdir
 
-            solar[i] = normsolar * toasolar
-            if normsolar > 0.0:
-                fdir[i] = np.exp(3.0 - 1.34 * normsolar - 1.65 / normsolar)
-                fdir[i] = max(min(fdir[i], 0.9), 0.0)
-            else:
-                fdir[i] = 0.0
+    solar[~idx] = 0
+    return solar, cza, fdir.clip(min=0.0, max=0.9)
 
-    return solar, cza, fdir
+
+def sum_mult_cos_add_mult(arr, x):
+    """From pvlib.spa, updates for array operations"""
+
+    nn = (1,) * x.ndim + arr.shape[:1]
+    return (
+        arr[:, 0].reshape(nn)
+        * np.cos(
+            arr[:, 1].reshape(nn)
+            + arr[:, 2].reshape(nn) * x.reshape(x.shape + (1,))
+        )
+    ).sum(axis=-1)
+
+
+def heliocentric_radius_vector(jme):
+    """From pvlib.spa, updates for array operations"""
+
+    r0 = sum_mult_cos_add_mult(spa.R0, jme)
+    r1 = sum_mult_cos_add_mult(spa.R1, jme)
+    r2 = sum_mult_cos_add_mult(spa.R2, jme)
+    r3 = sum_mult_cos_add_mult(spa.R3, jme)
+    r4 = sum_mult_cos_add_mult(spa.R4, jme)
+
+    return (r0 + r1 * jme + r2 * jme**2 + r3 * jme**3 + r4 * jme**4) / 10**8
+
+
+def heliocentric_longitude(jme):
+    """From pvlib.spa, updates for array operations"""
+
+    l0 = sum_mult_cos_add_mult(spa.L0, jme)
+    l1 = sum_mult_cos_add_mult(spa.L1, jme)
+    l2 = sum_mult_cos_add_mult(spa.L2, jme)
+    l3 = sum_mult_cos_add_mult(spa.L3, jme)
+    l4 = sum_mult_cos_add_mult(spa.L4, jme)
+    l5 = sum_mult_cos_add_mult(spa.L5, jme)
+
+    l_rad = (
+        l0 + l1 * jme + l2 * jme**2 + l3 * jme**3 + l4 * jme**4
+        + l5 * jme**5
+    ) / 10**8
+    return np.rad2deg(l_rad) % 360
+
+
+def heliocentric_latitude(jme):
+    """From pvlib.spa, updates for array operations"""
+
+    b0 = sum_mult_cos_add_mult(spa.B0, jme)
+    b1 = sum_mult_cos_add_mult(spa.B1, jme)
+
+    b_rad = (b0 + b1 * jme) / 10**8
+    return np.rad2deg(b_rad)
+
+
+def longitude_obliquity_nutation(
+    julian_ephemeris_century,
+    x0,
+    x1,
+    x2,
+    x3,
+    x4,
+):
+    """From pvlib.spa, updates for array operations"""
+
+    nn = (
+        (1,) * julian_ephemeris_century.ndim
+        + spa.NUTATION_YTERM_ARRAY.shape[:1]
+    )
+    mm = julian_ephemeris_century.shape + (1,)
+
+    julian_ephemeris_century = julian_ephemeris_century.reshape(mm)
+
+    a = spa.NUTATION_ABCD_ARRAY[:, 0].reshape(nn)
+    b = spa.NUTATION_ABCD_ARRAY[:, 1].reshape(nn)
+    c = spa.NUTATION_ABCD_ARRAY[:, 2].reshape(nn)
+    d = spa.NUTATION_ABCD_ARRAY[:, 3].reshape(nn)
+
+    arg = np.radians(
+        spa.NUTATION_YTERM_ARRAY[:, 0].reshape(nn) * x0.reshape(mm)
+        + spa.NUTATION_YTERM_ARRAY[:, 1].reshape(nn) * x1.reshape(mm)
+        + spa.NUTATION_YTERM_ARRAY[:, 2].reshape(nn) * x2.reshape(mm)
+        + spa.NUTATION_YTERM_ARRAY[:, 3].reshape(nn) * x3.reshape(mm)
+        + spa.NUTATION_YTERM_ARRAY[:, 4].reshape(nn) * x4.reshape(mm)
+    )
+    delta_psi_sum = (
+        (a + b * julian_ephemeris_century) * np.sin(arg)
+    ).sum(axis=-1)
+
+    delta_eps_sum = (
+        (c + d * julian_ephemeris_century) * np.cos(arg)
+    ).sum(axis=-1)
+
+    return delta_psi_sum / 36000000, delta_eps_sum / 36000000

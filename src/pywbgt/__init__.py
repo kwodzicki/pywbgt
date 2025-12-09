@@ -6,6 +6,7 @@ temperature from standard meteorological variables.
 
 """
 
+import numpy as np
 import xarray as xr
 
 from .constants import METHODS
@@ -13,6 +14,9 @@ from .liljegren import wetbulb_globe as liljegrenWBGT
 from .bernard import wetbulb_globe as bernardWBGT
 from .dimiceli import wetbulb_globe as dimiceliWBGT
 from .dimiceli_nws import wetbulb_globe as dimiceli_nwsWBGT
+
+# Output order
+OUTPUT_ORDER = ('Tg', 'Tpsy', 'Tnwb', 'Twbg', 'solar', 'speed', 'min_speed')
 
 # Attributes for Dataset output
 ATTRS = {
@@ -52,7 +56,8 @@ ATTRS = {
 }
 
 
-def wbgt(method: str, *args, **kwargs):
+# def wbgt(method: str, *args, **kwargs):
+def wbgt(*args, method: str | None = None, **kwargs):
     """
     Estimate wet bulb globe temperature
 
@@ -111,7 +116,7 @@ def wbgt(method: str, *args, **kwargs):
             unit of distance. Valid for the Liljegren algorithm.
 
     Returns:
-        dict :
+        tuple : order of variables is as follows (see OUTPUT_ORDER)
             - Tg : Globe temperatures as Quantity
             - Tpsy : psychrometric wet bulb temperatures as Quantity
             - Tnwb : Natural wet bulb temperatures as Quantity
@@ -119,10 +124,15 @@ def wbgt(method: str, *args, **kwargs):
             - solar : Adjusted solar irradiance as Quantity.
             - speed : Estimated 2m wind speed as Quantity:
                 will be same as input if already 2m t
+            - min_speed
 
     """
 
-    method = method.lower()
+    if method is None:
+        method = 'liljegren'
+    else:
+        method = method.lower()
+
     if method not in METHODS:
         raise Exception(
             f'Unsupported WBGT method : {method}! Must be one of {METHODS}'
@@ -177,7 +187,8 @@ def wbgt(method: str, *args, **kwargs):
                 dims = arg.dims
 
             # Force a load of the variable and get the data
-            arg = arg.load().data
+            # arg = arg.load().data
+            arg = arg.data
 
         # Get a 1-D reference to the data and update in args list
         args[i] = arg.ravel()
@@ -196,7 +207,7 @@ def wbgt(method: str, *args, **kwargs):
         try:
             val = val.reshape(shape)
         except Exception:
-            continue
+            val = np.asarray(val)
 
         # If any input args were DataArray, then try to convert to DataArray
         if is_dataarray:
@@ -205,6 +216,7 @@ def wbgt(method: str, *args, **kwargs):
                     data=val,
                     dims=dims,
                     attrs=ATTRS.get(key, None),
+                    name=key,
                 )
             except Exception:
                 continue
@@ -214,7 +226,7 @@ def wbgt(method: str, *args, **kwargs):
 
     # If input was NOT a Dataset, then just return
     if not is_dataset:
-        return res
+        return tuple([res.get(key, None) for key in OUTPUT_ORDER])
 
     # Iterate over all keys again
     for key in tuple(res.keys()):
@@ -282,9 +294,11 @@ def parse_dataset(ds):
                 continue
             coords[cname] = cval.expand_dims({dname: dsize})
 
-    # Ensure are same shape
+    # Ensure are same shape and that data are contiguous
     for cname, cval in coords.items():
-        coords[cname] = cval.transpose(*ds['solar'].dims)
+        cval = cval.transpose(*ds['solar'].dims)
+        cval.data = np.ascontiguousarray(cval.data)
+        coords[cname] = cval
 
     return (
         coords['T'],
