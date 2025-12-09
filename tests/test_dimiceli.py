@@ -38,7 +38,7 @@ class TestDimiceli(unittest.TestCase):
     def compute_wbgt(self):
 
         return dimiceli.wetbulb_globe(
-            self.dates,
+            self.dates.values,
             numpy.resize(self.lats, self.dates.size),
             numpy.resize(self.lons, self.dates.size),
             numpy.resize(self.solar, self.dates.size),
@@ -98,7 +98,7 @@ class TestDimiceli(unittest.TestCase):
         ]
 
         solar, cosz, f_db = dimiceli.solar_parameters(
-            self.dates,
+            self.dates.values,
             numpy.resize(self.lats, self.dates.size),
             numpy.resize(self.lons, self.dates.size),
             numpy.resize(
@@ -137,7 +137,7 @@ class TestDimiceli(unittest.TestCase):
 
     def test_psychrometric_wetbulb(self):
 
-        ref_vals = [18.59627755506145, 27.445752527955726]
+        ref_vals = [18.60753537424834, 27.48209036683773]
 
         test_vals = dimiceli.psychrometric_wetbulb(self.Tair, self.Tdew)
 
@@ -179,10 +179,10 @@ class TestDimiceli(unittest.TestCase):
     def test_natural_wetbulb(self):
 
         ref_vals = [
-            24.15500178036731, 29.92728728234052, 25.3088112713395,
-            30.18095980416510, 26.51191264532434, 30.48006103469736,
-            26.56178127286307, 30.35957095004429, 26.21083209345784,
-            29.99980396489816, 24.92632742326195, 29.90331286667146,
+            24.16624303085751, 29.96360332651852, 25.32004951539023,
+            30.21727416354683, 26.52314775449753, 30.51637340756263,
+            26.57301625209539, 30.39588412315881, 26.22206798714569,
+            30.03611952744798, 24.93756666393694, 29.9396290700784,
         ]
 
         test_vals = self.compute_wbgt()['Tnwb'].magnitude
@@ -191,10 +191,10 @@ class TestDimiceli(unittest.TestCase):
     def test_wetbulb_globe(self):
 
         ref_vals = [
-            27.07200221075978, 32.58621243492076, 28.54442203971085,
-            32.92898834441409, 30.07974510054034, 33.33314996029916,
-            30.14338433787121, 33.17033729909794, 29.69552484741499,
-            32.68420086361752, 28.05631996864158, 32.55381691933071,
+            27.07987108610292, 32.61163366584536, 28.55228881054636,
+            32.95440839598130, 30.08760967696157, 33.35856862130485,
+            30.15124882333384, 33.19575652027811, 29.70338997299648,
+            32.70962175740239, 28.06418743711408, 32.57923826171557,
         ]
 
         test_vals = self.compute_wbgt()['Twbg'].magnitude

@@ -38,8 +38,8 @@ def malchaire(temp_air, temp_dew, temp_psy, temp_g):
         .magnitude
     )
     return (
-        (0.16 * (temp_g - temp_air) + 0.8) / 200.0 *
-        (560.0 - 2.0 * relhum - 5.0 * temp_air) - 0.8 + temp_psy
+        (0.16 * (temp_g - temp_air) + 0.8) / 200.0
+        * (560.0 - 2.0 * relhum - 5.0 * temp_air) - 0.8 + temp_psy
     )
 
 
@@ -94,9 +94,9 @@ def nws_boyer(temp_air, temp_psy, solar, speed):
     """
 
     return (
-        temp_psy +
-        0.001651 * solar -
-        0.09555 * speed +
-        0.13235 * (temp_air - temp_psy) +
-        0.20249
+        temp_psy
+        + 0.001651 * solar
+        - 0.09555 * speed
+        + 0.13235 * (temp_air - temp_psy)
+        + 0.20249
     )

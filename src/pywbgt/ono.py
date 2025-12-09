@@ -60,13 +60,13 @@ def ono(
     relhum = relative_humidity(temp_air, temp_dew) * 100.0
 
     wbgt = (
-        0.73500 * temp_air +
-        0.03740 * relhum +
-        0.00292 * temp_air * relhum +
-        7.61900 * solar -
-        4.55700 * solar**2 -
-        0.05720 * speed -
-        4.064
+        0.73500 * temp_air
+        + 0.03740 * relhum
+        + 0.00292 * temp_air * relhum
+        + 7.61900 * solar
+        - 4.55700 * solar**2
+        - 0.05720 * speed
+        - 4.064
     )
 
     return {

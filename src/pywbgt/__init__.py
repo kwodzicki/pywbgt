@@ -296,9 +296,7 @@ def parse_dataset(ds):
 
     # Ensure are same shape and that data are contiguous
     for cname, cval in coords.items():
-        cval = cval.transpose(*ds['solar'].dims)
-        cval.data = np.ascontiguousarray(cval.data)
-        coords[cname] = cval
+        coords[cname] = cval.transpose(*ds['solar'].dims).copy()
 
     return (
         coords['T'],

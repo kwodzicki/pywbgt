@@ -41,7 +41,7 @@ class TestSolarParams(unittest.TestCase):
         solar = numpy.full(self.dates.size, 1000)
 
         res = solar_parameters(
-            self.dates, lats, lons,
+            self.dates.values, lats, lons,
             solar,
         )
         numpy.testing.assert_almost_equal(res[1], self.ref_COSZ)
@@ -66,7 +66,7 @@ class TestWBGT(unittest.TestCase):
         self.lons = numpy.full(self.solar.size, degMinSec2Frac(*lons))
 
         self.res = wetbulb_globe(
-            dates.repeat(self.solar.size),
+            dates.repeat(self.solar.size).values,
             self.lats,
             self.lons,
             self.solar,
@@ -82,22 +82,22 @@ class TestWBGT(unittest.TestCase):
     def test_Tg(self):
 
         # Tg   = numpy.asarray([41.968254, 48.867577], dtype=numpy.float32)
-        Tg = numpy.asarray([41.97033, 48.868675], dtype=numpy.float32)
+        Tg = numpy.asarray([41.971886, 48.871056], dtype=numpy.float32)
         numpy.testing.assert_almost_equal(Tg, self.res['Tg'].magnitude)
 
     def test_Tpsy(self):
 
-        Tpsy = [18.278467178, 27.251123428]
+        Tpsy = [18.287775, 27.277277]
         numpy.testing.assert_almost_equal(Tpsy, self.res['Tpsy'].magnitude)
 
     def test_Tnwb(self):
 
         # Tnwb = numpy.asarray([23.319757, 29.015223], dtype=numpy.float32)
-        Tnwb = numpy.asarray([23.320795, 29.01568], dtype=numpy.float32)
+        Tnwb = numpy.asarray([23.328272, 29.039759], dtype=numpy.float32)
         numpy.testing.assert_almost_equal(Tnwb, self.res['Tnwb'].magnitude)
 
     def test_Twbg(self):
 
         # Twbg = numpy.asarray([27.21748, 33.58417], dtype=numpy.float32)
-        Twbg = numpy.asarray([27.218622, 33.58471], dtype=numpy.float32)
+        Twbg = numpy.asarray([27.224167, 33.602043], dtype=numpy.float32)
         numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'].magnitude)

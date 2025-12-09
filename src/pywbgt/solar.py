@@ -78,34 +78,33 @@ def solar_parameters(
 
     datetime = (
         datetime_adjust(datetime, gmt, avg)
-        .values
         .astype(np.int64)
     ) / 1.0e9
 
-    ntime = datetime.shape[0]
+    ntime = datetime.shape
 
     # If input latitude is only one (1) element, assume lon and urban are
     # also one (1) element and expand all to match size of data
     if lat.size <= 1:
-        lat = lat.repeat(ntime)
+        lat = np.full(ntime, lat)
 
     if lon.size <= 1:
-        lon = lon.repeat(ntime)
+        lon = np.full(ntime, lon)
 
     if elev is None:
         elev = np.full(ntime, ELEV)
     elif elev.size <= 1:
-        elev = elev.repeat(ntime)
+        elev = np.full(ntime, elev)
 
     if pressure is None:
         pressure = np.full(ntime, PRESSURE)
     elif pressure.size <= 1:
-        pressure = pressure.repeat(ntime)
+        pressure = np.full(ntime, pressure)
 
     if temp is None:
         temp = np.full(ntime, TEMP)
     elif temp.size <= 1:
-        temp = temp.repeat(ntime)
+        temp = np.full(ntime, temp)
 
     return _solar_parameters(
         datetime,
@@ -226,7 +225,7 @@ def _solar_parameters(
         solar[idx] = normsolar * toasolar
         iidx = normsolar > 0.0
         if iidx.any():
-            _fdir = np.zeros(normsolar.shape)
+            _fdir = np.zeros_like(normsolar)
             _fdir[iidx] = np.exp(
                 3.0 - 1.34 * normsolar[iidx] - 1.65 / normsolar[iidx]
             )

@@ -116,9 +116,9 @@ def atmospheric_vapor_pressure(temp_air, temp_dew, pres):
     """
 
     return (
-        np.exp((17.67 * (temp_dew - temp_air)) / (temp_dew + 243.5)) *
-        (1.0007 + 3.46e-6 * pres) *
-        6.112 * np.exp(17.502 * temp_air / (240.97 + temp_air))
+        np.exp((17.67 * (temp_dew - temp_air)) / (temp_dew + 243.5))
+        * (1.0007 + 3.46e-6 * pres)
+        * 6.112 * np.exp(17.502 * temp_air / (240.97 + temp_air))
     )
 
 
@@ -137,8 +137,8 @@ def thermal_emissivity(temp_air, temp_dew, pres):
     """
 
     return (
-        0.575 *
-        atmospheric_vapor_pressure(temp_air, temp_dew, pres)**(1.0 / 7.0)
+        0.575
+        * atmospheric_vapor_pressure(temp_air, temp_dew, pres)**(1.0 / 7.0)
     )
 
 
@@ -157,8 +157,8 @@ def factor_b(temp_air, temp_dew, pres, solar, f_db, cosz):
 
     f_dif = 1.0 - f_db
     return (
-        solar * (f_db / (4.0 * SIGMA * cosz) + 1.2 * f_dif / SIGMA) +
-        thermal_emissivity(temp_air, temp_dew, pres) * temp_air**4
+        solar * (f_db / (4.0 * SIGMA * cosz) + 1.2 * f_dif / SIGMA)
+        + thermal_emissivity(temp_air, temp_dew, pres) * temp_air**4
     )
 
 
@@ -246,9 +246,10 @@ def psychrometric_wetbulb(temp_air, temp_dew):
     relhum = relative_humidity(temp_air, temp_dew).to('percent').magnitude
     temp_air = temp_air.to('degC').magnitude
     return (
-        -5.806 + 0.672 * temp_air - 0.006 * temp_air**2 +
-        (0.061 + 0.004 * temp_air + 99.000e-6 * temp_air**2) * relhum +
-        (-33.000e-6 - 5.000e-6 * temp_air - 1.000e-7 * temp_air**2) * relhum**2
+        -5.806 + 0.672 * temp_air - 0.006 * temp_air**2
+        + (0.061 + 0.004 * temp_air + 99.000e-6 * temp_air**2) * relhum
+        + (-33.000e-6 - 5.000e-6 * temp_air - 1.000e-7 * temp_air**2)
+        * relhum**2
     )
 
 

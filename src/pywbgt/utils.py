@@ -7,7 +7,9 @@ Common utilities used across the pywbgt packge are found here
 
 from typing import Union
 
+import numpy as np
 from pandas import to_datetime, to_timedelta, DatetimeIndex
+from xarray import DataArray
 
 
 def datetime_adjust(datetime, gmt, avg):
@@ -26,7 +28,6 @@ def datetime_adjust(datetime, gmt, avg):
     """
 
     datetime = datetime_check(datetime)
-
     # Set default data averaging interval and compute time offset so that
     # time is in the middle of the sampling interval
     if avg is None:
@@ -47,7 +48,13 @@ def datetime_check(datetime):
 
     """
 
+    if isinstance(datetime, DataArray):
+        return datetime.values
+
     if isinstance(datetime, DatetimeIndex):
+        return datetime
+
+    if np.issubdtype(datetime.dtype, np.datetime64):
         return datetime
 
     return to_datetime(datetime)
