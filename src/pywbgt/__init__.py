@@ -217,7 +217,7 @@ def wbgt(*args, method: str | None = None, **kwargs):
                     dims=dims,
                     attrs=ATTRS.get(key, None),
                     name=key,
-                )
+                ).metpy.dequantify()
             except Exception:
                 continue
 
