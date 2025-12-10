@@ -48,11 +48,8 @@ def datetime_check(datetime):
 
     """
 
-    if isinstance(datetime, DataArray):
+    if isinstance(datetime, (DatetimeIndex, DataArray)):
         return datetime.values
-
-    if isinstance(datetime, DatetimeIndex):
-        return datetime
 
     if np.issubdtype(datetime.dtype, np.datetime64):
         return datetime
