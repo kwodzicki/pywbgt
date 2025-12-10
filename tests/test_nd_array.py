@@ -67,7 +67,6 @@ class TestNDArray(unittest.TestCase):
     def check_method(self, method):
 
         ref = pywbgt.wbgt(
-            method,
             self.ref_ds.t.data,
             self.ref_ds.y.data,
             self.ref_ds.x.data,
@@ -76,29 +75,67 @@ class TestNDArray(unittest.TestCase):
             self.ref_ds.temp_air.data,
             self.ref_ds.temp_dew.data,
             self.ref_ds.speed.data,
+            method=method,
         )
 
         ref = self.ref_ds.assign(
             {
                 key: (self.new_dim, val)
-                for key, val in ref.items()
-                if hasattr(val, 'shape')
+                for key, val in zip(pywbgt.OUTPUT_ORDER, ref)
+                if val.shape == ref[0].shape
             }
         ).unstack().metpy.dequantify()
 
-        res = pywbgt.wbgt(method, self.data).metpy.dequantify()
+        res = pywbgt.wbgt(self.data, method=method).metpy.dequantify()
 
         for var in res.data_vars:
             np.testing.assert_equal(res[var].values, ref[var].values)
 
     def test_liljegren(self):
+        """Test Liljegren method for multidim"""
         self.check_method('liljegren')
 
     def test_dimiceli(self):
+        """Test Dimiceli method for multidim"""
         self.check_method('dimiceli')
 
     def test_dimiceli_nws(self):
+        """Test Dimiceli NWS method for multidim"""
         self.check_method('dimiceli_nws')
 
     def test_bernard(self):
+        """Test Bernard method for multidim"""
         self.check_method('bernard')
+
+    def test_map_blocks(self):
+        """Test mapping blocks to function"""
+
+        method = 'liljegren'
+
+        ref = pywbgt.wbgt(
+            self.ref_ds.t.data,
+            self.ref_ds.y.data,
+            self.ref_ds.x.data,
+            self.ref_ds.solar.data,
+            self.ref_ds.pres.data,
+            self.ref_ds.temp_air.data,
+            self.ref_ds.temp_dew.data,
+            self.ref_ds.speed.data,
+            method=method,
+        )
+
+        ref = self.ref_ds.assign(
+            {
+                key: (self.new_dim, val)
+                for key, val in zip(pywbgt.OUTPUT_ORDER, ref)
+                if val.shape == ref[0].shape
+            }
+        ).unstack().metpy.dequantify()
+
+        res = self.data.map_blocks(
+            pywbgt.wbgt,
+            kwargs={'method': method},
+        ).metpy.dequantify()
+
+        for var in res.data_vars:
+            np.testing.assert_equal(res[var].values, ref[var].values)

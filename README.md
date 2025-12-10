@@ -59,7 +59,6 @@ A main `wbgt` function provides a simple API for calling any of the three WBGT a
 
     from pywbgt import wbgt
     vals = wbgt(
-        'liljegren',
         dates,
         latitudes,
         longitudes,
@@ -68,6 +67,7 @@ A main `wbgt` function provides a simple API for calling any of the three WBGT a
         temp_air,
         temp_dew,
         speed,
+        method='liljegren',
     )
  
 ## Input Variables and Unit Handling
@@ -112,7 +112,7 @@ For example:
 
     from metpy.units import units
     from pywbgt import wbgt
-    vals = wbgt('liljegren', datetime, lat, lon, ..., zspeed=units.Quantity(3, 'ft'))
+    vals = wbgt(datetime, lat, lon, ..., method='liljegren', zspeed=units.Quantity(3, 'ft'))
 
 Another useful keyword argument is `min_speed`, wherein the minimum speed allowed for the 2m-adjusted wind speeds is set.
 After adjusting wind speeds to 2m height, this value is use to clip the wind speeds so that none are below this value.
@@ -158,8 +158,8 @@ An example of this process is outlined below:
     )
 
     wetbulb_data = wbgt(
-        'dimiceli',
         dataset,
+        method='dimiceli',
     )
 
 One major point to note is that the wind speed will likely need to be calculated from u- and v-components.
@@ -178,11 +178,30 @@ To get to `Watt/m**2` units we can do the following:
 This ensures that the `ssrd` DataArray is explicitly tagged with units using the `.metpy.quantify()` method and then is divided by the accumulation time in seconds.
 It is important to note that this will give the average radiation over the entire accumulation period NOT the instanteous value measured at the given model/reanalysis time step.
 
+## Support for `map_blocks`
+This is a very powerful function/method that enables lazy/delayed compute of WBGT values.
+Using the example `Dataset` from above, we can call:
+
+    wetbulb_data = dataset.map_blocks(wbgt, kwargs={'method': 'liljegren'})
+
+where `wbgt` is the function to apply over blocks of data and `kwargs` enables passing keyword arguments to the function.
+This will take data one block (or chunk) at a time and pass it into the function for computation.
+See the `map_blocks` documentation for more information.
+
 # Solar position calculations
 The Liljegren code provides an algorithm for calculating solar position parameters; however, the algorithm is only valid from 1950 to 2050.
 To get around this limiation, the Python pvlib package is used to calculate the solar position using their implementation of the National Renewable Energy Laboratory Solar Postition Algorithm (SPA).
 The Python implementation of the SPA code is combined with the solar parameters code of the Liljegren algorithm to create a hybrid function for calculating the adjusted solar irradiance, cosine of solar zenith angle, and fraction of direct beam radiation.
 This new `solar_parameters()` function is used in all the included algorithms to compute the parameters requried to estimate WBGT.
+
+## Updates
+There have been some updates to the solar position calculations!
+The `numba` dependency has been removed and some of the `pvlib.spa` code has been ported/updated to enable array multiplication and summing for fast computation.
+There is no need to iterate over locations now, with everything handled through reshaping and broadcasting mechanics.
+
+Comparative tests for computation of `cza` using the native `pvlib.spa` code and the `numba` and new `numpy` based methods yields values within 7 decimals of each other, idicating everything is working properly.
+However, there are some very small differences in `cza` values, which lead to some updates to unittests to account for these very minor changes.
+Note that unit tests were failing out at 7-8 decimals of percision, so that was very minimal impact with these changes.
 
 # Notes on the algorithms
 
