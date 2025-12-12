@@ -8,6 +8,14 @@ National Renewable Energy Laboratory (NREL) Solar Position Algorithm (SPA).
 """
 
 import numpy as np
+cimport numpy as cnp
+
+from libc.math cimport cos, sin, M_PI
+import cython
+from cython.parallel cimport prange
+
+cnp.import_array()
+
 from pvlib import spa
 
 from .utils import datetime_adjust
@@ -75,6 +83,11 @@ def solar_parameters(
             - fraction of solar irradiance due to the direct beam
 
     """
+
+    assert datetime.ndim < 2
+    assert lat.ndim < 2
+    assert lon.ndim < 2
+    assert solar.ndim < 2
 
     datetime = (
         datetime_adjust(datetime, gmt, avg)
@@ -151,16 +164,19 @@ def _solar_parameters(
     """
 
     jd = spa.julian_day(unixtime)
-    jde = spa.julian_ephemeris_day(jd, delta_t)
-    jc = spa.julian_century(jd)
-    jce = spa.julian_ephemeris_century(jde)
+    jce = spa.julian_ephemeris_century(
+        spa.julian_ephemeris_day(jd, delta_t)
+    )
     jme = spa.julian_ephemeris_millennium(jce)
+
     R = heliocentric_radius_vector(jme)
 
-    L = heliocentric_longitude(jme)
-    B = heliocentric_latitude(jme)
-    Theta = spa.geocentric_longitude(L)
-    beta = spa.geocentric_latitude(B)
+    Theta = spa.geocentric_longitude(
+        heliocentric_longitude(jme)
+    )
+    beta = spa.geocentric_latitude(
+        heliocentric_latitude(jme)
+    )
     delta_psi, delta_epsilon = longitude_obliquity_nutation(
         jce,
         spa.mean_elongation(jce),
@@ -178,7 +194,7 @@ def _solar_parameters(
 
     lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
     v = spa.apparent_sidereal_time(
-        spa.mean_sidereal_time(jd, jc),
+        spa.mean_sidereal_time(jd, spa.julian_century(jd)),
         delta_psi,
         epsilon,
     )
@@ -235,94 +251,108 @@ def _solar_parameters(
     return solar, cza, fdir.clip(min=0.0, max=0.9)
 
 
-def sum_mult_cos_add_mult(arr, x):
-    """From pvlib.spa, updates for array operations"""
-
-    nn = (1,) * x.ndim + arr.shape[:1]
-    return (
-        arr[:, 0].reshape(nn)
-        * np.cos(
-            arr[:, 1].reshape(nn)
-            + arr[:, 2].reshape(nn) * x.reshape(x.shape + (1,))
-        )
-    ).sum(axis=-1)
-
-
 def heliocentric_radius_vector(jme):
     """From pvlib.spa, updates for array operations"""
 
-    r0 = sum_mult_cos_add_mult(spa.R0, jme)
-    r1 = sum_mult_cos_add_mult(spa.R1, jme)
-    r2 = sum_mult_cos_add_mult(spa.R2, jme)
-    r3 = sum_mult_cos_add_mult(spa.R3, jme)
-    r4 = sum_mult_cos_add_mult(spa.R4, jme)
-
-    return (r0 + r1 * jme + r2 * jme**2 + r3 * jme**3 + r4 * jme**4) / 10**8
+    res = sum_mult_cos_add_mult(spa.R0, jme)
+    res += sum_mult_cos_add_mult(spa.R1, jme) * jme
+    res += sum_mult_cos_add_mult(spa.R2, jme) * jme**2
+    res += sum_mult_cos_add_mult(spa.R3, jme) * jme**3
+    res += sum_mult_cos_add_mult(spa.R4, jme) * jme**4
+    return res / 10**8
 
 
 def heliocentric_longitude(jme):
     """From pvlib.spa, updates for array operations"""
 
-    l0 = sum_mult_cos_add_mult(spa.L0, jme)
-    l1 = sum_mult_cos_add_mult(spa.L1, jme)
-    l2 = sum_mult_cos_add_mult(spa.L2, jme)
-    l3 = sum_mult_cos_add_mult(spa.L3, jme)
-    l4 = sum_mult_cos_add_mult(spa.L4, jme)
-    l5 = sum_mult_cos_add_mult(spa.L5, jme)
+    res = sum_mult_cos_add_mult(spa.L0, jme)
+    res += sum_mult_cos_add_mult(spa.L1, jme) * jme
+    res += sum_mult_cos_add_mult(spa.L2, jme) * jme**2
+    res += sum_mult_cos_add_mult(spa.L3, jme) * jme**3
+    res += sum_mult_cos_add_mult(spa.L4, jme) * jme**4
+    res += sum_mult_cos_add_mult(spa.L5, jme) * jme**5
 
-    l_rad = (
-        l0 + l1 * jme + l2 * jme**2 + l3 * jme**3 + l4 * jme**4
-        + l5 * jme**5
-    ) / 10**8
-    return np.rad2deg(l_rad) % 360
+    return np.rad2deg(res / 10**8) % 360
 
 
 def heliocentric_latitude(jme):
     """From pvlib.spa, updates for array operations"""
 
-    b0 = sum_mult_cos_add_mult(spa.B0, jme)
-    b1 = sum_mult_cos_add_mult(spa.B1, jme)
+    res = sum_mult_cos_add_mult(spa.B0, jme)
+    res += sum_mult_cos_add_mult(spa.B1, jme) * jme
 
-    b_rad = (b0 + b1 * jme) / 10**8
-    return np.rad2deg(b_rad)
+    return np.rad2deg(res / 10**8)
 
 
+@cython.boundscheck(False)
+@cython.wraparound(False)
+@cython.initializedcheck(False)
+@cython.cdivision(True)
 def longitude_obliquity_nutation(
-    julian_ephemeris_century,
-    x0,
-    x1,
-    x2,
-    x3,
-    x4,
+    double[::1] jec,
+    double[::1] x0,
+    double[::1] x1,
+    double[::1] x2,
+    double[::1] x3,
+    double[::1] x4,
 ):
     """From pvlib.spa, updates for array operations"""
 
-    nn = (
-        (1,) * julian_ephemeris_century.ndim
-        + spa.NUTATION_YTERM_ARRAY.shape[:1]
+
+    cdef Py_ssize_t i, j
+    cdef Py_ssize_t n_arr = spa.NUTATION_YTERM_ARRAY.shape[0]
+    cdef Py_ssize_t n_x = jec.shape[0]
+    cdef double factor = 1.0 / 36000000
+    cdef double radians = M_PI / 180.0
+    cdef double arg
+    cdef double[:, ::1] abcd = spa.NUTATION_ABCD_ARRAY
+    cdef long[:, ::1] yterm = spa.NUTATION_YTERM_ARRAY
+
+    cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(
+        n_x, dtype=np.float64,
     )
-    mm = julian_ephemeris_century.shape + (1,)
-
-    julian_ephemeris_century = julian_ephemeris_century.reshape(mm)
-
-    a = spa.NUTATION_ABCD_ARRAY[:, 0].reshape(nn)
-    b = spa.NUTATION_ABCD_ARRAY[:, 1].reshape(nn)
-    c = spa.NUTATION_ABCD_ARRAY[:, 2].reshape(nn)
-    d = spa.NUTATION_ABCD_ARRAY[:, 3].reshape(nn)
-
-    arg = np.radians(
-        spa.NUTATION_YTERM_ARRAY[:, 0].reshape(nn) * x0.reshape(mm)
-        + spa.NUTATION_YTERM_ARRAY[:, 1].reshape(nn) * x1.reshape(mm)
-        + spa.NUTATION_YTERM_ARRAY[:, 2].reshape(nn) * x2.reshape(mm)
-        + spa.NUTATION_YTERM_ARRAY[:, 3].reshape(nn) * x3.reshape(mm)
-        + spa.NUTATION_YTERM_ARRAY[:, 4].reshape(nn) * x4.reshape(mm)
+    cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(
+        n_x, dtype=np.float64,
     )
-    delta_psi_sum = (
-        (a + b * julian_ephemeris_century) * np.sin(arg)
-    ).sum(axis=-1)
 
-    delta_eps_sum = (
-        (c + d * julian_ephemeris_century) * np.cos(arg)
-    ).sum(axis=-1)
+    # Parallel loop over each element in x
+    for i in prange(n_x, nogil=True):
+        arg = 0.0
+        for j in range(n_arr):
+            arg = radians * ( 
+                yterm[j, 0] * x0[i]
+                + yterm[j, 1] * x1[i]
+                + yterm[j, 2] * x2[i]
+                + yterm[j, 3] * x3[i]
+                + yterm[j, 4] * x4[i]
+            )
+            delta_psi[i] += (abcd[j, 0] + abcd[j, 1] * jec[i]) * sin(arg)
+            delta_eps[i] += (abcd[j, 2] + abcd[j, 3] * jec[i]) * cos(arg)
 
-    return delta_psi_sum / 36000000, delta_eps_sum / 36000000
+        delta_psi[i] *= factor
+        delta_eps[i] *= factor
+
+    return delta_psi, delta_eps
+
+
+@cython.boundscheck(False)
+@cython.wraparound(False)
+@cython.initializedcheck(False)
+def sum_mult_cos_add_mult(
+    double [:, ::1] arr,
+    cnp.ndarray[cnp.float64_t, ndim=1] x,
+):
+    cdef Py_ssize_t i, j
+    cdef Py_ssize_t n_arr = arr.shape[0]
+    cdef Py_ssize_t n_x = x.shape[0]
+    cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(
+        n_x, dtype=np.float64,
+    )
+
+    # Parallel loop over each element in x
+    for i in prange(n_x, nogil=True):
+        # Sum over all rows in arr
+        for j in range(n_arr):
+            res[i] += arr[j, 0] * cos(arr[j, 1] + arr[j, 2] * x[i])
+
+    return res

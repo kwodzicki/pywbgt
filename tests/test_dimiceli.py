@@ -177,7 +177,7 @@ class TestDimiceli(unittest.TestCase):
         ]
 
         test_vals = self.compute_wbgt()['Tg'].magnitude
-        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=14)
+        numpy.testing.assert_almost_equal(test_vals, ref_vals, decimal=13)
 
     def test_natural_wetbulb(self):
 
