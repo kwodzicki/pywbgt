@@ -3819,8 +3819,8 @@ static __pyx_mstatetype * const __pyx_mstate_global = &__pyx_mstate_global_stati
 #define __pyx_n_u_zeros __pyx_string_tab[256]
 #define __pyx_n_u_zeros_like __pyx_string_tab[257]
 #define __pyx_kp_b_iso88591_86_1_3fBa_3fBa_5_b_q_q_q_HA_s_1 __pyx_string_tab[258]
-#define __pyx_kp_b_iso88591_C_4F_1_V1A_Rq_r_s_c_8_fBa_8_fBa __pyx_string_tab[259]
-#define __pyx_kp_b_iso88591_CvQa_6_2_F_5_b_1A_E_aq_q_c_S_Qc __pyx_string_tab[260]
+#define __pyx_kp_b_iso88591_C_4F_1_V1A_Rq_r_s_c_8_V2Q_8_V2Q __pyx_string_tab[259]
+#define __pyx_kp_b_iso88591_CvQa_6_2_F_V2Q_1A_E_aq_q_c_S_Qc __pyx_string_tab[260]
 #define __pyx_kp_b_iso88591_Kq_a_Q_1_C_A_aq_3_Qa_1_1A_AQ_Qa __pyx_string_tab[261]
 #define __pyx_kp_b_iso88591_q_5_E_b_2XQd_a __pyx_string_tab[262]
 #define __pyx_kp_b_iso88591_q_5_E_b_E_b_2Q_E_b_2Q_E_b_2Q_4t __pyx_string_tab[263]
@@ -18940,7 +18940,7 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":33
+/* "pywbgt/solar.pyx":32
  * 
  * 
  * def solar_parameters(             # <<<<<<<<<<<<<<
@@ -18997,52 +18997,52 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_datetime,&__pyx_mstate_global->__pyx_n_u_lat,&__pyx_mstate_global->__pyx_n_u_lon,&__pyx_mstate_global->__pyx_n_u_solar,&__pyx_mstate_global->__pyx_n_u_gmt,&__pyx_mstate_global->__pyx_n_u_avg,&__pyx_mstate_global->__pyx_n_u_elev,&__pyx_mstate_global->__pyx_n_u_pressure,&__pyx_mstate_global->__pyx_n_u_temp,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 33, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 32, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "solar_parameters", 1) < (0)) __PYX_ERR(0, 33, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, __pyx_v_kwargs, values, kwd_pos_args, __pyx_kwds_len, "solar_parameters", 1) < (0)) __PYX_ERR(0, 32, __pyx_L3_error)
 
-      /* "pywbgt/solar.pyx":38
+      /* "pywbgt/solar.pyx":37
  *     lon,
  *     solar,
  *     gmt=None,             # <<<<<<<<<<<<<<
@@ -19051,7 +19051,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[4]) values[4] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":39
+      /* "pywbgt/solar.pyx":38
  *     solar,
  *     gmt=None,
  *     avg=None,             # <<<<<<<<<<<<<<
@@ -19060,7 +19060,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[5]) values[5] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":40
+      /* "pywbgt/solar.pyx":39
  *     gmt=None,
  *     avg=None,
  *     elev=None,             # <<<<<<<<<<<<<<
@@ -19069,7 +19069,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[6]) values[6] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":41
+      /* "pywbgt/solar.pyx":40
  *     avg=None,
  *     elev=None,
  *     pressure=None,             # <<<<<<<<<<<<<<
@@ -19078,7 +19078,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[7]) values[7] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":42
+      /* "pywbgt/solar.pyx":41
  *     elev=None,
  *     pressure=None,
  *     temp=None,             # <<<<<<<<<<<<<<
@@ -19087,44 +19087,44 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[8]) values[8] = __Pyx_NewRef(((PyObject *)Py_None));
       for (Py_ssize_t i = __pyx_nargs; i < 4; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 9, i); __PYX_ERR(0, 33, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 9, i); __PYX_ERR(0, 32, __pyx_L3_error) }
       }
     } else {
       switch (__pyx_nargs) {
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 32, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 32, __pyx_L3_error)
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 32, __pyx_L3_error)
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 32, __pyx_L3_error)
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 33, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 32, __pyx_L3_error)
         break;
         default: goto __pyx_L5_argtuple_error;
       }
 
-      /* "pywbgt/solar.pyx":38
+      /* "pywbgt/solar.pyx":37
  *     lon,
  *     solar,
  *     gmt=None,             # <<<<<<<<<<<<<<
@@ -19133,7 +19133,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[4]) values[4] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":39
+      /* "pywbgt/solar.pyx":38
  *     solar,
  *     gmt=None,
  *     avg=None,             # <<<<<<<<<<<<<<
@@ -19142,7 +19142,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[5]) values[5] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":40
+      /* "pywbgt/solar.pyx":39
  *     gmt=None,
  *     avg=None,
  *     elev=None,             # <<<<<<<<<<<<<<
@@ -19151,7 +19151,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[6]) values[6] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":41
+      /* "pywbgt/solar.pyx":40
  *     avg=None,
  *     elev=None,
  *     pressure=None,             # <<<<<<<<<<<<<<
@@ -19160,7 +19160,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 */
       if (!values[7]) values[7] = __Pyx_NewRef(((PyObject *)Py_None));
 
-      /* "pywbgt/solar.pyx":42
+      /* "pywbgt/solar.pyx":41
  *     elev=None,
  *     pressure=None,
  *     temp=None,             # <<<<<<<<<<<<<<
@@ -19181,7 +19181,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 9, __pyx_nargs); __PYX_ERR(0, 33, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("solar_parameters", 0, 4, 9, __pyx_nargs); __PYX_ERR(0, 32, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -19195,7 +19195,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __pyx_L4_argument_unpacking_done:;
   __pyx_r = __pyx_pf_6pywbgt_5solar_solar_parameters(__pyx_self, __pyx_v_datetime, __pyx_v_lat, __pyx_v_lon, __pyx_v_solar, __pyx_v_gmt, __pyx_v_avg, __pyx_v_elev, __pyx_v_pressure, __pyx_v_temp, __pyx_v_kwargs);
 
-  /* "pywbgt/solar.pyx":33
+  /* "pywbgt/solar.pyx":32
  * 
  * 
  * def solar_parameters(             # <<<<<<<<<<<<<<
@@ -19234,7 +19234,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   __Pyx_INCREF(__pyx_v_pressure);
   __Pyx_INCREF(__pyx_v_temp);
 
-  /* "pywbgt/solar.pyx":88
+  /* "pywbgt/solar.pyx":87
  *     """
  * 
  *     assert datetime.ndim < 2             # <<<<<<<<<<<<<<
@@ -19243,12 +19243,36 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
 */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(__pyx_assertions_enabled())) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 87, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    if (unlikely(!__pyx_t_3)) {
+      __Pyx_Raise(((PyObject *)(((PyTypeObject*)PyExc_AssertionError))), 0, 0, 0);
+      __PYX_ERR(0, 87, __pyx_L1_error)
+    }
+  }
+  #else
+  if ((1)); else __PYX_ERR(0, 87, __pyx_L1_error)
+  #endif
+
+  /* "pywbgt/solar.pyx":88
+ * 
+ *     assert datetime.ndim < 2
+ *     assert lat.ndim < 2             # <<<<<<<<<<<<<<
+ *     assert lon.ndim < 2
+ *     assert solar.ndim < 2
+*/
+  #ifndef CYTHON_WITHOUT_ASSERTIONS
+  if (unlikely(__pyx_assertions_enabled())) {
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 88, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (unlikely(!__pyx_t_3)) {
       __Pyx_Raise(((PyObject *)(((PyTypeObject*)PyExc_AssertionError))), 0, 0, 0);
       __PYX_ERR(0, 88, __pyx_L1_error)
@@ -19259,20 +19283,20 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   #endif
 
   /* "pywbgt/solar.pyx":89
- * 
  *     assert datetime.ndim < 2
- *     assert lat.ndim < 2             # <<<<<<<<<<<<<<
- *     assert lon.ndim < 2
+ *     assert lat.ndim < 2
+ *     assert lon.ndim < 2             # <<<<<<<<<<<<<<
  *     assert solar.ndim < 2
+ * 
 */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(__pyx_assertions_enabled())) {
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 89, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 89, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     if (unlikely(!__pyx_t_3)) {
       __Pyx_Raise(((PyObject *)(((PyTypeObject*)PyExc_AssertionError))), 0, 0, 0);
       __PYX_ERR(0, 89, __pyx_L1_error)
@@ -19283,20 +19307,20 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   #endif
 
   /* "pywbgt/solar.pyx":90
- *     assert datetime.ndim < 2
  *     assert lat.ndim < 2
- *     assert lon.ndim < 2             # <<<<<<<<<<<<<<
- *     assert solar.ndim < 2
+ *     assert lon.ndim < 2
+ *     assert solar.ndim < 2             # <<<<<<<<<<<<<<
  * 
+ *     datetime = (
 */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(__pyx_assertions_enabled())) {
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (unlikely(!__pyx_t_3)) {
       __Pyx_Raise(((PyObject *)(((PyTypeObject*)PyExc_AssertionError))), 0, 0, 0);
       __PYX_ERR(0, 90, __pyx_L1_error)
@@ -19306,31 +19330,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   if ((1)); else __PYX_ERR(0, 90, __pyx_L1_error)
   #endif
 
-  /* "pywbgt/solar.pyx":91
- *     assert lat.ndim < 2
- *     assert lon.ndim < 2
- *     assert solar.ndim < 2             # <<<<<<<<<<<<<<
- * 
- *     datetime = (
-*/
-  #ifndef CYTHON_WITHOUT_ASSERTIONS
-  if (unlikely(__pyx_assertions_enabled())) {
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_solar, __pyx_mstate_global->__pyx_n_u_ndim); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 91, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_mstate_global->__pyx_int_2, Py_LT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 91, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 91, __pyx_L1_error)
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_3)) {
-      __Pyx_Raise(((PyObject *)(((PyTypeObject*)PyExc_AssertionError))), 0, 0, 0);
-      __PYX_ERR(0, 91, __pyx_L1_error)
-    }
-  }
-  #else
-  if ((1)); else __PYX_ERR(0, 91, __pyx_L1_error)
-  #endif
-
-  /* "pywbgt/solar.pyx":94
+  /* "pywbgt/solar.pyx":93
  * 
  *     datetime = (
  *         datetime_adjust(datetime, gmt, avg)             # <<<<<<<<<<<<<<
@@ -19338,7 +19338,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *     ) / 1.0e9
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_datetime_adjust); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 94, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_datetime_adjust); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 93, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_7 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -19357,22 +19357,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_7, (4-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 93, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
   __pyx_t_2 = __pyx_t_4;
   __Pyx_INCREF(__pyx_t_2);
 
-  /* "pywbgt/solar.pyx":95
+  /* "pywbgt/solar.pyx":94
  *     datetime = (
  *         datetime_adjust(datetime, gmt, avg)
  *         .astype(np.int64)             # <<<<<<<<<<<<<<
  *     ) / 1.0e9
  * 
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_int64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_int64); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 94, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_7 = 0;
@@ -19382,51 +19382,51 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 94, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
 
-  /* "pywbgt/solar.pyx":96
+  /* "pywbgt/solar.pyx":95
  *         datetime_adjust(datetime, gmt, avg)
  *         .astype(np.int64)
  *     ) / 1.0e9             # <<<<<<<<<<<<<<
  * 
  *     ntime = datetime.shape
 */
-  __pyx_t_4 = __Pyx_PyFloat_TrueDivideObjC(__pyx_t_1, __pyx_mstate_global->__pyx_float_1_0e9, 1.0e9, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyFloat_TrueDivideObjC(__pyx_t_1, __pyx_mstate_global->__pyx_float_1_0e9, 1.0e9, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF_SET(__pyx_v_datetime, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":98
+  /* "pywbgt/solar.pyx":97
  *     ) / 1.0e9
  * 
  *     ntime = datetime.shape             # <<<<<<<<<<<<<<
  * 
  *     # If input latitude is only one (1) element, assume lon and urban are
 */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_mstate_global->__pyx_n_u_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_datetime, __pyx_mstate_global->__pyx_n_u_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_v_ntime = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":102
+  /* "pywbgt/solar.pyx":101
  *     # If input latitude is only one (1) element, assume lon and urban are
  *     # also one (1) element and expand all to match size of data
  *     if lat.size <= 1:             # <<<<<<<<<<<<<<
  *         lat = np.full(ntime, lat)
  * 
 */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_lat, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 101, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":103
+    /* "pywbgt/solar.pyx":102
  *     # also one (1) element and expand all to match size of data
  *     if lat.size <= 1:
  *         lat = np.full(ntime, lat)             # <<<<<<<<<<<<<<
@@ -19434,9 +19434,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *     if lon.size <= 1:
 */
     __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __pyx_t_7 = 1;
@@ -19456,13 +19456,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF_SET(__pyx_v_lat, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":102
+    /* "pywbgt/solar.pyx":101
  *     # If input latitude is only one (1) element, assume lon and urban are
  *     # also one (1) element and expand all to match size of data
  *     if lat.size <= 1:             # <<<<<<<<<<<<<<
@@ -19471,22 +19471,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
 */
   }
 
-  /* "pywbgt/solar.pyx":105
+  /* "pywbgt/solar.pyx":104
  *         lat = np.full(ntime, lat)
  * 
  *     if lon.size <= 1:             # <<<<<<<<<<<<<<
  *         lon = np.full(ntime, lon)
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_lon, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 105, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":106
+    /* "pywbgt/solar.pyx":105
  * 
  *     if lon.size <= 1:
  *         lon = np.full(ntime, lon)             # <<<<<<<<<<<<<<
@@ -19494,9 +19494,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *     if elev is None:
 */
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 106, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 105, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_7 = 1;
@@ -19516,13 +19516,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 105, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF_SET(__pyx_v_lon, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pywbgt/solar.pyx":105
+    /* "pywbgt/solar.pyx":104
  *         lat = np.full(ntime, lat)
  * 
  *     if lon.size <= 1:             # <<<<<<<<<<<<<<
@@ -19531,7 +19531,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
 */
   }
 
-  /* "pywbgt/solar.pyx":108
+  /* "pywbgt/solar.pyx":107
  *         lon = np.full(ntime, lon)
  * 
  *     if elev is None:             # <<<<<<<<<<<<<<
@@ -19541,7 +19541,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   __pyx_t_3 = (__pyx_v_elev == Py_None);
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":109
+    /* "pywbgt/solar.pyx":108
  * 
  *     if elev is None:
  *         elev = np.full(ntime, ELEV)             # <<<<<<<<<<<<<<
@@ -19549,12 +19549,12 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *         elev = np.full(ntime, elev)
 */
     __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_ELEV); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_ELEV); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 108, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -19574,13 +19574,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF_SET(__pyx_v_elev, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pywbgt/solar.pyx":108
+    /* "pywbgt/solar.pyx":107
  *         lon = np.full(ntime, lon)
  * 
  *     if elev is None:             # <<<<<<<<<<<<<<
@@ -19590,22 +19590,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
     goto __pyx_L5;
   }
 
-  /* "pywbgt/solar.pyx":110
+  /* "pywbgt/solar.pyx":109
  *     if elev is None:
  *         elev = np.full(ntime, ELEV)
  *     elif elev.size <= 1:             # <<<<<<<<<<<<<<
  *         elev = np.full(ntime, elev)
  * 
 */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_elev, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_elev, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 110, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":111
+    /* "pywbgt/solar.pyx":110
  *         elev = np.full(ntime, ELEV)
  *     elif elev.size <= 1:
  *         elev = np.full(ntime, elev)             # <<<<<<<<<<<<<<
@@ -19613,9 +19613,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *     if pressure is None:
 */
     __pyx_t_2 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 111, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 110, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_7 = 1;
@@ -19635,13 +19635,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 111, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
     __Pyx_DECREF_SET(__pyx_v_elev, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "pywbgt/solar.pyx":110
+    /* "pywbgt/solar.pyx":109
  *     if elev is None:
  *         elev = np.full(ntime, ELEV)
  *     elif elev.size <= 1:             # <<<<<<<<<<<<<<
@@ -19651,7 +19651,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   }
   __pyx_L5:;
 
-  /* "pywbgt/solar.pyx":113
+  /* "pywbgt/solar.pyx":112
  *         elev = np.full(ntime, elev)
  * 
  *     if pressure is None:             # <<<<<<<<<<<<<<
@@ -19661,7 +19661,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   __pyx_t_3 = (__pyx_v_pressure == Py_None);
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":114
+    /* "pywbgt/solar.pyx":113
  * 
  *     if pressure is None:
  *         pressure = np.full(ntime, PRESSURE)             # <<<<<<<<<<<<<<
@@ -19669,12 +19669,12 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *         pressure = np.full(ntime, pressure)
 */
     __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PRESSURE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_PRESSURE); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -19694,13 +19694,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 113, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
     }
     __Pyx_DECREF_SET(__pyx_v_pressure, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "pywbgt/solar.pyx":113
+    /* "pywbgt/solar.pyx":112
  *         elev = np.full(ntime, elev)
  * 
  *     if pressure is None:             # <<<<<<<<<<<<<<
@@ -19710,22 +19710,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
     goto __pyx_L6;
   }
 
-  /* "pywbgt/solar.pyx":115
+  /* "pywbgt/solar.pyx":114
  *     if pressure is None:
  *         pressure = np.full(ntime, PRESSURE)
  *     elif pressure.size <= 1:             # <<<<<<<<<<<<<<
  *         pressure = np.full(ntime, pressure)
  * 
 */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_pressure, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_pressure, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_4, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":116
+    /* "pywbgt/solar.pyx":115
  *         pressure = np.full(ntime, PRESSURE)
  *     elif pressure.size <= 1:
  *         pressure = np.full(ntime, pressure)             # <<<<<<<<<<<<<<
@@ -19733,9 +19733,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *     if temp is None:
 */
     __pyx_t_4 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 116, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 115, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_7 = 1;
@@ -19755,13 +19755,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF_SET(__pyx_v_pressure, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":115
+    /* "pywbgt/solar.pyx":114
  *     if pressure is None:
  *         pressure = np.full(ntime, PRESSURE)
  *     elif pressure.size <= 1:             # <<<<<<<<<<<<<<
@@ -19771,7 +19771,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   }
   __pyx_L6:;
 
-  /* "pywbgt/solar.pyx":118
+  /* "pywbgt/solar.pyx":117
  *         pressure = np.full(ntime, pressure)
  * 
  *     if temp is None:             # <<<<<<<<<<<<<<
@@ -19781,7 +19781,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   __pyx_t_3 = (__pyx_v_temp == Py_None);
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":119
+    /* "pywbgt/solar.pyx":118
  * 
  *     if temp is None:
  *         temp = np.full(ntime, TEMP)             # <<<<<<<<<<<<<<
@@ -19789,12 +19789,12 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *         temp = np.full(ntime, temp)
 */
     __pyx_t_5 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_TEMP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 119, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_TEMP); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_7 = 1;
     #if CYTHON_UNPACK_METHODS
@@ -19814,13 +19814,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 118, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __Pyx_DECREF_SET(__pyx_v_temp, __pyx_t_1);
     __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":118
+    /* "pywbgt/solar.pyx":117
  *         pressure = np.full(ntime, pressure)
  * 
  *     if temp is None:             # <<<<<<<<<<<<<<
@@ -19830,22 +19830,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
     goto __pyx_L7;
   }
 
-  /* "pywbgt/solar.pyx":120
+  /* "pywbgt/solar.pyx":119
  *     if temp is None:
  *         temp = np.full(ntime, TEMP)
  *     elif temp.size <= 1:             # <<<<<<<<<<<<<<
  *         temp = np.full(ntime, temp)
  * 
 */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_temp, __pyx_mstate_global->__pyx_n_u_size); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_mstate_global->__pyx_int_1, Py_LE); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 119, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "pywbgt/solar.pyx":121
+    /* "pywbgt/solar.pyx":120
  *         temp = np.full(ntime, TEMP)
  *     elif temp.size <= 1:
  *         temp = np.full(ntime, temp)             # <<<<<<<<<<<<<<
@@ -19853,9 +19853,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
  *     return _solar_parameters(
 */
     __pyx_t_1 = NULL;
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_full); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 120, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_7 = 1;
@@ -19875,13 +19875,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
       __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_5, __pyx_callargs+__pyx_t_7, (3-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
     }
     __Pyx_DECREF_SET(__pyx_v_temp, __pyx_t_2);
     __pyx_t_2 = 0;
 
-    /* "pywbgt/solar.pyx":120
+    /* "pywbgt/solar.pyx":119
  *     if temp is None:
  *         temp = np.full(ntime, TEMP)
  *     elif temp.size <= 1:             # <<<<<<<<<<<<<<
@@ -19891,7 +19891,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   }
   __pyx_L7:;
 
-  /* "pywbgt/solar.pyx":123
+  /* "pywbgt/solar.pyx":122
  *         temp = np.full(ntime, temp)
  * 
  *     return _solar_parameters(             # <<<<<<<<<<<<<<
@@ -19900,10 +19900,10 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_solar_parameters); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_solar_parameters); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "pywbgt/solar.pyx":130
+  /* "pywbgt/solar.pyx":129
  *         elev,
  *         pressure,
  *         temp,             # <<<<<<<<<<<<<<
@@ -19927,14 +19927,14 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_1, __pyx_callargs+__pyx_t_7, (10-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 122, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":33
+  /* "pywbgt/solar.pyx":32
  * 
  * 
  * def solar_parameters(             # <<<<<<<<<<<<<<
@@ -19964,7 +19964,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_solar_parameters(CYTHON_UNUSED PyObject
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":136
+/* "pywbgt/solar.pyx":135
  * 
  * 
  * def _solar_parameters(             # <<<<<<<<<<<<<<
@@ -20020,74 +20020,74 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_unixtime,&__pyx_mstate_global->__pyx_n_u_lat,&__pyx_mstate_global->__pyx_n_u_lon,&__pyx_mstate_global->__pyx_n_u_solar,&__pyx_mstate_global->__pyx_n_u_elev,&__pyx_mstate_global->__pyx_n_u_pressure,&__pyx_mstate_global->__pyx_n_u_temp,&__pyx_mstate_global->__pyx_n_u_delta_t,&__pyx_mstate_global->__pyx_n_u_atmos_refract,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 136, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 135, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  9:
         values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  8:
         values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  7:
         values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 136, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_solar_parameters", 0) < (0)) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "_solar_parameters", 0) < (0)) __PYX_ERR(0, 135, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 9; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_solar_parameters", 1, 9, 9, i); __PYX_ERR(0, 136, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("_solar_parameters", 1, 9, 9, i); __PYX_ERR(0, 135, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 9)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[6] = __Pyx_ArgRef_FASTCALL(__pyx_args, 6);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[6])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[7] = __Pyx_ArgRef_FASTCALL(__pyx_args, 7);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[7])) __PYX_ERR(0, 135, __pyx_L3_error)
       values[8] = __Pyx_ArgRef_FASTCALL(__pyx_args, 8);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 136, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[8])) __PYX_ERR(0, 135, __pyx_L3_error)
     }
     __pyx_v_unixtime = values[0];
     __pyx_v_lat = values[1];
@@ -20101,7 +20101,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_solar_parameters", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 136, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_solar_parameters", 1, 9, 9, __pyx_nargs); __PYX_ERR(0, 135, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -20174,7 +20174,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_solar_parameters", 0);
 
-  /* "pywbgt/solar.pyx":167
+  /* "pywbgt/solar.pyx":166
  *     """
  * 
  *     jd = spa.julian_day(unixtime)             # <<<<<<<<<<<<<<
@@ -20182,9 +20182,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         spa.julian_ephemeris_day(jd, delta_t)
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_julian_day); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 167, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_julian_day); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -20204,13 +20204,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_jd = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":168
+  /* "pywbgt/solar.pyx":167
  * 
  *     jd = spa.julian_day(unixtime)
  *     jce = spa.julian_ephemeris_century(             # <<<<<<<<<<<<<<
@@ -20218,13 +20218,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_julian_ephemeris_century); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 168, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_julian_ephemeris_century); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "pywbgt/solar.pyx":169
+  /* "pywbgt/solar.pyx":168
  *     jd = spa.julian_day(unixtime)
  *     jce = spa.julian_ephemeris_century(
  *         spa.julian_ephemeris_day(jd, delta_t)             # <<<<<<<<<<<<<<
@@ -20232,9 +20232,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     jme = spa.julian_ephemeris_millennium(jce)
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_julian_ephemeris_day); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 169, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_julian_ephemeris_day); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 168, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_5 = 1;
@@ -20254,7 +20254,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 169, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 168, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
   __pyx_t_5 = 1;
@@ -20275,13 +20275,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 168, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_jce = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":171
+  /* "pywbgt/solar.pyx":170
  *         spa.julian_ephemeris_day(jd, delta_t)
  *     )
  *     jme = spa.julian_ephemeris_millennium(jce)             # <<<<<<<<<<<<<<
@@ -20289,9 +20289,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     R = heliocentric_radius_vector(jme)
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_julian_ephemeris_millennium); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 171, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_julian_ephemeris_millennium); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 170, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_5 = 1;
@@ -20311,13 +20311,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 171, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 170, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_jme = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":173
+  /* "pywbgt/solar.pyx":172
  *     jme = spa.julian_ephemeris_millennium(jce)
  * 
  *     R = heliocentric_radius_vector(jme)             # <<<<<<<<<<<<<<
@@ -20325,7 +20325,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     Theta = spa.geocentric_longitude(
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_heliocentric_radius_vector); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 173, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_heliocentric_radius_vector); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 172, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -20344,13 +20344,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_3, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 173, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 172, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_R = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":175
+  /* "pywbgt/solar.pyx":174
  *     R = heliocentric_radius_vector(jme)
  * 
  *     Theta = spa.geocentric_longitude(             # <<<<<<<<<<<<<<
@@ -20358,13 +20358,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 174, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_geocentric_longitude); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 175, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_geocentric_longitude); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 174, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":176
+  /* "pywbgt/solar.pyx":175
  * 
  *     Theta = spa.geocentric_longitude(
  *         heliocentric_longitude(jme)             # <<<<<<<<<<<<<<
@@ -20372,7 +20372,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     beta = spa.geocentric_latitude(
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_heliocentric_longitude); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 176, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_heliocentric_longitude); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -20391,7 +20391,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_6, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 176, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 175, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
   __pyx_t_5 = 1;
@@ -20412,13 +20412,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 175, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 174, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_Theta = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":178
+  /* "pywbgt/solar.pyx":177
  *         heliocentric_longitude(jme)
  *     )
  *     beta = spa.geocentric_latitude(             # <<<<<<<<<<<<<<
@@ -20426,13 +20426,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_geocentric_latitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 178, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_geocentric_latitude); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 177, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":179
+  /* "pywbgt/solar.pyx":178
  *     )
  *     beta = spa.geocentric_latitude(
  *         heliocentric_latitude(jme)             # <<<<<<<<<<<<<<
@@ -20440,7 +20440,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     delta_psi, delta_epsilon = longitude_obliquity_nutation(
 */
   __pyx_t_6 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_heliocentric_latitude); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 179, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_heliocentric_latitude); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 178, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -20459,7 +20459,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 179, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 178, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
   __pyx_t_5 = 1;
@@ -20480,13 +20480,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 178, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 177, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_beta = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":181
+  /* "pywbgt/solar.pyx":180
  *         heliocentric_latitude(jme)
  *     )
  *     delta_psi, delta_epsilon = longitude_obliquity_nutation(             # <<<<<<<<<<<<<<
@@ -20494,10 +20494,10 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         spa.mean_elongation(jce),
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_longitude_obliquity_nutation); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_longitude_obliquity_nutation); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "pywbgt/solar.pyx":183
+  /* "pywbgt/solar.pyx":182
  *     delta_psi, delta_epsilon = longitude_obliquity_nutation(
  *         jce,
  *         spa.mean_elongation(jce),             # <<<<<<<<<<<<<<
@@ -20505,9 +20505,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         spa.mean_anomaly_moon(jce),
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_mean_elongation); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 183, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_mean_elongation); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 182, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_5 = 1;
@@ -20527,11 +20527,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_2 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 183, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 182, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
 
-  /* "pywbgt/solar.pyx":184
+  /* "pywbgt/solar.pyx":183
  *         jce,
  *         spa.mean_elongation(jce),
  *         spa.mean_anomaly_sun(jce),             # <<<<<<<<<<<<<<
@@ -20539,9 +20539,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         spa.moon_argument_latitude(jce),
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_mean_anomaly_sun); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 184, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_mean_anomaly_sun); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 183, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_5 = 1;
@@ -20561,11 +20561,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 184, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 183, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
   }
 
-  /* "pywbgt/solar.pyx":185
+  /* "pywbgt/solar.pyx":184
  *         spa.mean_elongation(jce),
  *         spa.mean_anomaly_sun(jce),
  *         spa.mean_anomaly_moon(jce),             # <<<<<<<<<<<<<<
@@ -20573,9 +20573,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         spa.moon_ascending_longitude(jce),
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_mean_anomaly_moon); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 185, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_mean_anomaly_moon); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 184, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_5 = 1;
@@ -20595,11 +20595,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_9 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 185, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 184, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
   }
 
-  /* "pywbgt/solar.pyx":186
+  /* "pywbgt/solar.pyx":185
  *         spa.mean_anomaly_sun(jce),
  *         spa.mean_anomaly_moon(jce),
  *         spa.moon_argument_latitude(jce),             # <<<<<<<<<<<<<<
@@ -20607,9 +20607,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_moon_argument_latitude); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 186, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_moon_argument_latitude); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 185, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_5 = 1;
@@ -20629,11 +20629,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_10 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 186, __pyx_L1_error)
+    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 185, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
   }
 
-  /* "pywbgt/solar.pyx":187
+  /* "pywbgt/solar.pyx":186
  *         spa.mean_anomaly_moon(jce),
  *         spa.moon_argument_latitude(jce),
  *         spa.moon_ascending_longitude(jce),             # <<<<<<<<<<<<<<
@@ -20641,9 +20641,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  * 
 */
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 187, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_moon_ascending_longitude); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 187, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_moon_ascending_longitude); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_5 = 1;
@@ -20663,7 +20663,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_11 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_12, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 187, __pyx_L1_error)
+    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 186, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
   }
   __pyx_t_5 = 1;
@@ -20688,7 +20688,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   if ((likely(PyTuple_CheckExact(__pyx_t_1))) || (PyList_CheckExact(__pyx_t_1))) {
@@ -20697,7 +20697,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     if (unlikely(size != 2)) {
       if (size > 2) __Pyx_RaiseTooManyValuesError(2);
       else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-      __PYX_ERR(0, 181, __pyx_L1_error)
+      __PYX_ERR(0, 180, __pyx_L1_error)
     }
     #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
     if (likely(PyTuple_CheckExact(sequence))) {
@@ -20707,22 +20707,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
       __Pyx_INCREF(__pyx_t_11);
     } else {
       __pyx_t_4 = __Pyx_PyList_GetItemRefFast(sequence, 0, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_4);
       __pyx_t_11 = __Pyx_PyList_GetItemRefFast(sequence, 1, __Pyx_ReferenceSharing_SharedReference);
-      if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 181, __pyx_L1_error)
+      if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 180, __pyx_L1_error)
       __Pyx_XGOTREF(__pyx_t_11);
     }
     #else
-    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 181, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_11 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 181, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     #endif
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
     Py_ssize_t index = -1;
-    __pyx_t_10 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 181, __pyx_L1_error)
+    __pyx_t_10 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 180, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __pyx_t_13 = (CYTHON_COMPILING_IN_LIMITED_API) ? PyIter_Next : __Pyx_PyObject_GetIterNextFunc(__pyx_t_10);
@@ -20730,7 +20730,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_GOTREF(__pyx_t_4);
     index = 1; __pyx_t_11 = __pyx_t_13(__pyx_t_10); if (unlikely(!__pyx_t_11)) goto __pyx_L3_unpacking_failed;
     __Pyx_GOTREF(__pyx_t_11);
-    if (__Pyx_IternextUnpackEndCheck(__pyx_t_13(__pyx_t_10), 2) < (0)) __PYX_ERR(0, 181, __pyx_L1_error)
+    if (__Pyx_IternextUnpackEndCheck(__pyx_t_13(__pyx_t_10), 2) < (0)) __PYX_ERR(0, 180, __pyx_L1_error)
     __pyx_t_13 = NULL;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     goto __pyx_L4_unpacking_done;
@@ -20738,11 +20738,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __pyx_t_13 = NULL;
     if (__Pyx_IterFinish() == 0) __Pyx_RaiseNeedMoreValuesError(index);
-    __PYX_ERR(0, 181, __pyx_L1_error)
+    __PYX_ERR(0, 180, __pyx_L1_error)
     __pyx_L4_unpacking_done:;
   }
 
-  /* "pywbgt/solar.pyx":181
+  /* "pywbgt/solar.pyx":180
  *         heliocentric_latitude(jme)
  *     )
  *     delta_psi, delta_epsilon = longitude_obliquity_nutation(             # <<<<<<<<<<<<<<
@@ -20754,7 +20754,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
   __pyx_v_delta_epsilon = __pyx_t_11;
   __pyx_t_11 = 0;
 
-  /* "pywbgt/solar.pyx":190
+  /* "pywbgt/solar.pyx":189
  *     )
  * 
  *     epsilon = spa.true_ecliptic_obliquity(             # <<<<<<<<<<<<<<
@@ -20762,13 +20762,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         delta_epsilon,
 */
   __pyx_t_11 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_true_ecliptic_obliquity); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_true_ecliptic_obliquity); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 189, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":191
+  /* "pywbgt/solar.pyx":190
  * 
  *     epsilon = spa.true_ecliptic_obliquity(
  *         spa.mean_ecliptic_obliquity(jme),             # <<<<<<<<<<<<<<
@@ -20776,9 +20776,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_9 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_mean_ecliptic_obliquity); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_mean_ecliptic_obliquity); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_5 = 1;
@@ -20798,11 +20798,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_4 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 191, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
 
-  /* "pywbgt/solar.pyx":192
+  /* "pywbgt/solar.pyx":191
  *     epsilon = spa.true_ecliptic_obliquity(
  *         spa.mean_ecliptic_obliquity(jme),
  *         delta_epsilon,             # <<<<<<<<<<<<<<
@@ -20827,13 +20827,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 189, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_epsilon = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":194
+  /* "pywbgt/solar.pyx":193
  *         delta_epsilon,
  *     )
  *     delta_tau = spa.aberration_correction(R)             # <<<<<<<<<<<<<<
@@ -20841,9 +20841,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_aberration_correction); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 194, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_aberration_correction); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 193, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
@@ -20863,13 +20863,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_delta_tau = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":196
+  /* "pywbgt/solar.pyx":195
  *     delta_tau = spa.aberration_correction(R)
  * 
  *     lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)             # <<<<<<<<<<<<<<
@@ -20877,9 +20877,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         spa.mean_sidereal_time(jd, spa.julian_century(jd)),
 */
   __pyx_t_11 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_apparent_sun_longitude); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 196, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_apparent_sun_longitude); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 195, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_5 = 1;
@@ -20899,13 +20899,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_lamd = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":197
+  /* "pywbgt/solar.pyx":196
  * 
  *     lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
  *     v = spa.apparent_sidereal_time(             # <<<<<<<<<<<<<<
@@ -20913,13 +20913,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         delta_psi,
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_apparent_sidereal_time); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 197, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_apparent_sidereal_time); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 196, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-  /* "pywbgt/solar.pyx":198
+  /* "pywbgt/solar.pyx":197
  *     lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
  *     v = spa.apparent_sidereal_time(
  *         spa.mean_sidereal_time(jd, spa.julian_century(jd)),             # <<<<<<<<<<<<<<
@@ -20927,15 +20927,15 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         epsilon,
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_mean_sidereal_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_mean_sidereal_time); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
-  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_julian_century); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 198, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_GetAttrStr(__pyx_t_12, __pyx_mstate_global->__pyx_n_u_julian_century); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 197, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
   __pyx_t_5 = 1;
@@ -20955,7 +20955,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_9 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_8, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 198, __pyx_L1_error)
+    if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
   }
   __pyx_t_5 = 1;
@@ -20976,11 +20976,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 198, __pyx_L1_error)
+    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 197, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
   }
 
-  /* "pywbgt/solar.pyx":200
+  /* "pywbgt/solar.pyx":199
  *         spa.mean_sidereal_time(jd, spa.julian_century(jd)),
  *         delta_psi,
  *         epsilon,             # <<<<<<<<<<<<<<
@@ -21005,13 +21005,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 196, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_v = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":203
+  /* "pywbgt/solar.pyx":202
  *     )
  * 
  *     alpha = spa.geocentric_sun_right_ascension(lamd, epsilon, beta)             # <<<<<<<<<<<<<<
@@ -21019,9 +21019,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  * 
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_geocentric_sun_right_ascension); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_geocentric_sun_right_ascension); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __pyx_t_5 = 1;
@@ -21041,13 +21041,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 202, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_alpha = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":204
+  /* "pywbgt/solar.pyx":203
  * 
  *     alpha = spa.geocentric_sun_right_ascension(lamd, epsilon, beta)
  *     delta = spa.geocentric_sun_declination(lamd, epsilon, beta)             # <<<<<<<<<<<<<<
@@ -21055,9 +21055,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     H = spa.local_hour_angle(v, lon, alpha)
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_geocentric_sun_declination); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 204, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_geocentric_sun_declination); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_5 = 1;
@@ -21077,13 +21077,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_delta = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":206
+  /* "pywbgt/solar.pyx":205
  *     delta = spa.geocentric_sun_declination(lamd, epsilon, beta)
  * 
  *     H = spa.local_hour_angle(v, lon, alpha)             # <<<<<<<<<<<<<<
@@ -21091,9 +21091,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     u = spa.uterm(lat)
 */
   __pyx_t_11 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_local_hour_angle); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 206, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_local_hour_angle); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 205, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
@@ -21113,13 +21113,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_H = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":207
+  /* "pywbgt/solar.pyx":206
  * 
  *     H = spa.local_hour_angle(v, lon, alpha)
  *     xi = spa.equatorial_horizontal_parallax(R)             # <<<<<<<<<<<<<<
@@ -21127,9 +21127,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     x = spa.xterm(u, lat, elev)
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_equatorial_horizontal_parallax); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 207, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_equatorial_horizontal_parallax); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 206, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __pyx_t_5 = 1;
@@ -21149,13 +21149,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 206, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_xi = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":208
+  /* "pywbgt/solar.pyx":207
  *     H = spa.local_hour_angle(v, lon, alpha)
  *     xi = spa.equatorial_horizontal_parallax(R)
  *     u = spa.uterm(lat)             # <<<<<<<<<<<<<<
@@ -21163,9 +21163,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     y = spa.yterm(u, lat, elev)
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 208, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_uterm); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 208, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_uterm); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 207, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_5 = 1;
@@ -21185,13 +21185,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 207, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_u = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":209
+  /* "pywbgt/solar.pyx":208
  *     xi = spa.equatorial_horizontal_parallax(R)
  *     u = spa.uterm(lat)
  *     x = spa.xterm(u, lat, elev)             # <<<<<<<<<<<<<<
@@ -21199,9 +21199,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  * 
 */
   __pyx_t_11 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_xterm); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 209, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_xterm); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 208, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_5 = 1;
@@ -21221,13 +21221,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_x = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":210
+  /* "pywbgt/solar.pyx":209
  *     u = spa.uterm(lat)
  *     x = spa.xterm(u, lat, elev)
  *     y = spa.yterm(u, lat, elev)             # <<<<<<<<<<<<<<
@@ -21235,9 +21235,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     delta_alpha = spa.parallax_sun_right_ascension(x, xi, H, delta)
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_yterm); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 210, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_yterm); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
   __pyx_t_5 = 1;
@@ -21257,13 +21257,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_5, (4-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_y = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":212
+  /* "pywbgt/solar.pyx":211
  *     y = spa.yterm(u, lat, elev)
  * 
  *     delta_alpha = spa.parallax_sun_right_ascension(x, xi, H, delta)             # <<<<<<<<<<<<<<
@@ -21271,9 +21271,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         delta,
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_parallax_sun_right_ascension); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 212, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_parallax_sun_right_ascension); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 211, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   __pyx_t_5 = 1;
@@ -21293,13 +21293,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (5-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_delta_alpha = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":213
+  /* "pywbgt/solar.pyx":212
  * 
  *     delta_alpha = spa.parallax_sun_right_ascension(x, xi, H, delta)
  *     delta_prime = spa.topocentric_sun_declination(             # <<<<<<<<<<<<<<
@@ -21307,13 +21307,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         x,
 */
   __pyx_t_11 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_topocentric_sun_declination); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 213, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_topocentric_sun_declination); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 212, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":219
+  /* "pywbgt/solar.pyx":218
  *         xi,
  *         delta_alpha,
  *         H,             # <<<<<<<<<<<<<<
@@ -21337,13 +21337,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (7-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_delta_prime = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":221
+  /* "pywbgt/solar.pyx":220
  *         H,
  *     )
  *     e0 = spa.topocentric_elevation_angle_without_atmosphere(             # <<<<<<<<<<<<<<
@@ -21351,13 +21351,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *         delta_prime,
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_topocentric_elevation_angle_with); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_topocentric_elevation_angle_with); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 220, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-  /* "pywbgt/solar.pyx":224
+  /* "pywbgt/solar.pyx":223
  *         lat,
  *         delta_prime,
  *         spa.topocentric_local_hour_angle(H, delta_alpha),             # <<<<<<<<<<<<<<
@@ -21365,9 +21365,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     delta_e = spa.atmospheric_refraction_correction(
 */
   __pyx_t_7 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_topocentric_local_hour_angle); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_topocentric_local_hour_angle); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
   __pyx_t_5 = 1;
@@ -21387,7 +21387,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_11 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_2, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 224, __pyx_L1_error)
+    if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 223, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
   }
   __pyx_t_5 = 1;
@@ -21408,13 +21408,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 221, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 220, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_e0 = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":226
+  /* "pywbgt/solar.pyx":225
  *         spa.topocentric_local_hour_angle(H, delta_alpha),
  *     )
  *     delta_e = spa.atmospheric_refraction_correction(             # <<<<<<<<<<<<<<
@@ -21422,13 +21422,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_4 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_atmospheric_refraction_correctio); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_atmospheric_refraction_correctio); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 225, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
 
-  /* "pywbgt/solar.pyx":227
+  /* "pywbgt/solar.pyx":226
  *     )
  *     delta_e = spa.atmospheric_refraction_correction(
  *         pressure, temp, e0, atmos_refract,             # <<<<<<<<<<<<<<
@@ -21452,13 +21452,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_10, __pyx_callargs+__pyx_t_5, (5-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 226, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 225, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_delta_e = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":230
+  /* "pywbgt/solar.pyx":229
  *     )
  * 
  *     cza = np.cos(             # <<<<<<<<<<<<<<
@@ -21466,13 +21466,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     )
 */
   __pyx_t_10 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cos); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_cos); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 229, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_11);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":231
+  /* "pywbgt/solar.pyx":230
  * 
  *     cza = np.cos(
  *         np.deg2rad(90.0 - spa.topocentric_elevation_angle(e0, delta_e))             # <<<<<<<<<<<<<<
@@ -21480,15 +21480,15 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  * 
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_deg2rad); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_7, __pyx_mstate_global->__pyx_n_u_deg2rad); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_8 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_topocentric_elevation_angle); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_topocentric_elevation_angle); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = 1;
@@ -21508,10 +21508,10 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __pyx_t_7 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_12, __pyx_callargs+__pyx_t_5, (3-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
-    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 231, __pyx_L1_error)
+    if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 230, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_7);
   }
-  __pyx_t_12 = __Pyx_PyFloat_SubtractCObj(__pyx_mstate_global->__pyx_float_90_0, __pyx_t_7, 90.0, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 231, __pyx_L1_error)
+  __pyx_t_12 = __Pyx_PyFloat_SubtractCObj(__pyx_mstate_global->__pyx_float_90_0, __pyx_t_7, 90.0, 0, 0); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 230, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_12);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   __pyx_t_5 = 1;
@@ -21532,7 +21532,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 231, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 230, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
   __pyx_t_5 = 1;
@@ -21553,13 +21553,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 230, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 229, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_cza = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":234
+  /* "pywbgt/solar.pyx":233
  *     )
  * 
  *     fdir = np.zeros(cza.shape)             # <<<<<<<<<<<<<<
@@ -21567,12 +21567,12 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *     if idx.any():
 */
   __pyx_t_11 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_10 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cza, __pyx_mstate_global->__pyx_n_u_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 234, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_cza, __pyx_mstate_global->__pyx_n_u_shape); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 233, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -21592,27 +21592,27 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_fdir = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":235
+  /* "pywbgt/solar.pyx":234
  * 
  *     fdir = np.zeros(cza.shape)
  *     idx = cza >= LILJEGREN_CZA_MIN             # <<<<<<<<<<<<<<
  *     if idx.any():
  *         toasolar = LILJEGREN_SOLAR_CONST * cza[idx].clip(min=0.0) / R[idx]**2
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_LILJEGREN_CZA_MIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_LILJEGREN_CZA_MIN); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_10 = PyObject_RichCompare(__pyx_v_cza, __pyx_t_1, Py_GE); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_10 = PyObject_RichCompare(__pyx_v_cza, __pyx_t_1, Py_GE); __Pyx_XGOTREF(__pyx_t_10); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 234, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_idx = __pyx_t_10;
   __pyx_t_10 = 0;
 
-  /* "pywbgt/solar.pyx":236
+  /* "pywbgt/solar.pyx":235
  *     fdir = np.zeros(cza.shape)
  *     idx = cza >= LILJEGREN_CZA_MIN
  *     if idx.any():             # <<<<<<<<<<<<<<
@@ -21626,112 +21626,112 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
     PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
     __pyx_t_10 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_any, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 236, __pyx_L1_error)
+    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 235, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
   }
-  __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely((__pyx_t_14 < 0))) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_10); if (unlikely((__pyx_t_14 < 0))) __PYX_ERR(0, 235, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
   if (__pyx_t_14) {
 
-    /* "pywbgt/solar.pyx":237
+    /* "pywbgt/solar.pyx":236
  *     idx = cza >= LILJEGREN_CZA_MIN
  *     if idx.any():
  *         toasolar = LILJEGREN_SOLAR_CONST * cza[idx].clip(min=0.0) / R[idx]**2             # <<<<<<<<<<<<<<
  * 
  *         # Limit maximum value of norm solar
 */
-    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_LILJEGREN_SOLAR_CONST); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_10, __pyx_mstate_global->__pyx_n_u_LILJEGREN_SOLAR_CONST); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_v_cza, __pyx_v_idx); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_v_cza, __pyx_v_idx); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __pyx_t_4 = __pyx_t_11;
     __Pyx_INCREF(__pyx_t_4);
     __pyx_t_5 = 0;
     {
       PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_4, NULL};
-      __pyx_t_9 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 237, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_min, __pyx_mstate_global->__pyx_float_0_0, __pyx_t_9, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 237, __pyx_L1_error)
+      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_min, __pyx_mstate_global->__pyx_float_0_0, __pyx_t_9, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 236, __pyx_L1_error)
       __pyx_t_1 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_clip, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_9);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __pyx_t_11 = PyNumber_Multiply(__pyx_t_10, __pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_11 = PyNumber_Multiply(__pyx_t_10, __pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_R, __pyx_v_idx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetItem(__pyx_v_R, __pyx_v_idx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_10 = PyNumber_Power(__pyx_t_1, __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_10 = PyNumber_Power(__pyx_t_1, __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_11, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyNumber_Divide(__pyx_t_11, __pyx_t_10); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __pyx_v_toasolar = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":240
+    /* "pywbgt/solar.pyx":239
  * 
  *         # Limit maximum value of norm solar
  *         normsolar = (solar[idx] / toasolar).clip(max=LILJEGREN_NORMSOLAR_MAX)             # <<<<<<<<<<<<<<
  * 
  *         solar[idx] = normsolar * toasolar
 */
-    __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_v_solar, __pyx_v_idx); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetItem(__pyx_v_solar, __pyx_v_idx); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 239, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
-    __pyx_t_9 = __Pyx_PyNumber_Divide(__pyx_t_11, __pyx_v_toasolar); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __pyx_t_9 = __Pyx_PyNumber_Divide(__pyx_t_11, __pyx_v_toasolar); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 239, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_9);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __pyx_t_10 = __pyx_t_9;
     __Pyx_INCREF(__pyx_t_10);
-    __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_LILJEGREN_NORMSOLAR_MAX); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 240, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_11, __pyx_mstate_global->__pyx_n_u_LILJEGREN_NORMSOLAR_MAX); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 239, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __pyx_t_5 = 0;
     {
       PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_10, NULL};
-      __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_max, __pyx_t_11, __pyx_t_4, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 240, __pyx_L1_error)
+      if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_max, __pyx_t_11, __pyx_t_4, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 239, __pyx_L1_error)
       __pyx_t_1 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_clip, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_4);
       __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
       __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
     __pyx_v_normsolar = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":242
+    /* "pywbgt/solar.pyx":241
  *         normsolar = (solar[idx] / toasolar).clip(max=LILJEGREN_NORMSOLAR_MAX)
  * 
  *         solar[idx] = normsolar * toasolar             # <<<<<<<<<<<<<<
  *         iidx = normsolar > 0.0
  *         if iidx.any():
 */
-    __pyx_t_1 = PyNumber_Multiply(__pyx_v_normsolar, __pyx_v_toasolar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(__pyx_v_normsolar, __pyx_v_toasolar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (unlikely((PyObject_SetItem(__pyx_v_solar, __pyx_v_idx, __pyx_t_1) < 0))) __PYX_ERR(0, 242, __pyx_L1_error)
+    if (unlikely((PyObject_SetItem(__pyx_v_solar, __pyx_v_idx, __pyx_t_1) < 0))) __PYX_ERR(0, 241, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":243
+    /* "pywbgt/solar.pyx":242
  * 
  *         solar[idx] = normsolar * toasolar
  *         iidx = normsolar > 0.0             # <<<<<<<<<<<<<<
  *         if iidx.any():
  *             _fdir = np.zeros_like(normsolar)
 */
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_normsolar, __pyx_mstate_global->__pyx_float_0_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_normsolar, __pyx_mstate_global->__pyx_float_0_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L1_error)
     __pyx_v_iidx = __pyx_t_1;
     __pyx_t_1 = 0;
 
-    /* "pywbgt/solar.pyx":244
+    /* "pywbgt/solar.pyx":243
  *         solar[idx] = normsolar * toasolar
  *         iidx = normsolar > 0.0
  *         if iidx.any():             # <<<<<<<<<<<<<<
@@ -21745,14 +21745,14 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
       PyObject *__pyx_callargs[2] = {__pyx_t_9, NULL};
       __pyx_t_1 = __Pyx_PyObject_FastCallMethod((PyObject*)__pyx_mstate_global->__pyx_n_u_any, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
       __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 243, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
     }
-    __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_14 < 0))) __PYX_ERR(0, 244, __pyx_L1_error)
+    __pyx_t_14 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_14 < 0))) __PYX_ERR(0, 243, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_14) {
 
-      /* "pywbgt/solar.pyx":245
+      /* "pywbgt/solar.pyx":244
  *         iidx = normsolar > 0.0
  *         if iidx.any():
  *             _fdir = np.zeros_like(normsolar)             # <<<<<<<<<<<<<<
@@ -21760,9 +21760,9 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *                 3.0 - 1.34 * normsolar[iidx] - 1.65 / normsolar[iidx]
 */
       __pyx_t_9 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_zeros_like); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 245, __pyx_L1_error)
+      __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_zeros_like); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 244, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_11);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __pyx_t_5 = 1;
@@ -21782,13 +21782,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
         __pyx_t_1 = __Pyx_PyObject_FastCall((PyObject*)__pyx_t_11, __pyx_callargs+__pyx_t_5, (2-__pyx_t_5) | (__pyx_t_5*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET));
         __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 244, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
       __pyx_v__fdir = __pyx_t_1;
       __pyx_t_1 = 0;
 
-      /* "pywbgt/solar.pyx":246
+      /* "pywbgt/solar.pyx":245
  *         if iidx.any():
  *             _fdir = np.zeros_like(normsolar)
  *             _fdir[iidx] = np.exp(             # <<<<<<<<<<<<<<
@@ -21796,33 +21796,33 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
  *             )
 */
       __pyx_t_11 = NULL;
-      __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 246, __pyx_L1_error)
+      __Pyx_GetModuleGlobalName(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 246, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_9, __pyx_mstate_global->__pyx_n_u_exp); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
 
-      /* "pywbgt/solar.pyx":247
+      /* "pywbgt/solar.pyx":246
  *             _fdir = np.zeros_like(normsolar)
  *             _fdir[iidx] = np.exp(
  *                 3.0 - 1.34 * normsolar[iidx] - 1.65 / normsolar[iidx]             # <<<<<<<<<<<<<<
  *             )
  *             fdir[idx] = _fdir
 */
-      __pyx_t_9 = __Pyx_PyObject_GetItem(__pyx_v_normsolar, __pyx_v_iidx); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_GetItem(__pyx_v_normsolar, __pyx_v_iidx); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_10 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_1_34, __pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_10 = PyNumber_Multiply(__pyx_mstate_global->__pyx_float_1_34, __pyx_t_9); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-      __pyx_t_9 = __Pyx_PyFloat_SubtractCObj(__pyx_mstate_global->__pyx_float_3_0, __pyx_t_10, 3.0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyFloat_SubtractCObj(__pyx_mstate_global->__pyx_float_3_0, __pyx_t_10, 3.0, 0, 0); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_v_normsolar, __pyx_v_iidx); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_10 = __Pyx_PyObject_GetItem(__pyx_v_normsolar, __pyx_v_iidx); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
-      __pyx_t_12 = __Pyx_PyFloat_TrueDivideCObj(__pyx_mstate_global->__pyx_float_1_65, __pyx_t_10, 1.65, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_12 = __Pyx_PyFloat_TrueDivideCObj(__pyx_mstate_global->__pyx_float_1_65, __pyx_t_10, 1.65, 0, 1); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_12);
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-      __pyx_t_10 = PyNumber_Subtract(__pyx_t_9, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 247, __pyx_L1_error)
+      __pyx_t_10 = PyNumber_Subtract(__pyx_t_9, __pyx_t_12); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 246, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_10);
       __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
       __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
@@ -21844,30 +21844,30 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
         __Pyx_XDECREF(__pyx_t_11); __pyx_t_11 = 0;
         __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 246, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
       }
 
-      /* "pywbgt/solar.pyx":246
+      /* "pywbgt/solar.pyx":245
  *         if iidx.any():
  *             _fdir = np.zeros_like(normsolar)
  *             _fdir[iidx] = np.exp(             # <<<<<<<<<<<<<<
  *                 3.0 - 1.34 * normsolar[iidx] - 1.65 / normsolar[iidx]
  *             )
 */
-      if (unlikely((PyObject_SetItem(__pyx_v__fdir, __pyx_v_iidx, __pyx_t_1) < 0))) __PYX_ERR(0, 246, __pyx_L1_error)
+      if (unlikely((PyObject_SetItem(__pyx_v__fdir, __pyx_v_iidx, __pyx_t_1) < 0))) __PYX_ERR(0, 245, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "pywbgt/solar.pyx":249
+      /* "pywbgt/solar.pyx":248
  *                 3.0 - 1.34 * normsolar[iidx] - 1.65 / normsolar[iidx]
  *             )
  *             fdir[idx] = _fdir             # <<<<<<<<<<<<<<
  * 
  *     solar[~idx] = 0
 */
-      if (unlikely((PyObject_SetItem(__pyx_v_fdir, __pyx_v_idx, __pyx_v__fdir) < 0))) __PYX_ERR(0, 249, __pyx_L1_error)
+      if (unlikely((PyObject_SetItem(__pyx_v_fdir, __pyx_v_idx, __pyx_v__fdir) < 0))) __PYX_ERR(0, 248, __pyx_L1_error)
 
-      /* "pywbgt/solar.pyx":244
+      /* "pywbgt/solar.pyx":243
  *         solar[idx] = normsolar * toasolar
  *         iidx = normsolar > 0.0
  *         if iidx.any():             # <<<<<<<<<<<<<<
@@ -21876,7 +21876,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
 */
     }
 
-    /* "pywbgt/solar.pyx":236
+    /* "pywbgt/solar.pyx":235
  *     fdir = np.zeros(cza.shape)
  *     idx = cza >= LILJEGREN_CZA_MIN
  *     if idx.any():             # <<<<<<<<<<<<<<
@@ -21885,19 +21885,19 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
 */
   }
 
-  /* "pywbgt/solar.pyx":251
+  /* "pywbgt/solar.pyx":250
  *             fdir[idx] = _fdir
  * 
  *     solar[~idx] = 0             # <<<<<<<<<<<<<<
  *     return solar, cza, fdir.clip(min=0.0, max=0.9)
  * 
 */
-  __pyx_t_1 = PyNumber_Invert(__pyx_v_idx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Invert(__pyx_v_idx); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (unlikely((PyObject_SetItem(__pyx_v_solar, __pyx_t_1, __pyx_mstate_global->__pyx_int_0) < 0))) __PYX_ERR(0, 251, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(__pyx_v_solar, __pyx_t_1, __pyx_mstate_global->__pyx_int_0) < 0))) __PYX_ERR(0, 250, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":252
+  /* "pywbgt/solar.pyx":251
  * 
  *     solar[~idx] = 0
  *     return solar, cza, fdir.clip(min=0.0, max=0.9)             # <<<<<<<<<<<<<<
@@ -21910,32 +21910,32 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
   __pyx_t_5 = 0;
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 2 : 0)] = {__pyx_t_4, NULL};
-    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 252, __pyx_L1_error)
+    __pyx_t_10 = __Pyx_MakeVectorcallBuilderKwds(2); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 251, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_min, __pyx_mstate_global->__pyx_float_0_0, __pyx_t_10, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 252, __pyx_L1_error)
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_max, __pyx_mstate_global->__pyx_float_0_9, __pyx_t_10, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 252, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_min, __pyx_mstate_global->__pyx_float_0_0, __pyx_t_10, __pyx_callargs+1, 0) < (0)) __PYX_ERR(0, 251, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_max, __pyx_mstate_global->__pyx_float_0_9, __pyx_t_10, __pyx_callargs+1, 1) < (0)) __PYX_ERR(0, 251, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_VectorcallMethod_CallFromBuilder((PyObject*)__pyx_mstate_global->__pyx_n_u_clip, __pyx_callargs+__pyx_t_5, (1-__pyx_t_5) | (1*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_10);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 252, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_10 = PyTuple_New(3); if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 251, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_10);
   __Pyx_INCREF(__pyx_v_solar);
   __Pyx_GIVEREF(__pyx_v_solar);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_v_solar) != (0)) __PYX_ERR(0, 252, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 0, __pyx_v_solar) != (0)) __PYX_ERR(0, 251, __pyx_L1_error);
   __Pyx_INCREF(__pyx_v_cza);
   __Pyx_GIVEREF(__pyx_v_cza);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_v_cza) != (0)) __PYX_ERR(0, 252, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 1, __pyx_v_cza) != (0)) __PYX_ERR(0, 251, __pyx_L1_error);
   __Pyx_GIVEREF(__pyx_t_1);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_t_1) != (0)) __PYX_ERR(0, 252, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_10, 2, __pyx_t_1) != (0)) __PYX_ERR(0, 251, __pyx_L1_error);
   __pyx_t_1 = 0;
   __pyx_r = __pyx_t_10;
   __pyx_t_10 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":136
+  /* "pywbgt/solar.pyx":135
  * 
  * 
  * def _solar_parameters(             # <<<<<<<<<<<<<<
@@ -21994,7 +21994,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_2_solar_parameters(CYTHON_UNUSED PyObje
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":255
+/* "pywbgt/solar.pyx":254
  * 
  * 
  * def heliocentric_radius_vector(jme):             # <<<<<<<<<<<<<<
@@ -22042,32 +22042,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_jme,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 255, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 254, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 255, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 254, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "heliocentric_radius_vector", 0) < (0)) __PYX_ERR(0, 255, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "heliocentric_radius_vector", 0) < (0)) __PYX_ERR(0, 254, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("heliocentric_radius_vector", 1, 1, 1, i); __PYX_ERR(0, 255, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("heliocentric_radius_vector", 1, 1, 1, i); __PYX_ERR(0, 254, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 255, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 254, __pyx_L3_error)
     }
     __pyx_v_jme = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("heliocentric_radius_vector", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 255, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("heliocentric_radius_vector", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 254, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22103,7 +22103,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("heliocentric_radius_vector", 0);
 
-  /* "pywbgt/solar.pyx":258
+  /* "pywbgt/solar.pyx":257
  *     """From pvlib.spa, updates for array operations"""
  * 
  *     res = sum_mult_cos_add_mult(spa.R0, jme)             # <<<<<<<<<<<<<<
@@ -22111,11 +22111,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
  *     res += sum_mult_cos_add_mult(spa.R2, jme) * jme**2
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_R0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_R0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = 1;
@@ -22136,13 +22136,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_res = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":259
+  /* "pywbgt/solar.pyx":258
  * 
  *     res = sum_mult_cos_add_mult(spa.R0, jme)
  *     res += sum_mult_cos_add_mult(spa.R1, jme) * jme             # <<<<<<<<<<<<<<
@@ -22150,11 +22150,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
  *     res += sum_mult_cos_add_mult(spa.R3, jme) * jme**3
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_R1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_R1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = 1;
@@ -22175,19 +22175,19 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_jme); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_jme); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":260
+  /* "pywbgt/solar.pyx":259
  *     res = sum_mult_cos_add_mult(spa.R0, jme)
  *     res += sum_mult_cos_add_mult(spa.R1, jme) * jme
  *     res += sum_mult_cos_add_mult(spa.R2, jme) * jme**2             # <<<<<<<<<<<<<<
@@ -22195,11 +22195,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
  *     res += sum_mult_cos_add_mult(spa.R4, jme) * jme**4
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_R2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_R2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_6 = 1;
@@ -22220,22 +22220,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 259, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":261
+  /* "pywbgt/solar.pyx":260
  *     res += sum_mult_cos_add_mult(spa.R1, jme) * jme
  *     res += sum_mult_cos_add_mult(spa.R2, jme) * jme**2
  *     res += sum_mult_cos_add_mult(spa.R3, jme) * jme**3             # <<<<<<<<<<<<<<
@@ -22243,11 +22243,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
  *     return res / 10**8
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_R3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_R3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_6 = 1;
@@ -22268,22 +22268,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  __pyx_t_1 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_3, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_3, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":262
+  /* "pywbgt/solar.pyx":261
  *     res += sum_mult_cos_add_mult(spa.R2, jme) * jme**2
  *     res += sum_mult_cos_add_mult(spa.R3, jme) * jme**3
  *     res += sum_mult_cos_add_mult(spa.R4, jme) * jme**4             # <<<<<<<<<<<<<<
@@ -22291,11 +22291,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
  * 
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_R4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_R4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = 1;
@@ -22316,22 +22316,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 262, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 261, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_4, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_4, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 261, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":263
+  /* "pywbgt/solar.pyx":262
  *     res += sum_mult_cos_add_mult(spa.R3, jme) * jme**3
  *     res += sum_mult_cos_add_mult(spa.R4, jme) * jme**4
  *     return res / 10**8             # <<<<<<<<<<<<<<
@@ -22339,13 +22339,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
  * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_4 = __Pyx_PyLong_TrueDivideObjC(__pyx_v_res, __pyx_mstate_global->__pyx_int_100000000, 0x5f5e100, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_TrueDivideObjC(__pyx_v_res, __pyx_mstate_global->__pyx_int_100000000, 0x5f5e100, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 262, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":255
+  /* "pywbgt/solar.pyx":254
  * 
  * 
  * def heliocentric_radius_vector(jme):             # <<<<<<<<<<<<<<
@@ -22369,7 +22369,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_4heliocentric_radius_vector(CYTHON_UNUS
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":266
+/* "pywbgt/solar.pyx":265
  * 
  * 
  * def heliocentric_longitude(jme):             # <<<<<<<<<<<<<<
@@ -22417,32 +22417,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_jme,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 266, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 265, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 266, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 265, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "heliocentric_longitude", 0) < (0)) __PYX_ERR(0, 266, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "heliocentric_longitude", 0) < (0)) __PYX_ERR(0, 265, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("heliocentric_longitude", 1, 1, 1, i); __PYX_ERR(0, 266, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("heliocentric_longitude", 1, 1, 1, i); __PYX_ERR(0, 265, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 266, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 265, __pyx_L3_error)
     }
     __pyx_v_jme = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("heliocentric_longitude", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 266, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("heliocentric_longitude", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 265, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22478,7 +22478,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("heliocentric_longitude", 0);
 
-  /* "pywbgt/solar.pyx":269
+  /* "pywbgt/solar.pyx":268
  *     """From pvlib.spa, updates for array operations"""
  * 
  *     res = sum_mult_cos_add_mult(spa.L0, jme)             # <<<<<<<<<<<<<<
@@ -22486,11 +22486,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
  *     res += sum_mult_cos_add_mult(spa.L2, jme) * jme**2
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 268, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 268, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_L0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_L0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 268, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = 1;
@@ -22511,13 +22511,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 268, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_res = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":270
+  /* "pywbgt/solar.pyx":269
  * 
  *     res = sum_mult_cos_add_mult(spa.L0, jme)
  *     res += sum_mult_cos_add_mult(spa.L1, jme) * jme             # <<<<<<<<<<<<<<
@@ -22525,11 +22525,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
  *     res += sum_mult_cos_add_mult(spa.L3, jme) * jme**3
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_L1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_L1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = 1;
@@ -22550,19 +22550,19 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_jme); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_jme); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 269, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":271
+  /* "pywbgt/solar.pyx":270
  *     res = sum_mult_cos_add_mult(spa.L0, jme)
  *     res += sum_mult_cos_add_mult(spa.L1, jme) * jme
  *     res += sum_mult_cos_add_mult(spa.L2, jme) * jme**2             # <<<<<<<<<<<<<<
@@ -22570,11 +22570,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
  *     res += sum_mult_cos_add_mult(spa.L4, jme) * jme**4
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_L2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_L2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_6 = 1;
@@ -22595,22 +22595,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":272
+  /* "pywbgt/solar.pyx":271
  *     res += sum_mult_cos_add_mult(spa.L1, jme) * jme
  *     res += sum_mult_cos_add_mult(spa.L2, jme) * jme**2
  *     res += sum_mult_cos_add_mult(spa.L3, jme) * jme**3             # <<<<<<<<<<<<<<
@@ -22618,11 +22618,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
  *     res += sum_mult_cos_add_mult(spa.L5, jme) * jme**5
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_L3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_L3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_6 = 1;
@@ -22643,22 +22643,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 271, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  __pyx_t_1 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_3, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_3, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 271, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":273
+  /* "pywbgt/solar.pyx":272
  *     res += sum_mult_cos_add_mult(spa.L2, jme) * jme**2
  *     res += sum_mult_cos_add_mult(spa.L3, jme) * jme**3
  *     res += sum_mult_cos_add_mult(spa.L4, jme) * jme**4             # <<<<<<<<<<<<<<
@@ -22666,11 +22666,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
  * 
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_L4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_L4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = 1;
@@ -22691,22 +22691,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 272, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_4, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_4, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 272, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":274
+  /* "pywbgt/solar.pyx":273
  *     res += sum_mult_cos_add_mult(spa.L3, jme) * jme**3
  *     res += sum_mult_cos_add_mult(spa.L4, jme) * jme**4
  *     res += sum_mult_cos_add_mult(spa.L5, jme) * jme**5             # <<<<<<<<<<<<<<
@@ -22714,11 +22714,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
  *     return np.rad2deg(res / 10**8) % 360
 */
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_L5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_L5); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_6 = 1;
@@ -22739,22 +22739,22 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 274, __pyx_L1_error)
+    if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
   }
-  __pyx_t_1 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_5, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Power(__pyx_v_jme, __pyx_mstate_global->__pyx_int_5, Py_None); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_4, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 274, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 273, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":276
+  /* "pywbgt/solar.pyx":275
  *     res += sum_mult_cos_add_mult(spa.L5, jme) * jme**5
  * 
  *     return np.rad2deg(res / 10**8) % 360             # <<<<<<<<<<<<<<
@@ -22763,12 +22763,12 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_rad2deg); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_rad2deg); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyLong_TrueDivideObjC(__pyx_v_res, __pyx_mstate_global->__pyx_int_100000000, 0x5f5e100, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_TrueDivideObjC(__pyx_v_res, __pyx_mstate_global->__pyx_int_100000000, 0x5f5e100, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -22788,17 +22788,17 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 276, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 275, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_5 = __Pyx_PyLong_RemainderObjC(__pyx_t_1, __pyx_mstate_global->__pyx_int_360, 0x168, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 276, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyLong_RemainderObjC(__pyx_t_1, __pyx_mstate_global->__pyx_int_360, 0x168, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 275, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = __pyx_t_5;
   __pyx_t_5 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":266
+  /* "pywbgt/solar.pyx":265
  * 
  * 
  * def heliocentric_longitude(jme):             # <<<<<<<<<<<<<<
@@ -22822,7 +22822,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_6heliocentric_longitude(CYTHON_UNUSED P
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":279
+/* "pywbgt/solar.pyx":278
  * 
  * 
  * def heliocentric_latitude(jme):             # <<<<<<<<<<<<<<
@@ -22870,32 +22870,32 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_jme,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 279, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 278, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 279, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 278, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "heliocentric_latitude", 0) < (0)) __PYX_ERR(0, 279, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "heliocentric_latitude", 0) < (0)) __PYX_ERR(0, 278, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 1; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("heliocentric_latitude", 1, 1, 1, i); __PYX_ERR(0, 279, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("heliocentric_latitude", 1, 1, 1, i); __PYX_ERR(0, 278, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 279, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 278, __pyx_L3_error)
     }
     __pyx_v_jme = values[0];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("heliocentric_latitude", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 279, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("heliocentric_latitude", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 278, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -22931,7 +22931,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("heliocentric_latitude", 0);
 
-  /* "pywbgt/solar.pyx":282
+  /* "pywbgt/solar.pyx":281
  *     """From pvlib.spa, updates for array operations"""
  * 
  *     res = sum_mult_cos_add_mult(spa.B0, jme)             # <<<<<<<<<<<<<<
@@ -22939,11 +22939,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
  * 
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_B0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_B0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 281, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_6 = 1;
@@ -22964,13 +22964,13 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 281, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_v_res = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":283
+  /* "pywbgt/solar.pyx":282
  * 
  *     res = sum_mult_cos_add_mult(spa.B0, jme)
  *     res += sum_mult_cos_add_mult(spa.B1, jme) * jme             # <<<<<<<<<<<<<<
@@ -22978,11 +22978,11 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
  *     return np.rad2deg(res / 10**8)
 */
   __pyx_t_3 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_B1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_B1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_6 = 1;
@@ -23003,19 +23003,19 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
     __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_jme); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_5 = PyNumber_Multiply(__pyx_t_1, __pyx_v_jme); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 283, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_res, __pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 282, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF_SET(__pyx_v_res, __pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":285
+  /* "pywbgt/solar.pyx":284
  *     res += sum_mult_cos_add_mult(spa.B1, jme) * jme
  * 
  *     return np.rad2deg(res / 10**8)             # <<<<<<<<<<<<<<
@@ -23024,12 +23024,12 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
 */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_5 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_rad2deg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_mstate_global->__pyx_n_u_rad2deg); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyLong_TrueDivideObjC(__pyx_v_res, __pyx_mstate_global->__pyx_int_100000000, 0x5f5e100, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyLong_TrueDivideObjC(__pyx_v_res, __pyx_mstate_global->__pyx_int_100000000, 0x5f5e100, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 284, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = 1;
   #if CYTHON_UNPACK_METHODS
@@ -23049,14 +23049,14 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 285, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 284, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":279
+  /* "pywbgt/solar.pyx":278
  * 
  * 
  * def heliocentric_latitude(jme):             # <<<<<<<<<<<<<<
@@ -23080,7 +23080,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_8heliocentric_latitude(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":288
+/* "pywbgt/solar.pyx":287
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -23133,67 +23133,67 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_jec,&__pyx_mstate_global->__pyx_n_u_x0,&__pyx_mstate_global->__pyx_n_u_x1,&__pyx_mstate_global->__pyx_n_u_x2,&__pyx_mstate_global->__pyx_n_u_x3,&__pyx_mstate_global->__pyx_n_u_x4,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 288, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 287, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  6:
         values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 287, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  5:
         values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 287, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  4:
         values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 287, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 287, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 287, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 288, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 287, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "longitude_obliquity_nutation", 0) < (0)) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "longitude_obliquity_nutation", 0) < (0)) __PYX_ERR(0, 287, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 6; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("longitude_obliquity_nutation", 1, 6, 6, i); __PYX_ERR(0, 288, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("longitude_obliquity_nutation", 1, 6, 6, i); __PYX_ERR(0, 287, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 6)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 287, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 287, __pyx_L3_error)
       values[2] = __Pyx_ArgRef_FASTCALL(__pyx_args, 2);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[2])) __PYX_ERR(0, 287, __pyx_L3_error)
       values[3] = __Pyx_ArgRef_FASTCALL(__pyx_args, 3);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[3])) __PYX_ERR(0, 287, __pyx_L3_error)
       values[4] = __Pyx_ArgRef_FASTCALL(__pyx_args, 4);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[4])) __PYX_ERR(0, 287, __pyx_L3_error)
       values[5] = __Pyx_ArgRef_FASTCALL(__pyx_args, 5);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 288, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[5])) __PYX_ERR(0, 287, __pyx_L3_error)
     }
-    __pyx_v_jec = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_jec.memview)) __PYX_ERR(0, 293, __pyx_L3_error)
-    __pyx_v_x0 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x0.memview)) __PYX_ERR(0, 294, __pyx_L3_error)
-    __pyx_v_x1 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x1.memview)) __PYX_ERR(0, 295, __pyx_L3_error)
-    __pyx_v_x2 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[3], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x2.memview)) __PYX_ERR(0, 296, __pyx_L3_error)
-    __pyx_v_x3 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[4], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x3.memview)) __PYX_ERR(0, 297, __pyx_L3_error)
-    __pyx_v_x4 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[5], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x4.memview)) __PYX_ERR(0, 298, __pyx_L3_error)
+    __pyx_v_jec = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_jec.memview)) __PYX_ERR(0, 292, __pyx_L3_error)
+    __pyx_v_x0 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x0.memview)) __PYX_ERR(0, 293, __pyx_L3_error)
+    __pyx_v_x1 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[2], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x1.memview)) __PYX_ERR(0, 294, __pyx_L3_error)
+    __pyx_v_x2 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[3], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x2.memview)) __PYX_ERR(0, 295, __pyx_L3_error)
+    __pyx_v_x3 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[4], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x3.memview)) __PYX_ERR(0, 296, __pyx_L3_error)
+    __pyx_v_x4 = __Pyx_PyObject_to_MemoryviewSlice_dc_double(values[5], PyBUF_WRITABLE); if (unlikely(!__pyx_v_x4.memview)) __PYX_ERR(0, 297, __pyx_L3_error)
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("longitude_obliquity_nutation", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 288, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("longitude_obliquity_nutation", 1, 6, 6, __pyx_nargs); __PYX_ERR(0, 287, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23287,29 +23287,29 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
   __pyx_pybuffernd_delta_eps.data = NULL;
   __pyx_pybuffernd_delta_eps.rcbuffer = &__pyx_pybuffer_delta_eps;
 
-  /* "pywbgt/solar.pyx":304
+  /* "pywbgt/solar.pyx":303
  * 
  *     cdef Py_ssize_t i, j
  *     cdef Py_ssize_t n_arr = spa.NUTATION_YTERM_ARRAY.shape[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t n_x = jec.shape[0]
  *     cdef double factor = 1.0 / 36000000
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_NUTATION_YTERM_ARRAY); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_NUTATION_YTERM_ARRAY); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_GetItemInt(__pyx_t_1, 0, long, 1, __Pyx_PyLong_From_long, 0, 0, 0, 1, __Pyx_ReferenceSharing_OwnStrongReference); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 304, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyIndex_AsSsize_t(__pyx_t_2); if (unlikely((__pyx_t_3 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 303, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_n_arr = __pyx_t_3;
 
-  /* "pywbgt/solar.pyx":305
+  /* "pywbgt/solar.pyx":304
  *     cdef Py_ssize_t i, j
  *     cdef Py_ssize_t n_arr = spa.NUTATION_YTERM_ARRAY.shape[0]
  *     cdef Py_ssize_t n_x = jec.shape[0]             # <<<<<<<<<<<<<<
@@ -23318,7 +23318,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
 */
   __pyx_v_n_x = (__pyx_v_jec.shape[0]);
 
-  /* "pywbgt/solar.pyx":306
+  /* "pywbgt/solar.pyx":305
  *     cdef Py_ssize_t n_arr = spa.NUTATION_YTERM_ARRAY.shape[0]
  *     cdef Py_ssize_t n_x = jec.shape[0]
  *     cdef double factor = 1.0 / 36000000             # <<<<<<<<<<<<<<
@@ -23327,7 +23327,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
 */
   __pyx_v_factor = (1.0 / 36000000.0);
 
-  /* "pywbgt/solar.pyx":307
+  /* "pywbgt/solar.pyx":306
  *     cdef Py_ssize_t n_x = jec.shape[0]
  *     cdef double factor = 1.0 / 36000000
  *     cdef double radians = M_PI / 180.0             # <<<<<<<<<<<<<<
@@ -23336,55 +23336,63 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
 */
   __pyx_v_radians = (((double)M_PI) / 180.0);
 
-  /* "pywbgt/solar.pyx":309
+  /* "pywbgt/solar.pyx":308
  *     cdef double radians = M_PI / 180.0
  *     cdef double arg
  *     cdef double[:, ::1] abcd = spa.NUTATION_ABCD_ARRAY             # <<<<<<<<<<<<<<
  *     cdef long[:, ::1] yterm = spa.NUTATION_YTERM_ARRAY
  * 
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_NUTATION_ABCD_ARRAY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_mstate_global->__pyx_n_u_NUTATION_ABCD_ARRAY); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(0, 309, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(__pyx_t_1, PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(0, 308, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_abcd = __pyx_t_4;
   __pyx_t_4.memview = NULL;
   __pyx_t_4.data = NULL;
 
-  /* "pywbgt/solar.pyx":310
+  /* "pywbgt/solar.pyx":309
  *     cdef double arg
  *     cdef double[:, ::1] abcd = spa.NUTATION_ABCD_ARRAY
  *     cdef long[:, ::1] yterm = spa.NUTATION_YTERM_ARRAY             # <<<<<<<<<<<<<<
  * 
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(n_x, dtype=np.float64)
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(
 */
-  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_spa); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_NUTATION_YTERM_ARRAY); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_mstate_global->__pyx_n_u_NUTATION_YTERM_ARRAY); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_long(__pyx_t_2, PyBUF_WRITABLE); if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 310, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_to_MemoryviewSlice_d_dc_long(__pyx_t_2, PyBUF_WRITABLE); if (unlikely(!__pyx_t_5.memview)) __PYX_ERR(0, 309, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_yterm = __pyx_t_5;
   __pyx_t_5.memview = NULL;
   __pyx_t_5.data = NULL;
 
-  /* "pywbgt/solar.pyx":312
+  /* "pywbgt/solar.pyx":311
  *     cdef long[:, ::1] yterm = spa.NUTATION_YTERM_ARRAY
  * 
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(n_x, dtype=np.float64)             # <<<<<<<<<<<<<<
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(n_x, dtype=np.float64)
- * 
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(             # <<<<<<<<<<<<<<
+ *         n_x, dtype=np.float64,
+ *     )
 */
   __pyx_t_1 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 312, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 311, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+
+  /* "pywbgt/solar.pyx":312
+ * 
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(
+ *         n_x, dtype=np.float64,             # <<<<<<<<<<<<<<
+ *     )
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(
+*/
   __pyx_t_6 = PyLong_FromSsize_t(__pyx_v_n_x); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 312, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
@@ -23406,48 +23414,64 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_1, __pyx_t_6};
-    __pyx_t_8 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 312, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 311, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_8);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_8, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 312, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_9, __pyx_t_8, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 311, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_7, __pyx_callargs+__pyx_t_10, (2-__pyx_t_10) | (__pyx_t_10*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_8);
     __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 312, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 311, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 312, __pyx_L1_error)
+
+  /* "pywbgt/solar.pyx":311
+ *     cdef long[:, ::1] yterm = spa.NUTATION_YTERM_ARRAY
+ * 
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(             # <<<<<<<<<<<<<<
+ *         n_x, dtype=np.float64,
+ *     )
+*/
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 311, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_delta_psi.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_delta_psi = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_delta_psi.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 312, __pyx_L1_error)
+      __PYX_ERR(0, 311, __pyx_L1_error)
     } else {__pyx_pybuffernd_delta_psi.diminfo[0].strides = __pyx_pybuffernd_delta_psi.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_delta_psi.diminfo[0].shape = __pyx_pybuffernd_delta_psi.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_delta_psi = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pywbgt/solar.pyx":313
- * 
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_psi = np.zeros(n_x, dtype=np.float64)
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(n_x, dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
- *     # Parallel loop over each element in x
+  /* "pywbgt/solar.pyx":314
+ *         n_x, dtype=np.float64,
+ *     )
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(             # <<<<<<<<<<<<<<
+ *         n_x, dtype=np.float64,
+ *     )
 */
   __pyx_t_7 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_t_8, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 314, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
-  __pyx_t_8 = PyLong_FromSsize_t(__pyx_v_n_x); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 313, __pyx_L1_error)
+
+  /* "pywbgt/solar.pyx":315
+ *     )
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(
+ *         n_x, dtype=np.float64,             # <<<<<<<<<<<<<<
+ *     )
+ * 
+*/
+  __pyx_t_8 = PyLong_FromSsize_t(__pyx_v_n_x); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 313, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 315, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_10 = 1;
@@ -23464,31 +23488,39 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_7, __pyx_t_8};
-    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 313, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 314, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 313, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_1, __pyx_t_6, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 314, __pyx_L1_error)
     __pyx_t_2 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_9, __pyx_callargs+__pyx_t_10, (2-__pyx_t_10) | (__pyx_t_10*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_6);
     __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
     __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 313, __pyx_L1_error)
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 314, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
   }
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 313, __pyx_L1_error)
+
+  /* "pywbgt/solar.pyx":314
+ *         n_x, dtype=np.float64,
+ *     )
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] delta_eps = np.zeros(             # <<<<<<<<<<<<<<
+ *         n_x, dtype=np.float64,
+ *     )
+*/
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 314, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_delta_eps.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_2), &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_delta_eps = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_delta_eps.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 313, __pyx_L1_error)
+      __PYX_ERR(0, 314, __pyx_L1_error)
     } else {__pyx_pybuffernd_delta_eps.diminfo[0].strides = __pyx_pybuffernd_delta_eps.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_delta_eps.diminfo[0].shape = __pyx_pybuffernd_delta_eps.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_delta_eps = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pywbgt/solar.pyx":316
+  /* "pywbgt/solar.pyx":319
  * 
  *     # Parallel loop over each element in x
  *     for i in prange(n_x, nogil=True):             # <<<<<<<<<<<<<<
@@ -23522,7 +23554,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                         {
                             __pyx_v_i = (Py_ssize_t)(0 + 1 * __pyx_t_11);
 
-                            /* "pywbgt/solar.pyx":317
+                            /* "pywbgt/solar.pyx":320
  *     # Parallel loop over each element in x
  *     for i in prange(n_x, nogil=True):
  *         arg = 0.0             # <<<<<<<<<<<<<<
@@ -23531,7 +23563,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
 */
                             __pyx_v_arg = 0.0;
 
-                            /* "pywbgt/solar.pyx":318
+                            /* "pywbgt/solar.pyx":321
  *     for i in prange(n_x, nogil=True):
  *         arg = 0.0
  *         for j in range(n_arr):             # <<<<<<<<<<<<<<
@@ -23543,7 +23575,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                             for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
                               __pyx_v_j = __pyx_t_15;
 
-                              /* "pywbgt/solar.pyx":320
+                              /* "pywbgt/solar.pyx":323
  *         for j in range(n_arr):
  *             arg = radians * (
  *                 yterm[j, 0] * x0[i]             # <<<<<<<<<<<<<<
@@ -23554,7 +23586,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               __pyx_t_17 = 0;
                               __pyx_t_18 = __pyx_v_i;
 
-                              /* "pywbgt/solar.pyx":321
+                              /* "pywbgt/solar.pyx":324
  *             arg = radians * (
  *                 yterm[j, 0] * x0[i]
  *                 + yterm[j, 1] * x1[i]             # <<<<<<<<<<<<<<
@@ -23565,7 +23597,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               __pyx_t_20 = 1;
                               __pyx_t_21 = __pyx_v_i;
 
-                              /* "pywbgt/solar.pyx":322
+                              /* "pywbgt/solar.pyx":325
  *                 yterm[j, 0] * x0[i]
  *                 + yterm[j, 1] * x1[i]
  *                 + yterm[j, 2] * x2[i]             # <<<<<<<<<<<<<<
@@ -23576,7 +23608,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               __pyx_t_23 = 2;
                               __pyx_t_24 = __pyx_v_i;
 
-                              /* "pywbgt/solar.pyx":323
+                              /* "pywbgt/solar.pyx":326
  *                 + yterm[j, 1] * x1[i]
  *                 + yterm[j, 2] * x2[i]
  *                 + yterm[j, 3] * x3[i]             # <<<<<<<<<<<<<<
@@ -23587,7 +23619,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               __pyx_t_26 = 3;
                               __pyx_t_27 = __pyx_v_i;
 
-                              /* "pywbgt/solar.pyx":324
+                              /* "pywbgt/solar.pyx":327
  *                 + yterm[j, 2] * x2[i]
  *                 + yterm[j, 3] * x3[i]
  *                 + yterm[j, 4] * x4[i]             # <<<<<<<<<<<<<<
@@ -23598,7 +23630,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               __pyx_t_29 = 4;
                               __pyx_t_30 = __pyx_v_i;
 
-                              /* "pywbgt/solar.pyx":319
+                              /* "pywbgt/solar.pyx":322
  *         arg = 0.0
  *         for j in range(n_arr):
  *             arg = radians * (             # <<<<<<<<<<<<<<
@@ -23607,7 +23639,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
 */
                               __pyx_v_arg = (__pyx_v_radians * ((((((*((long *) ( /* dim=1 */ ((char *) (((long *) ( /* dim=0 */ (__pyx_v_yterm.data + __pyx_t_16 * __pyx_v_yterm.strides[0]) )) + __pyx_t_17)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_x0.data) + __pyx_t_18)) )))) + ((*((long *) ( /* dim=1 */ ((char *) (((long *) ( /* dim=0 */ (__pyx_v_yterm.data + __pyx_t_19 * __pyx_v_yterm.strides[0]) )) + __pyx_t_20)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_x1.data) + __pyx_t_21)) ))))) + ((*((long *) ( /* dim=1 */ ((char *) (((long *) ( /* dim=0 */ (__pyx_v_yterm.data + __pyx_t_22 * __pyx_v_yterm.strides[0]) )) + __pyx_t_23)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_x2.data) + __pyx_t_24)) ))))) + ((*((long *) ( /* dim=1 */ ((char *) (((long *) ( /* dim=0 */ (__pyx_v_yterm.data + __pyx_t_25 * __pyx_v_yterm.strides[0]) )) + __pyx_t_26)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_x3.data) + __pyx_t_27)) ))))) + ((*((long *) ( /* dim=1 */ ((char *) (((long *) ( /* dim=0 */ (__pyx_v_yterm.data + __pyx_t_28 * __pyx_v_yterm.strides[0]) )) + __pyx_t_29)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_x4.data) + __pyx_t_30)) ))))));
 
-                              /* "pywbgt/solar.pyx":326
+                              /* "pywbgt/solar.pyx":329
  *                 + yterm[j, 4] * x4[i]
  *             )
  *             delta_psi[i] += (abcd[j, 0] + abcd[j, 1] * jec[i]) * sin(arg)             # <<<<<<<<<<<<<<
@@ -23622,7 +23654,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               __pyx_t_25 = __pyx_v_i;
                               *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_delta_psi.rcbuffer->pybuffer.buf, __pyx_t_25, __pyx_pybuffernd_delta_psi.diminfo[0].strides) += (((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_abcd.data + __pyx_t_30 * __pyx_v_abcd.strides[0]) )) + __pyx_t_29)) ))) + ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_abcd.data + __pyx_t_28 * __pyx_v_abcd.strides[0]) )) + __pyx_t_27)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_jec.data) + __pyx_t_26)) ))))) * sin(__pyx_v_arg));
 
-                              /* "pywbgt/solar.pyx":327
+                              /* "pywbgt/solar.pyx":330
  *             )
  *             delta_psi[i] += (abcd[j, 0] + abcd[j, 1] * jec[i]) * sin(arg)
  *             delta_eps[i] += (abcd[j, 2] + abcd[j, 3] * jec[i]) * cos(arg)             # <<<<<<<<<<<<<<
@@ -23638,7 +23670,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                               *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_delta_eps.rcbuffer->pybuffer.buf, __pyx_t_25, __pyx_pybuffernd_delta_eps.diminfo[0].strides) += (((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_abcd.data + __pyx_t_26 * __pyx_v_abcd.strides[0]) )) + __pyx_t_27)) ))) + ((*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_abcd.data + __pyx_t_28 * __pyx_v_abcd.strides[0]) )) + __pyx_t_29)) ))) * (*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_jec.data) + __pyx_t_30)) ))))) * cos(__pyx_v_arg));
                             }
 
-                            /* "pywbgt/solar.pyx":329
+                            /* "pywbgt/solar.pyx":332
  *             delta_eps[i] += (abcd[j, 2] + abcd[j, 3] * jec[i]) * cos(arg)
  * 
  *         delta_psi[i] *= factor             # <<<<<<<<<<<<<<
@@ -23648,7 +23680,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
                             __pyx_t_30 = __pyx_v_i;
                             *__Pyx_BufPtrStrided1d(__pyx_t_5numpy_float64_t *, __pyx_pybuffernd_delta_psi.rcbuffer->pybuffer.buf, __pyx_t_30, __pyx_pybuffernd_delta_psi.diminfo[0].strides) *= __pyx_v_factor;
 
-                            /* "pywbgt/solar.pyx":330
+                            /* "pywbgt/solar.pyx":333
  * 
  *         delta_psi[i] *= factor
  *         delta_eps[i] *= factor             # <<<<<<<<<<<<<<
@@ -23670,7 +23702,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
         #endif
       }
 
-      /* "pywbgt/solar.pyx":316
+      /* "pywbgt/solar.pyx":319
  * 
  *     # Parallel loop over each element in x
  *     for i in prange(n_x, nogil=True):             # <<<<<<<<<<<<<<
@@ -23687,7 +23719,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
       }
   }
 
-  /* "pywbgt/solar.pyx":332
+  /* "pywbgt/solar.pyx":335
  *         delta_eps[i] *= factor
  * 
  *     return delta_psi, delta_eps             # <<<<<<<<<<<<<<
@@ -23695,19 +23727,19 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
  * 
 */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 332, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 335, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF((PyObject *)__pyx_v_delta_psi);
   __Pyx_GIVEREF((PyObject *)__pyx_v_delta_psi);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_delta_psi)) != (0)) __PYX_ERR(0, 332, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)__pyx_v_delta_psi)) != (0)) __PYX_ERR(0, 335, __pyx_L1_error);
   __Pyx_INCREF((PyObject *)__pyx_v_delta_eps);
   __Pyx_GIVEREF((PyObject *)__pyx_v_delta_eps);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_delta_eps)) != (0)) __PYX_ERR(0, 332, __pyx_L1_error);
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, ((PyObject *)__pyx_v_delta_eps)) != (0)) __PYX_ERR(0, 335, __pyx_L1_error);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":288
+  /* "pywbgt/solar.pyx":287
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -23748,7 +23780,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_10longitude_obliquity_nutation(CYTHON_U
   return __pyx_r;
 }
 
-/* "pywbgt/solar.pyx":335
+/* "pywbgt/solar.pyx":338
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -23796,39 +23828,39 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   {
     PyObject ** const __pyx_pyargnames[] = {&__pyx_mstate_global->__pyx_n_u_arr,&__pyx_mstate_global->__pyx_n_u_x,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? __Pyx_NumKwargs_FASTCALL(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 335, __pyx_L3_error)
+    if (unlikely(__pyx_kwds_len) < 0) __PYX_ERR(0, 338, __pyx_L3_error)
     if (__pyx_kwds_len > 0) {
       switch (__pyx_nargs) {
         case  2:
         values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 335, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 338, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 335, __pyx_L3_error)
+        if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 338, __pyx_L3_error)
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "sum_mult_cos_add_mult", 0) < (0)) __PYX_ERR(0, 335, __pyx_L3_error)
+      if (__Pyx_ParseKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "sum_mult_cos_add_mult", 0) < (0)) __PYX_ERR(0, 338, __pyx_L3_error)
       for (Py_ssize_t i = __pyx_nargs; i < 2; i++) {
-        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("sum_mult_cos_add_mult", 1, 2, 2, i); __PYX_ERR(0, 335, __pyx_L3_error) }
+        if (unlikely(!values[i])) { __Pyx_RaiseArgtupleInvalid("sum_mult_cos_add_mult", 1, 2, 2, i); __PYX_ERR(0, 338, __pyx_L3_error) }
       }
     } else if (unlikely(__pyx_nargs != 2)) {
       goto __pyx_L5_argtuple_error;
     } else {
       values[0] = __Pyx_ArgRef_FASTCALL(__pyx_args, 0);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 335, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[0])) __PYX_ERR(0, 338, __pyx_L3_error)
       values[1] = __Pyx_ArgRef_FASTCALL(__pyx_args, 1);
-      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 335, __pyx_L3_error)
+      if (!CYTHON_ASSUME_SAFE_MACROS && unlikely(!values[1])) __PYX_ERR(0, 338, __pyx_L3_error)
     }
-    __pyx_v_arr = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_arr.memview)) __PYX_ERR(0, 339, __pyx_L3_error)
+    __pyx_v_arr = __Pyx_PyObject_to_MemoryviewSlice_d_dc_double(values[0], PyBUF_WRITABLE); if (unlikely(!__pyx_v_arr.memview)) __PYX_ERR(0, 342, __pyx_L3_error)
     __pyx_v_x = ((PyArrayObject *)values[1]);
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("sum_mult_cos_add_mult", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 335, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("sum_mult_cos_add_mult", 1, 2, 2, __pyx_nargs); __PYX_ERR(0, 338, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -23840,7 +23872,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_x), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "x", 0))) __PYX_ERR(0, 340, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_x), __pyx_mstate_global->__pyx_ptype_5numpy_ndarray, 1, "x", 0))) __PYX_ERR(0, 343, __pyx_L1_error)
   __pyx_r = __pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(__pyx_self, __pyx_v_arr, __pyx_v_x);
 
   /* function exit code */
@@ -23908,46 +23940,54 @@ static PyObject *__pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(CYTHON_UNUSED P
   __pyx_pybuffernd_x.rcbuffer = &__pyx_pybuffer_x;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)__pyx_v_x, &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 335, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_x.rcbuffer->pybuffer, (PyObject*)__pyx_v_x, &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 338, __pyx_L1_error)
   }
   __pyx_pybuffernd_x.diminfo[0].strides = __pyx_pybuffernd_x.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_x.diminfo[0].shape = __pyx_pybuffernd_x.rcbuffer->pybuffer.shape[0];
 
-  /* "pywbgt/solar.pyx":343
+  /* "pywbgt/solar.pyx":346
  * ):
  *     cdef Py_ssize_t i, j
  *     cdef Py_ssize_t n_arr = arr.shape[0]             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t n_x = x.shape[0]
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(n_x, dtype=np.float64)
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(
 */
   __pyx_v_n_arr = (__pyx_v_arr.shape[0]);
 
-  /* "pywbgt/solar.pyx":344
+  /* "pywbgt/solar.pyx":347
  *     cdef Py_ssize_t i, j
  *     cdef Py_ssize_t n_arr = arr.shape[0]
  *     cdef Py_ssize_t n_x = x.shape[0]             # <<<<<<<<<<<<<<
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(n_x, dtype=np.float64)
- * 
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(
+ *         n_x, dtype=np.float64,
 */
   __pyx_v_n_x = (__pyx_f_5numpy_7ndarray_5shape_shape(((PyArrayObject *)__pyx_v_x))[0]);
 
-  /* "pywbgt/solar.pyx":345
+  /* "pywbgt/solar.pyx":348
  *     cdef Py_ssize_t n_arr = arr.shape[0]
  *     cdef Py_ssize_t n_x = x.shape[0]
- *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(n_x, dtype=np.float64)             # <<<<<<<<<<<<<<
- * 
- *     # Parallel loop over each element in x
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(             # <<<<<<<<<<<<<<
+ *         n_x, dtype=np.float64,
+ *     )
 */
   __pyx_t_2 = NULL;
-  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_mstate_global->__pyx_n_u_zeros); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 348, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = PyLong_FromSsize_t(__pyx_v_n_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 345, __pyx_L1_error)
+
+  /* "pywbgt/solar.pyx":349
+ *     cdef Py_ssize_t n_x = x.shape[0]
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(
+ *         n_x, dtype=np.float64,             # <<<<<<<<<<<<<<
+ *     )
+ * 
+*/
+  __pyx_t_3 = PyLong_FromSsize_t(__pyx_v_n_x); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_np); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 345, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_mstate_global->__pyx_n_u_float64); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 349, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_7 = 1;
@@ -23964,31 +24004,39 @@ static PyObject *__pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(CYTHON_UNUSED P
   #endif
   {
     PyObject *__pyx_callargs[2 + ((CYTHON_VECTORCALL) ? 1 : 0)] = {__pyx_t_2, __pyx_t_3};
-    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 345, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_MakeVectorcallBuilderKwds(1); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 348, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 345, __pyx_L1_error)
+    if (__Pyx_VectorcallBuilder_AddArg(__pyx_mstate_global->__pyx_n_u_dtype, __pyx_t_6, __pyx_t_5, __pyx_callargs+2, 0) < (0)) __PYX_ERR(0, 348, __pyx_L1_error)
     __pyx_t_1 = __Pyx_Object_Vectorcall_CallFromBuilder((PyObject*)__pyx_t_4, __pyx_callargs+__pyx_t_7, (2-__pyx_t_7) | (__pyx_t_7*__Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET), __pyx_t_5);
     __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 345, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 348, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
   }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 345, __pyx_L1_error)
+
+  /* "pywbgt/solar.pyx":348
+ *     cdef Py_ssize_t n_arr = arr.shape[0]
+ *     cdef Py_ssize_t n_x = x.shape[0]
+ *     cdef cnp.ndarray[cnp.float64_t, ndim=1] res = np.zeros(             # <<<<<<<<<<<<<<
+ *         n_x, dtype=np.float64,
+ *     )
+*/
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_mstate_global->__pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 348, __pyx_L1_error)
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
     if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_res.rcbuffer->pybuffer, (PyObject*)((PyArrayObject *)__pyx_t_1), &__Pyx_TypeInfo_nn___pyx_t_5numpy_float64_t, PyBUF_FORMAT| PyBUF_STRIDES| PyBUF_WRITABLE, 1, 0, __pyx_stack) == -1)) {
       __pyx_v_res = ((PyArrayObject *)Py_None); __Pyx_INCREF(Py_None); __pyx_pybuffernd_res.rcbuffer->pybuffer.buf = NULL;
-      __PYX_ERR(0, 345, __pyx_L1_error)
+      __PYX_ERR(0, 348, __pyx_L1_error)
     } else {__pyx_pybuffernd_res.diminfo[0].strides = __pyx_pybuffernd_res.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_res.diminfo[0].shape = __pyx_pybuffernd_res.rcbuffer->pybuffer.shape[0];
     }
   }
   __pyx_v_res = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pywbgt/solar.pyx":348
+  /* "pywbgt/solar.pyx":353
  * 
  *     # Parallel loop over each element in x
  *     for i in prange(n_x, nogil=True):             # <<<<<<<<<<<<<<
@@ -24022,7 +24070,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(CYTHON_UNUSED P
                         {
                             __pyx_v_i = (Py_ssize_t)(0 + 1 * __pyx_t_9);
 
-                            /* "pywbgt/solar.pyx":350
+                            /* "pywbgt/solar.pyx":355
  *     for i in prange(n_x, nogil=True):
  *         # Sum over all rows in arr
  *         for j in range(n_arr):             # <<<<<<<<<<<<<<
@@ -24034,7 +24082,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(CYTHON_UNUSED P
                             for (__pyx_t_13 = 0; __pyx_t_13 < __pyx_t_12; __pyx_t_13+=1) {
                               __pyx_v_j = __pyx_t_13;
 
-                              /* "pywbgt/solar.pyx":351
+                              /* "pywbgt/solar.pyx":356
  *         # Sum over all rows in arr
  *         for j in range(n_arr):
  *             res[i] += arr[j, 0] * cos(arr[j, 1] + arr[j, 2] * x[i])             # <<<<<<<<<<<<<<
@@ -24064,7 +24112,7 @@ static PyObject *__pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(CYTHON_UNUSED P
         #endif
       }
 
-      /* "pywbgt/solar.pyx":348
+      /* "pywbgt/solar.pyx":353
  * 
  *     # Parallel loop over each element in x
  *     for i in prange(n_x, nogil=True):             # <<<<<<<<<<<<<<
@@ -24081,19 +24129,17 @@ static PyObject *__pyx_pf_6pywbgt_5solar_12sum_mult_cos_add_mult(CYTHON_UNUSED P
       }
   }
 
-  /* "pywbgt/solar.pyx":353
+  /* "pywbgt/solar.pyx":358
  *             res[i] += arr[j, 0] * cos(arr[j, 1] + arr[j, 2] * x[i])
  * 
  *     return res             # <<<<<<<<<<<<<<
- * 
- * 
 */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF((PyObject *)__pyx_v_res);
   __pyx_r = ((PyObject *)__pyx_v_res);
   goto __pyx_L0;
 
-  /* "pywbgt/solar.pyx":335
+  /* "pywbgt/solar.pyx":338
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
@@ -26139,12 +26185,12 @@ __Pyx_RefNannySetupContext("PyInit_solar", 0);
  * 
  * cnp.import_array()             # <<<<<<<<<<<<<<
  * 
- * 
+ * from pvlib import spa
 */
   __pyx_t_9 = __pyx_f_5numpy_import_array(); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 17, __pyx_L1_error)
 
-  /* "pywbgt/solar.pyx":20
- * 
+  /* "pywbgt/solar.pyx":19
+ * cnp.import_array()
  * 
  * from pvlib import spa             # <<<<<<<<<<<<<<
  * 
@@ -26152,22 +26198,22 @@ __Pyx_RefNannySetupContext("PyInit_solar", 0);
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_spa};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_pvlib, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_pvlib, __pyx_imported_names, 1, NULL, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 19, __pyx_L1_error)
   }
   __pyx_t_4 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_4);
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_spa};
     __pyx_t_10 = 0; {
-      __pyx_t_5 = __Pyx_ImportFrom(__pyx_t_4, __pyx_imported_names[__pyx_t_10]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 20, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_ImportFrom(__pyx_t_4, __pyx_imported_names[__pyx_t_10]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_10], __pyx_t_5) < (0)) __PYX_ERR(0, 20, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_10], __pyx_t_5) < (0)) __PYX_ERR(0, 19, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":22
+  /* "pywbgt/solar.pyx":21
  * from pvlib import spa
  * 
  * from .utils import datetime_adjust             # <<<<<<<<<<<<<<
@@ -26176,22 +26222,22 @@ __Pyx_RefNannySetupContext("PyInit_solar", 0);
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_datetime_adjust};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_utils, __pyx_imported_names, 1, __pyx_mstate_global->__pyx_kp_u_pywbgt_utils, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_utils, __pyx_imported_names, 1, __pyx_mstate_global->__pyx_kp_u_pywbgt_utils, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
   }
   __pyx_t_4 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_4);
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_datetime_adjust};
     __pyx_t_10 = 0; {
-      __pyx_t_5 = __Pyx_ImportFrom(__pyx_t_4, __pyx_imported_names[__pyx_t_10]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_ImportFrom(__pyx_t_4, __pyx_imported_names[__pyx_t_10]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_10], __pyx_t_5) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_10], __pyx_t_5) < (0)) __PYX_ERR(0, 21, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":23
+  /* "pywbgt/solar.pyx":22
  * 
  * from .utils import datetime_adjust
  * from .liljegren import (             # <<<<<<<<<<<<<<
@@ -26200,152 +26246,152 @@ __Pyx_RefNannySetupContext("PyInit_solar", 0);
 */
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_LILJEGREN_CZA_MIN,__pyx_mstate_global->__pyx_n_u_LILJEGREN_NORMSOLAR_MAX,__pyx_mstate_global->__pyx_n_u_LILJEGREN_SOLAR_CONST};
-    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_liljegren, __pyx_imported_names, 3, __pyx_mstate_global->__pyx_kp_u_pywbgt_liljegren, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 23, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_Import(__pyx_mstate_global->__pyx_n_u_liljegren, __pyx_imported_names, 3, __pyx_mstate_global->__pyx_kp_u_pywbgt_liljegren, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 22, __pyx_L1_error)
   }
   __pyx_t_4 = __pyx_t_1;
   __Pyx_GOTREF(__pyx_t_4);
   {
     PyObject* const __pyx_imported_names[] = {__pyx_mstate_global->__pyx_n_u_LILJEGREN_CZA_MIN,__pyx_mstate_global->__pyx_n_u_LILJEGREN_NORMSOLAR_MAX,__pyx_mstate_global->__pyx_n_u_LILJEGREN_SOLAR_CONST};
     for (__pyx_t_10=0; __pyx_t_10 < 3; __pyx_t_10++) {
-      __pyx_t_5 = __Pyx_ImportFrom(__pyx_t_4, __pyx_imported_names[__pyx_t_10]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 23, __pyx_L1_error)
+      __pyx_t_5 = __Pyx_ImportFrom(__pyx_t_4, __pyx_imported_names[__pyx_t_10]); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 22, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
-      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_10], __pyx_t_5) < (0)) __PYX_ERR(0, 23, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_imported_names[__pyx_t_10], __pyx_t_5) < (0)) __PYX_ERR(0, 22, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":28
+  /* "pywbgt/solar.pyx":27
  * 
  * # Default values for some parameters
  * ELEV = 0.00             # <<<<<<<<<<<<<<
  * PRESSURE = 1013.25
  * TEMP = 15.00
 */
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_ELEV, __pyx_mstate_global->__pyx_float_0_00) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_ELEV, __pyx_mstate_global->__pyx_float_0_00) < (0)) __PYX_ERR(0, 27, __pyx_L1_error)
 
-  /* "pywbgt/solar.pyx":29
+  /* "pywbgt/solar.pyx":28
  * # Default values for some parameters
  * ELEV = 0.00
  * PRESSURE = 1013.25             # <<<<<<<<<<<<<<
  * TEMP = 15.00
  * 
 */
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_PRESSURE, __pyx_mstate_global->__pyx_float_1013_25) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_PRESSURE, __pyx_mstate_global->__pyx_float_1013_25) < (0)) __PYX_ERR(0, 28, __pyx_L1_error)
 
-  /* "pywbgt/solar.pyx":30
+  /* "pywbgt/solar.pyx":29
  * ELEV = 0.00
  * PRESSURE = 1013.25
  * TEMP = 15.00             # <<<<<<<<<<<<<<
  * 
  * 
 */
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_TEMP, __pyx_mstate_global->__pyx_float_15_00) < (0)) __PYX_ERR(0, 30, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_TEMP, __pyx_mstate_global->__pyx_float_15_00) < (0)) __PYX_ERR(0, 29, __pyx_L1_error)
 
-  /* "pywbgt/solar.pyx":33
+  /* "pywbgt/solar.pyx":32
  * 
  * 
  * def solar_parameters(             # <<<<<<<<<<<<<<
  *     datetime,
  *     lat,
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_1solar_parameters, 0, __pyx_mstate_global->__pyx_n_u_solar_parameters_2, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_1solar_parameters, 0, __pyx_mstate_global->__pyx_n_u_solar_parameters_2, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[0])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_4, __pyx_mstate_global->__pyx_tuple[2]);
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_solar_parameters_2, __pyx_t_4) < (0)) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_solar_parameters_2, __pyx_t_4) < (0)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":136
+  /* "pywbgt/solar.pyx":135
  * 
  * 
  * def _solar_parameters(             # <<<<<<<<<<<<<<
  *     unixtime,
  *     lat,
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_3_solar_parameters, 0, __pyx_mstate_global->__pyx_n_u_solar_parameters, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_3_solar_parameters, 0, __pyx_mstate_global->__pyx_n_u_solar_parameters, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[1])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_solar_parameters, __pyx_t_4) < (0)) __PYX_ERR(0, 136, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_solar_parameters, __pyx_t_4) < (0)) __PYX_ERR(0, 135, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":255
+  /* "pywbgt/solar.pyx":254
  * 
  * 
  * def heliocentric_radius_vector(jme):             # <<<<<<<<<<<<<<
  *     """From pvlib.spa, updates for array operations"""
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_5heliocentric_radius_vector, 0, __pyx_mstate_global->__pyx_n_u_heliocentric_radius_vector, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_5heliocentric_radius_vector, 0, __pyx_mstate_global->__pyx_n_u_heliocentric_radius_vector, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[2])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_heliocentric_radius_vector, __pyx_t_4) < (0)) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_heliocentric_radius_vector, __pyx_t_4) < (0)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":266
+  /* "pywbgt/solar.pyx":265
  * 
  * 
  * def heliocentric_longitude(jme):             # <<<<<<<<<<<<<<
  *     """From pvlib.spa, updates for array operations"""
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_7heliocentric_longitude, 0, __pyx_mstate_global->__pyx_n_u_heliocentric_longitude, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 266, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_7heliocentric_longitude, 0, __pyx_mstate_global->__pyx_n_u_heliocentric_longitude, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[3])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_heliocentric_longitude, __pyx_t_4) < (0)) __PYX_ERR(0, 266, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_heliocentric_longitude, __pyx_t_4) < (0)) __PYX_ERR(0, 265, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":279
+  /* "pywbgt/solar.pyx":278
  * 
  * 
  * def heliocentric_latitude(jme):             # <<<<<<<<<<<<<<
  *     """From pvlib.spa, updates for array operations"""
  * 
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_9heliocentric_latitude, 0, __pyx_mstate_global->__pyx_n_u_heliocentric_latitude, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 279, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_9heliocentric_latitude, 0, __pyx_mstate_global->__pyx_n_u_heliocentric_latitude, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[4])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_heliocentric_latitude, __pyx_t_4) < (0)) __PYX_ERR(0, 279, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_heliocentric_latitude, __pyx_t_4) < (0)) __PYX_ERR(0, 278, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":288
+  /* "pywbgt/solar.pyx":287
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.initializedcheck(False)
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_11longitude_obliquity_nutation, 0, __pyx_mstate_global->__pyx_n_u_longitude_obliquity_nutation, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 288, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_11longitude_obliquity_nutation, 0, __pyx_mstate_global->__pyx_n_u_longitude_obliquity_nutation, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[5])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_longitude_obliquity_nutation, __pyx_t_4) < (0)) __PYX_ERR(0, 288, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_longitude_obliquity_nutation, __pyx_t_4) < (0)) __PYX_ERR(0, 287, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pywbgt/solar.pyx":335
+  /* "pywbgt/solar.pyx":338
  * 
  * 
  * @cython.boundscheck(False)             # <<<<<<<<<<<<<<
  * @cython.wraparound(False)
  * @cython.initializedcheck(False)
 */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_13sum_mult_cos_add_mult, 0, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 335, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_6pywbgt_5solar_13sum_mult_cos_add_mult, 0, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult, NULL, __pyx_mstate_global->__pyx_n_u_pywbgt_solar, __pyx_mstate_global->__pyx_d, ((PyObject *)__pyx_mstate_global->__pyx_codeobj_tab[6])); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 338, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   #if CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX >= 0x030E0000
   PyUnstable_Object_EnableDeferredRefcount(__pyx_t_4);
   #endif
-  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult, __pyx_t_4) < (0)) __PYX_ERR(0, 335, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_mstate_global->__pyx_d, __pyx_mstate_global->__pyx_n_u_sum_mult_cos_add_mult, __pyx_t_4) < (0)) __PYX_ERR(0, 338, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "pywbgt/solar.pyx":1
@@ -26454,14 +26500,14 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_slice[0]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_slice[0]);
 
-  /* "pywbgt/solar.pyx":33
+  /* "pywbgt/solar.pyx":32
  * 
  * 
  * def solar_parameters(             # <<<<<<<<<<<<<<
  *     datetime,
  *     lat,
 */
-  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(5, Py_None, Py_None, Py_None, Py_None, Py_None); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_mstate_global->__pyx_tuple[2] = PyTuple_Pack(5, Py_None, Py_None, Py_None, Py_None, Py_None); if (unlikely(!__pyx_mstate_global->__pyx_tuple[2])) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_mstate_global->__pyx_tuple[2]);
   __Pyx_GIVEREF(__pyx_mstate_global->__pyx_tuple[2]);
   #if CYTHON_IMMORTAL_CONSTANTS
@@ -26499,25 +26545,25 @@ static int __Pyx_InitCachedConstants(__pyx_mstatetype *__pyx_mstate) {
 static int __Pyx_InitConstants(__pyx_mstatetype *__pyx_mstate) {
   CYTHON_UNUSED_VAR(__pyx_mstate);
   {
-    const struct { const unsigned int length: 10; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{39},{34},{8},{16},{12},{21},{20},{20},{32},{22},{30},{37},{5},{2},{2},{4},{8},{1},{2},{2},{2},{2},{2},{2},{17},{23},{21},{19},{20},{8},{20},{1},{2},{2},{2},{2},{2},{8},{4},{5},{15},{3},{4},{21},{15},{5},{3},{22},{22},{3},{3},{6},{18},{13},{33},{3},{4},{4},{1},{9},{17},{18},{4},{3},{5},{3},{8},{15},{7},{5},{11},{7},{9},{13},{11},{9},{7},{9},{8},{5},{15},{2},{4},{6},{9},{7},{30},{5},{3},{6},{4},{5},{5},{7},{6},{7},{4},{8},{19},{20},{26},{30},{12},{3},{21},{22},{26},{1},{2},{3},{4},{10},{5},{5},{13},{5},{8},{1},{3},{2},{3},{3},{14},{10},{24},{20},{27},{6},{4},{3},{9},{16},{3},{28},{8},{3},{17},{16},{23},{15},{18},{7},{3},{4},{10},{22},{24},{5},{3},{4},{8},{4},{7},{9},{2},{5},{5},{3},{4},{28},{3},{8},{5},{12},{14},{11},{10},{19},{14},{12},{7},{7},{10},{17},{13},{8},{3},{12},{10},{12},{19},{5},{4},{5},{17},{16},{3},{5},{4},{4},{6},{21},{4},{8},{8},{27},{46},{28},{27},{23},{1},{8},{6},{6},{5},{5},{1},{6},{1},{2},{2},{2},{2},{2},{2},{5},{1},{5},{5},{10},{318},{327},{115},{686},{51},{111},{143},{1}};
-    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2763 bytes) */
-const char* const cstring = "BZh91AY&SY>\271\360\272\000\001\353\377\377\377\377\377\277\377\377\377\377\277\377\377|\277\377\377\360@@@@@@@@@@@@@\000@\000`\n\237y\\\3663\324\027s\016\363\272M6\230\201\262\261*\354\306\000\201(\204\200\2314O\032\032\000\004\361\021'\246\246\332\232\236\247\244\365= \362\231\000\001\240l\240\332j3\023\324dM4\365\004\242\000\020\232\004\301'\251\246\246\214\203A\247\2504\006\200\000\000\000\000\000\000\000\002*y\245=\024\332#FM\031=@\r4\302\014\023&\2324\311\246\206\203@\323\023CF\2151\r\014M2h\r\004\246\202\t2@&\246\311\251\251\352<Sz\232\233\325\000\031\000\003@\000h\006\206@\032\000=@f\241\006\000L\000\000\002`\0010\000\000\t\200\023C\000\000\000\000\000\004\222OH!\352\002\206\322\032m@\320h\000\031\032\000\000\000\r\000\000\000\0006\240+U\231R\"\305\314\020Y\250\315\372\375\320\277\037\234\354#at\344\363N\304\357\0143a_\246\n*\343`\306L\265\232\301f\246i'\330o\"\020&I\t$\223!\t\220\206\022@\222a$\255\314\303I\177)\217\3741i7\364S\025@\005L\314\201\230\017\364oN'U\225\371\223\002)\241P\351\3548\220\356\003\246vq\320\206\023\027\312d\250\242\212\024\021\035D\016\322\3411\335L:q\021\315\201\204\007J\361+\200eL\256\312\327\005MAJL\205\213<t\204\037\\\304\010\\R\223\231i\324\204\013\204\260\205\2126\253u\0257\2051\031\001\\`MAr\027x\330\013a\346\003lm\023\327\223\345\003q\211\366\212\025\222=\243\"\222 Ug!\010\022\004\017\327\2274\037\371\2763\344\266\341\342g\373a\366[2\364}\216\317\2478\361\353\305\365\361{\357+y\017\216\r\211\340\250x\377\223\013R\217_M%\022\243\032\242\014p\307\222\324\275|_s\351\204\361rv\204\361\001\"\273\336\247|_\032\356\267*\3573\035\236\036\300\354\033\305\327\330\025J\204\235QU\257\033\005\217={\231\365\334\225\"B\251H\245jD\213\005#\317\212C\214\"\204-I\216N\346'\027?\267\325P%\"\375\373\212\367\235\332\337\227\243\252_l\313\371\234K\277|\2305\347\034\037j\343[\013'\324c\374?\3274\254\017<\363\316\255\002\245\272\205\316\343n\"\271\342\362\214Bd\312\267t4\022I9W\263\252%k9\223&\023\273\2278\036\357\255Z\373\205\240y\271H6\373\313\322""\373\243\244\212I\223!\243\016\3034\217\223\225\270g\325 \204\323^-\254\332B}\371\221\361\336S\226\003\246}2\r\204\252\306\252\326cX\335\206y6\370\3618$\\\271(\307\236\221\327\245\256lu\256\223\2471\027\223b[\235\314\237\275x\023e\214\262\276{\232s\013\002\024*\036D\321z\306\236\202\\\236K\353]\260\331\t/\236\335.?\026\266SO\223?E\024\250=\001\035\347\236\227O\245\222\221]D\350\302A,\2376\\\231\220L,\324\276\211|j[#c\004\205\316Q\316\032\312U\353\327\256\343\316\230zkQ\335\312\030\350j\351\016\245NUk\027\240\230S&\350\233\225\347\022\362\310eNv\344+\273\016\177Mw\245,\301L\355\321\314\256n\214\004\303\364\325\302\335,\263vv\222h\250\007\276*\200\316\020\212D\337n\357% \310 \255H\200\200!\244h\302`!\025$\211\004\350\360\024\306MM\322I\212iz\276\366\363\210\222\326\036\021B\214l@9\031\242\310\336\312W\201\360f\317\224|\333\222\216\357\017\277\214&u5\234\033\2656.4\242\316\372\2104x`\361\312\312H\214\305\223\325f\264n4\020\362\361\315v\017\212*\321Y,?\214\343\016\256\341\237\366O\331\263\310\301\331dh\376\214IT\377\211\230\03166\337\314*]\024 _\315eK\305\025\026\310\r\250<:l \355\222\r\263\252\032\004f\271\273u\325\332=\371\330\232\374\312\274$\314,\333\310nv\241j\214X\216M\003t\216f\234V\340\335\221\372\327a\010\037\231\212\332h\2538Xq\352\"0\310\320\310\341[\334\310\311\031d\n\304$H~\225\264\242P,\265\353A\242\t\200e\022,_k\004\244\213b2\345\246\275\202X\262\022\232\312\036\017p&\215\317\3462\245\"\351\216\305S\323KA\237\301\\ro\354\n5\274\003\020\235d2\310\264\345)\0226q\335\301#\212K\235\376\216\203\243\313\356\311\305\243\t\217\036\311\307P\320l\316w\216{\332\354p\030\232\214F\225F\307\021\347t\243bO5\354\214\356\220\300xF\255\233\225\014?\205\020\311\220\377Bo\334^\013\\\254\240\216\r\016s\233\275\311\327\331\310B\353\177e\301\035\252K\315\206\355^o\317\177hOF\022NThF\035\236\226_\232\257|\006\006\211\202\331~\013\340i\034\216PU\026,&\267\272\350\247\024\016\013>\352\253_Z\205\355\244\272,\036+\224b\330R\022vZT\357q\226(\352\265\002\344\213\321\2549\005G\002\271""\321\311\2335\2335\332\2450\301\002\t\025\230\241\365`\362C\302{yX\356\312\234KE\261\335E^H3\201L\233\263\032\252_{h\314\256\236y\030\\\313\307\231\263\311^\325{\334\233\221*\245\346\2058h\274\213\316\337\324\350\016\235\266\360HaKlCH`\354\3219:\334\364\035\236\274\343\214j=h\272\242\310\2075\"\030\"0{\232o\016;\200\254\333\271\303\315\336\334\242\343\004\335\325\\u\0068PE\244\330\345\331_F\2220&J\003\"\024\345E\334ea1lzOE$$\362VY\373\370\345\021\354\354X\356a\333\013Xa\317+\205\003\351\032\022:\007\222\257\300\374\232\354\367m\203\003\t\222N\315`j\014\205gD*\234u\275\263\317\tvI!\352\252\253\212N\016\235]$oY\325\326[Q\230\013\221\254\344\007\273R\206m\272f(\234W\361\242D8\022\2215^\034\325\323\300\374\007#Z\246 \364\027m\330\026\325\330`\221E\242\225K\035+P\305\335&\206m\227\325 Y\316\006A\034M\032\200\254QM.e\312\246\264\235\021\035W\032\335\314\235\n\033\245Y\215\3166Rv\301\031\352\253bK\244\315\312\312\355\303v\206\333\236\374\313I\244p\233h\351\t\347\021\0223\246qJt,\211\204\312b\322|[\023\247\026\3565\222\261~5\271\202|\3135\352 .-\352\311Z\360\020\314\340\374V\3050\352b\230\3121\205\204\220\220\207\301\2778Aw\001e\332)7L3\016\233\211c\215\337b\263\245\203r\033r\337\261\235\351\241\215\215n\356\342u\345\235\265\325\220\351f\235\2662W\211\341\331\304\213c\"\301\222\320aO\320\"\342\327\326Pi+\241m\251\306\032%\227R\215\230\205\000\322H\215\213\030\341\203v\300\025EQ0\317\274\225\ris&uZm\276\334\315i\220\246\254\367d\330\212\234*1\233\013\322%\241\026k\005\300\262\302t#\033F\352\252\227+\330Q\254\266\231\371g`\251\033\232J\226I\252\026\311e\220\206+\223\023Z\241\223+\305\342\250,\030\tn8\230\362JA9M\025\r\2255\2169f\313\220\"-\014\342\244lX\3022\245JY\237`%0hE\244<\312\226\206\305\337\206\034\222]\003\216\350\034\035\n\207\r\004\334\201\306s\033\036\016G.#\016\346\235\265g\253KBU\017\032KK\270\256\363\271\247\201\035\330\275\221\311\306\334\274\260\321\224S\232\200\272\233[\337\247\2479\204l\333\312\274r^\251\240nEn%\025\313\216L;dQ\221a\305\t\010\333\355X\337""\361\247\016\256\221\320 @\222\315S\224(;1\230s\213+5\006\210\265\023\215Ii\255z\222\315\316\250\321\340\013\366DV\030\276\333\271j\366\215,\204\254\230Z\271\270\346M\277\337f\372\273\252u\213Q\t\234\001\265b\203rl1K\024\242\253m\007\225\013\225E\025b\250\3508u\030\315B7\332\312\250\266\214\305\206\361'-\206\263\351\260\030\261\264\0212\334\305k]t\202\010\037\322\352&\223B\205@\030\307P\306w\224j=\022\030\246\020$\332K\177\226\334\352\216C\254|\2617?n\247Q:\215\020p\254\030\226\273\006\370+\205o\203\216_4\327\023\216Er1\331\335\312&\225\337,xz\333\254\201\236aBNf\360a\307\334x\235\017\022f\370\260\314\251x\211w\017\204\265\2069N>\375\010]O\340;G\314\250&\227n%)\273\337\226Y\270>GXF\032\314nLt\365[y\246\265\007^\334\353\211z\261\353zh\020\321\352#\357zpj\220\237\322L\036\263\177w\205\347\016~O\033\267\345\216\372\021\352\177\224/U\375\251\367 \357\010<\"\360\357\346\364\030\235\264~\017p\245d\301\300B\r\361\374\254\365r\260\346\021\254\030.\2679\364^F\331\032^\360\302p\373\304\261\274|G\214a\345\302zN\017[\302w\214fsQ\032\240\277\367\010tG\230\236\346\006\010q\311f7\003\027\026>\373:\177?B\247j\026.'C\360\214\364\304v\343\010\341\017\3611g\313\234\333S\366\306d\205\255\031\027\265\35258\201a\214\034\367\23195<\3219\271#\356\242\021\3564?V\344Fd\3738\315\315\305\326`%\230\221WW#M\306+\230o\263\267oPH\342\215,\304,\"\030{\362\355\355\305\023\206s\303\262\2442\260\354^K\2479iK[\302\037\355\224\315d\365\366eZ\257\005j\235\213\tO\301\272 \372k\253\371R\242\242N\177%\322\224$\353\350\224p|\177\024~\007\346\242baW\001\241\262\371O\253\200\352\304\376zb\357oc\254U\337\0250Q\245\247\253\202\367\333`\326;EM\222\221\226\346\211\256\234\026\342!\253'\272Q>\277\251\010\225\021\025S@\252a>}\324\276I\221!\035\356\351m%\3527\007\351\255n\275\247+\317$\010M\n\317V\261\013\322\002\260\355eN\344\254C\306/b\366\264Z\0144\025\211/9{\300\367J\263\207lR\221\354\210\314\270\2571V|E\353\004\340\265\341\332\367\247\211\020g\377\213\271\"\234(H\037\\\370]\000";
-    PyObject *data = __Pyx_DecompressString(cstring, 2763, 2);
+    const struct { const unsigned int length: 10; } index[] = {{2},{68},{35},{54},{37},{60},{24},{52},{26},{34},{29},{33},{45},{22},{15},{179},{37},{30},{32},{1},{1},{1},{1},{1},{8},{5},{6},{15},{23},{25},{7},{6},{2},{6},{35},{9},{30},{50},{39},{34},{8},{16},{12},{21},{20},{20},{32},{22},{30},{37},{5},{2},{2},{4},{8},{1},{2},{2},{2},{2},{2},{2},{17},{23},{21},{19},{20},{8},{20},{1},{2},{2},{2},{2},{2},{8},{4},{5},{15},{3},{4},{21},{15},{5},{3},{22},{22},{3},{3},{6},{18},{13},{33},{3},{4},{4},{1},{9},{17},{18},{4},{3},{5},{3},{8},{15},{7},{5},{11},{7},{9},{13},{11},{9},{7},{9},{8},{5},{15},{2},{4},{6},{9},{7},{30},{5},{3},{6},{4},{5},{5},{7},{6},{7},{4},{8},{19},{20},{26},{30},{12},{3},{21},{22},{26},{1},{2},{3},{4},{10},{5},{5},{13},{5},{8},{1},{3},{2},{3},{3},{14},{10},{24},{20},{27},{6},{4},{3},{9},{16},{3},{28},{8},{3},{17},{16},{23},{15},{18},{7},{3},{4},{10},{22},{24},{5},{3},{4},{8},{4},{7},{9},{2},{5},{5},{3},{4},{28},{3},{8},{5},{12},{14},{11},{10},{19},{14},{12},{7},{7},{10},{17},{13},{8},{3},{12},{10},{12},{19},{5},{4},{5},{17},{16},{3},{5},{4},{4},{6},{21},{4},{8},{8},{27},{46},{28},{27},{23},{1},{8},{6},{6},{5},{5},{1},{6},{1},{2},{2},{2},{2},{2},{2},{5},{1},{5},{5},{10},{318},{329},{116},{686},{51},{111},{143},{1}};
+    #if (CYTHON_COMPRESS_STRINGS) == 2 /* compression: bz2 (2739 bytes) */
+const char* const cstring = "BZh91AY&SY\212\346\026P\000\001\355\377\377\377\377\377\277\377\377\377\377\277\377\377|\277\377\377\360@@@@@@@@@@@@@\000@\000`\n\233\343\336s/:\013v\242\362\327wS\264\331\323\213\236\271\016\335\314\300\036<%\010\224m\t\241\246\003I\2014\306\204(\364\324\333P\324\364\232z\201\3454\000\320\323A\262A\264\324lL\t\242i\352\tB&\023!56\212xCRd\3012hi\352\006\200\3204\000\000\000\000\000\000\000\003A1\024\321#\023M\036\232A\2204\032\000\003@\017P4\320\320\032\000\000\001\243L\236\215@\tM\023I\2424MOI\224\375S\302\0234\236(\375P\000\r\000\000\000\0004\000\000\000\032h\0100\002`\000\000\023\000\t\200\000\000L\000\232\030\000\000\000\000\000$Q\244\320\021\242I\357T\233M&\207\250h\000db\000\000\000\000\000\001\240\006\200\006%jdP\203\030\275\3270\\\302\031\231\377\222\005sGHi)(k\242Na$\227V\351\023\311\305R\266\226\253\025\201b\242PGAtX\301\246\330\333m\2461\2461\r\260m\241\266Y\302B\202\272#\244\005`\351\341\020\240\000\265\266\t\260:T\333`\241\\\267&\230\"\332\252\302\214 H\210\002\032vq\320\206\023\027^\231)$\222E\004@n\220;Q\302\221\276\230|\342#\335\002\370\017\225\302R\360\3051~.xP\343\005\266\314\205J\330>B\026S\"\004.-\266s+:\020\201p\225\020\233Z\267MS\204'\210\320\025\3570\2115\367\376\374\341p|\202\334]\003\372e\350\304\273\n\366\320f\324\372\022\235S\t]\314\314e(}\245\020V\t\232\223\247\361\352\010\262\226t\322\301\330#\267\373\334d\312y\365\357z\363\210\274\rx\025'\246\260%\236a\343\245HYI:xaDQE\262\242\013lG\371Y];]\221\360\262x\270\2460\236 (+\236\351\246h\272\331rWes\031\215|\375a\254n>-m2\244J!\330\315\030+\234c\037\026\233\237\365B\003\324U\240\252\250@\204\006#\032\t\361@\202\017^\265\007\247s$\263\177\035)@H\220L\257T\225\263\356\254\311\272\264\244p\302L\265ek\327\220\303\240-\344A^\313\235\033L\244\324w\277\2769\027 \202\010\037R%K\024\213?\003\254\242\276\002\332\214\204\2314\355K\226\231(NT\342\242%)9\223&\023\273\2178\036\357\255J{\205`y\273\304\035}\345\351}\332H$!\003\206;\r\232}\034N\321\231L\2122j\371;x\363D\360\343J\003\371\016(\216\231\224\n""\232\311M\234\253Q\234\316\326n\035\215\373\257\014\213\026or\317=\251\372\246\266u\242\\\266E\340\326\205\357\343O\342\254I\256\315Yy\354\315\222g\210fQ8S.\n\263e\245\231\2049\326\252\273!!\364W\237\277\346\324\322&\360r\364NJD\021\030m\301\0044:ZB+\347\035\032$P\223%C\223&)%jZ\010\232\003\222\301\205\230K\357z\217|\n\3678\237V\255Z\2579\323G\246\244\356\366 \275\233\2474|\372\022*g\333\212ID\225\226l\325\312!\233!\250sv!M\3749\335E\334%\265aL\235\243\221L\375\234\004\303\364\325\300\355-Wl\355d\341P=\362\020\307Q\316;\\.\246M]iDWe\n\004pemd\014\353U3W\236RJV\232\211&%\250\363vf\326E\n\324xD\212-\211\000\344_%Q\231\225\027\003H\234\032jub=M\331\273gIQ\225\366NE*\\DG\251\006j\212\026\265s\311D\370X\272\361ZR\275a\0320\030\363\264i\307<\334\311`\236\331\372[#\234x\215\377f\375\235<\314?zF\217\350\304\225\017\370\231\201\233c\253\374\302\205\321B\005\374\246\241x\242\242\325\001\324\013\003\250\304\037\262A\266tC@\215\256o\337\272\233K,\311\223_\231K\002M\205]y\r\367\352\026\210\313\021\351\240v\221\355\247\025\2707\363Y\255v\020\201\371\230\255r\tb.>\036&g5\300k\240\243\255S\256D\354N\326\317)\264\231\315\350\235\360\352B`5B\214\321\340c\2125\210\307\217\263\215\216\230\211O$D\2430\2353\350o+R6\033\354\272\313mrq\361\340A>\214\212\362<\023t\261p5\301\256\013R22\220\356\340\221\242\205\307U\253Q\253wz\206\214\030L~\330\247\035CA\2139\3126\363E1\300d\324b8\242:8\226\035\312\216\211<\367\264gt\206\013\0024t\336\250I\271\310\206L\207\362\251v\352\346\326\342oA\031\3606\316O}\247\207^\222\027\013\362\363\306\324\245\305\005\251\211F\014b\211Y\231\231\240e\254\026hH\307D\300h\211\2010K%\017D\301\274st\205\014\033\035d\\\365FU]M\206\230\323,\034\351\206\001\252w\333\334H\240\341\214\265\024\204\237\275m\016\367\031b\217\243\220.H\330\216c\210Tx+\337\034\331\363\337}\035\312c\t\022H\275\225\216@FH\211Y\237/\250\206\255\323Y\231\020\250\267\025\222\343)\233\1779\252\205\367\272\326\336|\362\221\205\315ya\237)-\216[,zo\242QK\315\npZ\274K\315\335\313\320\035\365v\361\2441mv!""\2440~x\234]\014\255\037\2259\243#\326k\276\351D9\220\210`\210\270\354%\271\366\334\005V\303h8\361m\"\320\t\267\326B\214\354\360\344\215i\361\215\271h\215\372H\232R\032%o.\221\003X\246fE\247\220\333\022z\023{?6\333\"9\225*nY\332\313,0\347Q\260\201\360\214\n\016\201\350M\331\337N\\^\346\304,0\231$\354\325\006\220\274&\374\020\246\2325L_\224%\322I\026*\252\256)8>t|\221\334\376u%\265\033\001s9\270\202\307\352P\317\267L\306.>\256\251*\206\212\372\234=A\300\367t\246\262\024\346\315\201D=\354\265\230\360\373mj\251\336\314\026'3\033\315\221\314\230nq5`\2541\210\tX\240\271M\003\223\235\024 \242\006by\013*\270p\t\355PY5,#r\025 *\031\241L-0\331\347!V\322\341'U\235T\326ZW\246w\305\031\231\225\362lr\213g8\024\232\220\341\311\216\341\241\247\023\262\016\376\302/\331\206\327qKk\265\340\202:\353\025i9\205G\231U*\335\001\014\316\017\242\266\226\035R%\213\321k+$\204\204=\214\327\331\005\316\002\275\332%6\3443\016\233B\267!\337\022o\302\241\221\r\221f\304\2772hc\023-\316\356'[\346\245\275xn3S\034K\311\343xvq#`Lbv\016LVzE ]\225\352O%\2643v\357\216\206\250YSU\002\2412\324\235\026g\214;l\001TU\023\014\267\022\264\326\2274\316f\232\356\257#Zf-\325\225\331\266\"\247\002\214\333\013\322%a\026\326\013\201U\204\355#\032\306\352*\227-\214Z\345N\226\213\272\254B\207fA\n`.\211\246\230\306jo\034;/%QS8\316!d\261`\312\367,\264\004\205 \234.\025\r\2245\2178\346\313\220\"-\246B\244jT\3022\266\205\260F\270\n&\014\010\255\003\206h\320\326\271\366!\312\024t\016;\240pt)\0340\023i\016A\311184\271p\213;\230jUy\255\032\022\230x\302\215Gqb\317\242?\0057:0S>\362e\223\221\323R\306*\002\360%c\035\273g8F\256\274\245\203\322\365M\003\263+\261-W\2569\260\355\321F\213\035d$#\257\255#\177\306\234\032\272gD\201\002K5N\021A\371\314\343\336U[Ph\213\2219*KM)\313*\351\325KY\300G\242\347Y$#u2\2620u\260QV\n\202\325\212\032\025/\355'\032\277\230\372\230\336\213\215\003y\325\023\317\210lX\227\336\334\361\262\206\001\223c\033\253Ra\236Q\213\346\021\232\265S%pf*7X\234\255\232\257\206 Z\2460F\034\274\0249\366\210\242\212\216oY""(\224\031\224\200f~e\343\276\243\222\014\010]\222D\222\247\256\205\207NTz\034\373%\211\277f\335O\265:\335\020x\2542V\354\035\340\256\024\276\0178\374\243\\NL\212fg\344\376\022iM\322\307\203\241uP2\230ZI\355\270\030\344\364\372\275\036\254\315\321c:\244\\\347\263\207v\262\303\033'#\235\"\026\363\360\033G\2110RV\250\242T\271\356\331\2436\177\003\210\"\315V2&77\253\230\303,\301\305\216\332\320\276(\372\372(\020\321\360\243\331\350\301\225!?\254\250\034\t\314\316\\C\037\267;'\215\332\n\202\233\275*.\363]<\016,\212\032\"\371v\361\372K\257\355\236\0307\222\242\\\334#\007y\376\226\365\3611\306#\230au=\007\331m\034\311XR\337\2263w\341!\035\277\274y\306.'\"\235F\347\262\001>b\361\312_G(/\375\274\035\030q\223\036\301r;\331-y\340\313v\367\211\272\177_J\247j6[\257\217\344\033\253\001\335\302\030c\017R]\345\322\3456\024\375\357\030\243s\206\301\334\365\227\374\200\261\341\007\301\314\236k\374\330\036\354X{\350\206\035\227\007\215\330\221\261}\373\346\316\312\3520%l\010\253\247\211\306\313+\330\333n\355\213\342a\301\205+`\0261\r\037\024660`x\334q\353\251\034\215\035kih\343+\251_hC\375\254\230\353\036\316\314\212\365b\251K\261\236\2247{\302\024SUh\351%%D\312\243\212\321>3+A\022u\317\237\345\303\273FR%\326)\334%\353\321(u\356\035wh\362P\027kj\365B\236\330\245\311\323\346\351\334\267\370g\232\207h\3274\254\345\032\251^s\374\037r\027U\020\214\312\005\370\304\031|\222\326\210w)r\272\274B\326i\355\014K\343\300\307\263#f%\006\014\224\335\031\334\273\200\006\232\023\033\242\t\034\325\026p\342\035\326\003C\t\223\010y\007\225\022\024$\031\265&\20569\004s\013I 8\222\263\244\326\032bla\341P\242\032\006@]\377\213\271\"\234(HEs\013(\000";
+    PyObject *data = __Pyx_DecompressString(cstring, 2739, 2);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2603 bytes) */
-const char* const cstring = "x\332\275V\317s\333\306\0256m\311\245l96-;\231\264M\014Y\226e\267\t#R\222\2236\256;\224\3144je\331\242dO\234vfg\t,\251\225A\000\302.(\322\247\034q\304\021G\034y\344\221G\035}\344\221G\375\t\376\023\372\355\202\244~9\231\244\207\216(`\367a\367\375\370\336\367\336\356_\215\222m\033\026o0Gp\327\021\206\3473\223Y\334\251\037\013\215y\313h\004B\032Ufp\307b-f\031\324\261\014\307\225\206\2609\226\257\006\265\032\363\215&g\007\206\3452\241?\261\226\347\nf\010\351s\213\2115\352\030\256c\267\r\323gT2\203\032\325t\223\334\245\322\340\3020]G\362z\340\006\002F\214\006k\270~;\217]J\025\025\202\327\035C\272\0066[_j=\351\ner\270h\250\370\300\347\222Vm6\\\220:U\363\335\306/\355\325a\031\007\\\356\032\262\3551ca(\227>u\204\016\343xK\272\014;8\240\222'\260{z\0220\236\202\220.*7<\3316\304.\205j\031xp\256\346\372\206\331\226\273\256\223\247\276O\333\353\332\0017\220\206[3\252n\340X\302x@[\3202o=\\?o+\005?\360<\327\227\314Zw\232\324\346\310\222k\261/\024\360X\214$-\230\013\006\354,\300\230\nd\341\013\243\216]\243\305\251;\300Z\233y\374L\007\370J\005\010\0276]@\251S\263\246\275T\361X\314\346U\346\003d@\250\322\n#:\177\216\361\242\374\342\313\345o\2265-|\266\007\363\002\336UM\033\231\003\035TL\001\267%\214)xE\336X\257\031m70\034\0067\221V\017\353Nn\220\273\3141\004\223j`,\350\\P\211\270\t\266\203\233\013C\\y\223\251\335\337Q[\260\374\363S\340\301\345!\301\250i21Bs[2\317h\320\266\306\017|~\313|\367\030\350\227\216f\016T\202\215M\346\203\030\2225\324\334\255\252\240\362O\026\036\376\235Z\026q\024<*X\003\010-\266L\327\266\225;HL\236V\315\307'\270\254\026\245\316>9+\036Q\350\211\305\205\262\313\264\365\272i<Pi\252k\366\250\010T1\262\226d\216\324\245q\\\227\\\244[,\345\245\340o\231\361\370o\306\3429n9.RW\243\201-\rB|f\005&#\304\260\002\035\250\343:_\"\225MNm|5\271\303%!N\320\360\332yb\272>\3137\260\217k=F\215r;\315\027o(\342\235\\\0264(\252\342\354\212!nO\274\366A\265.\3636\267\367X\335g\316p\036Hn#\337v-\357\320\006\033\325\314\246\3530\341\233_\245\213\276\022\256M\375\274\327n=N[\211u\n\323""\3632E\3711\264\247\276\217\245\3018\317\324\266]S\367#\035\241E%\315\177\340kZ+J\307\260\235\345K\333k\353\353\253\213\253\205\362F\371U\331\266\271'\270\370~cq\243\260Q\334X\332X\336X\331X\337\370g\371\037\225\362&Y\373\261D\236\255o\036\0136\237W\236m?\337(U\310\263\322\017\307\342T\264\366|s{g\363\345Nig\375\371&)\255\256=%\245J\245\364z,z\275S\256<Ke/*\345\355\355\227\2252!/\332-\374?EM\222M\220\245\302j\225\312b\245P)V\226*\313\333l?`\216\311v\312\317^\354\3542IU\231\347\217+\036\234\305\317\242\250n?\2553\344\324O\031=\302\200\244\345Dmo\227R\247M=\217\"\221\222\010\300\201\316j\023\t^\036K\003\207\330\256S\3472\260\030\365\353\n^\241j\237\212\266cr7\017\003\350v\034\231\246\262\341\n\360\262\346SS\352\211\267\013\322\233#\321\031w\232\365*\025\254\212 L\360U\365\013BF\203:\223\252\024\324\024\232\tG\277\200\006V\245\346\033H<\323\025&\272\2034\337R$\232)\207GoB\255=\034q\026\253\027}\0248\263%\325\017\242\343M\207l\370\362\304x\300\021c:\361|\245-\035*H\324@\016_4 \304R\231!\226\202@?\010\027$-\016\266\310l\326Dz\320\274\031JJw\330\241n\344\215J\327Gq\222]\274\336\242\201`\010\214\221\025\332B\266Pz-\257\006\224\\\277\006r\023\365\250\331\264.j\266K\345\243e\364\002\024\346\360\000\250\005\266MH-p\200\\\235\271&\022\245p\266\221r\225\246\223\242Q\352N\310TJ-\246\220\325\0249\363\305\347\365]I\2500\323\336\244\014H!\025oH\275\201.n\363s\366N\013G\026OI\221\013\036\010\322d*@\316-n\265\360l\021\222\266\027\274\325\271\311\035D\252\000\035\223*m\210\303\256\270\267g\262=\013P\3575\330^`s\n>A\177\340\267\2073\213\216F\014\324C\002\224\252S+\216\345\037Z\333\340h\377\216\303\203\306\233\003p]\330\264a!\310q\267S\005\244\022\030\370\204:u\233!\326q\270 \201\315\367\003.\333\350\272\303C\2164(\327\317\026*\312\301\036\267A\3556i\270\256sJ\000\334\365\\%\305\223\200k\254+\025+#Z\243\236\236*T\374\251\273L\203;\352\316\000[\256\025\330\372\r\373\210\0014D\025\2172\225JUn\325\315\3608Wj\251\357\220\226\352\33685\322'\316'<\331\001\036 \237\356\336\216\347(\243\372""\274\000\351=\324\343\210\303\037\"\217\347z\270\206\n\021\370\314k\342\3161<-\264*Bp\022\020s\227\231oD\320HgC\236\251\241.-=\n\034\217\233o\020S\331\031\255k\352\213\241j\027(+;u\027\014+\202\346\212h\270\352\035\237\217\343Qz\222\236\020\260\226\032\326\271\300\355\007^\022\202{\3120v\214\206'\255\036\017\375:1\036)\323\347\211\342f\032S\372T\2204\030\264\212ss\334\217$\365\241\004}A\272\370\367\003\\\261\020\227:\235A{A\324\255DM\300y\217\020\311\004\\\220.\325\232\260c\\Q\252\327\244,\323T\374\205OD\335sQNd\334\223O\255>K\352\223\337\316\264\nx\313>@\322 pxK\361\002\251\002#\002O5\343\000\3616\364\275\240\211kj\300D\253\265\330*\264\212\255\245\326r\013\313\361\265\335VOus\023\372Al\376\206\375\224y\177\345\302\344\345\301\304\344\370\367\376?\231\013\223\323\3417\321\243\370f\\\030L\\\r\227\302Z\264\032\3213\303\225\350rT\2153G\330\224\375$\332\217\257$\363\311\376 {=\334\217.F\263\203\313\331\020\337\246\303\357\243\322\373\354\205\311\354O\"\274\037]\212\n\203\354Ga5\232\214\266\242z\274u4\361\273\237\225\007\341Z\250\365\371\321\355\210F\0071\035L]\013_EK0\177R\252\326\266S\r3Q1z\031\317\306_'\263\203\251\\\364q$\342\331S\322\337\246\367j\377\352\037\343\322 ;\365s?\240g\\\230\374,^\353\337Y\356~\327\233\355\001\256\337\307s\361\253\244\220\224\006\023\237\306\267\342J\274\257d\363\261\237\344\216&\356\304\002\256M|\036\233j\366M\357b\357\376a\346\360\366a\355\335\352;\200zF\360\376\362\205\251[Q!*)l\340\334tX\326\316\355\017\246oF\017\020\332\215\333\200\313\214g\342\325\270\232d\222\334\340\306\315h\036\251\270\024/Ap1\231M\n\377\263\350h\372\266\316\305N\222K\346\222\355\316\305\316\275\016\355\210\356\\\267\322\025\010u\271\347\037\316\034\226\016\267\006\277v\341Q6\027\345\242\373qf0\032\000\342\360\333\210\002\306\033\032\306\270\231l%T\3415\033?\202:@U\354\336\325\310\256\034^>\254\276\313\214!9:\211\206\342\334e\000\221\003\366\333p\177\016j\314N\2563\327\331\356^\204#[]\2637\323[\355\321\336\376\2416Z\200\311'\027&\257\2043\341\277\020vf0q%\234""\353_\273\017\343Yd\335\000\230\267\022\260PK\037B\023\230\223\355g\357j`@\352\265\376\365{\310p\366\363\230\306\373J\341R\377#|\034d?\213\267\024s\256\367\257\337\351\337\371\026|P<\201\306?\304\005\305\244\224Q\361\226\036\351\265z\244\365\352\021\264&[\010r\362zh\366s\260\254\245s\232O\331\251\243\211\033\321\245\376\314\320!mu\036\241\326;\377\356!\204lxI\253\322[\224g2YJ\\\004OS\266*\265\327\224\353y\344\247\331}\335\003\322:\224?uf;\217\272\237\366T\220J\207rq;\231L\266\006\023S\341L\177\372\317\235B\247\244\365\207\217\220\270\331\343\341\234*\2543\323\243\211\233\321\\\377v\261;\333]\352Z\275\271\036\324hI\241\233;_BG\251\211\021T)Z\017:\231\316L\247t4\361\221Ba\251\213o7\301\227\211\270\244b\270\032\336\r\237F`\321\225\360A4\033\255\304\027\343\271\376g\177\351\345z\367z\252f\320\274\212\250\347B\264\006n \205\367B3\312\rt\247\271\247\312hF!x\263\263\004\024dw\245\227\351\335\352\275<\274\253\030zh\275\273\373N\331\230\372Xw\214\025p\351ag\245\233\351\336\352\202\276\327\302\255\260\036\375\250JYu\212\267\272?f\257\206\313\241D\367\231\276\205\316\370F\263vZ\361\373A|7~\232d\0067\224\234\305\305\370uB\223f\247\322\t\272\253]\256\2318}#\312D\237\250:\230\ns\341l\370\265\302\366*^\363\221\204qE\302\227\252\232~\312\350\270\373W\356\304\373\311\245d\245\203l\017i:\223\224;\267;\325\256\246u1\374\001\245h\305\367\342_\265\345\234\344R\267\330\335\372\215\3224\372\377\233\271\017HOG\316\222b\262\365\374\277\306\366\216\253";
-    PyObject *data = __Pyx_DecompressString(cstring, 2603, 1);
+    #elif (CYTHON_COMPRESS_STRINGS) != 0 /* compression: zlib (2592 bytes) */
+const char* const cstring = "x\332\275VKw\333\306\025\266l\311\245l9\266,;9i\233\030\262,\313ncF\324\303I\033\327=\224\3144je\331\242d\2378\3559s\206\300\220\032\031\004 `@\221^e\211%\226Xb\311%\227\\j\231%\227\\\352'\370'\364\273\003RO''\351\242G\0240s1s\037\337\375\356\235\371\253Q\264m\303\222u\341\004\322u\002\303\363\205),\351\324\216\205\306\254e\324\303@\031\025aH\307\022Ma\031\334\261\014\307UF`K,_\t\253U\341\033\r)\366\r\313\025\201\376$\232\236\033\010#P\276\264D\260\312\035\303u\354\226a\372\202+ap\243\222mR;\\\03120L\327Q\262\026\272a\000#F]\324]\277\225\307.R\305\203@\326\034C\271\0066[\217\264\236l\005\231\034,\032(\336\367\245\342\025[\014\026dNU}\267\376K{uX\306\276T;\206jy\302\230\033\310\225\317\235@\207q\274%[\206\035\022P\251\023\330=;\t\230\314@\310\026\225\352\236j\031\301\016\207j\025zp\256\352\372\206\331R;\256\223\347\276\317[k\332\0017T\206[5*n\350X\201\361\2007\241e\326z\270v\336V\006~\350y\256\257\204\265\3464\270-\221%\327\022_\020\360X\214$\315\231s\006\354\314\301\030\0052\367\205Q\303\256\341\342\314\035`\255\315<y\256\003|M\001\302\205\r\027P\352\324\254j/)\036K\330\262\"|\200\014\010)\2550\242\363\347\030/K/\037-}\275\244i\341\213]\230\017\340]\305\264\2219\320\201b\n\245\255`\214\340\r\362\306Z\325h\271\241\341\010\270\211\264zXwr\203\332\021\216\021\010E\003cN\347\202+\304\315\260\035\334\234\033\340*\033\202v\177\313\355@\344_\234\002\017.\017\010\306MS\004C4\267\224\360\214:oi\374\300\347w\302w\217\201~\345h\346@%\330\330\020>\210\241D\235\346n\205\202\312?\235{\370wnY\314!x(X\003\010\3157M\327\266\311\035$&\317+\346\223\023\\\246E\231\263O\317\212\207\024zj\311\200\354\nm\275f\032\017(M5\315\036\212\200\212Q4\225p\224.\215\343\272\224A\266\305\"/\003\371N\030O\376f\314\237\343\226\343\"uU\036\332\312`\314\027Vh\n\306\014+\324\201:\256\363\010\251lHn\343\253)\035\251\030s\302\272\327\3123\323\365E\276\216}R\3531\252\\\332Y\276d\235\210wrYX\347\250\212\263+\006\270=\365Z\373\225\232\312\333\322\336\0255_8\203y\250\244\215|\333\325\274\303\353bX3\033\256#""\002\337\3742[\364e\340\332\334\317{\255\346\223\254\225X\2470=/#\312\037A{\352\373\2214<\3123\267m\327\324\375HGhq\305\363\037\370\232\325\n\351\030\264\263|qkumme~\245PZ/\275.\331\266\364\002\031|\267>\277^X_X_\\_Z_^_[\377g\351\037\345\322\006[\375\241\310\236\257m\034\0136^\224\237o\275X/\226\331\363\342\367\307\342L\264\372bck{\343\325vq{\355\305\006+\256\254>c\305r\271\370\346H\364f\273T~\236\311^\226K[[\257\312%\306^\266\232\370\177\206\232d\033 KYT\313\345\371r\241\274P^,/m\211\275P8\246\330.=\177\271\275#\024\2472\317\037W<8\213\237\305Q\335~Vg\310\251\2371z\210\001\313\312\211\333\336\016\347N\213{\036G\"\025\013\000\007:\253\315\024xy,\r\035f\273NM\252\320\022\334\257\021\274\001\325>\017Z\216)\335<\014\240\333Id\232\253\272\033\200\227U\237\233JO\274\035\220\336\034\212\316\270\323\250Ux *\010\302\004_\251_06\034\324\204\242R\240)43\211~\001\r\242\302\315\267\220x\246\033\230\350\016\312|\307\221hA\016\017\337\214[\2738\342,Q[\360Q\340\302V\\?\230\2167\033\212\301\313\013\216\006\0221f\023\317'm\331\220 \241\201\032\274x\310\230E\231a\026A\240\037L\006,+\0161/l\321@z\320\274\005JJw\330\201n\344\215+\327Gq\262\035\274\336\241\201`\010\214\221\025\336D\266PzM\257\n\224\\\277\nr3zTm^\013\252\266\313\325\343%\364\002\024\346\340\000\250\206\266\315X5t\200\\M\270&\022E8\333H9\245\351\244h\230\272\0232J\251%\010YM\2213_|Y\333Q\214\007f\326\233\310\200\n\024\361\206\325\352\350\342\266<g\357\264ph\361\224\024\271\220a\300\032\202\002\224\322\222V\023\317&cY{\301\233\316M\351 R\002\364\210TYC\034t\305\335]S\354Z\200z\267.vC[r\360\t\372C\2775\230Y|8\022\240\036\022@\252N\2558\226\177hm]\242\375;\216\014\353o\367\301\365\300\346u\013A\036u;* J`\3503\356\324l\201X\217\302\005\tl\271\027J\325B\327\035\034r\254\316\245~6QQ\016\366\270un\267X\335u\235S\002\340\256\347\224\024O\001\256#]\231\230\214h\215zz\252P\361Gw\231\272t\350\316\000[\256\025\332\372\r\373\210\0014D\025\0173\225I)\267t3<\316\025-\365\035\326\244\356\215S#{\342|\302S\354\343\001\362\351\356\355x\016""\031\325\347\005H\357\241\036\207\034\376\020y<\327\30354\010B_x\r\3349\006\247\205V\305\030N\002f\356\010\363m\020\326\263\331\200g4\324\245\245G\241\343I\363-b*9\303u\r}1\244v\201\262\2623w\301\260\005\320\234\210\206\253\336\361\371x4\312N\322\023\002\321\244aM\006\270\375\300K\306pO\031\304\216\321\340\244\325\343\201_'\306Ce\372<!nf1eO\202\244.\240587\307\375Hq\037J\320\027\224\213\177?\304\025\013q\321\351\014\332\007\214n%4\001\347=\306\224\010\340\202r\271\326\204\035G\025E\275&c\231\246\342/|bt\317E9\261\243\236|j\365YR\237\374v\246U\300[\361\001\222\206\241#\233\304\013\244\n\214\010=j\306!\342\255\353{A\003\327\324P\004\315\346|\263\320\\h.6\227\232X\216\257\255\026=\351\346\026\350\007\263\345[\361\343\310\373+\027\306.\367G\307\216~\357\3773ral\"\372:~\234\334L\n\375\321\253\321bT\215Wb~f\270\034_\216+\311\310!6\345>\211\367\222+\351l\272\327\317]\217\366\342\213\361t\377r.\302\267\211\350\273\270\370>wa,\367c\020\335\217/\305\205~\356\243\250\022\217\305\233q-\331<\034\375\335\317\312\303h5\322\372\374\370v\314\343\375\204\367\307\257E\257\343E\230?)\245\265\255L\303T\274\020\277J\246\223\257\322\351\376\370d\374q\034$\323\247\244\277M\357\325\336\325?&\305~n\374\347~@\317\2700\366Y\262\332\273\263\324\371\266;\335\005\\\277Of\222\327i!-\366G?Mn%\345d\217d\263\211\237N\036\216\336I\002\2706\372yb\322\354\353\356\305\356\375\203\221~\216\314/\304\233\347%@n\374V\\\210\213\204\016\334\233\210J\332\275\275\376\304\315\370\001\202\273q\033\200\231\311T\262\222T\322\221t\262\177\343f<\213d\\J\026!\270\230N\247\205\377Yt8q[gc;\235Lg\322\255\366\305\366\2756o\007\235\231N\271\023 \330\245\256\1770uP<\330\354\377\332\205\207\271\311x2\276\237 \300\301\000 G\337\304\034@\336\320@&\215t3\345\204\330t\362\030\352\000\326B\347.a{\036\223\303\223p\020\355.\003\211I\300\277\005\377g\240\307lO\266g\332[\235\213\360d\263cv\247\272+]\336\335;\320V\013\260\371\364\302\330\225h*\372\027\342\036\351\217^\211fz\327\356\303z\016\2117\200\346\255\024)\321\322\207\320\004""\362\344z\271\273\032\031\360z\265w\375\036\222\234\373<\341\311\036)\\\354}\204\217\375\334g\311&\221\347z\357\372\235\336\235o@\t\242\n4\376!)\020\2312R%\233z\244\327\352\221\326\253G\320\232n\276\277|a\354zd\366&aYKg4\245r\343\207\2437\342K\275\251\201C\332\352,B\255\265\377\335E\010\271\350\222V\245\267\220g*]L]\004\3173\302\222\332k\344z\036\tjt\336t\001\265\016\345O\355\351\366\343\316\247]\n\222t\220\213[\351X\272\331\037\035\217\246z\023\177n\027\332E\255?z\214\314M\037\017g\250\266\316L\017Go\3063\275\333\013\235\351\316b\307\352\316t\241FK\n\235\311\363Ut\230\231\030B\225\241\365\240=\322\236j\027\017G?\"\024\026;\370v\023\204\031M\212\024\303\325\350n\364,\006\215\256D\017\342\351x9\271\230\314\364>\373Kw\262{\257\313i\301D\264\000\266\024\342Up\003)\274\027\231\361d_7\233{TGS\204\340\315\366\"PP\235\345\356H\367V\367\325\301]\242\350\201\365\323\335\237\310\306\370\307\272i,\203K\017\333\313\235\221\316\255\016\370{-\332\214j\361\017T\315\324,\336\351\026\231\273\032-E\n\rh\342\026\232\343[M\333\t\"\370\203\344n\362,\035\351\337 \271H\026\2227)O\033\355r;\354\254t\244f\342\304\215x$\376\204\na<\232\214\246\243\257\010\333\253x\315\306\n\306\211\204\257\250\234\300V\212\273w\345N\262\227^J\227\333\310\366\200\246Si\251}\273]\351hZ/D\337\243\026\255\344^\362\253\266\234\223\\\352,t6\177\2434\213\376\377f\356\003\322\323\221\213t!\335|\361_o\255\215\007";
+    PyObject *data = __Pyx_DecompressString(cstring, 2592, 1);
     if (unlikely(!data)) __PYX_ERR(0, 1, __pyx_L1_error)
     const char* const bytes = __Pyx_PyBytes_AsString(data);
     #if !CYTHON_ASSUME_SAFE_MACROS
     if (likely(bytes)); else { Py_DECREF(data); __PYX_ERR(0, 1, __pyx_L1_error) }
     #endif
-    #else /* compression: none (5025 bytes) */
-const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__numpy._core.multiarray failed to importnumpy._core.umath failed to import object>pywbgt.liljegrenpywbgt.utilsself.name is not Nonesrc/pywbgt/solar.pyx<strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIB0B1ELEVEllipsisHL0L1L2L3L4L5LILJEGREN_CZA_MINLILJEGREN_NORMSOLAR_MAXLILJEGREN_SOLAR_CONSTNUTATION_ABCD_ARRAYNUTATION_YTERM_ARRAYPRESSURE__Pyx_PyDict_NextRefRR0R1R2R3R4SequenceTEMPThetaView.MemoryViewabcabcdaberration_correctionallocate_bufferalphaanyapparent_sidereal_timeapparent_sun_longitudeargarrastypeasyncio.coroutinesatmos_refractatmospheric_refraction_correctionavgbasebetac__class____class_getitem__cline_in_tracebackclipcoscountczadatetimedatetime_adjustdeg2raddeltadelta_alphadelta_edelta_epsdelta_epsilondelta_primedelta_psidelta_tdelta_tau__dict__dtypedtype_is_objecte0elevencodeenumerateepsilonequatorial_horizontal_parallaxerrorexpfactorfdir_""fdirflagsfloat64formatfortranfull__func__geocentric_latitudegeocentric_longitudegeocentric_sun_declinationgeocentric_sun_right_ascension__getstate__gmtheliocentric_latitudeheliocentric_longitudeheliocentric_radius_vectoriididxiidx__import__indexint64_is_coroutineitemsitemsizejjcejdjecjmejulian_centuryjulian_dayjulian_ephemeris_centuryjulian_ephemeris_dayjulian_ephemeris_millenniumkwargslamdlatliljegrenlocal_hour_anglelonlongitude_obliquity_nutation__main__maxmean_anomaly_moonmean_anomaly_sunmean_ecliptic_obliquitymean_elongationmean_sidereal_timememviewminmode__module__moon_argument_latitudemoon_ascending_longituden_arrn_xname__name__ndim__new__normsolarnpntimenumpyobjpackparallax_sun_right_ascensionpoppressurepvlibpywbgt.solar__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__rad2degradians__reduce____reduce_cython____reduce_ex__registerres__set_name__setdefault__setstate____setstate_cython__shapesizesolar_solar_parameterssolar_parametersspastartstepstopstructsum_mult_cos_add_multtemp__test__toasolartopocentric_elevation_angletopocentric_elevation_angle_without_atmospheretopocentric_local_hour_angletopocentric_sun_declinationtrue_ecliptic_obliquityuunixtimeunpackupdateutermutilsvvaluesxx0x1x2x3x4xixtermyytermzeroszeros_like\200\001\360\n\000\005\006\330\004\005\330\004\005\330\004\005\330\004\005\360\\\001\000\005\014\2108\2206\230\022\2301\330\004\013\2103\210f\220B\220a\330\004\013\2103\210f\220B\220a\330\004\013\2105\220\006\220b\230\001\340\004\005\330\010\027\220q\230\n\240%\240q\330\010\017\210q\220\002\220!\330\006\010\210\001\340\004\014\210H\220A\360\010\000\005\010\200s\210&\220\003\2201\330\010\016\210b\220\005\220Q\220g\230Q\340\004\007\200s\210&\220\003\2201\330\010\016\210b\220\005\220Q\220g\230Q\340\004\007\200u\210C\210q\330\010\017\210r\220\025\220a\220w\230a\330\t\r\210V\2203\220a\330\010\017\210r\220\025\220a\220w\230a\340\004\007\200y\220\003\2201\330\010\023\2202\220U\230!\2307\240!\330\t\021\220\026\220s\230!\330""\010\023\2202\220U\230!\2307\240!\340\004\007\200u\210C\210q\330\010\017\210r\220\025\220a\220w\230a\330\t\r\210V\2203\220a\330\010\017\210r\220\025\220a\220w\230a\340\004\013\320\013\034\230A\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\200\001\360 \000\005\035\230C\320\0374\260F\270!\2701\330\004\032\230#\230V\2401\240A\330\004\031\230\024\230R\230q\330\004\032\230%\230r\240\021\340\004\037\230s\240!\330\004\036\230c\240\021\340\0048\270\002\270&\300\001\300\025\300f\310B\310a\330\0048\270\002\270&\300\001\300\025\300f\310B\310a\360\006\000\t\024\2201\220A\330\010\016\210a\330\010\014\210E\220\025\220a\220q\330\014\022\220(\230!\330\020\025\220Q\220c\230\023\230B\230b\240\001\240\021\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\340\014\025\220Q\220g\230T\240\021\240#\240S\250\002\250$\250a\250s\260#\260R\260s\270!\2704\270r\300\023\300A\300Q\330\014\025\220Q\220g\230T\240\021\240#\240S\250\002\250$\250a\250s\260#\260R\260s\270!\2704\270r\300\023\300A\300Q\340\010\021\220\021\220&\230\001\330\010\021\220\021\220&\230\001\340\004\013\210;\220a\200\001\360\020\000\005\035\230C\230v\240Q\240a\330\004\032\230!\2306\240\021\240!\330\0042\260\"\260F\270!\2705\300\006\300b\310\001\360\006\000\t\024\2201\220A\340\010\014\210E\220\025\220a\220q\330\014\017\210q\220\006\220c\230\021\230#\230S\240\002\240#\240Q\240c\250\021\250#\250S\260\002\260#\260Q\260c\270\023\270B\270a\270q\300\001\340\004\013\2101\200\001\360>\000\005\n\210\023\210K\220q\230\001\330\004\n\210#\320\r&\240a\330\010\013\320\013 \240\001\240\024\240Q\340\004\n\210#\320\r)\250\021\250!\340\004\010\320\010\"\240!\2401\340\004\014\210C\320\017$\240A\330\010\036\230a\230q\340\004\013\2103\320\016\"\240!\330\010\035\230Q\230a\340\004\017\320\017\037\320\037;\2701\330\010\t\330\010""\013\320\013\033\2301\230A\330\010\013\320\013\034\230A\230Q\330\010\013\320\013\035\230Q\230a\330\010\013\320\013\"\240!\2401\330\010\013\320\013$\240A\240Q\360\006\000\005\017\210c\320\021)\250\021\330\010\013\320\013#\2401\240A\330\010\t\340\004\020\220\003\320\023)\250\021\250!\340\004\013\2103\320\016%\240Q\240g\250[\270\001\330\004\010\210\003\320\013\"\240!\330\010\013\320\013\036\230a\230t\2403\240o\260Q\260a\330\010\t\330\010\t\360\006\000\005\r\210C\320\017.\250a\250v\260Y\270a\330\004\014\210C\320\017*\250!\2506\260\031\270!\340\004\010\210\003\320\013\034\230A\230S\240\005\240Q\330\004\t\210\023\320\014+\2501\250A\330\004\010\210\003\2106\220\021\220!\330\004\010\210\003\2106\220\021\220#\220U\230!\330\004\010\210\003\2106\220\021\220#\220U\230!\340\004\022\220#\320\0252\260!\2603\260d\270#\270Q\330\004\022\220#\320\0251\260\021\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\340\004\t\210\023\320\014;\2701\330\010\t\330\010\t\330\010\013\320\013(\250\001\250\023\250A\340\004\016\210c\320\0213\2601\330\010\022\220&\230\004\230A\360\006\000\005\013\210\"\210D\220\001\330\010\n\210(\220!\2205\230\002\230#\320\0359\270\021\270$\270a\360\006\000\005\014\2102\210V\2201\220C\220q\330\004\n\210$\210c\220\021\330\004\007\200s\210$\210a\330\010\023\320\023)\250\022\2503\250a\250t\2605\270\001\270\024\270U\300\"\300A\300Q\300d\310\"\310A\360\006\000\t\026\220U\230!\2305\240\002\240)\2505\260\001\260\024\260Q\340\010\r\210Q\210g\220Z\230r\240\021\330\010\017\210z\230\022\2301\330\010\013\2104\210t\2201\330\014\024\220B\220k\240\021\240!\330\014\021\220\021\220(\230\"\230D\240\001\330\020\024\220B\220e\2302\230Y\240a\240v\250R\250u\260B\260i\270q\300\001\340\014\020\220\001\220\027\230\001\340\004\t\210\021\210!\2107\220!\330\004\013\2107\220%\220t\2305\240\001\240\024\240U\250$\250a\200\001\360\006\000\005\013\320\n\037\230q\240\003\2405\250\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\001\340\004\013\2102\210X\220Q\220d\230$\230a\200""\001\360\006\000\005\013\320\n\037\230q\240\003\2405\250\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\2104\210t\2201\200\001\360\006\000\005\013\320\n\037\230q\240\003\2405\250\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\340\004\013\2102\210X\220Q\220d\230$\230e\2402\240QO";
+    #else /* compression: none (5028 bytes) */
+const char* const bytes = ": All dimensions preceding dimension %d must be indexed and not slicedBuffer view does not expose stridesCan only create a buffer that is contiguous in memory.Cannot assign to read-only memoryviewCannot create writable memory view from read-only memoryviewCannot index with type 'Cannot transpose memoryview with indirect dimensionsDimension %d is not directEmpty shape tuple for cython.arrayIndex out of bounds (axis %d)Indirect dimensions not supportedInvalid mode, expected 'c' or 'fortran', got Invalid shape in axis <MemoryView of Note that Cython is deliberately stricter than PEP-484 and rejects subclasses of builtin types. If you need to pass subclasses then set the 'annotation_typing' directive to False.Out of bounds on buffer access (axis Step may not be zero (axis %d)Unable to convert item to object.>')?add_note and  at 0xcollections.abc<contiguous and direct><contiguous and indirect>disableenablegc (got got differing extents in dimension isenableditemsize <= 0 for cython.arrayno default __reduce__ due to non-trivial __cinit__numpy._core.multiarray failed to importnumpy._core.umath failed to import object>pywbgt.liljegrenpywbgt.utilsself.name is not Nonesrc/pywbgt/solar.pyx<strided and direct><strided and direct or indirect><strided and indirect>unable to allocate array data.unable to allocate shape and strides.ASCIIB0B1ELEVEllipsisHL0L1L2L3L4L5LILJEGREN_CZA_MINLILJEGREN_NORMSOLAR_MAXLILJEGREN_SOLAR_CONSTNUTATION_ABCD_ARRAYNUTATION_YTERM_ARRAYPRESSURE__Pyx_PyDict_NextRefRR0R1R2R3R4SequenceTEMPThetaView.MemoryViewabcabcdaberration_correctionallocate_bufferalphaanyapparent_sidereal_timeapparent_sun_longitudeargarrastypeasyncio.coroutinesatmos_refractatmospheric_refraction_correctionavgbasebetac__class____class_getitem__cline_in_tracebackclipcoscountczadatetimedatetime_adjustdeg2raddeltadelta_alphadelta_edelta_epsdelta_epsilondelta_primedelta_psidelta_tdelta_tau__dict__dtypedtype_is_objecte0elevencodeenumerateepsilonequatorial_horizontal_parallaxerrorexpfactorfdir_""fdirflagsfloat64formatfortranfull__func__geocentric_latitudegeocentric_longitudegeocentric_sun_declinationgeocentric_sun_right_ascension__getstate__gmtheliocentric_latitudeheliocentric_longitudeheliocentric_radius_vectoriididxiidx__import__indexint64_is_coroutineitemsitemsizejjcejdjecjmejulian_centuryjulian_dayjulian_ephemeris_centuryjulian_ephemeris_dayjulian_ephemeris_millenniumkwargslamdlatliljegrenlocal_hour_anglelonlongitude_obliquity_nutation__main__maxmean_anomaly_moonmean_anomaly_sunmean_ecliptic_obliquitymean_elongationmean_sidereal_timememviewminmode__module__moon_argument_latitudemoon_ascending_longituden_arrn_xname__name__ndim__new__normsolarnpntimenumpyobjpackparallax_sun_right_ascensionpoppressurepvlibpywbgt.solar__pyx_checksum__pyx_state__pyx_type__pyx_unpickle_Enum__pyx_vtable____qualname__rad2degradians__reduce____reduce_cython____reduce_ex__registerres__set_name__setdefault__setstate____setstate_cython__shapesizesolar_solar_parameterssolar_parametersspastartstepstopstructsum_mult_cos_add_multtemp__test__toasolartopocentric_elevation_angletopocentric_elevation_angle_without_atmospheretopocentric_local_hour_angletopocentric_sun_declinationtrue_ecliptic_obliquityuunixtimeunpackupdateutermutilsvvaluesxx0x1x2x3x4xixtermyytermzeroszeros_like\200\001\360\n\000\005\006\330\004\005\330\004\005\330\004\005\330\004\005\360\\\001\000\005\014\2108\2206\230\022\2301\330\004\013\2103\210f\220B\220a\330\004\013\2103\210f\220B\220a\330\004\013\2105\220\006\220b\230\001\340\004\005\330\010\027\220q\230\n\240%\240q\330\010\017\210q\220\002\220!\330\006\010\210\001\340\004\014\210H\220A\360\010\000\005\010\200s\210&\220\003\2201\330\010\016\210b\220\005\220Q\220g\230Q\340\004\007\200s\210&\220\003\2201\330\010\016\210b\220\005\220Q\220g\230Q\340\004\007\200u\210C\210q\330\010\017\210r\220\025\220a\220w\230a\330\t\r\210V\2203\220a\330\010\017\210r\220\025\220a\220w\230a\340\004\007\200y\220\003\2201\330\010\023\2202\220U\230!\2307\240!\330\t\021\220\026\220s\230!\330""\010\023\2202\220U\230!\2307\240!\340\004\007\200u\210C\210q\330\010\017\210r\220\025\220a\220w\230a\330\t\r\210V\2203\220a\330\010\017\210r\220\025\220a\220w\230a\340\004\013\320\013\034\230A\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\200\001\360 \000\005\035\230C\320\0374\260F\270!\2701\330\004\032\230#\230V\2401\240A\330\004\031\230\024\230R\230q\330\004\032\230%\230r\240\021\340\004\037\230s\240!\330\004\036\230c\240\021\340\0048\270\002\270&\300\001\330\010\r\210V\2202\220Q\340\0048\270\002\270&\300\001\330\010\r\210V\2202\220Q\360\010\000\t\024\2201\220A\330\010\016\210a\330\010\014\210E\220\025\220a\220q\330\014\022\220(\230!\330\020\025\220Q\220c\230\023\230B\230b\240\001\240\021\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\330\020\022\220%\220q\230\003\2303\230b\240\002\240!\2401\340\014\025\220Q\220g\230T\240\021\240#\240S\250\002\250$\250a\250s\260#\260R\260s\270!\2704\270r\300\023\300A\300Q\330\014\025\220Q\220g\230T\240\021\240#\240S\250\002\250$\250a\250s\260#\260R\260s\270!\2704\270r\300\023\300A\300Q\340\010\021\220\021\220&\230\001\330\010\021\220\021\220&\230\001\340\004\013\210;\220a\200\001\360\020\000\005\035\230C\230v\240Q\240a\330\004\032\230!\2306\240\021\240!\330\0042\260\"\260F\270!\330\010\r\210V\2202\220Q\360\010\000\t\024\2201\220A\340\010\014\210E\220\025\220a\220q\330\014\017\210q\220\006\220c\230\021\230#\230S\240\002\240#\240Q\240c\250\021\250#\250S\260\002\260#\260Q\260c\270\023\270B\270a\270q\300\001\340\004\013\2101\200\001\360>\000\005\n\210\023\210K\220q\230\001\330\004\n\210#\320\r&\240a\330\010\013\320\013 \240\001\240\024\240Q\340\004\n\210#\320\r)\250\021\250!\340\004\010\320\010\"\240!\2401\340\004\014\210C\320\017$\240A\330\010\036\230a\230q\340\004\013\2103\320\016\"\240!\330\010\035\230Q\230a\340\004\017\320\017\037\320\037;\2701\330\010\t\330\010""\013\320\013\033\2301\230A\330\010\013\320\013\034\230A\230Q\330\010\013\320\013\035\230Q\230a\330\010\013\320\013\"\240!\2401\330\010\013\320\013$\240A\240Q\360\006\000\005\017\210c\320\021)\250\021\330\010\013\320\013#\2401\240A\330\010\t\340\004\020\220\003\320\023)\250\021\250!\340\004\013\2103\320\016%\240Q\240g\250[\270\001\330\004\010\210\003\320\013\"\240!\330\010\013\320\013\036\230a\230t\2403\240o\260Q\260a\330\010\t\330\010\t\360\006\000\005\r\210C\320\017.\250a\250v\260Y\270a\330\004\014\210C\320\017*\250!\2506\260\031\270!\340\004\010\210\003\320\013\034\230A\230S\240\005\240Q\330\004\t\210\023\320\014+\2501\250A\330\004\010\210\003\2106\220\021\220!\330\004\010\210\003\2106\220\021\220#\220U\230!\330\004\010\210\003\2106\220\021\220#\220U\230!\340\004\022\220#\320\0252\260!\2603\260d\270#\270Q\330\004\022\220#\320\0251\260\021\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\330\010\t\340\004\t\210\023\320\014;\2701\330\010\t\330\010\t\330\010\013\320\013(\250\001\250\023\250A\340\004\016\210c\320\0213\2601\330\010\022\220&\230\004\230A\360\006\000\005\013\210\"\210D\220\001\330\010\n\210(\220!\2205\230\002\230#\320\0359\270\021\270$\270a\360\006\000\005\014\2102\210V\2201\220C\220q\330\004\n\210$\210c\220\021\330\004\007\200s\210$\210a\330\010\023\320\023)\250\022\2503\250a\250t\2605\270\001\270\024\270U\300\"\300A\300Q\300d\310\"\310A\360\006\000\t\026\220U\230!\2305\240\002\240)\2505\260\001\260\024\260Q\340\010\r\210Q\210g\220Z\230r\240\021\330\010\017\210z\230\022\2301\330\010\013\2104\210t\2201\330\014\024\220B\220k\240\021\240!\330\014\021\220\021\220(\230\"\230D\240\001\330\020\024\220B\220e\2302\230Y\240a\240v\250R\250u\260B\260i\270q\300\001\340\014\020\220\001\220\027\230\001\340\004\t\210\021\210!\2107\220!\330\004\013\2107\220%\220t\2305\240\001\240\024\240U\250$\250a\200\001\360\006\000\005\013\320\n\037\230q\240\003\2405\250\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\001\340\004\013\2102\210X\220Q\220d\230$\230a\200""\001\360\006\000\005\013\320\n\037\230q\240\003\2405\250\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\2104\210t\2201\200\001\360\006\000\005\013\320\n\037\230q\240\003\2405\250\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\001\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\330\004\013\320\013 \240\001\240\023\240E\250\025\250b\260\003\2602\260Q\340\004\013\2102\210X\220Q\220d\230$\230e\2402\240QO";
     PyObject *data = NULL;
     CYTHON_UNUSED_VAR(__Pyx_DecompressString);
     #endif
@@ -26621,39 +26667,39 @@ static int __Pyx_CreateCodeObjects(__pyx_mstatetype *__pyx_mstate) {
   PyObject* tuple_dedup_map = PyDict_New();
   if (unlikely(!tuple_dedup_map)) return -1;
   {
-    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 11, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 33};
+    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 11, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS|CO_VARKEYWORDS), 32};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_datetime, __pyx_mstate->__pyx_n_u_lat, __pyx_mstate->__pyx_n_u_lon, __pyx_mstate->__pyx_n_u_solar, __pyx_mstate->__pyx_n_u_gmt, __pyx_mstate->__pyx_n_u_avg, __pyx_mstate->__pyx_n_u_elev, __pyx_mstate->__pyx_n_u_pressure, __pyx_mstate->__pyx_n_u_temp, __pyx_mstate->__pyx_n_u_kwargs, __pyx_mstate->__pyx_n_u_ntime};
     __pyx_mstate_global->__pyx_codeobj_tab[0] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_solar_parameters_2, __pyx_mstate->__pyx_kp_b_iso88591_86_1_3fBa_3fBa_5_b_q_q_q_HA_s_1, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[0])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 39, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 136};
+    const __Pyx_PyCode_New_function_description descr = {9, 0, 0, 39, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 135};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_unixtime, __pyx_mstate->__pyx_n_u_lat, __pyx_mstate->__pyx_n_u_lon, __pyx_mstate->__pyx_n_u_solar, __pyx_mstate->__pyx_n_u_elev, __pyx_mstate->__pyx_n_u_pressure, __pyx_mstate->__pyx_n_u_temp, __pyx_mstate->__pyx_n_u_delta_t, __pyx_mstate->__pyx_n_u_atmos_refract, __pyx_mstate->__pyx_n_u_jd, __pyx_mstate->__pyx_n_u_jce, __pyx_mstate->__pyx_n_u_jme, __pyx_mstate->__pyx_n_u_R, __pyx_mstate->__pyx_n_u_Theta, __pyx_mstate->__pyx_n_u_beta, __pyx_mstate->__pyx_n_u_delta_psi, __pyx_mstate->__pyx_n_u_delta_epsilon, __pyx_mstate->__pyx_n_u_epsilon, __pyx_mstate->__pyx_n_u_delta_tau, __pyx_mstate->__pyx_n_u_lamd, __pyx_mstate->__pyx_n_u_v, __pyx_mstate->__pyx_n_u_alpha, __pyx_mstate->__pyx_n_u_delta, __pyx_mstate->__pyx_n_u_H, __pyx_mstate->__pyx_n_u_xi, __pyx_mstate->__pyx_n_u_u, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_y, __pyx_mstate->__pyx_n_u_delta_alpha, __pyx_mstate->__pyx_n_u_delta_prime, __pyx_mstate->__pyx_n_u_e0, __pyx_mstate->__pyx_n_u_delta_e, __pyx_mstate->__pyx_n_u_cza, __pyx_mstate->__pyx_n_u_fdir, __pyx_mstate->__pyx_n_u_idx, __pyx_mstate->__pyx_n_u_toasolar, __pyx_mstate->__pyx_n_u_normsolar, __pyx_mstate->__pyx_n_u_iidx, __pyx_mstate->__pyx_n_u_fdir_2};
     __pyx_mstate_global->__pyx_codeobj_tab[1] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_solar_parameters, __pyx_mstate->__pyx_kp_b_iso88591_Kq_a_Q_1_C_A_aq_3_Qa_1_1A_AQ_Qa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[1])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 255};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 254};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_jme, __pyx_mstate->__pyx_n_u_res};
     __pyx_mstate_global->__pyx_codeobj_tab[2] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_heliocentric_radius_vector, __pyx_mstate->__pyx_kp_b_iso88591_q_5_E_b_E_b_2Q_E_b_2Q_E_b_2Q_4t, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[2])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 266};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 265};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_jme, __pyx_mstate->__pyx_n_u_res};
     __pyx_mstate_global->__pyx_codeobj_tab[3] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_heliocentric_longitude, __pyx_mstate->__pyx_kp_b_iso88591_q_5_E_b_E_b_2Q_E_b_2Q_E_b_2Q_E, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[3])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 279};
+    const __Pyx_PyCode_New_function_description descr = {1, 0, 0, 2, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 278};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_jme, __pyx_mstate->__pyx_n_u_res};
     __pyx_mstate_global->__pyx_codeobj_tab[4] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_heliocentric_latitude, __pyx_mstate->__pyx_kp_b_iso88591_q_5_E_b_2XQd_a, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[4])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 17, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 288};
+    const __Pyx_PyCode_New_function_description descr = {6, 0, 0, 17, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 287};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_jec, __pyx_mstate->__pyx_n_u_x0, __pyx_mstate->__pyx_n_u_x1, __pyx_mstate->__pyx_n_u_x2, __pyx_mstate->__pyx_n_u_x3, __pyx_mstate->__pyx_n_u_x4, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_j, __pyx_mstate->__pyx_n_u_n_arr, __pyx_mstate->__pyx_n_u_n_x, __pyx_mstate->__pyx_n_u_factor, __pyx_mstate->__pyx_n_u_radians, __pyx_mstate->__pyx_n_u_arg, __pyx_mstate->__pyx_n_u_abcd, __pyx_mstate->__pyx_n_u_yterm, __pyx_mstate->__pyx_n_u_delta_psi, __pyx_mstate->__pyx_n_u_delta_eps};
-    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_longitude_obliquity_nutation, __pyx_mstate->__pyx_kp_b_iso88591_C_4F_1_V1A_Rq_r_s_c_8_fBa_8_fBa, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[5] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_longitude_obliquity_nutation, __pyx_mstate->__pyx_kp_b_iso88591_C_4F_1_V1A_Rq_r_s_c_8_V2Q_8_V2Q, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[5])) goto bad;
   }
   {
-    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 335};
+    const __Pyx_PyCode_New_function_description descr = {2, 0, 0, 7, (unsigned int)(CO_OPTIMIZED|CO_NEWLOCALS), 338};
     PyObject* const varnames[] = {__pyx_mstate->__pyx_n_u_arr, __pyx_mstate->__pyx_n_u_x, __pyx_mstate->__pyx_n_u_i, __pyx_mstate->__pyx_n_u_j, __pyx_mstate->__pyx_n_u_n_arr, __pyx_mstate->__pyx_n_u_n_x, __pyx_mstate->__pyx_n_u_res};
-    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_sum_mult_cos_add_mult, __pyx_mstate->__pyx_kp_b_iso88591_CvQa_6_2_F_5_b_1A_E_aq_q_c_S_Qc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
+    __pyx_mstate_global->__pyx_codeobj_tab[6] = __Pyx_PyCode_New(descr, varnames, __pyx_mstate->__pyx_kp_u_src_pywbgt_solar_pyx, __pyx_mstate->__pyx_n_u_sum_mult_cos_add_mult, __pyx_mstate->__pyx_kp_b_iso88591_CvQa_6_2_F_V2Q_1A_E_aq_q_c_S_Qc, tuple_dedup_map); if (unlikely(!__pyx_mstate_global->__pyx_codeobj_tab[6])) goto bad;
   }
   Py_DECREF(tuple_dedup_map);
   return 0;
