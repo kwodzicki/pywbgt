@@ -68,6 +68,7 @@ class TestSolar(unittest.TestCase):
                 self.atmos_refract,
             )
             cza_ref = np.cos(np.deg2rad(90.0 - e))
+
             solar, cza, fdir = pywbgt.solar.solar_parameters(
                 tmp.time,
                 lat,
@@ -120,14 +121,15 @@ class TestSolar(unittest.TestCase):
         lon = subset.longitude.broadcast_like(subset['solar']).copy()
 
         solar, cza, fdir = pywbgt.solar.solar_parameters(
-            time.data,
-            lat.data,
-            lon.data,
-            subset['solar'].data,
+            time.data.ravel(),
+            lat.data.ravel(),
+            lon.data.ravel(),
+            subset['solar'].data.ravel(),
             avg=0,
             elev=np.asarray(self.elev),
             pressure=np.asarray(self.pressure),
             temp=np.asarray(self.temp),
         )
 
+        cza = cza.reshape(time.shape)
         np.testing.assert_almost_equal(cza, cza_ref, decimal=12)
