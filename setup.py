@@ -37,7 +37,7 @@ EXT_PSY_WETBULB = Extension(
     **EXTS_KWARGS,
 )
 
-EXT_PSY_WETBULB = Extension(
+EXT_SOLAR = Extension(
     f'{NAME}.solar',
     sources=[os.path.join('src', NAME, 'solar' + EXT)],
     **EXTS_KWARGS,
@@ -48,6 +48,7 @@ EXTENSIONS = [
     EXT_LILJEGREN,
     EXT_BERNARD,
     EXT_PSY_WETBULB,
+    EXT_SOLAR,
 ]
 
 if 'build_ext' in sys.argv:
