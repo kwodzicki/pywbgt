@@ -48,7 +48,7 @@ EXTENSIONS = [
     EXT_LILJEGREN,
     EXT_BERNARD,
     EXT_PSY_WETBULB,
-    EXT_SOLAR,
+#    EXT_SOLAR,
 ]
 
 if 'build_ext' in sys.argv:

@@ -56,7 +56,7 @@ class TestSolar(unittest.TestCase):
             unixtime = tmp.time.astype('datetime64[s]').astype('float').data
             lat = tmp.latitude.data.astype(float)
             lon = tmp.longitude.data.astype(float)
-            solar = tmp.solar
+            solar = tmp.solar.data
             theta, theta0, e, e0, phi, eot = spa.solar_position(
                 unixtime,
                 lat,
