@@ -104,8 +104,11 @@ class TestBernard(unittest.TestCase):
 
     def test_psychrometric_wetbulb(self):
 
-        ref_vals = [17.9571053, 27.1192636]
+        # Vals for metpy>1.6.3
+        # ref_vals = [17.9571053, 27.1192636]
 
+        # Vals for metpy==1.6.3
+        ref_vals = [17.9614888, 27.140425]
 #        test_vals = bernard.psychrometric_wetbulb(
 #            self.Tair.to('degC').magnitude,
 #            temp_dew=self.Tdew.to('degC').magnitude,
@@ -129,22 +132,36 @@ class TestBernard(unittest.TestCase):
 
     def test_natural_wetbulb(self):
 
-        ref_vals = [
-            22.5929780, 30.0820156, 21.9675030, 29.8893469,
-            22.0368338, 29.8420132, 22.0392536, 29.8258024,
-            21.9831774, 29.9507689, 22.0131997, 30.0604203,
-        ]
+        # Vals for metpy>1.6.3
+        # ref_vals = [
+        #     22.5929780, 30.0820156, 21.9675030, 29.8893469,
+        #     22.0368338, 29.8420132, 22.0392536, 29.8258024,
+        #     21.9831774, 29.9507689, 22.0131997, 30.0604203,
+        # ]
 
+        # Vals for metpy==1.6.3
+        ref_vals = [
+            22.5973616, 30.1031771, 21.9718866, 29.9105084, 22.0412174,
+            29.8631747, 22.0436372, 29.8469639, 21.9875610, 29.9719304,
+            22.0175833, 30.0815818,
+        ]
         test_vals = self.compute_wbgt()['Tnwb'].magnitude
         numpy.testing.assert_almost_equal(test_vals, ref_vals)
 
     def test_wetbulb_globe(self):
 
-        ref_vals = [
-            26.9898242, 34.0076126, 26.0516117, 33.7186095,
-            26.1556079, 33.6476089, 26.1592376, 33.6232928,
-            26.0751233, 33.8107426, 26.1201568, 33.9752196,
-        ]
+        # Vals for metpy>1.6.3
+        # ref_vals = [
+        #     26.9898242, 34.0076126, 26.0516117, 33.7186095,
+        #     26.1556079, 33.6476089, 26.1592376, 33.6232928,
+        #     26.0751233, 33.8107426, 26.1201568, 33.9752196,
+        # ]
 
+        # Vals for metpy==1.6.3
+        ref_vals = [
+            26.9928927, 34.0224256, 26.0546802, 33.7334225, 26.1586764,
+            33.6624220, 26.1623061, 33.6381058, 26.0781918, 33.8255556,
+            26.1232253, 33.9900326,
+        ]
         test_vals = self.compute_wbgt()['Twbg'].magnitude
         numpy.testing.assert_almost_equal(test_vals, ref_vals)
