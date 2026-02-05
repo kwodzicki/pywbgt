@@ -82,22 +82,42 @@ class TestWBGT(unittest.TestCase):
     def test_Tg(self):
 
         # Tg   = numpy.asarray([41.968254, 48.867577], dtype=numpy.float32)
-        Tg = numpy.asarray([41.971886, 48.871056], dtype=numpy.float32)
-        numpy.testing.assert_almost_equal(Tg, self.res['Tg'].magnitude)
+
+        # Vals for metpy?1.6.3
+        # Tg = numpy.asarray([41.971886, 48.871056], dtype=numpy.float32)\
+
+        # Vals for metpy==1.6.3
+        Tg = numpy.asarray([41.97033, 48.868675], dtype=numpy.float32)
+        numpy.testing.assert_almost_equal(self.res['Tg'].magnitude, Tg)
 
     def test_Tpsy(self):
 
-        Tpsy = [18.287775, 27.277277]
-        numpy.testing.assert_almost_equal(Tpsy, self.res['Tpsy'].magnitude)
+        # Vals for metpy>1.6.3
+        # Tpsy = [18.287775, 27.277277]
+
+        # Vals for metpy==1.6.3
+        Tpsy = numpy.asarray([18.278467, 27.251123], dtype=numpy.float32)
+        numpy.testing.assert_almost_equal(self.res['Tpsy'].magnitude, Tpsy)
 
     def test_Tnwb(self):
 
         # Tnwb = numpy.asarray([23.319757, 29.015223], dtype=numpy.float32)
-        Tnwb = numpy.asarray([23.328272, 29.039759], dtype=numpy.float32)
-        numpy.testing.assert_almost_equal(Tnwb, self.res['Tnwb'].magnitude)
+
+        # Vals for metpy>1.6.3
+        # Tnwb = numpy.asarray([23.328272, 29.039759], dtype=numpy.float32)
+
+        # Vals for metpy==1.6.3
+        Tnwb = numpy.asarray([23.320795, 29.01568], dtype=numpy.float32)
+        numpy.testing.assert_almost_equal(self.res['Tnwb'].magnitude, Tnwb)
 
     def test_Twbg(self):
 
         # Twbg = numpy.asarray([27.21748, 33.58417], dtype=numpy.float32)
-        Twbg = numpy.asarray([27.224167, 33.602043], dtype=numpy.float32)
-        numpy.testing.assert_almost_equal(Twbg, self.res['Twbg'].magnitude)
+
+        # Vals for metpy>1.6.3
+        # Twbg = numpy.asarray([27.224167, 33.602043], dtype=numpy.float32)
+
+        # Vals for metpy==1.6.3
+        Twbg = numpy.asarray([27.218622, 33.58471], dtype=numpy.float32)
+
+        numpy.testing.assert_almost_equal(self.res['Twbg'].magnitude, Twbg)

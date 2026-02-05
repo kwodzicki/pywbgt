@@ -4,8 +4,9 @@ import pandas
 import numpy as np
 import xarray as xr
 
+import pywbgt  # Need to import first for NUMBA setting
+
 from pvlib import spa
-import pywbgt
 
 
 class TestSolar(unittest.TestCase):
