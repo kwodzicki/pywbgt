@@ -8,7 +8,7 @@ National Renewable Energy Laboratory (NREL) Solar Position Algorithm (SPA).
 """
 
 import os
-os.environ['PVLIB_USE_NUMBA'] = '1' # Force use of numba in pvlib.spa module
+os.environ['PVLIB_USE_NUMBA'] = '1'  # Force use of numba in pvlib.spa module
 
 import numpy as np
 from numba import njit, prange
@@ -20,19 +20,22 @@ from .liljegren import (
 )
 
 # Default values for some parameters
-ELEV     =    0.00
+ELEV = 0.00
 PRESSURE = 1013.25
-TEMP     =   15.00
+TEMP = 15.00
 
 
 def solar_parameters(
-    datetime, lat, lon, solar,
-    gmt      = None,
-    avg      = None,
-    elev     = None,
-    pressure = None,
-    temp     = None,
-     **kwargs
+    datetime,
+    lat,
+    lon,
+    solar,
+    gmt=None,
+    avg=None,
+    elev=None,
+    pressure=None,
+    temp=None,
+    **kwargs
 ):
     """
     Calculate solar parameters based on date and location
@@ -43,7 +46,7 @@ def solar_parameters(
     source code, the Python pvlib package's implementation of the SPA algorithm
     is used.
 
-    This function aims to replicated the funcationality of the 
+    This function aims to replicated the funcationality of the
     calc_solar_parameters() function from the Liljegren C-cdoe.
 
     The following quantities are calculated:
@@ -53,8 +56,10 @@ def solar_parameters(
 
     Arguments:
         datetime (pandas.DatetimeIndex) : Datetime(s) corresponding to data
-        lat (ndarray) : Latitude of location(s) to compute parameters for; decimal
-        lon (ndarray) : Longitude of location(s) to compute parameters for; decimal
+        lat (ndarray) : Latitude of location(s) to compute parameters for;
+            decimal
+        lon (ndarray) : Longitude of location(s) to compute parameters for;
+            decimal
         solar (ndarray) : Solar irradiance values (Watt/m**2)
 
     Keyword arguments:
@@ -72,17 +77,20 @@ def solar_parameters(
             - Potentially modified solar radiation values
             - cosine of zenith angle
             - fraction of solar irradiance due to the direct beam
- 
+
     """
 
     datetime = (
         datetime_adjust(datetime, gmt, avg)
-        .astype(np.int64)
-    )/1.0e9
+        .astype('datetime64[s]')  # Ensure resolution is seconds of UNIX time
+        .astype(np.float64)
+    )
 
     ntime = datetime.shape[0]
 
-    if lat.size <= 1:                                                         # If input latitude is only one (1) element, assume lon and urban are also one (1) element and expand all to match size of data
+    # If input latitude is only one (1) element, assume lon and urban are
+    # also one (1) element and expand all to match size of data
+    if lat.size <= 1:
         lat = lat.repeat(ntime)
 
     if lon.size <= 1:
@@ -115,6 +123,7 @@ def solar_parameters(
         0,
     )
 
+
 @njit(parallel=True)
 def _solar_parameters(
     unixtime,
@@ -126,7 +135,7 @@ def _solar_parameters(
     temp,
     delta_t,
     atmos_refract,
-): 
+):
     """
     Adapted from pvlib.spa.solar_position_numpy
 
@@ -142,82 +151,82 @@ def _solar_parameters(
         See arguments for solar_position()
 
     Returns:
-        tuple : numpy.ndarray for Earth-Sun distance (AU) and 
+        tuple : numpy.ndarray for Earth-Sun distance (AU) and
             solar zenith angle (degrees)
 
     """
 
-    cza  = np.empty(unixtime.size, dtype=np.float64)
+    cza = np.empty(unixtime.size, dtype=np.float64)
     fdir = np.empty(unixtime.size, dtype=np.float64)
 
     for i in prange(unixtime.size):
-        jd    = spa.julian_day(unixtime[i])
-        jde   = spa.julian_ephemeris_day(jd, delta_t)
-        jc    = spa.julian_century(jd)
-        jce   = spa.julian_ephemeris_century(jde)
-        jme   = spa.julian_ephemeris_millennium(jce)
-        R     = spa.heliocentric_radius_vector(jme)
+        jd = spa.julian_day(unixtime[i])
+        jde = spa.julian_ephemeris_day(jd, delta_t)
+        jc = spa.julian_century(jd)
+        jce = spa.julian_ephemeris_century(jde)
+        jme = spa.julian_ephemeris_millennium(jce)
+        R = spa.heliocentric_radius_vector(jme)
 
-        L     = spa.heliocentric_longitude(jme)
-        B     = spa.heliocentric_latitude(jme)
+        L = spa.heliocentric_longitude(jme)
+        B = spa.heliocentric_latitude(jme)
         Theta = spa.geocentric_longitude(L)
-        beta  = spa.geocentric_latitude(B)
-        x0    = spa.mean_elongation(jce)
-        x1    = spa.mean_anomaly_sun(jce)
-        x2    = spa.mean_anomaly_moon(jce)
-        x3    = spa.moon_argument_latitude(jce)
-        x4    = spa.moon_ascending_longitude(jce)
-        
+        beta = spa.geocentric_latitude(B)
+        x0 = spa.mean_elongation(jce)
+        x1 = spa.mean_anomaly_sun(jce)
+        x2 = spa.mean_anomaly_moon(jce)
+        x3 = spa.moon_argument_latitude(jce)
+        x4 = spa.moon_ascending_longitude(jce)
+
         l_o_nutation = np.empty((2,))
         spa.longitude_obliquity_nutation(jce, x0, x1, x2, x3, x4, l_o_nutation)
 
-        delta_psi     = l_o_nutation[0]
+        delta_psi = l_o_nutation[0]
         delta_epsilon = l_o_nutation[1]
-        epsilon0      = spa.mean_ecliptic_obliquity(jme)
-        epsilon       = spa.true_ecliptic_obliquity(epsilon0, delta_epsilon)
-        delta_tau     = spa.aberration_correction(R)
-        lamd          = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
-        v0            = spa.mean_sidereal_time(jd, jc)
-        v             = spa.apparent_sidereal_time(v0, delta_psi, epsilon)
-        alpha         = spa.geocentric_sun_right_ascension(lamd, epsilon, beta)
-        delta         = spa.geocentric_sun_declination(lamd, epsilon, beta)
+        epsilon0 = spa.mean_ecliptic_obliquity(jme)
+        epsilon = spa.true_ecliptic_obliquity(epsilon0, delta_epsilon)
+        delta_tau = spa.aberration_correction(R)
+        lamd = spa.apparent_sun_longitude(Theta, delta_psi, delta_tau)
+        v0 = spa.mean_sidereal_time(jd, jc)
+        v = spa.apparent_sidereal_time(v0, delta_psi, epsilon)
+        alpha = spa.geocentric_sun_right_ascension(lamd, epsilon, beta)
+        delta = spa.geocentric_sun_declination(lamd, epsilon, beta)
 
-        H           = spa.local_hour_angle(v, lon[i], alpha)
-        xi          = spa.equatorial_horizontal_parallax(R)
-        u           = spa.uterm(lat[i])
-        x           = spa.xterm(u, lat[i], elev[i])
-        y           = spa.yterm(u, lat[i], elev[i])
+        H = spa.local_hour_angle(v, lon[i], alpha)
+        xi = spa.equatorial_horizontal_parallax(R)
+        u = spa.uterm(lat[i])
+        x = spa.xterm(u, lat[i], elev[i])
+        y = spa.yterm(u, lat[i], elev[i])
         delta_alpha = spa.parallax_sun_right_ascension(x, xi, H, delta)
         delta_prime = spa.topocentric_sun_declination(
             delta, x, y, xi, delta_alpha, H,
         )
-        H_prime     = spa.topocentric_local_hour_angle(H, delta_alpha)
-        e0          = spa.topocentric_elevation_angle_without_atmosphere(
+        H_prime = spa.topocentric_local_hour_angle(H, delta_alpha)
+        e0 = spa.topocentric_elevation_angle_without_atmosphere(
             lat[i], delta_prime, H_prime,
         )
-        delta_e     = spa.atmospheric_refraction_correction(
+        delta_e = spa.atmospheric_refraction_correction(
             pressure[i], temp[i], e0, atmos_refract,
         )
 
         cza[i] = np.cos(
-            np.deg2rad(90.0-spa.topocentric_elevation_angle(e0, delta_e))
+            np.deg2rad(90.0 - spa.topocentric_elevation_angle(e0, delta_e))
         )
 
         if (cza[i] < LILJEGREN_CZA_MIN):
             solar[i] = 0.0
-            fdir[i]  = 0.0
+            fdir[i] = 0.0
         else:
             toasolar = LILJEGREN_SOLAR_CONST * max(cza[i], 0.0) / R**2
-    
-            # Limit maximum value of norm solar 
-            normsolar  = min(
-                solar[i]/toasolar,
+
+            # Limit maximum value of norm solar
+            normsolar = min(
+                solar[i] / toasolar,
                 LILJEGREN_NORMSOLAR_MAX,
             )
 
             solar[i] = normsolar * toasolar
             if normsolar > 0.0:
-                fdir[i] = np.exp(3.0-1.34*normsolar-1.65/normsolar)
+                fdir[i] = np.exp(3.0 - 1.34 * normsolar - 1.65 / normsolar)
                 fdir[i] = max(min(fdir[i], 0.9), 0.0)
             else:
                 fdir[i] = 0.0
