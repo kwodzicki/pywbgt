@@ -57,7 +57,6 @@ where = ["src"]
 # -----------------------------------------------------------------------------
 # cibuildwheel: builds the binary wheels in CI (see .github/workflows).
 #   * Build CPython 3.10-3.12; skip PyPy and musl-based Linux.
-#   * Import-test each wheel so a broken build fails immediately.
 #   * OpenMP: Linux manylinux images ship GCC+libgomp and Windows MSVC has
 #     /openmp built in; only macOS needs libomp installed first.
 # -----------------------------------------------------------------------------
@@ -71,6 +70,13 @@ skip  = "pp* *-musllinux*"
 # where those dependencies install as prebuilt wheels.
 # Regenerate C from .pyx so published wheels always track the current sources.
 environment = { PYWBGT_CYTHONIZE = "1" }
+
+[tool.cibuildwheel.linux]
+# Default manylinux2014 ships GCC 10.2.1, but NumPy's meson build requires
+# GCC >= 10.3. manylinux_2_28 (AlmaLinux 8) ships GCC 12+ and current pip,
+# which resolves the too-old-compiler error. Requires glibc >= 2.28 at runtime
+# (RHEL/CentOS 8+, Ubuntu 18.10+); older systems install from the sdist.
+manylinux-x86_64-image = "manylinux_2_28"
 
 [tool.cibuildwheel.macos]
 before-all = "brew install libomp"
