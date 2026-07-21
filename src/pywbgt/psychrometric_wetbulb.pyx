@@ -6,7 +6,7 @@ Algorithms for computing psychrometric wetbulb temperature
 from cython.parallel import prange
 import numpy
 
-from libc.math cimport exp, fabsf
+from libc.math cimport exp, fabsf, NAN
 
 cimport numpy
 cimport cython
@@ -65,7 +65,7 @@ cdef float _iribarne_wb( float temp_a, float temp_d, float pres, int maxfev, flo
         if fabsf(adjust) < xtol: return temp_w
         maxfev -= 1
 
-    return 0.0/0.0
+    return NAN  # non-convergence sentinel; portable NaN (MSVC rejects 0.0/0.0)
 
 @cython.binding(True)
 def stull( temp_a, temp_d ):
