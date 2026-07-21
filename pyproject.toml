@@ -12,7 +12,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name        = "pywbgt"
-version     = "3.0.6"
+version     = "3.0.7"
 description = "Package for estimating wetbulb globe temperature using various algorithms"
 readme      = "README.md"
 authors     = [
@@ -62,11 +62,15 @@ where = ["src"]
 #     /openmp built in; only macOS needs libomp installed first.
 # -----------------------------------------------------------------------------
 [tool.cibuildwheel]
-build        = "cp310-* cp311-* cp312-*"
-skip         = "pp* *-musllinux*"
-test-command = "python -c \"import pywbgt; print(pywbgt.__file__)\""
+build = "cp310-* cp311-* cp312-*"
+skip  = "pp* *-musllinux*"
+# No test-command here on purpose: importing pywbgt pulls in the full runtime
+# stack (metpy->matplotlib->Pillow, pvlib->h5py), which tries to build from
+# source and fails in the manylinux/Windows build environments (no HDF5/libjpeg
+# system libs). Functional testing is handled by ci.yml on native runners,
+# where those dependencies install as prebuilt wheels.
 # Regenerate C from .pyx so published wheels always track the current sources.
-environment  = { PYWBGT_CYTHONIZE = "1" }
+environment = { PYWBGT_CYTHONIZE = "1" }
 
 [tool.cibuildwheel.macos]
 before-all = "brew install libomp"

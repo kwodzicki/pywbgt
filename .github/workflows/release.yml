@@ -73,6 +73,12 @@ jobs:
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.21
+        env:
+          # Homebrew's libomp is built for the runner's macOS version, so the
+          # wheel's deployment target must match or delocate refuses to bundle
+          # it. Set it per Apple-Silicon (macos-14) / Intel (macos-13) runner.
+          # Ignored on Linux/Windows.
+          MACOSX_DEPLOYMENT_TARGET: ${{ matrix.os == 'macos-14' && '14.0' || matrix.os == 'macos-13' && '13.0' || '' }}
 
       - name: Upload wheels
         uses: actions/upload-artifact@v4
