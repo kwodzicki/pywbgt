@@ -65,10 +65,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macos-14 = Apple Silicon (arm64). Intel macOS (macos-13) was retired
-        # by GitHub in Dec 2025 and x86_64 macOS is sunset entirely in 2027, so
-        # Intel/older-macOS users install from the sdist instead.
-        os: [ubuntu-latest, windows-latest, macos-14]
+        # Linux x86_64 + native Linux arm64 (ubuntu-*-arm, free for public
+        # repos), Windows x86_64, and macOS arm64. Intel macOS (macos-13) was
+        # retired by GitHub in Dec 2025 and x86_64 macOS is sunset entirely in
+        # 2027, so Intel/older-macOS users install from the sdist instead.
+        os: [ubuntu-latest, ubuntu-24.04-arm, windows-latest, macos-14]
     steps:
       - uses: actions/checkout@v4
 
