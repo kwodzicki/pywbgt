@@ -1,0 +1,52 @@
+# -----------------------------------------------------------------------------
+# Continuous integration -- build & test, NEVER publishes.
+#
+# WHAT THIS DOES
+#   On pull requests and pushes to main, compiles the extensions and runs the
+#   test suite on Linux, macOS and Windows. This is where a broken build gets
+#   caught (especially the macOS clang + libomp OpenMP path) BEFORE you tag a
+#   release with release.yml.
+# -----------------------------------------------------------------------------
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Cancel superseded runs on the same branch/PR.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build & test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-14, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # macOS clang needs libomp for OpenMP (see setup.py); Linux/Windows don't.
+      - name: Install libomp (macOS)
+        if: runner.os == 'macOS'
+        run: brew install libomp
+
+      - name: Install package and test deps
+        # Regenerate C from .pyx so PRs that touch the .pyx sources are actually
+        # validated through Cython, not just against the committed .c.
+        env:
+          PYWBGT_CYTHONIZE: "1"
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install . pytest
+
+      - name: Run tests
+        run: pytest -v tests
