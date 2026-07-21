@@ -3,6 +3,10 @@ requires = [
     "setuptools>=61.0",
     "wheel",
     "numpy>=1.24.0",
+    # Available in the build env so PYWBGT_CYTHONIZE=1 can regenerate C from
+    # .pyx; unused on the default path (which compiles the committed .c).
+    # Major capped so C generation stays reproducible.
+    "Cython>=3.0,<4.0",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -37,8 +41,32 @@ dependencies = [
     "pvlib>=0.10.5",
 ]
 
+# Shown on the PyPI project sidebar.
+[project.urls]
+Homepage   = "https://github.com/kwodzicki/pywbgt"
+Repository = "https://github.com/kwodzicki/pywbgt"
+
 [tool.setuptools.packages.find]
 where = ["src"]
 
+# Files bundled INTO the wheel. Includes Cython sources (.pyx), the generated
+# C (.c), Cython declaration files (.pxd) and the hand-written C in src/.
 [tool.setuptools.package-data]
-"*" = ["**/*.pyx", "**/*.c"]
+"*" = ["**/*.pyx", "**/*.pxd", "**/*.c"]
+
+# -----------------------------------------------------------------------------
+# cibuildwheel: builds the binary wheels in CI (see .github/workflows).
+#   * Build CPython 3.10-3.12; skip PyPy and musl-based Linux.
+#   * Import-test each wheel so a broken build fails immediately.
+#   * OpenMP: Linux manylinux images ship GCC+libgomp and Windows MSVC has
+#     /openmp built in; only macOS needs libomp installed first.
+# -----------------------------------------------------------------------------
+[tool.cibuildwheel]
+build        = "cp310-* cp311-* cp312-*"
+skip         = "pp* *-musllinux*"
+test-command = "python -c \"import pywbgt; print(pywbgt.__file__)\""
+# Regenerate C from .pyx so published wheels always track the current sources.
+environment  = { PYWBGT_CYTHONIZE = "1" }
+
+[tool.cibuildwheel.macos]
+before-all = "brew install libomp"

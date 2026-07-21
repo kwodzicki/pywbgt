@@ -1,0 +1,24 @@
+# Controls what goes into the SOURCE distribution (sdist).
+#
+# WHY THIS MATTERS
+#   When no binary wheel matches a user's platform, pip downloads the sdist and
+#   compiles it locally. That build needs every C/Cython source -- including the
+#   Cython declaration files (.pxd) and the hand-written C in src/pywbgt/src/ --
+#   none of which setuptools ships by default. The rules below guarantee they
+#   are present so a source install actually compiles.
+
+include LICENSE
+include README.md
+include pyproject.toml
+include setup.py
+
+# Cython sources, generated C, and Cython headers for every extension.
+recursive-include src/pywbgt *.pyx *.pxd *.c
+
+# Hand-written C compiled into the liljegren extension.
+recursive-include src/pywbgt/src *.c *.h
+
+# Keep build noise out of the sdist.
+global-exclude *.so *.pyc *.html
+global-exclude __pycache__ .DS_Store
+prune **/.ipynb_checkpoints
